@@ -10,10 +10,25 @@ import UIKit
 
 class SideMenuViewController: UIViewController {
 
+    @IBOutlet weak var settingsContainerView: UIView!{
+        didSet{
+            settingsContainerView.addGestureRecognizer(UITapGestureRecognizer(target: self, action:     #selector(didTapSettings)))
+        }
+    }
+    
+    var delegate: SideMenuViewControllerDelegate!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        
+    }
+    
+    @objc func didTapSettings(){
+        delegate.didSelectSettings()
     }
 
+}
+
+protocol SideMenuViewControllerDelegate{
+    func didSelectSettings()
 }

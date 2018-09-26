@@ -16,5 +16,8 @@ extension UIColor{
     open class var shadeOrange: UIColor{
         return UIColor(named: "ShadeOrange")!
     }
+    open class var mainGray: UIColor{
+        return UIColor(named: "GrayColor")!
+    }
     
 }

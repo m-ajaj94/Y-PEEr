@@ -384,11 +384,20 @@
                     <connections>
                         <outlet property="collectionView" destination="45e-7D-Rgh" id="T75-RI-8s2"/>
                         <outlet property="menuButton" destination="4c4-c8-2Sa" id="cpM-76-QQV"/>
+                        <segue destination="rGG-vc-xUv" kind="show" identifier="ShowIssue" id="BCr-DD-jhq"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fIu-Ik-Eyz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1286" y="1209"/>
+        </scene>
+        <!--IssueViewController-->
+        <scene sceneID="jMp-At-8A1">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Issue" referencedIdentifier="IssueViewController" id="rGG-vc-xUv" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="UlY-yL-ngR" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1900" y="954"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="h9G-VC-3kZ">

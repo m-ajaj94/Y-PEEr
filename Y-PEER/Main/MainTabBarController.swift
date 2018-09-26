@@ -23,6 +23,7 @@ class MainTabBarController: UITabBarController {
                 SideMenuManager.default.menuAnimationBackgroundColor = .mainOrange
                 SideMenuManager.default.menuFadeStatusBar = false
                 SideMenuManager.default.menuAddScreenEdgePanGesturesToPresent(toView: self.view)
+                sideMenuViewController.delegate = self
             }
         }
     }
@@ -36,4 +37,14 @@ class MainTabBarController: UITabBarController {
         present(SideMenuManager.default.menuLeftNavigationController!, animated: true, completion: nil)
     }
 
+}
+
+extension MainTabBarController: SideMenuViewControllerDelegate{
+    
+    func didSelectSettings() {
+        dismiss(animated: true, completion: nil)
+        let controller = UIStoryboard(name: "Settings", bundle: nil).instantiateInitialViewController()!
+        present(controller, animated: true, completion: nil)
+    }
+    
 }
