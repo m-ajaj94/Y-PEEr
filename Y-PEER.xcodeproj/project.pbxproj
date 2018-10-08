@@ -10,6 +10,12 @@
 		7068CC308390E98D046B8106 /* Pods_Y_PEER.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0362A44C5C8DFFCD2E134C3E /* Pods_Y_PEER.framework */; };
 		F305B91B2159371F005A4818 /* CoreTeamCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F305B9192159371F005A4818 /* CoreTeamCollectionViewCell.swift */; };
 		F305B91C2159371F005A4818 /* CoreTeamCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F305B91A2159371F005A4818 /* CoreTeamCollectionViewCell.xib */; };
+		F3131EF6216BB70700B1200E /* PostImageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3131EF4216BB70700B1200E /* PostImageTableViewCell.swift */; };
+		F3131EF7216BB70700B1200E /* PostImageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F3131EF5216BB70700B1200E /* PostImageTableViewCell.xib */; };
+		F3131EFB216BB77100B1200E /* PostsQuizTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3131EF9216BB77100B1200E /* PostsQuizTableViewCell.swift */; };
+		F3131EFC216BB77100B1200E /* PostsQuizTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F3131EFA216BB77100B1200E /* PostsQuizTableViewCell.xib */; };
+		F3131F00216BCF1000B1200E /* PostsImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3131EFE216BCF1000B1200E /* PostsImageCollectionViewCell.swift */; };
+		F3131F01216BCF1000B1200E /* PostsImageCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F3131EFF216BCF1000B1200E /* PostsImageCollectionViewCell.xib */; };
 		F3303ECF215677B200DF4610 /* Issue.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F3303ECE215677B200DF4610 /* Issue.storyboard */; };
 		F3303ED12156796200DF4610 /* IssueViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3303ED02156796200DF4610 /* IssueViewController.swift */; };
 		F3303ED521567ADC00DF4610 /* IssueTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3303ED321567ADC00DF4610 /* IssueTableViewCell.swift */; };
@@ -65,6 +71,12 @@
 		304A170E4E59E3209A117E64 /* Pods-Y-PEER.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Y-PEER.release.xcconfig"; path = "Pods/Target Support Files/Pods-Y-PEER/Pods-Y-PEER.release.xcconfig"; sourceTree = "<group>"; };
 		F305B9192159371F005A4818 /* CoreTeamCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreTeamCollectionViewCell.swift; sourceTree = "<group>"; };
 		F305B91A2159371F005A4818 /* CoreTeamCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CoreTeamCollectionViewCell.xib; sourceTree = "<group>"; };
+		F3131EF4216BB70700B1200E /* PostImageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostImageTableViewCell.swift; sourceTree = "<group>"; };
+		F3131EF5216BB70700B1200E /* PostImageTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PostImageTableViewCell.xib; sourceTree = "<group>"; };
+		F3131EF9216BB77100B1200E /* PostsQuizTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsQuizTableViewCell.swift; sourceTree = "<group>"; };
+		F3131EFA216BB77100B1200E /* PostsQuizTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PostsQuizTableViewCell.xib; sourceTree = "<group>"; };
+		F3131EFE216BCF1000B1200E /* PostsImageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsImageCollectionViewCell.swift; sourceTree = "<group>"; };
+		F3131EFF216BCF1000B1200E /* PostsImageCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PostsImageCollectionViewCell.xib; sourceTree = "<group>"; };
 		F3303ECE215677B200DF4610 /* Issue.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Issue.storyboard; sourceTree = "<group>"; };
 		F3303ED02156796200DF4610 /* IssueViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueViewController.swift; sourceTree = "<group>"; };
 		F3303ED321567ADC00DF4610 /* IssueTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueTableViewCell.swift; sourceTree = "<group>"; };
@@ -152,6 +164,34 @@
 				F305B91A2159371F005A4818 /* CoreTeamCollectionViewCell.xib */,
 			);
 			path = Cell;
+			sourceTree = "<group>";
+		};
+		F3131EF3216BB6ED00B1200E /* Image Cell */ = {
+			isa = PBXGroup;
+			children = (
+				F3131EFD216BCEFA00B1200E /* Collection Cell */,
+				F3131EF4216BB70700B1200E /* PostImageTableViewCell.swift */,
+				F3131EF5216BB70700B1200E /* PostImageTableViewCell.xib */,
+			);
+			path = "Image Cell";
+			sourceTree = "<group>";
+		};
+		F3131EF8216BB75F00B1200E /* Quiz Cell */ = {
+			isa = PBXGroup;
+			children = (
+				F3131EF9216BB77100B1200E /* PostsQuizTableViewCell.swift */,
+				F3131EFA216BB77100B1200E /* PostsQuizTableViewCell.xib */,
+			);
+			path = "Quiz Cell";
+			sourceTree = "<group>";
+		};
+		F3131EFD216BCEFA00B1200E /* Collection Cell */ = {
+			isa = PBXGroup;
+			children = (
+				F3131EFE216BCF1000B1200E /* PostsImageCollectionViewCell.swift */,
+				F3131EFF216BCF1000B1200E /* PostsImageCollectionViewCell.xib */,
+			);
+			path = "Collection Cell";
 			sourceTree = "<group>";
 		};
 		F3303ECD2156779C00DF4610 /* Issue */ = {
@@ -385,6 +425,8 @@
 		F3D0EEB9214DEEC9006739B9 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
+				F3131EF8216BB75F00B1200E /* Quiz Cell */,
+				F3131EF3216BB6ED00B1200E /* Image Cell */,
 				F3D0EEBA214DEECE006739B9 /* Skeleton Cell */,
 			);
 			path = Cell;
@@ -499,8 +541,10 @@
 				F3D0EED0214E3807006739B9 /* IssuesCollectionViewCell.xib in Resources */,
 				F33DFA77214A074500E3194C /* SideMenu.storyboard in Resources */,
 				F3303EED2156E48100DF4610 /* AboutDetailsTableViewCell.xib in Resources */,
+				F3131EF7216BB70700B1200E /* PostImageTableViewCell.xib in Resources */,
 				F3D0EECB214E0AB7006739B9 /* IssuesHeaderCollectionReusableView.xib in Resources */,
 				F33DFA6C2149FB5100E3194C /* LaunchScreen.storyboard in Resources */,
+				F3131EFC216BB77100B1200E /* PostsQuizTableViewCell.xib in Resources */,
 				F3303EE82156D89600DF4610 /* AboutTableViewSectionHeader.xib in Resources */,
 				F3303ECF215677B200DF4610 /* Issue.storyboard in Resources */,
 				F3D0EEB8214DD7F7006739B9 /* GallerySkeletonCollectionViewCell.xib in Resources */,
@@ -510,6 +554,7 @@
 				F3303EF32156F25300DF4610 /* AboutCoreTeamTableViewCell.xib in Resources */,
 				F3B1E4F5214DB93800832FE7 /* GalleryCollectionViewCell.xib in Resources */,
 				F3DCA07121592B7E0022FE50 /* CoreTeamCollectionReusableView.xib in Resources */,
+				F3131F01216BCF1000B1200E /* PostsImageCollectionViewCell.xib in Resources */,
 				F3D0EEC3214DF630006739B9 /* GalleryVideoCollectionViewCell.xib in Resources */,
 				F3303EF82156F46F00DF4610 /* AboutCoreTeamCellCollectionViewCell.xib in Resources */,
 				F3D0EEBE214DEEEC006739B9 /* PostsSkeletonTableViewCell.xib in Resources */,
@@ -582,6 +627,7 @@
 				F3303EE62156D88D00DF4610 /* AboutTableViewSectionHeader.swift in Sources */,
 				F3D0EEC2214DF630006739B9 /* GalleryVideoCollectionViewCell.swift in Sources */,
 				F3B1E4F4214DB93800832FE7 /* GalleryCollectionViewCell.swift in Sources */,
+				F3131EF6216BB70700B1200E /* PostImageTableViewCell.swift in Sources */,
 				F3DCA07021592B7E0022FE50 /* CoreTeamCollectionReusableView.swift in Sources */,
 				F3303EEC2156E48100DF4610 /* AboutDetailsTableViewCell.swift in Sources */,
 				F3D0EEB7214DD7F7006739B9 /* GallerySkeletonCollectionViewCell.swift in Sources */,
@@ -593,9 +639,11 @@
 				F3B1E4EB214DAFD200832FE7 /* ParentViewController.swift in Sources */,
 				F3D0EEBD214DEEEC006739B9 /* PostsSkeletonTableViewCell.swift in Sources */,
 				F305B91B2159371F005A4818 /* CoreTeamCollectionViewCell.swift in Sources */,
+				F3131EFB216BB77100B1200E /* PostsQuizTableViewCell.swift in Sources */,
 				F33DFA79214A075500E3194C /* SideMenuViewController.swift in Sources */,
 				F3B1E4E8214DAE1700832FE7 /* MainTabBarController.swift in Sources */,
 				F33DFA622149FB4F00E3194C /* AppDelegate.swift in Sources */,
+				F3131F00216BCF1000B1200E /* PostsImageCollectionViewCell.swift in Sources */,
 				F3303ED82156C7C000DF4610 /* IssueArticleViewController.swift in Sources */,
 				F3303ED521567ADC00DF4610 /* IssueTableViewCell.swift in Sources */,
 				F3303F022157089600DF4610 /* CoreTeamViewController.swift in Sources */,
