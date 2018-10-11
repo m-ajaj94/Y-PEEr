@@ -22,7 +22,7 @@ class CoreTeamViewController: ParentViewController {
             collectionView.backgroundColor = .clear
             collectionView.alwaysBounceVertical = true
             collectionView.contentInset = UIEdgeInsets(top: height, left: spacing, bottom: 0, right: spacing)
-            collectionView.register(UINib(nibName: String(describing: CoreTeamCollectionReusableView.self), bundle: nil), forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: String(describing: CoreTeamCollectionReusableView.self))
+            collectionView.register(UINib(nibName: String(describing: CoreTeamCollectionReusableView.self), bundle: nil), forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: String(describing: CoreTeamCollectionReusableView.self))
             collectionView.register(UINib(nibName: String(describing: CoreTeamCollectionViewCell.self), bundle: nil), forCellWithReuseIdentifier: String(describing: CoreTeamCollectionViewCell.self))
         }
     }
@@ -53,6 +53,7 @@ class CoreTeamViewController: ParentViewController {
         if imageView != nil && collectionView != nil{
             imageView.frame = CGRect(origin: .zero, size: CGSize(width: view.frame.size.width, height: max(0, -collectionView.contentOffset.y + headerHeight / 2)))
         }
+        collectionView.reloadData()
     }
 
 }
@@ -75,7 +76,7 @@ extension CoreTeamViewController: UICollectionViewDelegate, UICollectionViewData
     }
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        if let header = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionElementKindSectionHeader, withReuseIdentifier: String(describing: CoreTeamCollectionReusableView.self), for: indexPath) as? CoreTeamCollectionReusableView{
+        if let header = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: String(describing: CoreTeamCollectionReusableView.self), for: indexPath) as? CoreTeamCollectionReusableView{
             return header
         }
         return UICollectionReusableView()

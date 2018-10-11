@@ -1,17 +1,18 @@
 //
-//  PostsQuizTableViewCell.swift
+//  PostsTextTableViewCell.swift
 //  Y-PEER
 //
-//  Created by Majd Ajaj on 10/8/18.
+//  Created by Majd Ajaj on 10/9/18.
 //  Copyright © 2018 Majd Ajaj. All rights reserved.
 //
 
 import UIKit
 
-class PostsQuizTableViewCell: UITableViewCell {
-
-    @IBOutlet weak var startButton: UIButton!
-    @IBOutlet weak var buttonContainerView: UIView!
+class PostsTextTableViewCell: UITableViewCell {
+    
+    @IBOutlet weak var timeLabel: UILabel!
+    @IBOutlet weak var likeCountLabel: UILabel!
+    @IBOutlet weak var likeButton: UIButton!
     @IBOutlet weak var secondaryLabel: UILabel!
     @IBOutlet weak var mainLabel: UILabel!
     @IBOutlet weak var shadowView: UIView!{
@@ -23,22 +24,18 @@ class PostsQuizTableViewCell: UITableViewCell {
         }
     }
     
-    @IBAction func startButtonPressed(_ sender: Any) {
-        delegate.didTapStartFromQuiz(at: index)
+    @IBAction func likeButtonPressed(_ sender: Any) {
+        likeButton.setTitle("😍", for: .normal)
+        delegate.didPressLike(at: index)
     }
     
-    var delegate: PostsQuizTableViewCellDelegate!
-    var index: IndexPath!
     
+    var delegate: PostsTextTableViewCellDelegate!
+    var index: IndexPath!
+
     override func awakeFromNib() {
         super.awakeFromNib()
         selectionStyle = .none
-        backgroundColor = .clear
-    }
-    
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        buttonContainerView.layer.cornerRadius = buttonContainerView.frame.size.height / 2
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -47,6 +44,6 @@ class PostsQuizTableViewCell: UITableViewCell {
     
 }
 
-protocol PostsQuizTableViewCellDelegate {
-    func didTapStartFromQuiz(at indexPath: IndexPath)
+protocol PostsTextTableViewCellDelegate {
+    func didPressLike(at index: IndexPath)
 }

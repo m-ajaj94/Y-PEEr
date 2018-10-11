@@ -19,12 +19,13 @@ class PostsViewController: ParentViewController {
                 tableView.delegate = self
                 tableView.dataSource = self
                 tableView.separatorStyle = .none
-                tableView.rowHeight = UITableViewAutomaticDimension
+                tableView.rowHeight = UITableView.automaticDimension
                 tableView.estimatedRowHeight = 260
-                tableView.allowsSelection = false
                 tableView.register(UINib(nibName: String(describing: PostsSkeletonTableViewCell.self), bundle: nil), forCellReuseIdentifier: String(describing: PostsSkeletonTableViewCell.self))
                 tableView.register(UINib(nibName: String(describing: PostsQuizTableViewCell.self), bundle: nil), forCellReuseIdentifier: String(describing: PostsQuizTableViewCell.self))
                 tableView.register(UINib(nibName: String(describing: PostImageTableViewCell.self), bundle: nil), forCellReuseIdentifier: String(describing: PostImageTableViewCell.self))
+                tableView.register(UINib(nibName: String(describing: PostsUpcomingEventTableViewCell.self), bundle: nil), forCellReuseIdentifier: String(describing: PostsUpcomingEventTableViewCell.self))
+                tableView.register(UINib(nibName: String(describing: PostsTextTableViewCell.self), bundle: nil), forCellReuseIdentifier: String(describing: PostsTextTableViewCell.self))
             }
         }
     }
@@ -54,7 +55,7 @@ class PostsViewController: ParentViewController {
 
 }
 
-extension PostsViewController: SkeletonTableViewDataSource, SkeletonTableViewDelegate, PostsQuizTableViewCellDelegate, PostImageTableViewCellDelegate{
+extension PostsViewController: SkeletonTableViewDataSource, SkeletonTableViewDelegate, PostsQuizTableViewCellDelegate, PostImageTableViewCellDelegate, PostsUpcomingEventTableViewCellDelegate, PostsTextTableViewCellDelegate{
     
     func collectionSkeletonView(_ skeletonView: UITableView, cellIdentifierForRowAt indexPath: IndexPath) -> ReusableCellIdentifier {
         return String(describing: PostsSkeletonTableViewCell.self)
@@ -78,7 +79,7 @@ extension PostsViewController: SkeletonTableViewDataSource, SkeletonTableViewDel
             }
         }
         else{
-            let x = indexPath.row & 1
+            let x = indexPath.row.remainderReportingOverflow(dividingBy: 4).partialValue
             if x == 0 || indexPath.row < 4{
                 if let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: PostImageTableViewCell.self)) as? PostImageTableViewCell{
                     cell.delegate = self
@@ -91,8 +92,23 @@ extension PostsViewController: SkeletonTableViewDataSource, SkeletonTableViewDel
                     return cell
                 }
             }
-            else{
+            else if x == 1{
                 if let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: PostsQuizTableViewCell.self)) as? PostsQuizTableViewCell{
+                    cell.delegate = self
+                    cell.index = indexPath
+                    return cell
+                }
+            }
+            else if x == 2{
+                if let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: PostsTextTableViewCell.self)) as? PostsTextTableViewCell{
+                    cell.delegate = self
+                    cell.index = indexPath
+                    return cell
+                }
+            }
+            else{
+                if let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: PostsUpcomingEventTableViewCell.self)) as? PostsUpcomingEventTableViewCell{
+                    cell.shouldUpdateTime()
                     cell.delegate = self
                     cell.index = indexPath
                     return cell
@@ -111,7 +127,13 @@ extension PostsViewController: SkeletonTableViewDataSource, SkeletonTableViewDel
     }
     
     func didSeletImage(at index: IndexPath, from originalIndex: IndexPath) {
-        
+        let cell = tableView.cellForRow(at: originalIndex) as! PostImageTableViewCell
+        showImages(cell.images, index.row)
     }
+    
+    func didTapImage(at index: IndexPath) {
+        showImages(["a.jpg"], 0)
+    }
+    
     
 }

@@ -19,14 +19,19 @@ class AboutViewController: ParentViewController {
             tableView.delegate = self
             tableView.dataSource = self
             tableView.estimatedRowHeight = 100
-            tableView.rowHeight = UITableViewAutomaticDimension
-            tableView.sectionHeaderHeight = UITableViewAutomaticDimension
+            tableView.rowHeight = UITableView.automaticDimension
+            tableView.sectionHeaderHeight = UITableView.automaticDimension
             tableView.estimatedSectionHeaderHeight = 80
             tableView.register(UINib(nibName: String(describing: AboutTableViewSectionHeader.self), bundle: nil), forHeaderFooterViewReuseIdentifier: String(describing: AboutTableViewSectionHeader.self))
             tableView.register(UINib(nibName: String(describing: AboutDetailsTableViewCell.self), bundle: nil), forCellReuseIdentifier: String(describing: AboutDetailsTableViewCell.self))
             tableView.register(UINib(nibName: String(describing: AboutCoreTeamTableViewCell.self), bundle: nil), forCellReuseIdentifier: String(describing: AboutCoreTeamTableViewCell.self))
             tableView.register(UINib(nibName: String(describing: AboutPartnershipTableViewCell.self), bundle: nil), forCellReuseIdentifier: String(describing: AboutPartnershipTableViewCell.self))
         }
+    }
+    @IBOutlet weak var closeButton: UIBarButtonItem!
+    
+    @IBAction func closeButtonPressed(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
     }
     
     override func viewDidLoad() {

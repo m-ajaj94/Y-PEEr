@@ -42,18 +42,16 @@ class PostImageTableViewCell: UITableViewCell {
     var index: IndexPath!
     var images: [String]!{
         didSet{
+            collectionView.contentInset = UIEdgeInsets(top: spacing, left: spacing, bottom: spacing, right: spacing)
             switch images.count {
             case 1:
                 collectionViewHeightConstraint.constant = frame.size.width * 3 / 5
-                collectionView.contentInset = .zero
                 break
             case 2:
                 collectionViewHeightConstraint.constant = frame.size.width * 1 / 2
-                collectionView.contentInset = UIEdgeInsets(top: spacing, left: spacing, bottom: spacing, right: spacing)
                 break
             default:
                 collectionViewHeightConstraint.constant = frame.size.width
-                collectionView.contentInset = UIEdgeInsets(top: spacing, left: spacing, bottom: spacing, right: spacing)
             }
             layoutIfNeeded()
         }
@@ -62,6 +60,7 @@ class PostImageTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        selectionStyle = .none
         backgroundColor = .clear
     }
     
@@ -104,7 +103,7 @@ extension PostImageTableViewCell: UICollectionViewDelegate, UICollectionViewData
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         switch images.count {
         case 1:
-            return CGSize(width: collectionView.frame.size.width, height: collectionView.frame.size.height)
+            return CGSize(width: collectionView.frame.size.width - spacing * 2, height: collectionView.frame.size.height - spacing * 2)
         case 2:
             let width = (collectionView.frame.size.width - (3 * spacing)) / 2
             return CGSize(width: width, height: width)

@@ -21,7 +21,6 @@ class CoreTeamCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var cellImage: UIImageView!{
         didSet{
             cellImage.backgroundColor = .mainOrange
-            cellImage.layer.cornerRadius = cellImage.frame.width / 2
         }
     }
     @IBOutlet weak var cellLabel: UILabel!
@@ -32,7 +31,7 @@ class CoreTeamCollectionViewCell: UICollectionViewCell {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        cellImage.layer.cornerRadius = cellImage.frame.width / 2
+        cellImage.layer.cornerRadius = cellImage.frame.size.width / 2
     }
 
 }

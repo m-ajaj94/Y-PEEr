@@ -46,6 +46,7 @@
                                     <constraint firstAttribute="width" secondItem="TjX-HZ-LeM" secondAttribute="height" multiplier="1:1" id="WQQ-rH-90U"/>
                                     <constraint firstAttribute="width" constant="40" id="agq-H0-yxj"/>
                                 </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                 <state key="normal" title="😃"/>
                                 <connections>
                                     <action selector="likeButtonPressed:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="UGR-Nu-IAt"/>

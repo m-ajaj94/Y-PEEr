@@ -329,17 +329,32 @@
             </objects>
             <point key="canvasLocation" x="1286" y="-290"/>
         </scene>
-        <!--View Controller-->
+        <!--Events View Controller-->
         <scene sceneID="Dhh-Q8-Hat">
             <objects>
-                <viewController id="atE-3F-IYQ" sceneMemberID="viewController">
+                <viewController id="atE-3F-IYQ" customClass="EventsViewController" customModule="Y_PEER" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="0MC-7I-U37">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="554"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="NDQ-er-1Pm">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="554"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="NDQ-er-1Pm" firstAttribute="leading" secondItem="rh7-Za-rCi" secondAttribute="leading" id="9la-Ag-16Q"/>
+                            <constraint firstAttribute="bottom" secondItem="NDQ-er-1Pm" secondAttribute="bottom" id="H4b-BE-TUj"/>
+                            <constraint firstItem="NDQ-er-1Pm" firstAttribute="top" secondItem="0MC-7I-U37" secondAttribute="top" id="Xst-5K-eUD"/>
+                            <constraint firstItem="rh7-Za-rCi" firstAttribute="trailing" secondItem="NDQ-er-1Pm" secondAttribute="trailing" id="b6k-J1-dqK"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="rh7-Za-rCi"/>
                     </view>
                     <navigationItem key="navigationItem" id="hWc-TW-LsZ"/>
+                    <connections>
+                        <outlet property="tableView" destination="NDQ-er-1Pm" id="Bvg-gO-gl0"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8DC-t4-L1k" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -397,7 +412,7 @@
                 <viewControllerPlaceholder storyboardName="Issue" referencedIdentifier="IssueViewController" id="rGG-vc-xUv" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UlY-yL-ngR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1900" y="954"/>
+            <point key="canvasLocation" x="1955" y="1208"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="h9G-VC-3kZ">

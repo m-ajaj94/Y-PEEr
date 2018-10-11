@@ -28,7 +28,7 @@ class IssueViewController: ParentViewController {
             tableView.dataSource = self
             tableView.separatorStyle = .none
             tableView.contentInset = UIEdgeInsets(top: 16, left: 0, bottom: 0, right: 0)
-            tableView.rowHeight = UITableViewAutomaticDimension
+            tableView.rowHeight = UITableView.automaticDimension
             tableView.estimatedRowHeight = 100
             tableView.register(UINib(nibName: String(describing: IssueTableViewCell.self), bundle: nil), forCellReuseIdentifier: String(describing: IssueTableViewCell.self))
             tableView.backgroundColor = .mainGray
