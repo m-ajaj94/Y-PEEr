@@ -13,7 +13,23 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var closeButton: UIButton!
     @IBOutlet weak var editButton: UIButton!
     @IBOutlet weak var doneButton: UIBarButtonItem!
+    @IBOutlet weak var birthdayImageView: UIImageView!
+    @IBOutlet weak var birthdayTitleLabel: UILabel!
+    @IBOutlet weak var birthdayLabel: UILabel!
+    @IBOutlet weak var locationImageView: UIImageView!
+    @IBOutlet weak var locationTitleLabel: UILabel!
+    @IBOutlet weak var locationLabel: UILabel!
+    @IBOutlet weak var genderImageView: UIImageView!
+    @IBOutlet weak var genderTitleLabel: UILabel!
+    @IBOutlet weak var genderLabel: UILabel!
+    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var emailLabel: UILabel!
+    @IBOutlet weak var signoutButton: UIButton!
     
+    @IBAction func didPressSignout(_ sender: Any) {
+        UserCache.setLoggedIn(false)
+        dismiss(animated: true, completion: nil)
+    }
     @IBAction func didPressDone(_ sender: Any) {
         dismiss(animated: true, completion: nil)
     }
@@ -30,6 +46,7 @@ class ProfileViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationController!.interactivePopGestureRecognizer?.delegate = nil
     }
 
 }

@@ -8,6 +8,7 @@
 
 import UIKit
 import SkeletonView
+import FMMosaicLayout
 
 class GalleryViewController: ParentViewController {
 
@@ -27,8 +28,10 @@ class GalleryViewController: ParentViewController {
                 layout.minimumInteritemSpacing = 8
                 layout.minimumLineSpacing = 8
                 layout.scrollDirection = .vertical
-                collectionView.collectionViewLayout = layout
-                collectionView.contentInset = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
+                let mosaiicLayout = FMMosaicLayout()
+                mosaiicLayout.delegate = self
+                collectionView.collectionViewLayout = mosaiicLayout
+//                collectionView.contentInset = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
                 collectionView.register(UINib(nibName: String(describing: GalleryCollectionViewCell.self), bundle: nil), forCellWithReuseIdentifier: String(describing: GalleryCollectionViewCell.self))
                 collectionView.register(UINib(nibName: String(describing: GallerySkeletonCollectionViewCell.self), bundle: nil), forCellWithReuseIdentifier: String(describing: GallerySkeletonCollectionViewCell.self))
             }
@@ -104,24 +107,32 @@ class GalleryViewController: ParentViewController {
     }
     
     private let numberOfColoumns: CGFloat = 2
-    
+    var images: [String] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
         SkeletonAppearance.default.tintColor = .shadeOrange
         SkeletonAppearance.default.gradient = SkeletonGradient(baseColor: .shadeOrange, secondaryColor: .white)
+        for i in 0..<200{
+            if (i.quotientAndRemainder(dividingBy: 4).remainder == 0){
+                images.append("a.jpg")
+            }
+            else{
+                images.append("1.png")
+            }
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        collectionView.prepareSkeleton { (success) in
-            self.view.showAnimatedGradientSkeleton()
-        }
+//        collectionView.prepareSkeleton { (success) in
+////            self.view.showAnimatedGradientSkeleton()
+//        }
     }
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-        view.hideSkeleton(reloadDataAfter: true)
+//        view.hideSkeleton(reloadDataAfter: true)
     }
     
     override func viewDidLayoutSubviews() {
@@ -133,10 +144,21 @@ class GalleryViewController: ParentViewController {
 
 }
 
-extension GalleryViewController: UICollectionViewDelegate, SkeletonCollectionViewDataSource, UICollectionViewDelegateFlowLayout{
+extension GalleryViewController: UICollectionViewDelegate, SkeletonCollectionViewDataSource, FMMosaicLayoutDelegate{
+    
+    func collectionView(_ collectionView: UICollectionView!, layout collectionViewLayout: FMMosaicLayout!, numberOfColumnsInSection section: Int) -> Int {
+        return 2
+    }
+    
+    func collectionView(_ collectionView: UICollectionView!, layout collectionViewLayout: FMMosaicLayout!, mosaicCellSizeForItemAt indexPath: IndexPath!) -> FMMosaicCellSize {
+        if indexPath.row % 3 == 1{
+            return .big
+        }
+        return .small
+    }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 20
+        return images.count
     }
     
     
@@ -146,6 +168,14 @@ extension GalleryViewController: UICollectionViewDelegate, SkeletonCollectionVie
     
     func collectionSkeletonView(_ skeletonView: UICollectionView, cellIdentifierForItemAt indexPath: IndexPath) -> ReusableCellIdentifier {
         return String(describing: GallerySkeletonCollectionViewCell.self)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView!, layout collectionViewLayout: FMMosaicLayout!, interitemSpacingForSectionAt section: Int) -> CGFloat {
+        return 4
+    }
+    
+    func collectionView(_ collectionView: UICollectionView!, layout collectionViewLayout: FMMosaicLayout!, insetForSectionAt section: Int) -> UIEdgeInsets {
+        return UIEdgeInsets(top: 4, left: 4, bottom: 4, right: 4)
     }
     
     func collectionSkeletonView(_ skeletonView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -160,10 +190,15 @@ extension GalleryViewController: UICollectionViewDelegate, SkeletonCollectionVie
         }
         else{
             if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: GalleryCollectionViewCell.self), for: indexPath) as? GalleryCollectionViewCell{
+                cell.cellImage.image = UIImage(named: images[indexPath.row])
                 return cell
             }
         }
         return UICollectionViewCell()
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        showImages(images, indexPath.row)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {

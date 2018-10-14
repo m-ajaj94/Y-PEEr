@@ -31,7 +31,8 @@ class CoreTeamCollectionViewCell: UICollectionViewCell {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        cellImage.layer.cornerRadius = cellImage.frame.size.width / 2
+        let imageViewWidth = ((UIScreen.main.bounds.width - (16 * 4)) / 3) - 24
+        cellImage.layer.cornerRadius = imageViewWidth / 2
     }
 
 }

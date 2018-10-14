@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="PostDetailsImageCollectionViewCell" customModule="Y_PEER" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="238" height="176"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="238" height="176"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="r6A-z7-40k">
+                        <rect key="frame" x="0.0" y="0.0" width="238" height="176"/>
+                    </imageView>
+                    <visualEffectView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7ss-RR-iwJ">
+                        <rect key="frame" x="0.0" y="0.0" width="238" height="176"/>
+                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="6p2-yB-aNn">
+                            <rect key="frame" x="0.0" y="0.0" width="238" height="176"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        </view>
+                        <blurEffect style="light"/>
+                    </visualEffectView>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="22B-Id-Gb5">
+                        <rect key="frame" x="0.0" y="0.0" width="238" height="176"/>
+                    </imageView>
+                </subviews>
+            </view>
+            <constraints>
+                <constraint firstItem="7ss-RR-iwJ" firstAttribute="trailing" secondItem="ZTg-uK-7eu" secondAttribute="trailing" id="49t-uP-ZOZ"/>
+                <constraint firstItem="r6A-z7-40k" firstAttribute="leading" secondItem="ZTg-uK-7eu" secondAttribute="leading" id="57L-a1-Mpx"/>
+                <constraint firstItem="7ss-RR-iwJ" firstAttribute="top" secondItem="ZTg-uK-7eu" secondAttribute="top" id="7dS-MC-5Cd"/>
+                <constraint firstItem="ZTg-uK-7eu" firstAttribute="trailing" secondItem="r6A-z7-40k" secondAttribute="trailing" id="F5r-6o-ABh"/>
+                <constraint firstItem="ZTg-uK-7eu" firstAttribute="bottom" secondItem="7ss-RR-iwJ" secondAttribute="bottom" id="OqY-dm-XzL"/>
+                <constraint firstItem="ZTg-uK-7eu" firstAttribute="bottom" secondItem="r6A-z7-40k" secondAttribute="bottom" id="Tid-Sd-mLu"/>
+                <constraint firstItem="r6A-z7-40k" firstAttribute="top" secondItem="ZTg-uK-7eu" secondAttribute="top" id="Vru-aR-Rkc"/>
+                <constraint firstItem="22B-Id-Gb5" firstAttribute="trailing" secondItem="ZTg-uK-7eu" secondAttribute="trailing" id="aMy-Ba-O7s"/>
+                <constraint firstItem="ZTg-uK-7eu" firstAttribute="bottom" secondItem="22B-Id-Gb5" secondAttribute="bottom" id="apk-1d-oQ1"/>
+                <constraint firstItem="ZTg-uK-7eu" firstAttribute="leading" secondItem="7ss-RR-iwJ" secondAttribute="leading" id="dF2-WF-B3q"/>
+                <constraint firstItem="22B-Id-Gb5" firstAttribute="leading" secondItem="ZTg-uK-7eu" secondAttribute="leading" id="tYp-8U-S7o"/>
+                <constraint firstItem="22B-Id-Gb5" firstAttribute="top" secondItem="ZTg-uK-7eu" secondAttribute="top" id="x4v-7M-xp9"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <size key="customSize" width="238" height="176"/>
+            <connections>
+                <outlet property="blurredImageView" destination="r6A-z7-40k" id="3As-cb-93z"/>
+                <outlet property="cellImage" destination="22B-Id-Gb5" id="1WU-3D-YkQ"/>
+            </connections>
+            <point key="canvasLocation" x="288" y="210.49475262368819"/>
+        </collectionViewCell>
+    </objects>
+</document>

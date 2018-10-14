@@ -53,7 +53,7 @@ class CoreTeamViewController: ParentViewController {
         if imageView != nil && collectionView != nil{
             imageView.frame = CGRect(origin: .zero, size: CGSize(width: view.frame.size.width, height: max(0, -collectionView.contentOffset.y + headerHeight / 2)))
         }
-        collectionView.reloadData()
+        collectionView.layoutSubviews()
     }
 
 }
@@ -70,6 +70,7 @@ extension CoreTeamViewController: UICollectionViewDelegate, UICollectionViewData
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: CoreTeamCollectionViewCell.self), for: indexPath) as? CoreTeamCollectionViewCell{
+            
             return cell
         }
         return UICollectionViewCell()

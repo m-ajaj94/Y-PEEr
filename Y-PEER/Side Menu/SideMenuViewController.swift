@@ -62,6 +62,16 @@ class SideMenuViewController: UIViewController {
         super.viewDidLoad()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        if UserCache.isLoggedIn{
+            userLabel.text = "Majd Ajaj"
+        }
+        else{
+            userLabel.text = "Sign in/Register"
+        }
+    }
+    
     @objc func didTapSettings(){
         dismiss(animated: true, completion: nil)
         delegate.didSelectSettings()

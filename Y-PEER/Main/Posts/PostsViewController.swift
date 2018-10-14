@@ -37,6 +37,12 @@ class PostsViewController: ParentViewController {
         }
     }
     
+    var selectedIndex: IndexPath!{
+        didSet{
+            
+        }
+    }
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 //        view.showAnimatedGradientSkeleton()
@@ -51,6 +57,14 @@ class PostsViewController: ParentViewController {
         super.viewDidLoad()
         view.isSkeletonable = true
         tableView.hideSkeleton(reloadDataAfter: true)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "ShowPostDetails"{
+            if let controller = segue.destination as? PostDetailsViewController{
+//                controller.postType
+            }
+        }
     }
 
 }
@@ -116,6 +130,11 @@ extension PostsViewController: SkeletonTableViewDataSource, SkeletonTableViewDel
             }
         }
         return UITableViewCell()
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        performSegue(withIdentifier: "ShowPostDetails", sender: self)
     }
     
     func didTapStartFromQuiz(at indexPath: IndexPath) {

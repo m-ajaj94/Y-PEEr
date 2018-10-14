@@ -24,7 +24,7 @@ extension UIViewController{
     func showImages(_ images: [String], _ index: Int){
         var array: [LightboxImage] = []
         for image in images{
-            array.append(LightboxImage(image: UIImage(named: image)!))
+            array.append(LightboxImage(image: UIImage(named: image)!, text: "Some text about image #\(index)", videoURL: nil))
         }
         let controller = LightboxController(images: array)
         controller.dynamicBackground = true

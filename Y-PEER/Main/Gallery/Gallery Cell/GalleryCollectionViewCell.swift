@@ -17,7 +17,8 @@ class GalleryCollectionViewCell: UICollectionViewCell {
     }
     @IBOutlet weak var cellImage: UIImageView!{
         didSet{
-            cellImage.backgroundColor = .shadeOrange
+//            cellImage.backgroundColor = .shadeOrange
+            cellImage.contentMode = .scaleAspectFit
         }
     }
     
