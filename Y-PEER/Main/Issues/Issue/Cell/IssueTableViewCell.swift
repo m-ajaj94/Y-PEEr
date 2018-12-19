@@ -18,10 +18,21 @@ class IssueTableViewCell: UITableViewCell {
             mainContainerView.layer.shadowColor = UIColor.black.cgColor
         }
     }
-    @IBOutlet weak var cellImage: UIImageView!
+    @IBOutlet weak var cellImage: UIImageView!{
+        didSet{
+            cellImage.contentMode = .scaleAspectFill
+            cellImage.clipsToBounds = true
+        }
+    }
     @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var cellTitleLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
+    
+    var imageName: String!{
+        didSet{
+            cellImage.image = UIImage(named: imageName)
+        }
+    }
     
     override func awakeFromNib() {
         super.awakeFromNib()

@@ -21,10 +21,10 @@ extension UIViewController{
         view.endEditing(true)
     }
     
-    func showImages(_ images: [String], _ index: Int){
+    func showImages(_ images: [ImageModel], _ index: Int){
         var array: [LightboxImage] = []
         for image in images{
-            array.append(LightboxImage(image: UIImage(named: image)!, text: "Some text about image #\(index)", videoURL: nil))
+            array.append(LightboxImage(imageURL: Networking.getImageURL(image.imagePath!)))
         }
         let controller = LightboxController(images: array)
         controller.dynamicBackground = true

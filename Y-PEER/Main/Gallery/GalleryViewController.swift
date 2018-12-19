@@ -101,8 +101,8 @@ class GalleryViewController: ParentViewController {
             self.videosButton.setTitleColor(.white, for: .normal)
             self.photosButton.setTitleColor(.mainOrange, for: .normal)
             self.allButton.setTitleColor(.mainOrange, for: .normal)
-            self.collectionView.isHidden = true
-            self.videoCollectionView.isHidden = false
+            self.collectionView.isHidden = false
+            self.videoCollectionView.isHidden = true
         }
     }
     
@@ -111,15 +111,12 @@ class GalleryViewController: ParentViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        title = "Gallery"
         SkeletonAppearance.default.tintColor = .shadeOrange
         SkeletonAppearance.default.gradient = SkeletonGradient(baseColor: .shadeOrange, secondaryColor: .white)
-        for i in 0..<200{
-            if (i.quotientAndRemainder(dividingBy: 4).remainder == 0){
-                images.append("a.jpg")
-            }
-            else{
-                images.append("1.png")
-            }
+        for _ in 0..<200{
+            let rand = arc4random() % 5
+            images.append("image-\(rand).jpg")
         }
     }
     
@@ -198,7 +195,7 @@ extension GalleryViewController: UICollectionViewDelegate, SkeletonCollectionVie
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        showImages(images, indexPath.row)
+        showImages([], indexPath.row)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {

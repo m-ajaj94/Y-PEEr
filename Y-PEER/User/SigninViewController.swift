@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Toaster
 
 class SigninViewController: UIViewController {
 
@@ -53,7 +54,6 @@ class SigninViewController: UIViewController {
     }
     @IBAction func continueButtonPressed(_ sender: Any) {
         if passwordTextFieldShown{
-            //TODO: Signin request
             if emailTextField.empty{
                 showErrorAlert("Please enter your e-mail first!".localized)
             }
@@ -63,10 +63,7 @@ class SigninViewController: UIViewController {
                 }
                 else{
                     if !passwordTextField.empty && passwordTextField.text!.count >= 6{
-                        UserCache.setLoggedIn(true)
-                        let controller = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController()!
-                        controller.modalTransitionStyle = .crossDissolve
-                        present(controller, animated: true, completion: nil)
+                        requestData()
                     }
                     else{
                         showErrorAlert("Please enter your password!\nA password must be at least 6 characters long".localized)
@@ -123,7 +120,7 @@ class SigninViewController: UIViewController {
             dismiss(animated: true, completion: nil)
         }
         else{
-            UserCache.setLoggedIn(false)
+            UserCache.signout()
             let controller = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController()!
             controller.modalTransitionStyle = .crossDissolve
             present(controller, animated: true, completion: nil)
@@ -135,8 +132,31 @@ class SigninViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        let backgroundImage = UIImageView(frame: UIScreen.main.bounds)
+        backgroundImage.image = UIImage(named: "background.jpg")
+        backgroundImage.contentMode = .scaleAspectFill
+        self.view.insertSubview(backgroundImage, at: 0)
         hidesKeyboardOnTap()
         navigationController!.interactivePopGestureRecognizer?.delegate = nil
+    }
+    
+    func requestData(){
+        Networking.user.signin(["email":emailTextField.text!,"password":passwordTextField.text!, "session_id":""]) { (model) in
+            if model != nil{
+                if model!.code == "1"{
+                    UserCache.signin(model!.data!)
+                    let controller = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController()!
+                    controller.modalTransitionStyle = .crossDissolve
+                    self.present(controller, animated: true, completion: nil)
+                }
+                else{
+                    Toast(text: model!.message).show()
+                }
+            }
+            else{
+                Toast(text: "Error Message TODO".localized).show()
+            }
+        }
     }
     
     override func viewDidLayoutSubviews() {

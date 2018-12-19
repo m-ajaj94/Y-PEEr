@@ -9,5 +9,10 @@
 import Foundation
 
 enum RequestNames: String{
+    case signup = "signup"
+    case signin = "signin"
+    case updateProfile = "updateprofile"
+    
     case getPosts = "getposts"
+    case getIssues = "getissues"
 }

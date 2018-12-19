@@ -37,6 +37,15 @@ class EventsTableViewCell: UITableViewCell {
             circularIndicatorView.layer.borderWidth = 2
         }
     }
+    
+    var imageName: String!{
+        didSet{
+            cellImageView.image = UIImage(named: imageName)
+            cellImageView.contentMode = .scaleAspectFill
+            cellImageView.clipsToBounds = true
+        }
+    }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         backgroundColor = .clear

@@ -30,6 +30,7 @@ class IssueArticleViewController: ParentViewController, UIScrollViewDelegate {
         }
     }
     var height: CGFloat = 240
+    var imageName: String!
     
     override func viewDidLoad() {
         super.viewDidLoad()

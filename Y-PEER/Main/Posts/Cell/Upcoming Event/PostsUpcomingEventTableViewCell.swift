@@ -38,6 +38,16 @@ class PostsUpcomingEventTableViewCell: UITableViewCell {
         }
     }
     
+    var post: PostModel!{
+        didSet{
+            if post.images!.count != 0{
+                cellImage.kf.setImage(with: Networking.getImageURL(post.images![0].imagePath!))
+            }
+            mainLabel.text = post.title!
+            secondaryLabel.text = post.description!
+        }
+    }
+    
     @IBAction func likeButtonPressed(_ sender: Any) {
         likeButton.setTitle("😍", for: .normal)
         delegate.didPressLike(at: index)

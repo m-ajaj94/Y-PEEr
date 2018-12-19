@@ -18,6 +18,7 @@ class PostDetailsViewController: ParentViewController {
             collectionView.dataSource = self
             collectionView.isPagingEnabled = true
             collectionView.bounces = false
+            collectionView.showsHorizontalScrollIndicator = false
             collectionView.register(UINib(nibName: String(describing: PostDetailsImageCollectionViewCell.self), bundle: nil), forCellWithReuseIdentifier: String(describing: PostDetailsImageCollectionViewCell.self))
         }
     }
@@ -31,6 +32,7 @@ class PostDetailsViewController: ParentViewController {
     }
     
     var noImages = false
+    var passedImages: [String]!
     var images: [String]!{
         didSet{
             if images == nil || images.count == 0{
@@ -57,10 +59,10 @@ class PostDetailsViewController: ParentViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        heightConstraint.constant = height
         title = "Post"
         pageControl = FlexiblePageControl()
-//        images = ["a.jpg", "1.png", "a.jpg", "1.png", "a.jpg", "1.png", "a.jpg", "1.png"]
-        images = []
+        images = passedImages
     }
     
     override func viewDidLayoutSubviews() {
@@ -93,7 +95,7 @@ extension PostDetailsViewController: UICollectionViewDelegate, UICollectionViewD
         if noImages{
             return
         }
-        showImages(images, indexPath.row)
+        showImages([], indexPath.row)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {

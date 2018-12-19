@@ -9,7 +9,9 @@
 import UIKit
 import SideMenu
 
-class MainTabBarController: UITabBarController {
+class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
+    
+    var selectedTab: Int = 0
     
     var sideMenuViewController: SideMenuViewController!{
         didSet{
@@ -30,11 +32,48 @@ class MainTabBarController: UITabBarController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        delegate = self
         sideMenuViewController = UIStoryboard(name: "SideMenu", bundle: nil).instantiateInitialViewController() as? SideMenuViewController
+        tabBar.unselectedItemTintColor = .shadeOrange
     }
     
     func showSideMenu(){
         present(SideMenuManager.default.menuLeftNavigationController!, animated: true, completion: nil)
+    }
+    
+    func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
+        if selectedIndex == selectedTab{
+            switch selectedTab{
+            case 0:
+                if let navigationController = viewControllers![selectedTab] as? UINavigationController, let controller = navigationController.viewControllers.last! as? PostsViewController{
+                    controller.tableView.setContentOffset(CGPoint(x: controller.tableView.contentOffset.x, y: 0), animated: true)
+                }
+                break
+            case 1:
+                if let navigationController = viewControllers![selectedTab] as? UINavigationController, let controller = navigationController.viewControllers.last! as? GalleryViewController{
+                    controller.collectionView.setContentOffset(CGPoint(x: controller.collectionView.contentOffset.x, y: 0), animated: true)
+                }
+                break
+            case 2:
+                if let navigationController = viewControllers![selectedTab] as? UINavigationController, let controller = navigationController.viewControllers.last! as? EventsViewController{
+                    controller.tableView.setContentOffset(CGPoint(x: controller.tableView.contentOffset.x, y: 0), animated: true)
+                }
+                break
+            case 3:
+                if let navigationController = viewControllers![selectedTab] as? UINavigationController, let controller = navigationController.viewControllers.last! as? IssuesViewController{
+                    controller.collectionView.setContentOffset(CGPoint(x: controller.collectionView.contentOffset.x, y: 0), animated: true)
+                }
+                break
+            case 4:
+                if let navigationController = viewControllers![selectedTab] as? UINavigationController, let controller = navigationController.viewControllers.last! as? QuizzesViewController{
+                    controller.tableView.setContentOffset(CGPoint(x: controller.tableView.contentOffset.x, y: 0), animated: true)
+                }
+                break
+            default:
+                break
+            }
+        }
+        selectedTab = selectedIndex
     }
 
 }

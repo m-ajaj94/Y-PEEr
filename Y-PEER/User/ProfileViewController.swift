@@ -25,9 +25,10 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var emailLabel: UILabel!
     @IBOutlet weak var signoutButton: UIButton!
+    @IBOutlet var containerViews: [UIView]!
     
     @IBAction func didPressSignout(_ sender: Any) {
-        UserCache.setLoggedIn(false)
+        UserCache.signout()
         dismiss(animated: true, completion: nil)
     }
     @IBAction func didPressDone(_ sender: Any) {
@@ -36,17 +37,32 @@ class ProfileViewController: UIViewController {
     @IBAction func editButtonPressed(_ sender: Any) {
         let controller = UIStoryboard(name: "User", bundle: nil).instantiateViewController(withIdentifier: "SignupViewController") as! SignupViewController
         controller.isEditProfile = true
-        controller.userInfo = (name: "Majd Ajaj", email: "m.ajaj94@gmail.com", 1, 2, Date())
         navigationController!.pushViewController(controller, animated: true)
     }
     @IBAction func closeButtonPressed(_ sender: Any) {
         dismiss(animated: true, completion: nil)
     }
     
+    var user = UserCache.userData!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        for containerView in containerViews{
+            containerView.layer.shadowOffset = CGSize(width: 0, height: 3)
+            containerView.layer.shadowRadius = 3
+            containerView.layer.shadowOpacity = 0.2
+        }
+        let backgroundImage = UIImageView(frame: UIScreen.main.bounds)
+        backgroundImage.image = UIImage(named: "background.jpg")
+        backgroundImage.contentMode = .scaleAspectFill
+        self.view.insertSubview(backgroundImage, at: 0)
         navigationController!.interactivePopGestureRecognizer?.delegate = nil
+        emailLabel.text = user.email!
+        nameLabel.text = user.name!
+        birthdayLabel.text = user.birthdate!
+        genderLabel.text = "\(user.gender!)"
+        locationLabel.text = "\(user.cityID!)"
     }
 
 }

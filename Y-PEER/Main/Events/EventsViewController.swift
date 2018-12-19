@@ -76,8 +76,20 @@ class EventsViewController: UIViewController {
         }
     }
     
+    var selectedIndex: IndexPath!{
+        didSet{
+            performSegue(withIdentifier: "ShowPostDetails", sender: self)
+        }
+    }
+    var images: [String] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        title = "Events"
+        for _ in 0..<10{
+            let rand = arc4random() % 5
+            images.append("image-\(rand).jpg")
+        }
     }
     
     override func viewDidLayoutSubviews() {
@@ -85,6 +97,11 @@ class EventsViewController: UIViewController {
         allButton.layer.cornerRadius = allButton.frame.size.height / 2
         upcomingButton.layer.cornerRadius = upcomingButton.frame.size.height / 2
         passedButton.layer.cornerRadius = passedButton.frame.size.height / 2
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let controller = segue.destination as! EventDetailsViewController
+        controller.imageName = images[selectedIndex.row]
     }
 
 }
@@ -99,8 +116,13 @@ extension EventsViewController: UITableViewDelegate, UITableViewDataSource{
         return 10
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        selectedIndex = indexPath
+    }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: EventsTableViewCell.self)) as? EventsTableViewCell{
+            cell.imageName = images[indexPath.row]
             return cell
         }
         return UITableViewCell()

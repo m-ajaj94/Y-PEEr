@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 class PostImageTableViewCell: UITableViewCell {
 
@@ -40,23 +41,40 @@ class PostImageTableViewCell: UITableViewCell {
     
     var delegate: PostImageTableViewCellDelegate!
     var index: IndexPath!
-    var images: [String]!{
+    var images: [ImageModel]!{
         didSet{
             collectionView.contentInset = UIEdgeInsets(top: spacing, left: spacing, bottom: spacing, right: spacing)
             switch images.count {
             case 1:
-                collectionViewHeightConstraint.constant = frame.size.width * 3 / 5
+                collectionViewHeightConstraint.constant = UIScreen.main.bounds.size.width * 3 / 5
                 break
             case 2:
-                collectionViewHeightConstraint.constant = frame.size.width * 1 / 2
+                collectionViewHeightConstraint.constant = UIScreen.main.bounds.size.width * 1 / 2
                 break
             default:
-                collectionViewHeightConstraint.constant = frame.size.width
+                collectionViewHeightConstraint.constant = UIScreen.main.bounds.size.width
             }
             layoutIfNeeded()
         }
     }
     private let spacing: CGFloat = 4
+    var post: PostModel!{
+        didSet{
+            images = post.images!
+            layoutIfNeeded()
+            if post.totalLikes != nil{
+                likeCountLabel.text = "\(post.totalLikes!)"
+            }
+            if post.isLiked != nil{
+                if post.isLiked! != "0"{
+                    //TODO: Like Status
+                }
+            }
+            mainLabel.text = post.title!
+            secondaryLabel.text = post.description!
+            timeLabel.text = post.createdAt!
+        }
+    }
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -87,7 +105,8 @@ extension PostImageTableViewCell: UICollectionViewDelegate, UICollectionViewData
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: PostsImageCollectionViewCell.self), for: indexPath) as? PostsImageCollectionViewCell{
-            cell.cellImage.image = UIImage(named: images[indexPath.row])
+            let url = Networking.getImageURL(images[indexPath.row].thumbnailPath!)
+            cell.cellImage.kf.setImage(with: url)
             if indexPath.row == 3 && images.count > 4{
                 cell.blurView.isHidden = false
                 cell.countLabel.text = "+\(images.count - 4)"
@@ -103,16 +122,16 @@ extension PostImageTableViewCell: UICollectionViewDelegate, UICollectionViewData
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         switch images.count {
         case 1:
-            return CGSize(width: collectionView.frame.size.width - spacing * 2, height: collectionView.frame.size.height - spacing * 2)
+            return CGSize(width: UIScreen.main.bounds.size.width - spacing * 2, height: UIScreen.main.bounds.size.height - spacing * 2)
         case 2:
-            let width = (collectionView.frame.size.width - (3 * spacing)) / 2
+            let width = (UIScreen.main.bounds.size.width - (3 * spacing)) / 2
             return CGSize(width: width, height: width)
         case 3:
-            let width = (collectionView.frame.size.width - (3 * spacing)) / 2
-            let height = (collectionView.frame.size.height - spacing * 3) / 2
+            let width = (UIScreen.main.bounds.size.width - (3 * spacing)) / 2
+            let height = (UIScreen.main.bounds.size.height - spacing * 3) / 2
             switch indexPath.row{
             case 0:
-                return CGSize(width: collectionView.frame.size.width, height: height)
+                return CGSize(width: UIScreen.main.bounds.size.width, height: height)
             case 1:
                 return CGSize(width: width, height: height)
             case 2:
@@ -121,7 +140,7 @@ extension PostImageTableViewCell: UICollectionViewDelegate, UICollectionViewData
                 return .zero
             }
         default:
-            let width = (collectionView.frame.size.width - (3 * spacing)) / 2
+            let width = (UIScreen.main.bounds.size.width - (3 * spacing)) / 2
             return CGSize(width: width, height: width)
         }
     }

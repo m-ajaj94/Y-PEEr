@@ -12,6 +12,16 @@ class IssuesCollectionViewCell: UICollectionViewCell {
 
     @IBOutlet weak var cellLabel: UILabel!
     @IBOutlet weak var cellImage: UIImageView!
+    
+    var issue: IssueModel!{
+        didSet{
+            cellLabel.text = issue.title!
+            if issue.images!.count != 0{
+                cellImage.kf.setImage(with: Networking.getImageURL(issue.images![0].imagePath!))
+            }
+        }
+    }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         backgroundColor = .white

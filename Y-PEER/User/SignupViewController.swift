@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Toaster
 
 class SignupViewController: UIViewController {
 
@@ -67,19 +68,24 @@ class SignupViewController: UIViewController {
                 showErrorAlert("Please enter a valid e-mail!".localized)
             }
             else{
-                if userInfo!.gender == nil || userInfo!.gender == 0{
+                if selectedGender == nil || selectedGender == 0{
                     showErrorAlert("Please select your gender!".localized)
                 }
                 else{
-                    if userInfo!.city == nil || userInfo!.city == 0{
+                    if selectedCity == nil || selectedCity == 0{
                         showErrorAlert("Please select your city!".localized)
                     }
                     else{
-                        if userInfo!.birthday == nil{
+                        if selectedBirthday == nil{
                             showErrorAlert("Please enter your birthday!".localized)
                         }
                         else{
-                            signup()
+                            if isEditProfile{
+                                updateProfile()
+                            }
+                            else{
+                                signup()
+                            }
                         }
                     }
                 }
@@ -101,30 +107,37 @@ class SignupViewController: UIViewController {
     }
     var genderPicker, cityPicker: UIPickerView!
     var isEditProfile = false
-    var userInfo: (name: String?, email: String?, gender: Int?, city: Int?, birthday: Date?)!
+    var user = UserCache.userData!
+    var selectedGender: Int!
+    var selectedCity: Int!
+    var selectedBirthday: Date!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        let backgroundImage = UIImageView(frame: UIScreen.main.bounds)
+        backgroundImage.image = UIImage(named: "background.jpg")
+        backgroundImage.contentMode = .scaleAspectFill
+        self.view.insertSubview(backgroundImage, at: 0)
         if isEditProfile{
             emailTextField.isEnabled = false
             emailTextField.textColor = .gray
-            nameTextField.text = userInfo!.name!
-            emailTextField.text = userInfo!.email!
-            genderTextField.text = genders[userInfo!.gender!]
-            cityTextField.text = cities[userInfo!.city!]
+            nameTextField.text = user.name!
+            emailTextField.text = user.email!
+            genderTextField.text = genders[user.gender!]
+            cityTextField.text = cities[user.cityID!]
+            selectedCity = user.cityID!
+            selectedGender = user.gender!
             let dateFormatter = DateFormatter()
-            userInfo!.birthday = userInfo!.birthday!
+            dateFormatter.dateFormat = "yyyy-MM-dd"
+            let birthday = dateFormatter.date(from: user.birthdate!)!
+            selectedBirthday = birthday
             dateFormatter.dateFormat = "dd/MM/yyyy"
-            let dateString = dateFormatter.string(from: datePicker.date)
+            let dateString = dateFormatter.string(from: birthday)
             birthdayTextField.text = dateString
-            datePicker.date = userInfo!.birthday!
-            genderPicker.selectRow(userInfo!.gender!, inComponent: 0, animated: false)
-            cityPicker.selectRow(userInfo!.city!, inComponent: 0, animated: false)
+            datePicker.date = birthday
+            genderPicker.selectRow(user.gender!, inComponent: 0, animated: false)
+            cityPicker.selectRow(user.cityID!, inComponent: 0, animated: false)
             signupButton.setTitle("Update Profile", for: .normal)
-        }
-        else{
-            userInfo = ("", "", 0, 0, nil)
-            emailTextField.textColor = .mainOrange
         }
         hidesKeyboardOnTap()
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
@@ -148,9 +161,52 @@ class SignupViewController: UIViewController {
         }
     }
     
+    func updateProfile(){
+        var dict: [String:Any] = [:]
+        dict["username"] = nameTextField.text!
+        dict["gender"] = selectedGender
+        dict["email"] = emailTextField.text!
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        dict["birthdate"] = selectedBirthday
+        dict["cityId"] = selectedCity
+        Networking.user.updateProfile(dict) { (model) in
+            if model != nil{
+                if model!.code == "1"{
+                    self.navigationController!.popViewController(animated: true)
+                    Toast(text: model!.message).show()
+                }
+                else{
+                    Toast(text: model!.message).show()
+                }
+            }
+            else{
+                Toast(text: "Error Message TODO".localized).show()
+            }
+        }
+    }
+    
     func signup(){
-        //TODO: Signup request
-        navigationController!.popViewController(animated: true)
+        var dict: [String:Any] = [:]
+        dict["username"] = nameTextField.text!
+        dict["gender"] = selectedGender
+        dict["email"] = emailTextField.text!
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        dict["birthdate"] = selectedBirthday
+        dict["cityId"] = selectedCity
+        Networking.user.signup(dict) { (model) in
+            if model != nil{
+                Toast(text: model!.message).show()
+                if model!.code == "1"{
+                    self.navigationController!.popViewController(animated: true)
+                }
+            }
+            else{
+                Toast(text: "Error Message TODO".localized).show()
+            }
+        }
+//
     }
 
 }
@@ -159,7 +215,7 @@ extension SignupViewController: UIPickerViewDelegate, UIPickerViewDataSource{
     
     @objc func didSelectDate(_ datePicker: UIDatePicker){
         let dateFormatter = DateFormatter()
-        userInfo!.birthday = datePicker.date
+        selectedBirthday = datePicker.date
         dateFormatter.dateFormat = "dd/MM/yyyy"
         let dateString = dateFormatter.string(from: datePicker.date)
         birthdayTextField.text = dateString
@@ -168,11 +224,11 @@ extension SignupViewController: UIPickerViewDelegate, UIPickerViewDataSource{
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         if pickerView == genderPicker{
             genderTextField.text = genders[row]
-            userInfo!.gender = row
+            selectedGender = row
         }
         else{
             cityTextField.text = cities[row]
-            userInfo!.city = row
+            selectedCity = row
         }
     }
     
@@ -212,3 +268,4 @@ extension SignupViewController: UIPickerViewDelegate, UIPickerViewDataSource{
     }
     
 }
+

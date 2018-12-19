@@ -35,8 +35,24 @@ class IssueViewController: ParentViewController {
         }
     }
     
+    var images: [String] = []
+    var issue: IssueModel!
+    var selectedIndex: IndexPath!{
+        didSet{
+            performSegue(withIdentifier: showArticleSegueIdentifier, sender: self)
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        titleLabel.text = issue.title!
+        detailsLabel.text = issue.description!
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == showArticleSegueIdentifier{
+            let controller = segue.destination as! IssueArticleViewController
+        }
     }
 
 }
@@ -59,7 +75,8 @@ extension IssueViewController: UITableViewDelegate, UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        performSegue(withIdentifier: showArticleSegueIdentifier, sender: self)
+        tableView.deselectRow(at: indexPath, animated: true)
+        selectedIndex = indexPath
     }
     
 }

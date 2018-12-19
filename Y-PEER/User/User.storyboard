@@ -170,7 +170,7 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="GTV-bl-Zvo">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="search" translatesAutoresizingMaskIntoConstraints="NO" id="GTV-bl-Zvo">
                                         <rect key="frame" x="16" y="27" width="25" height="25"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="25" id="bcs-Ya-010"/>
@@ -184,7 +184,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
-                                <color key="backgroundColor" name="GrayColor"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="bottom" secondItem="CVv-1d-jk7" secondAttribute="bottom" constant="32" id="4B6-gU-uND"/>
                                     <constraint firstAttribute="trailing" secondItem="CVv-1d-jk7" secondAttribute="trailing" constant="16" id="DdZ-Yu-zQo"/>
@@ -205,7 +205,7 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="gBz-wP-9kV">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="search" translatesAutoresizingMaskIntoConstraints="NO" id="gBz-wP-9kV">
                                         <rect key="frame" x="16" y="27" width="25" height="25"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="gBz-wP-9kV" secondAttribute="height" multiplier="1:1" id="Qzc-Jf-iSK"/>
@@ -219,7 +219,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
-                                <color key="backgroundColor" name="GrayColor"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstItem="gBz-wP-9kV" firstAttribute="centerY" secondItem="oXq-om-gST" secondAttribute="centerY" id="7IJ-FN-VJJ"/>
                                     <constraint firstItem="DDw-2u-POL" firstAttribute="top" secondItem="oXq-om-gST" secondAttribute="top" constant="32" id="DuF-s9-5oe"/>
@@ -240,7 +240,7 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Zj3-jM-wXb">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="search" translatesAutoresizingMaskIntoConstraints="NO" id="Zj3-jM-wXb">
                                         <rect key="frame" x="16" y="27" width="25" height="25"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="Zj3-jM-wXb" secondAttribute="height" multiplier="1:1" id="Vgq-LW-7Wp"/>
@@ -254,7 +254,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
-                                <color key="backgroundColor" name="GrayColor"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstItem="u5R-QH-J56" firstAttribute="leading" secondItem="li3-at-rl7" secondAttribute="trailing" constant="16" id="3eg-E1-Jd2"/>
                                     <constraint firstAttribute="bottom" secondItem="u5R-QH-J56" secondAttribute="bottom" constant="32" id="7OM-o4-lur"/>
@@ -352,6 +352,9 @@
                         <outlet property="locationTitleLabel" destination="5KF-e3-mV0" id="sEf-Ee-Tv6"/>
                         <outlet property="nameLabel" destination="Y84-KS-TIm" id="1LN-2T-P7r"/>
                         <outlet property="signoutButton" destination="gaJ-Eb-uLe" id="EzU-Xg-7HI"/>
+                        <outletCollection property="containerViews" destination="KHM-xY-Gvi" collectionClass="NSMutableArray" id="qmN-Bz-79s"/>
+                        <outletCollection property="containerViews" destination="oXq-om-gST" collectionClass="NSMutableArray" id="dv6-P4-nif"/>
+                        <outletCollection property="containerViews" destination="V8H-HN-zsL" collectionClass="NSMutableArray" id="FGz-3F-i4F"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JP6-Rc-sCz" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -525,12 +528,10 @@
         <image name="back" width="75" height="75"/>
         <image name="close" width="75" height="75"/>
         <image name="logo" width="390.75" height="174.75"/>
+        <image name="search" width="500" height="500"/>
         <image name="settingsNoBorder" width="25.683710098266602" height="25.683710098266602"/>
         <image name="textfield" width="1000" height="164"/>
         <image name="user" width="103.29985809326172" height="103.29985809326172"/>
-        <namedColor name="GrayColor">
-            <color red="0.93333333333333335" green="0.93333333333333335" blue="0.93333333333333335" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
         <namedColor name="MainOrange">
             <color red="1" green="0.53725490196078429" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
