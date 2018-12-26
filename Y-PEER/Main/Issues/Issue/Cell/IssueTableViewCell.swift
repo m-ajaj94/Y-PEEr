@@ -28,6 +28,14 @@ class IssueTableViewCell: UITableViewCell {
     @IBOutlet weak var cellTitleLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
     
+    var article: ArticleModel!{
+        didSet{
+            cellTitleLabel.text = article.titleEn!
+            dateLabel.text = article.updatedAt!
+            cellImage.kf.setImage(with: Networking.getImageURL(article.images![0].imagePath!))
+        }
+    }
+    
     var imageName: String!{
         didSet{
             cellImage.image = UIImage(named: imageName)

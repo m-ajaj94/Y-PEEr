@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import Toaster
 
-class ProfileViewController: UIViewController {
+class ProfileViewController: ParentViewController {
 
     @IBOutlet weak var closeButton: UIButton!
     @IBOutlet weak var editButton: UIButton!
@@ -36,6 +37,7 @@ class ProfileViewController: UIViewController {
     }
     @IBAction func editButtonPressed(_ sender: Any) {
         let controller = UIStoryboard(name: "User", bundle: nil).instantiateViewController(withIdentifier: "SignupViewController") as! SignupViewController
+        controller.cities = cities
         controller.isEditProfile = true
         navigationController!.pushViewController(controller, animated: true)
     }
@@ -44,6 +46,11 @@ class ProfileViewController: UIViewController {
     }
     
     var user = UserCache.userData!
+    var cities: [CityModel]!{
+        didSet{
+            locationLabel.text = "\(cities[user.cityID! - 1].name!)"
+        }
+    }
     
     
     override func viewDidLoad() {
@@ -62,7 +69,30 @@ class ProfileViewController: UIViewController {
         nameLabel.text = user.name!
         birthdayLabel.text = user.birthdate!
         genderLabel.text = "\(user.gender!)"
-        locationLabel.text = "\(user.cityID!)"
+        getCities()
+    }
+    
+    override func didPressRetry() {
+        removeNoConnection()
+        getCities()
+    }
+    
+    func getCities(){
+        showLoading()
+        Networking.getCities { (model) in
+            self.removeLoading()
+            if model != nil{
+                if model!.code == "1"{
+                    self.cities = model!.data!
+                }
+                else{
+                    Toast(text: model!.message!).show()
+                }
+            }
+            else{
+                self.showNoConnection(below: self.closeButton)
+            }
+        }
     }
 
 }

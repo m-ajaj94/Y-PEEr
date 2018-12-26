@@ -9,8 +9,15 @@
 import UIKit
 import Toaster
 
-class SignupViewController: UIViewController {
+class SignupViewController: ParentViewController {
 
+    @IBOutlet weak var backButton: UIButton!{
+        didSet{
+            if Cache.language.current == .arabic{
+                backButton.flipX()
+            }
+        }
+    }
     @IBOutlet weak var nameTextField: UITextField!{
         didSet{
             nameTextField.placeholder = "Full Name".localized
@@ -97,7 +104,7 @@ class SignupViewController: UIViewController {
     }
     
     var genders = ["None", "Male", "Female"]
-    var cities = ["None", "Damascus", "Homs", "Aleppo", "Lattakia", "Tartous", "Dar'aa", "Der el Zour", "Hamah"]
+    var cities: [CityModel]!
     var datePicker: UIDatePicker!{
         didSet{
             datePicker.maximumDate = Date()
@@ -107,7 +114,7 @@ class SignupViewController: UIViewController {
     }
     var genderPicker, cityPicker: UIPickerView!
     var isEditProfile = false
-    var user = UserCache.userData!
+    var user: SigninModel!
     var selectedGender: Int!
     var selectedCity: Int!
     var selectedBirthday: Date!
@@ -119,13 +126,14 @@ class SignupViewController: UIViewController {
         backgroundImage.contentMode = .scaleAspectFill
         self.view.insertSubview(backgroundImage, at: 0)
         if isEditProfile{
+            user = UserCache.userData!
             emailTextField.isEnabled = false
             emailTextField.textColor = .gray
             nameTextField.text = user.name!
             emailTextField.text = user.email!
             genderTextField.text = genders[user.gender!]
-            cityTextField.text = cities[user.cityID!]
-            selectedCity = user.cityID!
+            cityTextField.text = cities![user.cityID! - 1].name!
+            selectedCity = user.cityID! - 1
             selectedGender = user.gender!
             let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = "yyyy-MM-dd"
@@ -142,7 +150,12 @@ class SignupViewController: UIViewController {
         hidesKeyboardOnTap()
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+        if cities == nil{
+            getCities()
+        }
     }
+    
+    
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
@@ -168,8 +181,9 @@ class SignupViewController: UIViewController {
         dict["email"] = emailTextField.text!
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd"
-        dict["birthdate"] = selectedBirthday
-        dict["cityId"] = selectedCity
+        dict["birthdate"] = dateFormatter.string(from: selectedBirthday)
+        dict["cityId"] = selectedCity + 1
+        dict["user_id"] = UserCache.userID
         Networking.user.updateProfile(dict) { (model) in
             if model != nil{
                 if model!.code == "1"{
@@ -193,13 +207,16 @@ class SignupViewController: UIViewController {
         dict["email"] = emailTextField.text!
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd"
-        dict["birthdate"] = selectedBirthday
-        dict["cityId"] = selectedCity
+        dict["birthdate"] = dateFormatter.string(from: selectedBirthday)
+        dict["cityId"] = selectedCity + 1
         Networking.user.signup(dict) { (model) in
             if model != nil{
                 Toast(text: model!.message).show()
                 if model!.code == "1"{
                     self.navigationController!.popViewController(animated: true)
+                }
+                else{
+                    Toast(text: model!.message).show()
                 }
             }
             else{
@@ -207,6 +224,30 @@ class SignupViewController: UIViewController {
             }
         }
 //
+    }
+    
+    
+    override func didPressRetry() {
+        removeNoConnection()
+        getCities()
+    }
+    
+    func getCities(){
+        showLoading()
+        Networking.getCities { (model) in
+            self.removeLoading()
+            if model != nil{
+                if model!.code == "1"{
+                    self.cities = model!.data!
+                }
+                else{
+                    Toast(text: model!.message!).show()
+                }
+            }
+            else{
+                self.showNoConnection(below: self.backButton)
+            }
+        }
     }
 
 }
@@ -227,7 +268,7 @@ extension SignupViewController: UIPickerViewDelegate, UIPickerViewDataSource{
             selectedGender = row
         }
         else{
-            cityTextField.text = cities[row]
+            cityTextField.text = cities[row].name!
             selectedCity = row
         }
     }
@@ -239,7 +280,7 @@ extension SignupViewController: UIPickerViewDelegate, UIPickerViewDataSource{
                 label.text = genders[row]
             }
             else{
-                label.text = cities[row]
+                label.text = cities[row].name!
             }
             label.textAlignment = .center
             return label
@@ -250,7 +291,7 @@ extension SignupViewController: UIPickerViewDelegate, UIPickerViewDataSource{
             label.text = genders[row]
         }
         else{
-            label.text = cities[row]
+            label.text = cities[row].name!
         }
         label.textAlignment = .center
         return label

@@ -47,18 +47,17 @@ class EventDetailsViewController: ParentViewController {
     }
     
     var noImages = false
-    var images: [String]!{
+    var images: [ImageModel]!{
         didSet{
-            if images == nil || images.count == 0{
-                images = ["logo"]
-                noImages = true
-            }
-            else{
-                heightConstraint.constant = height
-                pageControl.isHidden = images.count <= 1
-                pageControl.numberOfPages = images.count
-            }
-            view.layoutIfNeeded()
+        }
+    }
+    var event: EventModel!{
+        didSet{
+        }
+    }
+    var eventDetails: EventDetailsModel!{
+        didSet{
+            
         }
     }
     let height = UIScreen.main.bounds.width * 3 / 5
@@ -74,10 +73,28 @@ class EventDetailsViewController: ParentViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        heightConstraint.constant = height
+        if event != nil{
+            titleLabel.text = event.title!
+            descriptionLabel.text = event.description!
+            title = event.title!
+            
+        }
+        else{
+            titleLabel.text = eventDetails.title!
+            descriptionLabel.text = eventDetails.description!
+            images = eventDetails.images!
+            title = eventDetails.title!
+        }
         pageControl = FlexiblePageControl()
-        images = [imageName]
-        title = "Event"
+        if images == nil || images.count == 0{
+            noImages = true
+        }
+        else{
+            heightConstraint.constant = height
+            pageControl.isHidden = images.count <= 1
+            pageControl.numberOfPages = images.count
+        }
+        heightConstraint.constant = height
     }
     
     override func viewDidLayoutSubviews() {
@@ -100,8 +117,8 @@ extension EventDetailsViewController: UICollectionViewDelegate, UICollectionView
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: PostDetailsImageCollectionViewCell.self), for: indexPath) as? PostDetailsImageCollectionViewCell{
-            cell.cellImage.image = UIImage(named: images[indexPath.row])
-            cell.blurredImageView.image = UIImage(named: images[indexPath.row])
+            cell.cellImage.kf.setImage(with: Networking.getImageURL(images[indexPath.row].thumbnailPath!))
+            cell.blurredImageView.kf.setImage(with: Networking.getImageURL(images[indexPath.row].thumbnailPath!))
             return cell
         }
         return UICollectionViewCell()
@@ -111,7 +128,7 @@ extension EventDetailsViewController: UICollectionViewDelegate, UICollectionView
         if noImages{
             return
         }
-        showImages([], indexPath.row)
+        showImages(images, indexPath.row)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {

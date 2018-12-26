@@ -11,6 +11,8 @@ import SkeletonView
 import Toaster
 
 class PostsViewController: ParentViewController {
+    
+    var heights: [IndexPath:CGFloat] = [:]
 
     @IBOutlet weak var tableView: UITableView!{
         didSet{
@@ -22,6 +24,9 @@ class PostsViewController: ParentViewController {
                 tableView.separatorStyle = .none
                 tableView.rowHeight = UITableView.automaticDimension
                 tableView.estimatedRowHeight = UITableView.automaticDimension
+                refreshControl = UIRefreshControl()
+                refreshControl.addTarget(self, action: #selector(refreshRequest), for: .valueChanged)
+                tableView.refreshControl = refreshControl
                 tableView.register(UINib(nibName: String(describing: PostsSkeletonTableViewCell.self), bundle: nil), forCellReuseIdentifier: String(describing: PostsSkeletonTableViewCell.self))
                 tableView.register(UINib(nibName: String(describing: PostsQuizTableViewCell.self), bundle: nil), forCellReuseIdentifier: String(describing: PostsQuizTableViewCell.self))
                 tableView.register(UINib(nibName: String(describing: PostImageTableViewCell.self), bundle: nil), forCellReuseIdentifier: String(describing: PostImageTableViewCell.self))
@@ -40,13 +45,22 @@ class PostsViewController: ParentViewController {
     
     var selectedIndex: IndexPath!{
         didSet{
-            if let cell = tableView.cellForRow(at: selectedIndex) as? PostsUpcomingEventTableViewCell{
+            switch types[selectedIndex.row] {
+            case .event:
                 let controller = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: String(describing: EventDetailsViewController.self)) as! EventDetailsViewController
-//                controller.imageName = cell.imageName
+                controller.event = posts[selectedIndex.row].event!
+                controller.images = posts[selectedIndex.row].images!
                 navigationController!.pushViewController(controller, animated: true)
-            }
-            else{
+            case .post:
                 performSegue(withIdentifier: "ShowPostDetails", sender: self)
+                break
+            case .quiz:
+                break
+            case .pastEvent:
+                let controller = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: String(describing: EventDetailsViewController.self)) as! EventDetailsViewController
+                controller.event = posts[selectedIndex.row].event!
+                controller.images = posts[selectedIndex.row].images!
+                navigationController!.pushViewController(controller, animated: true)
             }
         }
     }
@@ -60,6 +74,8 @@ class PostsViewController: ParentViewController {
         }
     }
     var types: [PostType]!
+    let pageSize = 10
+    var refreshControl: UIRefreshControl!
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
@@ -77,15 +93,58 @@ class PostsViewController: ParentViewController {
         super.viewDidLoad()
         title = "Newsfeed".localized
         requestData()
+        tableView.addInfiniteScroll { (tableView) in
+            self.moreRequest()
+        }
     }
     
-    func requestData(){
-//        view.showAnimatedSkeleton()
-        Networking.posts.homePosts(["skip":0, "take":20]) { (model) in
-            self.view.hideSkeleton(reloadDataAfter: false)
+    @objc func requestData(){
+        showLoading()
+        Networking.posts.homePosts(["skip":0, "take":10, "user_id":UserCache.userID]) { (model) in
+            self.removeLoading()
             if model != nil{
                 if model!.code == "1"{
                     self.posts = model!.data!
+                }
+                else{
+                    Toast(text: model!.message).show()
+                }
+            }
+            else{
+                self.showNoConnection()
+            }
+        }
+    }
+    
+    @objc func refreshRequest(){
+        Networking.posts.homePosts(["skip":0, "take":10, "user_id":UserCache.userID]) { (model) in
+            self.refreshControl.endRefreshing()
+            if model != nil{
+                if model!.code == "1"{
+                    self.posts = model!.data!
+                }
+                else{
+                    Toast(text: model!.message).show()
+                }
+            }
+            else{
+                Toast(text: "ERROR MESSAGE".localized).show()
+            }
+        }
+    }
+    
+    @objc override func didPressRetry() {
+        self.removeNoConnection()
+        self.requestData()
+    }
+    
+    func moreRequest(){
+        Networking.posts.homePosts(["skip":posts.count, "take":pageSize, "user_id":UserCache.userID]) { (model) in
+            if model != nil{
+                if model!.code == "1"{
+                    self.posts.append(contentsOf: model!.data!)
+                    self.tableView.finishInfiniteScroll()
+                    self.tableView.reloadData()
                 }
                 else{
                     Toast(text: model!.message).show()
@@ -116,13 +175,7 @@ class PostsViewController: ParentViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "ShowPostDetails"{
             if let controller = segue.destination as? PostDetailsViewController{
-//                if let cell = tableView.cellForRow(at: selectedIndex) as? PostImageTableViewCell{
-////                    controller.passedImages = cell.images
-//                    controller.passedImages = []
-//                }
-//                else{
-//                    controller.passedImages = []
-//                }
+                controller.post = posts[selectedIndex.row]
             }
         }
     }
@@ -167,10 +220,19 @@ extension PostsViewController: SkeletonTableViewDataSource, SkeletonTableViewDel
             cell.delegate = self
             cell.index = indexPath
             cell.post = posts[indexPath.row]
-            tableView.beginUpdates()
-            tableView.endUpdates()
             return cell
         }
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        heights[indexPath] = cell.bounds.height
+    }
+    
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        if let height =  self.heights[indexPath] {
+            return height
+        }
+        return UITableView.automaticDimension
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

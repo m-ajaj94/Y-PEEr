@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="LoadingView" customModule="Y_PEER" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IZr-5x-MDm" customClass="RadialGradientView" customModule="Y_PEER" customModuleProvider="target">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Loading..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vbs-ny-DHa">
+                            <rect key="frame" x="150" y="354" width="75" height="21"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <color key="textColor" name="MainOrange"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6Yk-aX-iS6" customClass="NVActivityIndicatorView" customModule="NVActivityIndicatorView">
+                            <rect key="frame" x="165.5" y="281.5" width="44" height="44"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="44" id="UjP-Kv-AVg"/>
+                                <constraint firstAttribute="width" constant="44" id="wXO-Mw-NSf"/>
+                            </constraints>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="string" keyPath="typeName" value="ballPulse"/>
+                                <userDefinedRuntimeAttribute type="color" keyPath="color">
+                                    <color key="value" name="MainOrange"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                        </view>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="Vbs-ny-DHa" firstAttribute="centerX" secondItem="6Yk-aX-iS6" secondAttribute="centerX" id="M5X-3X-xb5"/>
+                        <constraint firstItem="6Yk-aX-iS6" firstAttribute="centerX" secondItem="IZr-5x-MDm" secondAttribute="centerX" id="bx6-MA-RyW"/>
+                        <constraint firstItem="6Yk-aX-iS6" firstAttribute="centerY" secondItem="IZr-5x-MDm" secondAttribute="centerY" constant="-30" id="oRl-4V-dwi"/>
+                        <constraint firstItem="Vbs-ny-DHa" firstAttribute="top" secondItem="6Yk-aX-iS6" secondAttribute="bottom" constant="28.5" id="wSR-q0-tOx"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="color" keyPath="insideColor">
+                            <color key="value" red="0.93333333333333335" green="0.93333333333333335" blue="0.93333333333333335" alpha="0.66751391267123283" colorSpace="custom" customColorSpace="sRGB"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="color" keyPath="outsideColor">
+                            <color key="value" red="0.93333333333333335" green="0.93333333333333335" blue="0.93333333333333335" alpha="0.14878531678082191" colorSpace="custom" customColorSpace="sRGB"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </view>
+            </subviews>
+            <constraints>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="IZr-5x-MDm" secondAttribute="trailing" id="FIS-wb-BOE"/>
+                <constraint firstItem="IZr-5x-MDm" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="Hml-t1-Yak"/>
+                <constraint firstItem="IZr-5x-MDm" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="Kp4-eI-38E"/>
+                <constraint firstAttribute="bottom" secondItem="IZr-5x-MDm" secondAttribute="bottom" id="geF-Hr-MP0"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <connections>
+                <outlet property="gradientView" destination="IZr-5x-MDm" id="ces-Aj-Pyd"/>
+                <outlet property="indicator" destination="6Yk-aX-iS6" id="yyD-yS-61a"/>
+                <outlet property="label" destination="Vbs-ny-DHa" id="Dey-a5-BRy"/>
+            </connections>
+        </view>
+    </objects>
+    <resources>
+        <namedColor name="MainOrange">
+            <color red="1" green="0.53725490196078429" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

@@ -102,7 +102,7 @@ class SigninViewController: UIViewController {
             else{
                 let alert = UIAlertController(title: "New Password".localized, message: "We are about to send a new password to \(emailTextField.text!)\nAre you sure?".localized, preferredStyle: .alert)
                 let yesAction = UIAlertAction(title: "Yes".localized, style: .default) { (action) in
-                    
+                    self.forgotRequest()
                 }
                 let cancelAction = UIAlertAction(title: "Cancel".localized, style: .default, handler: nil)
                 alert.view.tintColor = .mainOrange
@@ -148,6 +148,22 @@ class SigninViewController: UIViewController {
                     let controller = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController()!
                     controller.modalTransitionStyle = .crossDissolve
                     self.present(controller, animated: true, completion: nil)
+                }
+                else{
+                    Toast(text: model!.message).show()
+                }
+            }
+            else{
+                Toast(text: "Error Message TODO".localized).show()
+            }
+        }
+    }
+    
+    func forgotRequest(){
+        Networking.user.forgotPassword(["email":emailTextField.text!]) { (model) in
+            if model != nil{
+                if model!.code == "1"{
+                    Toast(text: model!.message).show()
                 }
                 else{
                     Toast(text: model!.message).show()

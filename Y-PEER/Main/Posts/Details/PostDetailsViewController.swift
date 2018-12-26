@@ -33,10 +33,9 @@ class PostDetailsViewController: ParentViewController {
     
     var noImages = false
     var passedImages: [String]!
-    var images: [String]!{
+    var images: [ImageModel]!{
         didSet{
             if images == nil || images.count == 0{
-                images = ["logo"]
                 noImages = true
             }
             else{
@@ -45,6 +44,10 @@ class PostDetailsViewController: ParentViewController {
                 pageControl.numberOfPages = images.count
             }
             view.layoutIfNeeded()
+        }
+    }
+    var post: PostModel!{
+        didSet{
         }
     }
     let height = UIScreen.main.bounds.width * 3 / 5
@@ -62,7 +65,9 @@ class PostDetailsViewController: ParentViewController {
         heightConstraint.constant = height
         title = "Post"
         pageControl = FlexiblePageControl()
-        images = passedImages
+        titleLabel.text = post.title!
+        descriptionLabel.text = post.description!
+        images = post.images!
     }
     
     override func viewDidLayoutSubviews() {
@@ -84,8 +89,8 @@ extension PostDetailsViewController: UICollectionViewDelegate, UICollectionViewD
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: PostDetailsImageCollectionViewCell.self), for: indexPath) as? PostDetailsImageCollectionViewCell{
-            cell.cellImage.image = UIImage(named: images[indexPath.row])
-            cell.blurredImageView.image = UIImage(named: images[indexPath.row])
+            cell.cellImage.kf.setImage(with: Networking.getImageURL(images[indexPath.row].thumbnailPath!))
+            cell.blurredImageView.kf.setImage(with: Networking.getImageURL(images[indexPath.row].thumbnailPath!))
             return cell
         }
         return UICollectionViewCell()
@@ -95,7 +100,7 @@ extension PostDetailsViewController: UICollectionViewDelegate, UICollectionViewD
         if noImages{
             return
         }
-        showImages([], indexPath.row)
+        showImages(images, indexPath.row)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {

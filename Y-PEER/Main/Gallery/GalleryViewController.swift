@@ -9,6 +9,7 @@
 import UIKit
 import SkeletonView
 import FMMosaicLayout
+import Toaster
 
 class GalleryViewController: ParentViewController {
 
@@ -31,7 +32,9 @@ class GalleryViewController: ParentViewController {
                 let mosaiicLayout = FMMosaicLayout()
                 mosaiicLayout.delegate = self
                 collectionView.collectionViewLayout = mosaiicLayout
-//                collectionView.contentInset = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
+                refreshControl = UIRefreshControl()
+                refreshControl.addTarget(self, action: #selector(refreshData), for: .valueChanged)
+                collectionView.refreshControl = refreshControl
                 collectionView.register(UINib(nibName: String(describing: GalleryCollectionViewCell.self), bundle: nil), forCellWithReuseIdentifier: String(describing: GalleryCollectionViewCell.self))
                 collectionView.register(UINib(nibName: String(describing: GallerySkeletonCollectionViewCell.self), bundle: nil), forCellWithReuseIdentifier: String(describing: GallerySkeletonCollectionViewCell.self))
             }
@@ -107,25 +110,85 @@ class GalleryViewController: ParentViewController {
     }
     
     private let numberOfColoumns: CGFloat = 2
-    var images: [String] = []
+    var media: [ImageModel]!{
+        didSet{
+            collectionView.reloadData()
+        }
+    }
+    let pageSize: Int = 20
+    var refreshControl: UIRefreshControl!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Gallery"
-        SkeletonAppearance.default.tintColor = .shadeOrange
-        SkeletonAppearance.default.gradient = SkeletonGradient(baseColor: .shadeOrange, secondaryColor: .white)
-        for _ in 0..<200{
-            let rand = arc4random() % 5
-            images.append("image-\(rand).jpg")
+        requestData()
+        collectionView.addInfiniteScroll { (collectionView) in
+            self.moreRequest()
         }
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-//        collectionView.prepareSkeleton { (success) in
-////            self.view.showAnimatedGradientSkeleton()
-//        }
     }
+    
+    func requestData(){
+        showLoading()
+        Networking.gallery(["skip":0, "take":pageSize]) { (model) in
+            self.removeLoading()
+            if model != nil{
+                if model!.code == "1"{
+                    self.media = model!.data!.images!
+                }
+                else{
+                    
+                }
+            }
+            else{
+                self.showNoConnection()
+            }
+        }
+    }
+    
+    @objc func refreshData(){
+        Networking.gallery(["skip":0, "take":pageSize]) { (model) in
+            self.refreshControl.endRefreshing()
+            if model != nil{
+                if model!.code == "1"{
+                    self.media = model!.data!.images!
+                }
+                else{
+                    Toast(text: model!.message).show()
+                }
+            }
+            else{
+                Toast(text: "Error Message TODO".localized).show()
+            }
+        }
+    }
+    
+    func moreRequest(){
+        Networking.gallery(["skip":media.count, "take":pageSize]) { (model) in
+            if model != nil{
+                if model!.code == "1"{
+                    self.media.append(contentsOf: model!.data!.images!)
+                    self.collectionView.finishInfiniteScroll()
+                    self.collectionView.reloadData()
+                }
+                else{
+                    Toast(text: model!.message).show()
+                }
+            }
+            else{
+                Toast(text: "Error Message TODO".localized).show()
+            }
+        }
+    }
+    
+    @objc override func didPressRetry() {
+        self.removeNoConnection()
+        self.requestData()
+    }
+    
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
@@ -155,7 +218,10 @@ extension GalleryViewController: UICollectionViewDelegate, SkeletonCollectionVie
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return images.count
+        if media == nil{
+            return 0
+        }
+        return media.count
     }
     
     
@@ -187,7 +253,7 @@ extension GalleryViewController: UICollectionViewDelegate, SkeletonCollectionVie
         }
         else{
             if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: GalleryCollectionViewCell.self), for: indexPath) as? GalleryCollectionViewCell{
-                cell.cellImage.image = UIImage(named: images[indexPath.row])
+                cell.cellImage.kf.setImage(with: Networking.getImageURL(media[indexPath.row].thumbnailPath!))
                 return cell
             }
         }
@@ -195,7 +261,7 @@ extension GalleryViewController: UICollectionViewDelegate, SkeletonCollectionVie
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        showImages([], indexPath.row)
+        showImages(media, indexPath.row)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {

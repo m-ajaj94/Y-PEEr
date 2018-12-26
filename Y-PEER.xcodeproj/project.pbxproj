@@ -33,6 +33,13 @@
 		F323F9BC21C96C6E002BF331 /* PostsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F323F9BB21C96C6E002BF331 /* PostsModel.swift */; };
 		F323F9BF21CAB0E5002BF331 /* IssuesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F323F9BE21CAB0E5002BF331 /* IssuesModel.swift */; };
 		F323F9C221CABA13002BF331 /* SigninModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F323F9C121CABA13002BF331 /* SigninModel.swift */; };
+		F323F9C421CBC39F002BF331 /* ArticlesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F323F9C321CBC39F002BF331 /* ArticlesModel.swift */; };
+		F323F9E921D2508D002BF331 /* Cache.swift in Sources */ = {isa = PBXBuildFile; fileRef = F323F9E821D2508D002BF331 /* Cache.swift */; };
+		F323F9ED21D25911002BF331 /* CitiesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F323F9EC21D25911002BF331 /* CitiesModel.swift */; };
+		F323F9F321D27384002BF331 /* GalleryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F323F9F221D27384002BF331 /* GalleryModel.swift */; };
+		F323F9F621D2A90C002BF331 /* ErrorView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F323F9F521D2A90C002BF331 /* ErrorView.xib */; };
+		F323F9F821D2A922002BF331 /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F323F9F721D2A922002BF331 /* ErrorView.swift */; };
+		F323F9FA21D2A95B002BF331 /* ErrorBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = F323F9F921D2A95B002BF331 /* ErrorBackground.png */; };
 		F32EB3FD21C956D90005FA15 /* Networking.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32EB3FC21C956D90005FA15 /* Networking.swift */; };
 		F32EB40021C959000005FA15 /* GenericModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32EB3FF21C959000005FA15 /* GenericModel.swift */; };
 		F3303ECF215677B200DF4610 /* Issue.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F3303ECE215677B200DF4610 /* Issue.storyboard */; };
@@ -56,6 +63,9 @@
 		F3303EFD2156FF2C00DF4610 /* AboutPartnershipTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F3303EFB2156FF2C00DF4610 /* AboutPartnershipTableViewCell.xib */; };
 		F3303EFF215700AB00DF4610 /* String Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3303EFE215700AB00DF4610 /* String Extensions.swift */; };
 		F3303F022157089600DF4610 /* CoreTeamViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3303F012157089600DF4610 /* CoreTeamViewController.swift */; };
+		F33B2D3421D2C392007C728D /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33B2D3321D2C392007C728D /* LoadingView.swift */; };
+		F33B2D3621D2C39C007C728D /* LoadingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F33B2D3521D2C39C007C728D /* LoadingView.xib */; };
+		F33B2D3821D315AC007C728D /* EventsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33B2D3721D315AC007C728D /* EventsModel.swift */; };
 		F33DFA622149FB4F00E3194C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33DFA612149FB4F00E3194C /* AppDelegate.swift */; };
 		F33DFA672149FB4F00E3194C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F33DFA652149FB4F00E3194C /* Main.storyboard */; };
 		F33DFA692149FB5100E3194C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F33DFA682149FB5100E3194C /* Assets.xcassets */; };
@@ -138,6 +148,16 @@
 		F323F9BB21C96C6E002BF331 /* PostsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsModel.swift; sourceTree = "<group>"; };
 		F323F9BE21CAB0E5002BF331 /* IssuesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssuesModel.swift; sourceTree = "<group>"; };
 		F323F9C121CABA13002BF331 /* SigninModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SigninModel.swift; sourceTree = "<group>"; };
+		F323F9C321CBC39F002BF331 /* ArticlesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticlesModel.swift; sourceTree = "<group>"; };
+		F323F9E821D2508D002BF331 /* Cache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cache.swift; sourceTree = "<group>"; };
+		F323F9EA21D252FC002BF331 /* ar-SY */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "ar-SY"; path = "ar-SY.lproj/Main.strings"; sourceTree = "<group>"; };
+		F323F9EB21D252FC002BF331 /* ar-SY */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "ar-SY"; path = "ar-SY.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
+		F323F9EC21D25911002BF331 /* CitiesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CitiesModel.swift; sourceTree = "<group>"; };
+		F323F9EE21D25E82002BF331 /* Y-PEER-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Y-PEER-Bridging-Header.h"; sourceTree = "<group>"; };
+		F323F9F221D27384002BF331 /* GalleryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryModel.swift; sourceTree = "<group>"; };
+		F323F9F521D2A90C002BF331 /* ErrorView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ErrorView.xib; sourceTree = "<group>"; };
+		F323F9F721D2A922002BF331 /* ErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorView.swift; sourceTree = "<group>"; };
+		F323F9F921D2A95B002BF331 /* ErrorBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ErrorBackground.png; sourceTree = "<group>"; };
 		F32EB3FC21C956D90005FA15 /* Networking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Networking.swift; sourceTree = "<group>"; };
 		F32EB3FF21C959000005FA15 /* GenericModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericModel.swift; sourceTree = "<group>"; };
 		F3303ECE215677B200DF4610 /* Issue.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Issue.storyboard; sourceTree = "<group>"; };
@@ -161,6 +181,9 @@
 		F3303EFB2156FF2C00DF4610 /* AboutPartnershipTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AboutPartnershipTableViewCell.xib; sourceTree = "<group>"; };
 		F3303EFE215700AB00DF4610 /* String Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String Extensions.swift"; sourceTree = "<group>"; };
 		F3303F012157089600DF4610 /* CoreTeamViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreTeamViewController.swift; sourceTree = "<group>"; };
+		F33B2D3321D2C392007C728D /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
+		F33B2D3521D2C39C007C728D /* LoadingView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoadingView.xib; sourceTree = "<group>"; };
+		F33B2D3721D315AC007C728D /* EventsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsModel.swift; sourceTree = "<group>"; };
 		F33DFA5E2149FB4F00E3194C /* Y-PEER.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Y-PEER.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F33DFA612149FB4F00E3194C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F33DFA662149FB4F00E3194C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -281,6 +304,7 @@
 			isa = PBXGroup;
 			children = (
 				F30E3ED4216EC17000F75EC0 /* UserCache.swift */,
+				F323F9E821D2508D002BF331 /* Cache.swift */,
 			);
 			path = Cache;
 			sourceTree = "<group>";
@@ -363,6 +387,7 @@
 			isa = PBXGroup;
 			children = (
 				F323F9BE21CAB0E5002BF331 /* IssuesModel.swift */,
+				F323F9C321CBC39F002BF331 /* ArticlesModel.swift */,
 			);
 			path = Issues;
 			sourceTree = "<group>";
@@ -375,6 +400,16 @@
 			path = User;
 			sourceTree = "<group>";
 		};
+		F323F9F421D2A8CF002BF331 /* ErrorView */ = {
+			isa = PBXGroup;
+			children = (
+				F323F9F921D2A95B002BF331 /* ErrorBackground.png */,
+				F323F9F721D2A922002BF331 /* ErrorView.swift */,
+				F323F9F521D2A90C002BF331 /* ErrorView.xib */,
+			);
+			path = ErrorView;
+			sourceTree = "<group>";
+		};
 		F32EB3FE21C958AF0005FA15 /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -382,6 +417,9 @@
 				F323F9BD21CAB0D9002BF331 /* Issues */,
 				F32EB3FF21C959000005FA15 /* GenericModel.swift */,
 				F323F9BB21C96C6E002BF331 /* PostsModel.swift */,
+				F323F9EC21D25911002BF331 /* CitiesModel.swift */,
+				F323F9F221D27384002BF331 /* GalleryModel.swift */,
+				F33B2D3721D315AC007C728D /* EventsModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -504,6 +542,24 @@
 			path = Header;
 			sourceTree = "<group>";
 		};
+		F33B2D3121D2C370007C728D /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				F33B2D3221D2C37A007C728D /* Loading View */,
+				F323F9F421D2A8CF002BF331 /* ErrorView */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		F33B2D3221D2C37A007C728D /* Loading View */ = {
+			isa = PBXGroup;
+			children = (
+				F33B2D3321D2C392007C728D /* LoadingView.swift */,
+				F33B2D3521D2C39C007C728D /* LoadingView.xib */,
+			);
+			path = "Loading View";
+			sourceTree = "<group>";
+		};
 		F33DFA552149FB4F00E3194C = {
 			isa = PBXGroup;
 			children = (
@@ -525,6 +581,7 @@
 		F33DFA602149FB4F00E3194C /* Y-PEER */ = {
 			isa = PBXGroup;
 			children = (
+				F33B2D3121D2C370007C728D /* Views */,
 				F3A22B892175EE1B00F5325F /* background.jpg */,
 				F30E3EE6216FCDF900F75EC0 /* Networking */,
 				F33DFA7B214A144000E3194C /* Extensions */,
@@ -542,6 +599,7 @@
 				F33DFA6D2149FB5100E3194C /* Info.plist */,
 				F30E3ECF216E7E7B00F75EC0 /* 1.png */,
 				F3303ED92156CBE500DF4610 /* a.jpg */,
+				F323F9EE21D25E82002BF331 /* Y-PEER-Bridging-Header.h */,
 			);
 			path = "Y-PEER";
 			sourceTree = "<group>";
@@ -804,6 +862,7 @@
 				TargetAttributes = {
 					F33DFA5D2149FB4F00E3194C = {
 						CreatedOnToolsVersion = 9.4.1;
+						LastSwiftMigration = 1010;
 					};
 				};
 			};
@@ -847,12 +906,14 @@
 				F354AB0F21773D29008B9974 /* image-4.jpg in Resources */,
 				F30E3EE0216FBE7E00F75EC0 /* SettingsTableViewHeader.xib in Resources */,
 				F3303EE82156D89600DF4610 /* AboutTableViewSectionHeader.xib in Resources */,
+				F323F9FA21D2A95B002BF331 /* ErrorBackground.png in Resources */,
 				F3303ECF215677B200DF4610 /* Issue.storyboard in Resources */,
 				F3D0EEB8214DD7F7006739B9 /* GallerySkeletonCollectionViewCell.xib in Resources */,
 				F33DFA692149FB5100E3194C /* Assets.xcassets in Resources */,
 				F3303ED621567ADC00DF4610 /* IssueTableViewCell.xib in Resources */,
 				F3303EDA2156CBE500DF4610 /* a.jpg in Resources */,
 				F30E3EC8216E5D8600F75EC0 /* User.storyboard in Resources */,
+				F33B2D3621D2C39C007C728D /* LoadingView.xib in Resources */,
 				F36391DE216CE0AD005F747C /* EventsTableViewCell.xib in Resources */,
 				F30E3ED9216FBB1000F75EC0 /* SettingsNotificationTableViewCell.xib in Resources */,
 				F3303EF32156F25300DF4610 /* AboutCoreTeamTableViewCell.xib in Resources */,
@@ -870,6 +931,7 @@
 				F3303EFD2156FF2C00DF4610 /* AboutPartnershipTableViewCell.xib in Resources */,
 				F354AB0E21773D29008B9974 /* image-2.jpg in Resources */,
 				F33DFA672149FB4F00E3194C /* Main.storyboard in Resources */,
+				F323F9F621D2A90C002BF331 /* ErrorView.xib in Resources */,
 				F3303EE02156D6E300DF4610 /* Settings.storyboard in Resources */,
 				F30E3EE5216FC13400F75EC0 /* SettingsLanguageTableViewCell.xib in Resources */,
 			);
@@ -910,11 +972,13 @@
 				"${BUILT_PRODUCTS_DIR}/Imaginary/Imaginary.framework",
 				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
 				"${BUILT_PRODUCTS_DIR}/Lightbox/Lightbox.framework",
+				"${BUILT_PRODUCTS_DIR}/NVActivityIndicatorView/NVActivityIndicatorView.framework",
 				"${BUILT_PRODUCTS_DIR}/Presentr/Presentr.framework",
 				"${BUILT_PRODUCTS_DIR}/SideMenu/SideMenu.framework",
 				"${BUILT_PRODUCTS_DIR}/SkeletonView/SkeletonView.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
 				"${BUILT_PRODUCTS_DIR}/Toaster/Toaster.framework",
+				"${BUILT_PRODUCTS_DIR}/UIScrollView-InfiniteScroll/UIScrollView_InfiniteScroll.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
@@ -925,11 +989,13 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Imaginary.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Lightbox.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/NVActivityIndicatorView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Presentr.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SideMenu.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SkeletonView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Toaster.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/UIScrollView_InfiniteScroll.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -945,10 +1011,12 @@
 			files = (
 				F3A22B8C2176529000F5325F /* QuizResultsViewController.swift in Sources */,
 				F3B0BB002173C1A2003BE09D /* QuizzesViewController.swift in Sources */,
+				F323F9C421CBC39F002BF331 /* ArticlesModel.swift in Sources */,
 				F36391CE216BE3C4005F747C /* PostsUpcomingEventTableViewCell.swift in Sources */,
 				F3303ED12156796200DF4610 /* IssueViewController.swift in Sources */,
 				F3A22B822174E34D00F5325F /* QuizQuestionCollectionViewCell.swift in Sources */,
 				F3D0EECA214E0AB7006739B9 /* IssuesHeaderCollectionReusableView.swift in Sources */,
+				F323F9F821D2A922002BF331 /* ErrorView.swift in Sources */,
 				F3D0EEC6214E08C6006739B9 /* IssuesViewController.swift in Sources */,
 				F323F9C221CABA13002BF331 /* SigninModel.swift in Sources */,
 				F36391D9216CDECD005F747C /* EventsViewController.swift in Sources */,
@@ -959,13 +1027,16 @@
 				F3B1E4ED214DAFEA00832FE7 /* PostsViewController.swift in Sources */,
 				F30E3ECC216E63F400F75EC0 /* SigninViewController.swift in Sources */,
 				F3B0BAFD2173A5EA003BE09D /* EventDetailsViewController.swift in Sources */,
+				F33B2D3821D315AC007C728D /* EventsModel.swift in Sources */,
 				F3A22B872174ED8B00F5325F /* QuizAnswerTableViewCell.swift in Sources */,
 				F3303EE62156D88D00DF4610 /* AboutTableViewSectionHeader.swift in Sources */,
 				F3D0EEC2214DF630006739B9 /* GalleryVideoCollectionViewCell.swift in Sources */,
 				F3B1E4F4214DB93800832FE7 /* GalleryCollectionViewCell.swift in Sources */,
+				F323F9F321D27384002BF331 /* GalleryModel.swift in Sources */,
 				F3131EF6216BB70700B1200E /* PostImageTableViewCell.swift in Sources */,
 				F3DCA07021592B7E0022FE50 /* CoreTeamCollectionReusableView.swift in Sources */,
 				F32EB40021C959000005FA15 /* GenericModel.swift in Sources */,
+				F33B2D3421D2C392007C728D /* LoadingView.swift in Sources */,
 				F32EB3FD21C956D90005FA15 /* Networking.swift in Sources */,
 				F3303EEC2156E48100DF4610 /* AboutDetailsTableViewCell.swift in Sources */,
 				F3D0EEB7214DD7F7006739B9 /* GallerySkeletonCollectionViewCell.swift in Sources */,
@@ -976,8 +1047,10 @@
 				F33DFA7D214A145600E3194C /* UIColor Extension.swift in Sources */,
 				F3303EE32156D7D600DF4610 /* AboutViewController.swift in Sources */,
 				F3D0EECF214E3807006739B9 /* IssuesCollectionViewCell.swift in Sources */,
+				F323F9ED21D25911002BF331 /* CitiesModel.swift in Sources */,
 				F3B1E4EB214DAFD200832FE7 /* ParentViewController.swift in Sources */,
 				F3D0EEBD214DEEEC006739B9 /* PostsSkeletonTableViewCell.swift in Sources */,
+				F323F9E921D2508D002BF331 /* Cache.swift in Sources */,
 				F30E3ED8216FBB1000F75EC0 /* SettingsNotificationTableViewCell.swift in Sources */,
 				F305B91B2159371F005A4818 /* CoreTeamCollectionViewCell.swift in Sources */,
 				F3131EFB216BB77100B1200E /* PostsQuizTableViewCell.swift in Sources */,
@@ -1010,6 +1083,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				F33DFA662149FB4F00E3194C /* Base */,
+				F323F9EA21D252FC002BF331 /* ar-SY */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -1018,6 +1092,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				F33DFA6B2149FB5100E3194C /* Base */,
+				F323F9EB21D252FC002BF331 /* ar-SY */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -1029,6 +1104,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -1089,6 +1165,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -1144,6 +1221,7 @@
 			baseConfigurationReference = 02D45C8E86A24096A55086ED /* Pods-Y-PEER.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = CE655T25LA;
 				INFOPLIST_FILE = "Y-PEER/Info.plist";
@@ -1153,6 +1231,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "MA.Y-PEER";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Y-PEER/Y-PEER-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1163,6 +1243,7 @@
 			baseConfigurationReference = 304A170E4E59E3209A117E64 /* Pods-Y-PEER.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = CE655T25LA;
 				INFOPLIST_FILE = "Y-PEER/Info.plist";
@@ -1172,6 +1253,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "MA.Y-PEER";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Y-PEER/Y-PEER-Bridging-Header.h";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

@@ -45,6 +45,8 @@ class PostImageTableViewCell: UITableViewCell {
         didSet{
             collectionView.contentInset = UIEdgeInsets(top: spacing, left: spacing, bottom: spacing, right: spacing)
             switch images.count {
+            case 0:
+                collectionViewHeightConstraint.constant = 0
             case 1:
                 collectionViewHeightConstraint.constant = UIScreen.main.bounds.size.width * 3 / 5
                 break
@@ -122,13 +124,13 @@ extension PostImageTableViewCell: UICollectionViewDelegate, UICollectionViewData
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         switch images.count {
         case 1:
-            return CGSize(width: UIScreen.main.bounds.size.width - spacing * 2, height: UIScreen.main.bounds.size.height - spacing * 2)
+            return CGSize(width: UIScreen.main.bounds.size.width - spacing * 2, height: (UIScreen.main.bounds.size.width - spacing * 2) * 3 / 5)
         case 2:
             let width = (UIScreen.main.bounds.size.width - (3 * spacing)) / 2
             return CGSize(width: width, height: width)
         case 3:
             let width = (UIScreen.main.bounds.size.width - (3 * spacing)) / 2
-            let height = (UIScreen.main.bounds.size.height - spacing * 3) / 2
+            let height = (UIScreen.main.bounds.size.width - spacing * 3) / 2
             switch indexPath.row{
             case 0:
                 return CGSize(width: UIScreen.main.bounds.size.width, height: height)

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="7t1-4Q-SvG">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="7t1-4Q-SvG">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -266,17 +266,6 @@
                                     <constraint firstItem="li3-at-rl7" firstAttribute="centerY" secondItem="Zj3-jM-wXb" secondAttribute="centerY" id="vg9-nd-Dm6"/>
                                 </constraints>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eOk-4h-ik0">
-                                <rect key="frame" x="16" y="36" width="30" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="eOk-4h-ik0" secondAttribute="height" multiplier="1:1" id="UYl-wc-wUT"/>
-                                    <constraint firstAttribute="width" constant="30" id="nca-Vc-zfb"/>
-                                </constraints>
-                                <state key="normal" image="close"/>
-                                <connections>
-                                    <action selector="closeButtonPressed:" destination="ZIu-nU-vVb" eventType="touchUpInside" id="Wy6-SL-PHB"/>
-                                </connections>
-                            </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="m.ajaj94@gmail.com" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OSb-9z-mkU">
                                 <rect key="frame" x="32" y="162" width="311" height="18"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
@@ -296,6 +285,17 @@
                                     <action selector="continueButtonPressed:" destination="Qsd-Dw-PaN" eventType="touchUpInside" id="6az-8J-dyT"/>
                                     <action selector="didPressSignout:" destination="ZIu-nU-vVb" eventType="touchUpInside" id="zEV-fJ-ZsD"/>
                                     <action selector="signupButtonPressed:" destination="S7y-hh-N9P" eventType="touchUpInside" id="st9-KK-S1l"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eOk-4h-ik0">
+                                <rect key="frame" x="16" y="36" width="30" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="eOk-4h-ik0" secondAttribute="height" multiplier="1:1" id="UYl-wc-wUT"/>
+                                    <constraint firstAttribute="width" constant="30" id="nca-Vc-zfb"/>
+                                </constraints>
+                                <state key="normal" image="close"/>
+                                <connections>
+                                    <action selector="closeButtonPressed:" destination="ZIu-nU-vVb" eventType="touchUpInside" id="Wy6-SL-PHB"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -414,6 +414,16 @@
                                     <action selector="signupButtonPressed:" destination="S7y-hh-N9P" eventType="touchUpInside" id="pYz-a1-IM6"/>
                                 </connections>
                             </button>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" background="textfield" translatesAutoresizingMaskIntoConstraints="NO" id="oFl-Yz-PVr">
+                                <rect key="frame" x="32" y="188" width="311" height="44"/>
+                                <color key="tintColor" name="MainOrange"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="hvd-nY-Efk"/>
+                                </constraints>
+                                <color key="textColor" name="MainOrange"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DCT-Pi-4Ck">
                                 <rect key="frame" x="16" y="36" width="30" height="30"/>
                                 <constraints>
@@ -425,16 +435,6 @@
                                     <action selector="backButtonPressed:" destination="S7y-hh-N9P" eventType="touchUpInside" id="iM2-rf-Ecl"/>
                                 </connections>
                             </button>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" background="textfield" translatesAutoresizingMaskIntoConstraints="NO" id="oFl-Yz-PVr">
-                                <rect key="frame" x="32" y="188" width="311" height="44"/>
-                                <color key="tintColor" name="MainOrange"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="44" id="hvd-nY-Efk"/>
-                                </constraints>
-                                <color key="textColor" name="MainOrange"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -470,6 +470,7 @@
                         <viewLayoutGuide key="safeArea" id="TOd-Cx-oyN"/>
                     </view>
                     <connections>
+                        <outlet property="backButton" destination="DCT-Pi-4Ck" id="e0R-Qr-Z6L"/>
                         <outlet property="birthdayTextField" destination="rw1-O8-l6S" id="HQz-9m-ZOp"/>
                         <outlet property="cityTextField" destination="hSj-81-wOk" id="o0H-sN-ImI"/>
                         <outlet property="emailTextField" destination="neB-Ks-qNG" id="dwv-a8-Lyx"/>

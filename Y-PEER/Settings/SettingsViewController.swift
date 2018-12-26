@@ -32,8 +32,10 @@ class SettingsViewController: ParentViewController {
         dismiss(animated: true, completion: nil)
     }
     
-    var selectedLanguage: Int = 0
     var languages = ["English", "العربية"]
+    var messages = ["You need to restart the application for the changes to appear", "يجب اعادة تشغبل التطبيق لتظهر التغييرات"]
+    var titles = ["Restart required", "اعادة التشغيل"]
+    var selectedLanguage: Int = Cache.language.current.rawValue
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -80,20 +82,23 @@ extension SettingsViewController: UITableViewDelegate, UITableViewDataSource, Se
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
         if indexPath.section == 0{
             return
         }
+        Cache.language.changeLanguage(language: Cache.language.Language(rawValue: indexPath.row)!)
+        showAlert(titles[indexPath.row], messages[indexPath.row])
         selectedLanguage = indexPath.row
-        tableView.reloadData()
+        tableView.reloadRows(at: [IndexPath(row: 0, section: 1), IndexPath(row: 1, section: 1)], with: .none)
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         if let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: String(describing: SettingsTableViewHeader.self)) as? SettingsTableViewHeader{
             if section == 0{
-                header.headerLabel.text = "Notifications Settings"
+                header.headerLabel.text = "Notifications Settings".localized
             }
             else{
-                header.headerLabel.text = "Language Settings"
+                header.headerLabel.text = "Language Settings".localized
             }
             return header
         }

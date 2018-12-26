@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Toaster
 
 class IssueViewController: ParentViewController {
     
@@ -34,8 +35,11 @@ class IssueViewController: ParentViewController {
             tableView.backgroundColor = .mainGray
         }
     }
-    
-    var images: [String] = []
+    var articles: [ArticleModel]!{
+        didSet{
+            tableView.reloadData()
+        }
+    }
     var issue: IssueModel!
     var selectedIndex: IndexPath!{
         didSet{
@@ -45,13 +49,33 @@ class IssueViewController: ParentViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        title = issue.title!
         titleLabel.text = issue.title!
         detailsLabel.text = issue.description!
+        requestData()
+    }
+    
+    func requestData(){
+        let dict = ["issue_id":issue.id!, "user_id":UserCache.userID, "skip":0, "take":20]
+        Networking.issues.getArticles(dict) { (model) in
+            if model != nil{
+                if model!.code == "1"{
+                    self.articles = model!.data!
+                }
+                else{
+                    Toast(text: model!.message).show()
+                }
+            }
+            else{
+                Toast(text: "Error Message TODO".localized).show()
+            }
+        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == showArticleSegueIdentifier{
             let controller = segue.destination as! IssueArticleViewController
+            controller.article = articles[selectedIndex.row]
         }
     }
 
@@ -64,11 +88,15 @@ extension IssueViewController: UITableViewDelegate, UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        if articles == nil{
+            return 0
+        }
+        return articles.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: IssueTableViewCell.self)) as? IssueTableViewCell{
+            cell.article = articles[indexPath.row]
             return cell
         }
         return UITableViewCell()

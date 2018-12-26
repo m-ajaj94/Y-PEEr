@@ -17,11 +17,17 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
         didSet{
             if sideMenuViewController != nil{
                 let menuLeftNavigationController = UISideMenuNavigationController(rootViewController: sideMenuViewController)
-                SideMenuManager.default.menuLeftNavigationController = menuLeftNavigationController
+                if Cache.language.current == .english{
+                    SideMenuManager.default.menuLeftNavigationController = menuLeftNavigationController
+                    SideMenuManager.default.menuLeftNavigationController!.isNavigationBarHidden = true
+                }
+                else{
+                    SideMenuManager.default.menuRightNavigationController = menuLeftNavigationController
+                    SideMenuManager.default.menuRightNavigationController!.isNavigationBarHidden = true
+                }
                 SideMenuManager.default.menuPresentMode = .viewSlideInOut
                 SideMenuManager.default.menuWidth = UIScreen.main.bounds.width * 0.8
                 SideMenuManager.default.menuAnimationTransformScaleFactor = 0.95
-                SideMenuManager.default.menuLeftNavigationController!.isNavigationBarHidden = true
                 SideMenuManager.default.menuAnimationBackgroundColor = .mainOrange
                 SideMenuManager.default.menuFadeStatusBar = false
                 SideMenuManager.default.menuAddScreenEdgePanGesturesToPresent(toView: self.view)
@@ -38,7 +44,12 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
     }
     
     func showSideMenu(){
-        present(SideMenuManager.default.menuLeftNavigationController!, animated: true, completion: nil)
+        if Cache.language.current == .english{
+            present(SideMenuManager.default.menuLeftNavigationController!, animated: true, completion: nil)
+        }
+        else{
+            present(SideMenuManager.default.menuRightNavigationController!, animated: true, completion: nil)
+        }
     }
     
     func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
@@ -96,7 +107,6 @@ extension MainTabBarController: SideMenuViewControllerDelegate{
     func didSelectUser() {
         if UserCache.isLoggedIn{
             let navController = UIStoryboard(name: "User", bundle: nil).instantiateViewController(withIdentifier: "ProfileNavigationController") as! UINavigationController
-            //let controller = navController.viewControllers[0] as! ProfileViewController
             present(navController, animated: true, completion: nil)
         }
         else{

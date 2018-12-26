@@ -18,6 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         ToastView.appearance().backgroundColor = .mainOrange
         ToastView.appearance().textColor = .white
+        Cache.language.setInitial()
         return true
     }
 

@@ -37,14 +37,58 @@ class EventsTableViewCell: UITableViewCell {
             circularIndicatorView.layer.borderWidth = 2
         }
     }
+    @IBOutlet weak var titleLabel: UILabel!
     
-    var imageName: String!{
+    var event: EventDetailsModel!{
         didSet{
-            cellImageView.image = UIImage(named: imageName)
-            cellImageView.contentMode = .scaleAspectFill
-            cellImageView.clipsToBounds = true
+            if event.images!.count != 0{
+                cellImageView.kf.setImage(with: Networking.getImageURL(event.images![0].thumbnailPath!))
+            }
+            if event.location != nil{
+                locationLabel.text = event.location!
+                dateLabel.text = event.startDate!
+            }
+            titleLabel.text = event.title!
+            if type == PostType.pastEvent{
+                daysTitleLabel.text = "Likes".localized
+                hoursTitleLabel.text = "Views".localized
+                minutesTitleLabel.text = "Media".localized
+                secondsTitleLabel.isHidden = true
+                secondsLabel.isHidden = true
+                minutesLabel.text = "\(event.images!.count)"
+                hoursLabel.text = "\(event.totalViews!)"
+                daysLabel.text = "\(event.totalLikes!)"
+            }
+            else{
+                daysTitleLabel.text = "Days".localized
+                hoursTitleLabel.text = "Hours".localized
+                minutesTitleLabel.text = "Minutes".localized
+                secondsTitleLabel.text = "Seconds".localized
+                secondsTitleLabel.isHidden = false
+                secondsLabel.isHidden = false
+                let dateFormatter = DateFormatter()
+                dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+                date = dateFormatter.date(from: event.startDate! + " " + event.startTime!)
+                dateFormatter.dateFormat = "yyyy-MM-dd"
+                let timer = Timer(timeInterval: 1, target: self, selector: #selector(shouldUpdateTime), userInfo: nil, repeats: true)
+                RunLoop.main.add(timer, forMode: .common)
+            }
         }
     }
+    
+    var date: Date!
+    
+    
+    @objc func shouldUpdateTime(){
+        let now = Date()
+        let dif = Calendar.current.dateComponents([.day, .hour, .minute, .second], from: now, to: date)
+        daysLabel.text = "\(dif.day!)"
+        hoursLabel.text = "\(dif.hour!)"
+        minutesLabel.text = "\(dif.minute!)"
+        secondsLabel.text = "\(dif.second!)"
+    }
+    
+    var type: PostType!
     
     override func awakeFromNib() {
         super.awakeFromNib()

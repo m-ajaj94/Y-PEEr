@@ -25,10 +25,18 @@ class SideMenuViewController: UIViewController {
             layer.frame.size = userContainerView.frame.size
             layer.frame.origin = CGPoint(x: 0, y: 0)
             layer.cornerRadius = 0
-            layer.endPoint = CGPoint(x: 1, y: 0)
-            let firstColor = UIColor.white.cgColor
-            let secondColor = UIColor.mainOrange.cgColor
-            layer.colors = [firstColor, secondColor]
+            if Cache.language.current == .english{
+                layer.endPoint = CGPoint(x: 1, y: 0)
+                let firstColor = UIColor.white.cgColor
+                let secondColor = UIColor.mainOrange.cgColor
+                layer.colors = [firstColor, secondColor]
+            }
+            else{
+                layer.endPoint = CGPoint(x: 1, y: 0)
+                let secondColor = UIColor.white.cgColor
+                let firstColor = UIColor.mainOrange.cgColor
+                layer.colors = [firstColor, secondColor]
+            }
             userContainerView.layer.insertSublayer(layer, at: 0)
             userContainerView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(didTapUser)))
         }

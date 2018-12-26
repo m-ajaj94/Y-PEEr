@@ -30,7 +30,13 @@ struct Networking{
     private static var headers: HTTPHeaders{
         var _headers: HTTPHeaders = [:]
         _headers["Content-Type"] = "application/json"
-        _headers["language"] = "ar" //TODO: Handle Language
+        _headers["os"] = "mobile"
+        if Cache.language.current == .arabic{
+            _headers["language"] = "ar"
+        }
+        else{
+            _headers["language"] = "en"
+        }
         return _headers
     }
     
@@ -58,6 +64,30 @@ struct Networking{
                 case .failure:
                     completionHandler(nil)
                 }
+            }
+        }
+    }
+    
+    static func getCities(_ completionHandler: @escaping (CitiesModel?)->()){
+        Networking.get(.getCities, [:]) { (data) in
+            if data == nil{
+                completionHandler(nil)
+            }
+            else{
+                let model = try? JSONDecoder().decode(CitiesModel.self, from: data!)
+                completionHandler(model)
+            }
+        }
+    }
+    
+    static func gallery(_ params: [String:Any], _ completionHandler: @escaping (GalleryModel?)->()){
+        Networking.post(.gallery, params) { (data) in
+            if data == nil{
+                completionHandler(nil)
+            }
+            else{
+                let model = try? JSONDecoder().decode(GalleryModel.self, from: data!)
+                completionHandler(model)
             }
         }
     }
@@ -96,6 +126,17 @@ struct Networking{
                 }
             }
         }
+        static func forgotPassword(_ params: [String:Any], completionHandler: @escaping (SigninGeneralModel?)->()){
+            Networking.post(.forgotPassword, params) { (data) in
+                if data == nil{
+                    completionHandler(nil)
+                }
+                else{
+                    let model = try? JSONDecoder().decode(SigninGeneralModel.self, from: data!)
+                    completionHandler(model)
+                }
+            }
+        }
     }
     
     struct posts{
@@ -120,6 +161,31 @@ struct Networking{
                 }
                 else{
                     let model = try? JSONDecoder().decode(IssuesModel.self, from: data!)
+                    completionHandler(model)
+                }
+            }
+        }
+        static func getArticles(_ params: [String:Any], _ completionHandler: @escaping (ArticlesModel?)->()){
+            Networking.post(.getArticles, params) { (data) in
+                if data == nil{
+                    completionHandler(nil)
+                }
+                else{
+                    let model = try? JSONDecoder().decode(ArticlesModel.self, from: data!)
+                    completionHandler(model)
+                }
+            }
+        }
+    }
+    
+    struct events {
+        static func getEvents(_ params: [String:Any], _ completionHandler: @escaping (EventsModel?)->()){
+            Networking.post(.getEvents, params) { (data) in
+                if data == nil{
+                    completionHandler(nil)
+                }
+                else{
+                    let model = try? JSONDecoder().decode(EventsModel.self, from: data!)
                     completionHandler(model)
                 }
             }

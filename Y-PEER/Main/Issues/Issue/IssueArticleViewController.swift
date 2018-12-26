@@ -19,22 +19,55 @@ class IssueArticleViewController: ParentViewController, UIScrollViewDelegate {
             scrollView.alwaysBounceVertical = true
         }
     }
-    
     var imageView: UIImageView!{
         didSet{
             view.addSubview(imageView)
             imageView.backgroundColor = .shadeOrange
-            imageView.image = UIImage(named: "a.jpg")
             imageView.contentMode = .scaleAspectFill
             imageView.clipsToBounds = true
         }
     }
     var height: CGFloat = 240
-    var imageName: String!
+    var article: ArticleModel!
+    var lang: Cache.language.Language!{
+        didSet{
+            if lang == .arabic{
+                titleLabel.text = article.titleAr!
+                detailsLabel.text = article.descriptionAr!
+                title = article.titleAr!
+                titleLabel.textAlignment = .right
+                detailsLabel.textAlignment = .right
+            }
+            else{
+                titleLabel.text = article.titleEn!
+                detailsLabel.text = article.descriptionEn!
+                title = article.titleEn!
+                titleLabel.textAlignment = .left
+                detailsLabel.textAlignment = .left
+            }
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        lang = Cache.language.current
         imageView = UIImageView()
+        imageView.kf.setImage(with: Networking.getImageURL(article.images![0].imagePath!))
+        setLanguageButton()
+    }
+    
+    func setLanguageButton(){
+        let button = UIBarButtonItem(image: UIImage(named: "Globe"), style: .done, target: self, action: #selector(changeLanguage))
+        navigationItem.rightBarButtonItem = button
+    }
+    
+    @objc func changeLanguage(){
+        if lang == .english{
+            lang = .arabic
+        }
+        else{
+            lang = .english
+        }
     }
     
     override func viewDidLayoutSubviews() {

@@ -52,7 +52,9 @@ class IssuesViewController: ParentViewController {
     }
     
     func requestData(){
+        showLoading()
         Networking.issues.getIssues { (model) in
+            self.removeLoading()
             if model != nil{
                 if model!.code == "1"{
                     self.issues = model!.data!
@@ -62,9 +64,14 @@ class IssuesViewController: ParentViewController {
                 }
             }
             else{
-                Toast(text: "Error Message TODO".localized).show()
+                self.showNoConnection()
             }
         }
+    }
+    
+    @objc override func didPressRetry() {
+        self.removeNoConnection()
+        self.requestData()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

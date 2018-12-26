@@ -8,10 +8,14 @@
 
 import UIKit
 
-class ParentViewController: UIViewController {
+class ParentViewController: UIViewController, ErrorViewDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+    }
+    
+    func didPressRetry() {
+        
     }
 
 }

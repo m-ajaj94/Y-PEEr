@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="cye-xw-7Z5">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="cye-xw-7Z5">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -227,7 +227,7 @@
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G1k-Ra-ciN">
                                         <rect key="frame" x="16" y="335" width="343" height="1236.5"/>
-                                        <mutableString key="text">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Maecenas ipsum velit, consectetuer eu lobortis ut, dictum at dui. Nulla turpis magna, cursus sit amet, suscipit a, interdum id, felis. Maecenas libero. Mauris tincidunt sem sed arcu. Morbi leo mi, nonummy eget tristique non, rhoncus non leo. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Aliquam ante. Pellentesque sapien. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Quisque porta. Integer imperdiet lectus quis justo. Integer rutrum, orci vestibulum ullamcorper ultricies, lacus quam ultricies odio, vitae placerat pede sem sit amet enim. Proin in tellus sit amet nibh dignissim sagittis. Etiam dui sem, fermentum vitae, sagittis id, malesuada in, quam. Fusce dui leo, imperdiet in, aliquam sit amet, feugiat eu, orci. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.
+                                        <string key="text">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Maecenas ipsum velit, consectetuer eu lobortis ut, dictum at dui. Nulla turpis magna, cursus sit amet, suscipit a, interdum id, felis. Maecenas libero. Mauris tincidunt sem sed arcu. Morbi leo mi, nonummy eget tristique non, rhoncus non leo. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Aliquam ante. Pellentesque sapien. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Quisque porta. Integer imperdiet lectus quis justo. Integer rutrum, orci vestibulum ullamcorper ultricies, lacus quam ultricies odio, vitae placerat pede sem sit amet enim. Proin in tellus sit amet nibh dignissim sagittis. Etiam dui sem, fermentum vitae, sagittis id, malesuada in, quam. Fusce dui leo, imperdiet in, aliquam sit amet, feugiat eu, orci. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.
 
 Nulla non arcu lacinia neque faucibus fringilla. Maecenas lorem. Pellentesque ipsum. Mauris metus. Ut tempus purus at lorem. Aenean placerat. Pellentesque sapien. Nulla non lectus sed nisl molestie malesuada. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Fusce tellus odio, dapibus id fermentum quis, suscipit id erat. Etiam commodo dui eget wisi. Suspendisse nisl.
 
@@ -235,7 +235,7 @@ Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus
 
 Integer vulputate sem a nibh rutrum consequat. Aliquam erat volutpat. Integer imperdiet lectus quis justo. Nam sed tellus id magna elementum tincidunt. Nunc tincidunt ante vitae massa. Integer lacinia. Cras elementum. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Morbi scelerisque luctus velit. Aliquam in lorem sit amet leo accumsan lacinia. Mauris dictum facilisis augue. Vestibulum fermentum tortor id mi.
 
-Etiam neque. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Suspendisse nisl. Curabitur bibendum justo non orci. Maecenas aliquet accumsan leo. Ut tempus purus at lorem. Phasellus rhoncus. Aliquam ornare wisi eu metus. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Praesent dapibus. Duis viverra diam non justo. Nulla accumsan, elit sit amet varius semper, nulla mauris mollis quam, tempor suscipit diam nulla vel leo.</mutableString>
+Etiam neque. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Suspendisse nisl. Curabitur bibendum justo non orci. Maecenas aliquet accumsan leo. Ut tempus purus at lorem. Phasellus rhoncus. Aliquam ornare wisi eu metus. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Praesent dapibus. Duis viverra diam non justo. Nulla accumsan, elit sit amet varius semper, nulla mauris mollis quam, tempor suscipit diam nulla vel leo.</string>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -395,7 +395,7 @@ Etiam neque. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihi
                             </view>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="wlA-Tt-Pdf">
                                 <rect key="frame" x="0.0" y="59" width="375" height="495"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" name="GrayColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="G7A-Wv-0cH">
                                     <size key="itemSize" width="50" height="50"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -409,7 +409,7 @@ Etiam neque. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihi
                             </collectionView>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Ego-Rd-g0B">
                                 <rect key="frame" x="0.0" y="59" width="375" height="495"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" name="GrayColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="MNo-8f-oEW">
                                     <size key="itemSize" width="50" height="50"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -724,7 +724,7 @@ Etiam neque. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihi
                                     </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DFj-6e-Ude">
                                         <rect key="frame" x="16" y="339" width="343" height="1236.5"/>
-                                        <mutableString key="text">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Maecenas ipsum velit, consectetuer eu lobortis ut, dictum at dui. Nulla turpis magna, cursus sit amet, suscipit a, interdum id, felis. Maecenas libero. Mauris tincidunt sem sed arcu. Morbi leo mi, nonummy eget tristique non, rhoncus non leo. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Aliquam ante. Pellentesque sapien. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Quisque porta. Integer imperdiet lectus quis justo. Integer rutrum, orci vestibulum ullamcorper ultricies, lacus quam ultricies odio, vitae placerat pede sem sit amet enim. Proin in tellus sit amet nibh dignissim sagittis. Etiam dui sem, fermentum vitae, sagittis id, malesuada in, quam. Fusce dui leo, imperdiet in, aliquam sit amet, feugiat eu, orci. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.
+                                        <string key="text">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Maecenas ipsum velit, consectetuer eu lobortis ut, dictum at dui. Nulla turpis magna, cursus sit amet, suscipit a, interdum id, felis. Maecenas libero. Mauris tincidunt sem sed arcu. Morbi leo mi, nonummy eget tristique non, rhoncus non leo. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Aliquam ante. Pellentesque sapien. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Quisque porta. Integer imperdiet lectus quis justo. Integer rutrum, orci vestibulum ullamcorper ultricies, lacus quam ultricies odio, vitae placerat pede sem sit amet enim. Proin in tellus sit amet nibh dignissim sagittis. Etiam dui sem, fermentum vitae, sagittis id, malesuada in, quam. Fusce dui leo, imperdiet in, aliquam sit amet, feugiat eu, orci. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.
 
 Nulla non arcu lacinia neque faucibus fringilla. Maecenas lorem. Pellentesque ipsum. Mauris metus. Ut tempus purus at lorem. Aenean placerat. Pellentesque sapien. Nulla non lectus sed nisl molestie malesuada. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Fusce tellus odio, dapibus id fermentum quis, suscipit id erat. Etiam commodo dui eget wisi. Suspendisse nisl.
 
@@ -732,7 +732,7 @@ Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus
 
 Integer vulputate sem a nibh rutrum consequat. Aliquam erat volutpat. Integer imperdiet lectus quis justo. Nam sed tellus id magna elementum tincidunt. Nunc tincidunt ante vitae massa. Integer lacinia. Cras elementum. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Morbi scelerisque luctus velit. Aliquam in lorem sit amet leo accumsan lacinia. Mauris dictum facilisis augue. Vestibulum fermentum tortor id mi.
 
-Etiam neque. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Suspendisse nisl. Curabitur bibendum justo non orci. Maecenas aliquet accumsan leo. Ut tempus purus at lorem. Phasellus rhoncus. Aliquam ornare wisi eu metus. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Praesent dapibus. Duis viverra diam non justo. Nulla accumsan, elit sit amet varius semper, nulla mauris mollis quam, tempor suscipit diam nulla vel leo.</mutableString>
+Etiam neque. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Suspendisse nisl. Curabitur bibendum justo non orci. Maecenas aliquet accumsan leo. Ut tempus purus at lorem. Phasellus rhoncus. Aliquam ornare wisi eu metus. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Praesent dapibus. Duis viverra diam non justo. Nulla accumsan, elit sit amet varius semper, nulla mauris mollis quam, tempor suscipit diam nulla vel leo.</string>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -999,11 +999,11 @@ Etiam neque. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihi
         </scene>
     </scenes>
     <resources>
-        <image name="eventsIcon" width="28.54054069519043" height="28.54054069519043"/>
-        <image name="galleryIcon" width="23.466667175292969" height="23.466667175292969"/>
-        <image name="issuesIcon" width="30.171428680419922" height="30.171428680419922"/>
-        <image name="postsIcon" width="29.333333969116211" height="29.333333969116211"/>
-        <image name="quizIcon" width="33" height="33"/>
+        <image name="eventsIcon" width="16.875" height="16.875"/>
+        <image name="galleryIcon" width="16.875" height="16.875"/>
+        <image name="issuesIcon" width="16.875" height="16.875"/>
+        <image name="postsIcon" width="16.875" height="16.875"/>
+        <image name="quizIcon" width="16.875" height="16.875"/>
         <namedColor name="GrayColor">
             <color red="0.93333333333333335" green="0.93333333333333335" blue="0.93333333333333335" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

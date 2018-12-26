@@ -29,7 +29,7 @@ public class PostModel: Codable {
     public let isLiked: String?
     public let totalLikes: Int?
     public let images: [ImageModel]?
-//    public let event: EventModel?
+    public let event: EventModel?
 //    public let quiz: [String]?
     
     enum CodingKeys: String, CodingKey {
@@ -41,10 +41,10 @@ public class PostModel: Codable {
         case updatedAt = "updated_at"
         case isLiked = "is_liked"
         case totalLikes = "total_likes"
-        case images//, event, quiz
+        case images, event//, quiz
     }
     
-    public init(id: Int?, eventID: Int?, quizID: Int?, title: String?, description: String?, createdAt: String?, updatedAt: String?, isLiked: String?, totalLikes: Int?, images: [ImageModel]?){//}, event: EventModel?){}, quiz: [String]?) {
+    public init(id: Int?, eventID: Int?, quizID: Int?, title: String?, description: String?, createdAt: String?, updatedAt: String?, isLiked: String?, totalLikes: Int?, images: [ImageModel]?, event: EventModel?){//{}, quiz: [String]?) {
         self.id = id
         self.eventID = eventID
         self.quizID = quizID
@@ -55,7 +55,7 @@ public class PostModel: Codable {
         self.isLiked = isLiked
         self.totalLikes = totalLikes
         self.images = images
-//        self.event = event
+        self.event = event
 //        self.quiz = quiz
     }
 }
@@ -63,18 +63,16 @@ public class PostModel: Codable {
 
 public class EventModel: Codable {
     public let id: Int?
-    public let titleAr, titleEn, descriptionAr, descriptionEn: String?
+    public let title, description: String?
     public let startDate, endDate, startTime, endTime: String?
     public let locationAr: String?
     public let visitors, posted: Int?
-    public let locationEn, createdAt: String?
+    public let locationEn, createdAt, updatedAt: String?
     
     enum CodingKeys: String, CodingKey {
         case id
-        case titleAr = "title_ar"
-        case titleEn = "title_en"
-        case descriptionAr = "description_ar"
-        case descriptionEn = "description_en"
+        case title
+        case description
         case startDate = "start_date"
         case endDate = "end_date"
         case startTime = "start_time"
@@ -83,14 +81,13 @@ public class EventModel: Codable {
         case visitors, posted
         case locationEn = "location_en"
         case createdAt = "created_at"
+        case updatedAt = "updated_at"
     }
     
-    public init(id: Int?, titleAr: String?, titleEn: String?, descriptionAr: String?, descriptionEn: String?, startDate: String?, endDate: String?, startTime: String?, endTime: String?, locationAr: String?, visitors: Int?, posted: Int?, locationEn: String?, createdAt: String?) {
+    public init(id: Int?, title: String?, description: String?, startDate: String?, endDate: String?, startTime: String?, endTime: String?, locationAr: String?, visitors: Int?, posted: Int?, locationEn: String?, createdAt: String?, updatedAt: String?) {
         self.id = id
-        self.titleAr = titleAr
-        self.titleEn = titleEn
-        self.descriptionAr = descriptionAr
-        self.descriptionEn = descriptionEn
+        self.title = title
+        self.description = description
         self.startDate = startDate
         self.endDate = endDate
         self.startTime = startTime
@@ -100,6 +97,7 @@ public class EventModel: Codable {
         self.posted = posted
         self.locationEn = locationEn
         self.createdAt = createdAt
+        self.updatedAt = updatedAt
     }
 }
 

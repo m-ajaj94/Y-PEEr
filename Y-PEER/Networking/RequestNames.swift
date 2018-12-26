@@ -12,7 +12,16 @@ enum RequestNames: String{
     case signup = "signup"
     case signin = "signin"
     case updateProfile = "updateprofile"
+    case forgotPassword = "frogetpassword"
     
     case getPosts = "getposts"
+    
     case getIssues = "getissues"
+    case getArticles = "getarticles"
+    
+    case getCities = "getcities"
+    
+    case gallery = "getGallery"
+    
+    case getEvents = "getevents"
 }

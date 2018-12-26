@@ -20,6 +20,13 @@ struct UserCache{
         return false
     }
     
+    static var userID: Int{
+        if isLoggedIn{
+            return userData.id!
+        }
+        return 0
+    }
+    
     static var userData: SigninModel!{
         if let data = UserDefaults.standard.value(forKey: userDataKey) as? Data{
             return try! JSONDecoder().decode(SigninModel.self, from: data)

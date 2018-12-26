@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import Toaster
 
-class EventsViewController: UIViewController {
+class EventsViewController: ParentViewController {
 
     @IBOutlet weak var tableView: UITableView!{
         didSet{
@@ -81,14 +82,40 @@ class EventsViewController: UIViewController {
             performSegue(withIdentifier: "ShowPostDetails", sender: self)
         }
     }
-    var images: [String] = []
+    
+    var data: EventsDataModel!{
+        didSet{
+            tableView.reloadData()
+        }
+    }
+    let pageSize = 10
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "Events"
-        for _ in 0..<10{
-            let rand = arc4random() % 5
-            images.append("image-\(rand).jpg")
+        title = "Events".localized
+        requestData()
+    }
+    
+    override func didPressRetry() {
+        removeNoConnection()
+        requestData()
+    }
+    
+    func requestData(){
+        showLoading()
+        Networking.events.getEvents(["skip":0, "take":pageSize, "user_id":UserCache.userID]) { (model) in
+            self.removeLoading()
+            if model != nil{
+                if model!.code == "1"{
+                    self.data = model!.data
+                }
+                else{
+                    Toast(text: model!.message).show()
+                }
+            }
+            else{
+                self.showNoConnection()
+            }
         }
     }
     
@@ -101,7 +128,7 @@ class EventsViewController: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let controller = segue.destination as! EventDetailsViewController
-        controller.imageName = images[selectedIndex.row]
+        controller.eventDetails = data.passed![selectedIndex.row]
     }
 
 }
@@ -113,7 +140,10 @@ extension EventsViewController: UITableViewDelegate, UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        if data == nil{
+            return 0
+        }
+        return data.passed!.count
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -122,7 +152,8 @@ extension EventsViewController: UITableViewDelegate, UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: EventsTableViewCell.self)) as? EventsTableViewCell{
-            cell.imageName = images[indexPath.row]
+            cell.type = PostType.pastEvent
+            cell.event = data.passed![indexPath.row]
             return cell
         }
         return UITableViewCell()
