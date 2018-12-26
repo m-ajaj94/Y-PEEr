@@ -20,6 +20,12 @@ class SideMenuViewController: UIViewController {
             }
         }
     }
+    @IBOutlet weak var storiesImageView: UIImageView!
+    @IBOutlet weak var storiesContainerView: UIView!{
+        didSet{
+            storiesContainerView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(didTapStories)))
+        }
+    }
     @IBOutlet weak var userContainerView: UIView!{
         didSet{
             layer.frame.size = userContainerView.frame.size
@@ -100,6 +106,11 @@ class SideMenuViewController: UIViewController {
         delegate.didSelectUser()
     }
     
+    @objc func didTapStories(){
+        dismiss(animated: true, completion: nil)
+        delegate.didSelectStories()
+    }
+    
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         settingsContainerView.layer.cornerRadius = settingsContainerView.frame.size.height / 2
@@ -107,7 +118,8 @@ class SideMenuViewController: UIViewController {
         aboutContainerView.layer.cornerRadius = aboutContainerView.frame.size.height / 2
         aboutImageView.layer.cornerRadius = aboutImageView.frame.size.height / 2
         searchContainerView.layer.cornerRadius = searchContainerView.frame.size.height / 2
-        searchImageView.layer.cornerRadius = searchImageView.frame.size.height / 2
+        storiesImageView.layer.cornerRadius = storiesImageView.frame.size.height / 2
+        storiesContainerView.layer.cornerRadius = storiesContainerView.frame.size.height / 2
         layer.frame.size = userContainerView.frame.size
     }
 
@@ -118,4 +130,5 @@ protocol SideMenuViewControllerDelegate{
     func didSelectAboutUs()
     func didSelectSearch()
     func didSelectUser()
+    func didSelectStories()
 }

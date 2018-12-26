@@ -55,6 +55,9 @@ class PostsViewController: ParentViewController {
                 performSegue(withIdentifier: "ShowPostDetails", sender: self)
                 break
             case .quiz:
+                let controller = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: String(describing: QuizViewController.self)) as! QuizViewController
+                controller.quizID = posts[selectedIndex.row].quiz!.id!
+                navigationController!.pushViewController(controller, animated: true)
                 break
             case .pastEvent:
                 let controller = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: String(describing: EventDetailsViewController.self)) as! EventDetailsViewController
@@ -96,11 +99,22 @@ class PostsViewController: ParentViewController {
         tableView.addInfiniteScroll { (tableView) in
             self.moreRequest()
         }
+        NotificationCenter.default.addObserver(self, selector: #selector(likeStatus(_:)), name: NSNotification.Name("LikeChanged"), object: nil)
+    }
+    
+    @objc func likeStatus(_ notification: Notification){
+        let postID: Int = notification.userInfo!["id"] as! Int
+        for post in posts{
+            if postID == post.id!{
+                post.totalLikes = (notification.userInfo!["count"] as! Int)
+                post.isLiked = (notification.userInfo!["liked"] as! Bool) ? "1" : "0"
+            }
+        }
     }
     
     @objc func requestData(){
         showLoading()
-        Networking.posts.homePosts(["skip":0, "take":10, "user_id":UserCache.userID]) { (model) in
+        Networking.posts.homePosts(["skip":0, "take":pageSize, "user_id":UserCache.userID]) { (model) in
             self.removeLoading()
             if model != nil{
                 if model!.code == "1"{
@@ -207,6 +221,8 @@ extension PostsViewController: SkeletonTableViewDataSource, SkeletonTableViewDel
         case .event:
             let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: PostsUpcomingEventTableViewCell.self)) as! PostsUpcomingEventTableViewCell
             cell.post = posts[indexPath.row]
+            cell.index = indexPath
+            cell.delegate = self
             return cell
         case .pastEvent:
             //TODO: past event
@@ -214,6 +230,7 @@ extension PostsViewController: SkeletonTableViewDataSource, SkeletonTableViewDel
             return cell
         case .quiz:
             let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: PostsQuizTableViewCell.self)) as! PostsQuizTableViewCell
+            cell.quiz = posts[indexPath.row].quiz!
             return cell
         case .post:
             let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: PostImageTableViewCell.self)) as! PostImageTableViewCell
@@ -241,12 +258,45 @@ extension PostsViewController: SkeletonTableViewDataSource, SkeletonTableViewDel
     }
     
     func didTapStartFromQuiz(at indexPath: IndexPath) {
-        
+        selectedIndex = indexPath
     }
     
     func didPressLike(at index: IndexPath) {
         if UserCache.isLoggedIn{
-            
+            if posts[index.row].isLiked! == "0"{
+                Networking.posts.likePost(["post_id":posts[index.row].id!,"user_id":UserCache.userID]) { (model) in
+                    if model != nil && model!.code! == "1"{
+                        self.posts[index.row].isLiked = "1"
+                        self.posts[index.row].totalLikes = model!.data!.likesCount!
+                        NotificationCenter.default.post(name: NSNotification.Name("LikeChanged"), object: nil, userInfo: ["id":self.posts[index.row].id!,"count":model!.data!.likesCount!, "liked":true])
+                    }
+                    else{
+                        if model == nil{
+                            Toast(text: "Error Message").show()
+                        }
+                        else{
+                            Toast(text: model!.message!).show()
+                        }
+                    }
+                }
+            }
+            else{
+                Networking.posts.dislikePost(["post_id":posts[index.row].id!,"user_id":UserCache.userID]) { (model) in
+                    if model != nil && model!.code! == "1"{
+                        self.posts[index.row].isLiked = "1"
+                        self.posts[index.row].totalLikes = model!.data!.likesCount!
+                        NotificationCenter.default.post(name: NSNotification.Name("LikeChanged"), object: nil, userInfo: ["id":self.posts[index.row].id!,"count":model!.data!.likesCount!, "liked":false])
+                    }
+                    else{
+                        if model == nil{
+                            Toast(text: "Error Message").show()
+                        }
+                        else{
+                            Toast(text: model!.message!).show()
+                        }
+                    }
+                }
+            }
         }
         else{
             let navController = UIStoryboard(name: "User", bundle: nil).instantiateInitialViewController() as! UINavigationController

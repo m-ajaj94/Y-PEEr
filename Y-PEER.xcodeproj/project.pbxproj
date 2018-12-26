@@ -66,6 +66,13 @@
 		F33B2D3421D2C392007C728D /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33B2D3321D2C392007C728D /* LoadingView.swift */; };
 		F33B2D3621D2C39C007C728D /* LoadingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F33B2D3521D2C39C007C728D /* LoadingView.xib */; };
 		F33B2D3821D315AC007C728D /* EventsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33B2D3721D315AC007C728D /* EventsModel.swift */; };
+		F33B2D3A21D3AD3F007C728D /* QuizzesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33B2D3921D3AD3F007C728D /* QuizzesModel.swift */; };
+		F33B2D3C21D3B2F2007C728D /* QuizDetailsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33B2D3B21D3B2F2007C728D /* QuizDetailsModel.swift */; };
+		F33B2D3E21D3E746007C728D /* EditProfileModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33B2D3D21D3E746007C728D /* EditProfileModel.swift */; };
+		F33B2D4021D3F92F007C728D /* LikeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33B2D3F21D3F92F007C728D /* LikeModel.swift */; };
+		F33B2D4321D4236A007C728D /* Stories.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F33B2D4221D4236A007C728D /* Stories.storyboard */; };
+		F33B2D4521D42456007C728D /* StoriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33B2D4421D42456007C728D /* StoriesViewController.swift */; };
+		F33B2D4721D42467007C728D /* CreateStoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33B2D4621D42467007C728D /* CreateStoryViewController.swift */; };
 		F33DFA622149FB4F00E3194C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33DFA612149FB4F00E3194C /* AppDelegate.swift */; };
 		F33DFA672149FB4F00E3194C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F33DFA652149FB4F00E3194C /* Main.storyboard */; };
 		F33DFA692149FB5100E3194C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F33DFA682149FB5100E3194C /* Assets.xcassets */; };
@@ -184,6 +191,13 @@
 		F33B2D3321D2C392007C728D /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		F33B2D3521D2C39C007C728D /* LoadingView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoadingView.xib; sourceTree = "<group>"; };
 		F33B2D3721D315AC007C728D /* EventsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsModel.swift; sourceTree = "<group>"; };
+		F33B2D3921D3AD3F007C728D /* QuizzesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizzesModel.swift; sourceTree = "<group>"; };
+		F33B2D3B21D3B2F2007C728D /* QuizDetailsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizDetailsModel.swift; sourceTree = "<group>"; };
+		F33B2D3D21D3E746007C728D /* EditProfileModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileModel.swift; sourceTree = "<group>"; };
+		F33B2D3F21D3F92F007C728D /* LikeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeModel.swift; sourceTree = "<group>"; };
+		F33B2D4221D4236A007C728D /* Stories.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Stories.storyboard; sourceTree = "<group>"; };
+		F33B2D4421D42456007C728D /* StoriesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoriesViewController.swift; sourceTree = "<group>"; };
+		F33B2D4621D42467007C728D /* CreateStoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateStoryViewController.swift; sourceTree = "<group>"; };
 		F33DFA5E2149FB4F00E3194C /* Y-PEER.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Y-PEER.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F33DFA612149FB4F00E3194C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F33DFA662149FB4F00E3194C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -396,6 +410,7 @@
 			isa = PBXGroup;
 			children = (
 				F323F9C121CABA13002BF331 /* SigninModel.swift */,
+				F33B2D3D21D3E746007C728D /* EditProfileModel.swift */,
 			);
 			path = User;
 			sourceTree = "<group>";
@@ -420,6 +435,9 @@
 				F323F9EC21D25911002BF331 /* CitiesModel.swift */,
 				F323F9F221D27384002BF331 /* GalleryModel.swift */,
 				F33B2D3721D315AC007C728D /* EventsModel.swift */,
+				F33B2D3921D3AD3F007C728D /* QuizzesModel.swift */,
+				F33B2D3B21D3B2F2007C728D /* QuizDetailsModel.swift */,
+				F33B2D3F21D3F92F007C728D /* LikeModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -560,6 +578,16 @@
 			path = "Loading View";
 			sourceTree = "<group>";
 		};
+		F33B2D4121D4235B007C728D /* Stories */ = {
+			isa = PBXGroup;
+			children = (
+				F33B2D4421D42456007C728D /* StoriesViewController.swift */,
+				F33B2D4621D42467007C728D /* CreateStoryViewController.swift */,
+				F33B2D4221D4236A007C728D /* Stories.storyboard */,
+			);
+			path = Stories;
+			sourceTree = "<group>";
+		};
 		F33DFA552149FB4F00E3194C = {
 			isa = PBXGroup;
 			children = (
@@ -581,6 +609,7 @@
 		F33DFA602149FB4F00E3194C /* Y-PEER */ = {
 			isa = PBXGroup;
 			children = (
+				F33B2D4121D4235B007C728D /* Stories */,
 				F33B2D3121D2C370007C728D /* Views */,
 				F3A22B892175EE1B00F5325F /* background.jpg */,
 				F30E3EE6216FCDF900F75EC0 /* Networking */,
@@ -909,6 +938,7 @@
 				F323F9FA21D2A95B002BF331 /* ErrorBackground.png in Resources */,
 				F3303ECF215677B200DF4610 /* Issue.storyboard in Resources */,
 				F3D0EEB8214DD7F7006739B9 /* GallerySkeletonCollectionViewCell.xib in Resources */,
+				F33B2D4321D4236A007C728D /* Stories.storyboard in Resources */,
 				F33DFA692149FB5100E3194C /* Assets.xcassets in Resources */,
 				F3303ED621567ADC00DF4610 /* IssueTableViewCell.xib in Resources */,
 				F3303EDA2156CBE500DF4610 /* a.jpg in Resources */,
@@ -972,6 +1002,7 @@
 				"${BUILT_PRODUCTS_DIR}/Imaginary/Imaginary.framework",
 				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
 				"${BUILT_PRODUCTS_DIR}/Lightbox/Lightbox.framework",
+				"${BUILT_PRODUCTS_DIR}/NSDate+TimeAgo/NSDate_TimeAgo.framework",
 				"${BUILT_PRODUCTS_DIR}/NVActivityIndicatorView/NVActivityIndicatorView.framework",
 				"${BUILT_PRODUCTS_DIR}/Presentr/Presentr.framework",
 				"${BUILT_PRODUCTS_DIR}/SideMenu/SideMenu.framework",
@@ -989,6 +1020,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Imaginary.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Lightbox.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/NSDate_TimeAgo.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/NVActivityIndicatorView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Presentr.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SideMenu.framework",
@@ -1009,9 +1041,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F33B2D4521D42456007C728D /* StoriesViewController.swift in Sources */,
 				F3A22B8C2176529000F5325F /* QuizResultsViewController.swift in Sources */,
 				F3B0BB002173C1A2003BE09D /* QuizzesViewController.swift in Sources */,
 				F323F9C421CBC39F002BF331 /* ArticlesModel.swift in Sources */,
+				F33B2D4721D42467007C728D /* CreateStoryViewController.swift in Sources */,
 				F36391CE216BE3C4005F747C /* PostsUpcomingEventTableViewCell.swift in Sources */,
 				F3303ED12156796200DF4610 /* IssueViewController.swift in Sources */,
 				F3A22B822174E34D00F5325F /* QuizQuestionCollectionViewCell.swift in Sources */,
@@ -1041,6 +1075,7 @@
 				F3303EEC2156E48100DF4610 /* AboutDetailsTableViewCell.swift in Sources */,
 				F3D0EEB7214DD7F7006739B9 /* GallerySkeletonCollectionViewCell.swift in Sources */,
 				F36391DD216CE0AD005F747C /* EventsTableViewCell.swift in Sources */,
+				F33B2D4021D3F92F007C728D /* LikeModel.swift in Sources */,
 				F3B1E4F0214DB39000832FE7 /* GalleryViewController.swift in Sources */,
 				F3303EF22156F25300DF4610 /* AboutCoreTeamTableViewCell.swift in Sources */,
 				F30E3EDE216FBE7300F75EC0 /* SettingsTableViewHeader.swift in Sources */,
@@ -1050,6 +1085,8 @@
 				F323F9ED21D25911002BF331 /* CitiesModel.swift in Sources */,
 				F3B1E4EB214DAFD200832FE7 /* ParentViewController.swift in Sources */,
 				F3D0EEBD214DEEEC006739B9 /* PostsSkeletonTableViewCell.swift in Sources */,
+				F33B2D3C21D3B2F2007C728D /* QuizDetailsModel.swift in Sources */,
+				F33B2D3A21D3AD3F007C728D /* QuizzesModel.swift in Sources */,
 				F323F9E921D2508D002BF331 /* Cache.swift in Sources */,
 				F30E3ED8216FBB1000F75EC0 /* SettingsNotificationTableViewCell.swift in Sources */,
 				F305B91B2159371F005A4818 /* CoreTeamCollectionViewCell.swift in Sources */,
@@ -1067,6 +1104,7 @@
 				F3131F00216BCF1000B1200E /* PostsImageCollectionViewCell.swift in Sources */,
 				F3303ED82156C7C000DF4610 /* IssueArticleViewController.swift in Sources */,
 				F3B0BAF921739476003BE09D /* PostDetailsImageCollectionViewCell.swift in Sources */,
+				F33B2D3E21D3E746007C728D /* EditProfileModel.swift in Sources */,
 				F3B0BAF421725CC0003BE09D /* PostDetailsViewController.swift in Sources */,
 				F36391D3216CA510005F747C /* PostsTextTableViewCell.swift in Sources */,
 				F3303ED521567ADC00DF4610 /* IssueTableViewCell.swift in Sources */,

@@ -55,7 +55,7 @@ class EventDetailsViewController: ParentViewController {
         didSet{
         }
     }
-    var eventDetails: EventDetailsModel!{
+    var eventDetails: EventDataModel!{
         didSet{
             
         }

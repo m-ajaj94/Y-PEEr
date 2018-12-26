@@ -8,9 +8,13 @@
 
 import UIKit
 import FlexiblePageControl
+import Toaster
 
 class PostDetailsViewController: ParentViewController {
     
+    @IBOutlet weak var timeLabel: UILabel!
+    @IBOutlet weak var likeButton: UIButton!
+    @IBOutlet weak var likesCountLabel: UILabel!
     @IBOutlet weak var heightConstraint: NSLayoutConstraint!
     @IBOutlet weak var collectionView: UICollectionView!{
         didSet{
@@ -28,6 +32,54 @@ class PostDetailsViewController: ParentViewController {
     @IBOutlet weak var scrollView: UIScrollView!{
         didSet{
             scrollView.delegate = self
+        }
+    }
+    @IBAction func likeButtonPressed(_ sender: Any) {
+        if UserCache.isLoggedIn{
+            if post.isLiked! == "0"{
+                Networking.posts.likePost(["post_id":post.id!,"user_id":UserCache.userID]) { (model) in
+                    if model != nil && model!.code! == "1"{
+                        self.post.isLiked = "1"
+                        self.post.totalLikes = model!.data!.likesCount!
+                        self.likesCountLabel.text = "\(model!.data!.likesCount!)"
+                        self.likeButton.setTitle("😍", for: .normal)
+                        NotificationCenter.default.post(name: NSNotification.Name("LikeChanged"), object: nil, userInfo: ["id":self.post.id!,"count":model!.data!.likesCount!, "liked":true])
+                    }
+                    else{
+                        if model == nil{
+                            Toast(text: "Error Message").show()
+                        }
+                        else{
+                            Toast(text: model!.message!).show()
+                        }
+                    }
+                }
+            }
+            else{
+                Networking.posts.dislikePost(["post_id":post.id!,"user_id":UserCache.userID]) { (model) in
+                    if model != nil && model!.code! == "1"{
+                        self.post.isLiked = "1"
+                        self.post.totalLikes = model!.data!.likesCount!
+                        self.likesCountLabel.text = "\(model!.data!.likesCount!)"
+                        self.likeButton.setTitle("😀", for: .normal)
+                        NotificationCenter.default.post(name: NSNotification.Name("LikeChanged"), object: nil, userInfo: ["id":self.post.id!,"count":model!.data!.likesCount!, "liked":false])
+                    }
+                    else{
+                        if model == nil{
+                            Toast(text: "Error Message").show()
+                        }
+                        else{
+                            Toast(text: model!.message!).show()
+                        }
+                    }
+                }
+            }
+        }
+        else{
+            let navController = UIStoryboard(name: "User", bundle: nil).instantiateInitialViewController() as! UINavigationController
+            let controller = navController.viewControllers[0] as! SigninViewController
+            controller.isModal = true
+            present(navController, animated: true, completion: nil)
         }
     }
     
@@ -67,7 +119,18 @@ class PostDetailsViewController: ParentViewController {
         pageControl = FlexiblePageControl()
         titleLabel.text = post.title!
         descriptionLabel.text = post.description!
+        likesCountLabel.text = "\(post.totalLikes!)"
         images = post.images!
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        timeLabel.text = (dateFormatter.date(from: post.createdAt!)! as NSDate).timeAgo()
+        if post.isLiked! == "1"{
+            self.likeButton.setTitle("😍", for: .normal)
+        }
+        else{
+            self.likeButton.setTitle("😀", for: .normal)
+            
+        }
     }
     
     override func viewDidLayoutSubviews() {

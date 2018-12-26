@@ -10,7 +10,13 @@ import UIKit
 
 class QuizQuestionCollectionViewCell: UICollectionViewCell {
 
-    @IBOutlet weak var questionLabel: UILabel!
+    @IBOutlet weak var questionLabel: UILabel!{
+        didSet{
+            if Cache.language.current == .arabic{
+                questionLabel.flipX()
+            }
+        }
+    }
     @IBOutlet weak var tableView: UITableView!{
         didSet{
             tableView.contentInset = UIEdgeInsets(top: 8, left: 0, bottom: 8, right: 0)
@@ -21,6 +27,12 @@ class QuizQuestionCollectionViewCell: UICollectionViewCell {
         }
     }
     
+    var question: QuizQuestionModel!{
+        didSet{
+            questionLabel.text = question.description!
+            tableView.reloadData()
+        }
+    }
     var selectedIndex: IndexPath!{
         willSet{
             if selectedIndex != nil{
@@ -50,7 +62,10 @@ extension QuizQuestionCollectionViewCell: UITableViewDelegate, UITableViewDataSo
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 7
+        if question != nil{
+            return question.options!.count
+        }
+        return 0
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -60,7 +75,7 @@ extension QuizQuestionCollectionViewCell: UITableViewDelegate, UITableViewDataSo
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: QuizAnswerTableViewCell.self)) as? QuizAnswerTableViewCell{
-            cell.answerLabel.text = "Answer #\(indexPath.row + 1)"
+            cell.answerLabel.text = question.options![indexPath.row].description!
             if indexPath == selectedIndex{
                 cell.selectedView.backgroundColor = .mainOrange
             }

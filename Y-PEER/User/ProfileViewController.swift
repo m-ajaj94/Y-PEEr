@@ -37,6 +37,7 @@ class ProfileViewController: ParentViewController {
     }
     @IBAction func editButtonPressed(_ sender: Any) {
         let controller = UIStoryboard(name: "User", bundle: nil).instantiateViewController(withIdentifier: "SignupViewController") as! SignupViewController
+        controller.delegate = self
         controller.cities = cities
         controller.isEditProfile = true
         navigationController!.pushViewController(controller, animated: true)
@@ -45,6 +46,7 @@ class ProfileViewController: ParentViewController {
         dismiss(animated: true, completion: nil)
     }
     
+    var genders: [String] = ["Male".localized, "Female".localized]
     var user = UserCache.userData!
     var cities: [CityModel]!{
         didSet{
@@ -52,6 +54,9 @@ class ProfileViewController: ParentViewController {
         }
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -68,8 +73,13 @@ class ProfileViewController: ParentViewController {
         emailLabel.text = user.email!
         nameLabel.text = user.name!
         birthdayLabel.text = user.birthdate!
-        genderLabel.text = "\(user.gender!)"
-        getCities()
+        genderLabel.text = genders[user.gender!]
+        if Cache.cities.cities.count == 0{
+            getCities()
+        }
+        else{
+            cities = Cache.cities.cities
+        }
     }
     
     override func didPressRetry() {
@@ -95,4 +105,23 @@ class ProfileViewController: ParentViewController {
         }
     }
 
+}
+
+extension ProfileViewController: ProfileViewControllerDelegate{
+    func didChangeProfile() {
+        emailLabel.text = user.email!
+        nameLabel.text = user.name!
+        birthdayLabel.text = user.birthdate!
+        genderLabel.text = genders[user.gender!]
+        if Cache.cities.cities.count == 0{
+            getCities()
+        }
+        else{
+            cities = Cache.cities.cities
+        }
+    }
+}
+
+protocol ProfileViewControllerDelegate{
+    func didChangeProfile()
 }

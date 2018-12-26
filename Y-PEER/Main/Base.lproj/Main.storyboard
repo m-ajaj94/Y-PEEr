@@ -141,7 +141,7 @@
                         </userDefinedRuntimeAttributes>
                     </view>
                     <navigationItem key="navigationItem" id="Dn3-v4-CKY">
-                        <barButtonItem key="leftBarButtonItem" title="Menu" id="xwW-e4-pHo">
+                        <barButtonItem key="leftBarButtonItem" image="SideMenu" id="xwW-e4-pHo">
                             <connections>
                                 <action selector="sideMenuButtonPressed:" destination="Djc-vd-p1h" id="Jsm-N5-CI2"/>
                             </connections>
@@ -192,6 +192,9 @@
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                                 <state key="normal" title="😃"/>
+                                                <connections>
+                                                    <action selector="likeButtonPressed:" destination="YZC-y2-yj7" eventType="touchUpInside" id="PYF-3I-7Bg"/>
+                                                </connections>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalCompressionResistancePriority="751" text="1h ago" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oNP-rb-qS8">
                                                 <rect key="frame" x="319" y="22" width="40" height="16"/>
@@ -273,8 +276,11 @@ Etiam neque. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihi
                         <outlet property="collectionView" destination="dV8-Gh-ZXc" id="vmD-3o-h1w"/>
                         <outlet property="descriptionLabel" destination="G1k-Ra-ciN" id="cIj-ge-Urh"/>
                         <outlet property="heightConstraint" destination="qSJ-n4-LQy" id="8Qy-7E-Hll"/>
+                        <outlet property="likeButton" destination="Qym-3L-Xmz" id="Ws9-o1-gzk"/>
                         <outlet property="likesCotinerView" destination="yfr-WD-Jyr" id="ilU-fO-CoW"/>
+                        <outlet property="likesCountLabel" destination="3J1-Jz-Z37" id="G7Y-7K-iV1"/>
                         <outlet property="scrollView" destination="sDN-ha-Jce" id="o5D-YE-dPm"/>
+                        <outlet property="timeLabel" destination="oNP-rb-qS8" id="5vW-RU-J18"/>
                         <outlet property="titleLabel" destination="Gok-Oi-N3n" id="dbZ-2Z-dNO"/>
                     </connections>
                 </viewController>
@@ -395,7 +401,7 @@ Etiam neque. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihi
                             </view>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="wlA-Tt-Pdf">
                                 <rect key="frame" x="0.0" y="59" width="375" height="495"/>
-                                <color key="backgroundColor" name="GrayColor"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="G7A-Wv-0cH">
                                     <size key="itemSize" width="50" height="50"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -409,7 +415,7 @@ Etiam neque. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihi
                             </collectionView>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Ego-Rd-g0B">
                                 <rect key="frame" x="0.0" y="59" width="375" height="495"/>
-                                <color key="backgroundColor" name="GrayColor"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="MNo-8f-oEW">
                                     <size key="itemSize" width="50" height="50"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -439,7 +445,7 @@ Etiam neque. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihi
                         </userDefinedRuntimeAttributes>
                     </view>
                     <navigationItem key="navigationItem" id="fnW-jn-v8z">
-                        <barButtonItem key="leftBarButtonItem" title="Menu" id="moY-nL-4dd">
+                        <barButtonItem key="leftBarButtonItem" image="SideMenu" id="moY-nL-4dd">
                             <connections>
                                 <action selector="menuButtonPressed:" destination="wCr-sD-iPN" id="SSg-5L-DA1"/>
                             </connections>
@@ -536,7 +542,13 @@ Etiam neque. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihi
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="rh7-Za-rCi"/>
                     </view>
-                    <navigationItem key="navigationItem" id="hWc-TW-LsZ"/>
+                    <navigationItem key="navigationItem" id="hWc-TW-LsZ">
+                        <barButtonItem key="leftBarButtonItem" image="SideMenu" id="VEm-3A-ZNS">
+                            <connections>
+                                <action selector="sideMenuButtonPressed:" destination="atE-3F-IYQ" id="cdf-lZ-DkA"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="allButton" destination="rL7-DP-ZgB" id="xQn-n7-Ibu"/>
                         <outlet property="passedButton" destination="YIv-0c-myj" id="6dR-TN-sGu"/>
@@ -827,7 +839,7 @@ Etiam neque. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihi
                         <viewLayoutGuide key="safeArea" id="jQh-wZ-eEI"/>
                     </view>
                     <navigationItem key="navigationItem" id="fiA-Ze-t4L">
-                        <barButtonItem key="leftBarButtonItem" title="Item" id="4c4-c8-2Sa">
+                        <barButtonItem key="leftBarButtonItem" image="SideMenu" id="4c4-c8-2Sa">
                             <connections>
                                 <action selector="meunButtonPressed:" destination="XvK-QO-Pf4" id="u7x-UM-QnM"/>
                             </connections>
@@ -873,7 +885,13 @@ Etiam neque. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihi
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="4GK-Li-6a5"/>
                     </view>
-                    <navigationItem key="navigationItem" id="Rva-Od-xgD"/>
+                    <navigationItem key="navigationItem" id="Rva-Od-xgD">
+                        <barButtonItem key="leftBarButtonItem" image="SideMenu" id="tkf-cx-0q0">
+                            <connections>
+                                <action selector="sideMenuButtonPressed:" destination="vMR-LE-9o7" id="CAi-vJ-8B1"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="8Hd-UP-LRD" id="tGh-fT-hN7"/>
                         <segue destination="t1k-LW-XeC" kind="show" identifier="ShowQuiz" id="K4P-vP-jiv"/>
@@ -886,7 +904,7 @@ Etiam neque. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihi
         <!--Quiz View Controller-->
         <scene sceneID="cio-cM-TOB">
             <objects>
-                <viewController id="t1k-LW-XeC" customClass="QuizViewController" customModule="Y_PEER" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="QuizViewController" id="t1k-LW-XeC" customClass="QuizViewController" customModule="Y_PEER" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="mZX-lB-E3B">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="554"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -934,12 +952,12 @@ Etiam neque. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihi
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="0G7-wN-Gvd"/>
                                     <constraint firstItem="GAG-Q4-us4" firstAttribute="width" secondItem="CiP-9o-neW" secondAttribute="width" id="HGJ-0R-6By"/>
-                                    <constraint firstAttribute="trailing" secondItem="GAG-Q4-us4" secondAttribute="trailing" constant="32" id="Q6B-Gt-EDn"/>
+                                    <constraint firstAttribute="right" secondItem="GAG-Q4-us4" secondAttribute="right" constant="32" id="Q6B-Gt-EDn"/>
                                     <constraint firstItem="CiP-9o-neW" firstAttribute="top" secondItem="bK9-WJ-Gh5" secondAttribute="top" constant="8" id="fwG-1G-cPM"/>
                                     <constraint firstItem="GAG-Q4-us4" firstAttribute="top" secondItem="CiP-9o-neW" secondAttribute="top" id="jZt-tO-B7O"/>
-                                    <constraint firstItem="GAG-Q4-us4" firstAttribute="leading" secondItem="CiP-9o-neW" secondAttribute="trailing" constant="44" id="nAS-GL-qlW"/>
+                                    <constraint firstItem="GAG-Q4-us4" firstAttribute="left" secondItem="CiP-9o-neW" secondAttribute="right" constant="44" id="nAS-GL-qlW"/>
                                     <constraint firstAttribute="bottom" secondItem="CiP-9o-neW" secondAttribute="bottom" constant="8" id="oZh-iL-kbL"/>
-                                    <constraint firstItem="CiP-9o-neW" firstAttribute="leading" secondItem="bK9-WJ-Gh5" secondAttribute="leading" constant="32" id="pKq-fy-BpC"/>
+                                    <constraint firstItem="CiP-9o-neW" firstAttribute="left" secondItem="bK9-WJ-Gh5" secondAttribute="left" constant="32" id="pKq-fy-BpC"/>
                                     <constraint firstItem="GAG-Q4-us4" firstAttribute="bottom" secondItem="CiP-9o-neW" secondAttribute="bottom" id="yZy-8h-zNV"/>
                                 </constraints>
                             </view>
@@ -999,6 +1017,7 @@ Etiam neque. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihi
         </scene>
     </scenes>
     <resources>
+        <image name="SideMenu" width="72" height="72"/>
         <image name="eventsIcon" width="16.875" height="16.875"/>
         <image name="galleryIcon" width="16.875" height="16.875"/>
         <image name="issuesIcon" width="16.875" height="16.875"/>

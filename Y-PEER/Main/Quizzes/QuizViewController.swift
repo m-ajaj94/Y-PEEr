@@ -17,6 +17,9 @@ class QuizViewController: ParentViewController {
             collectionView.isPagingEnabled = true
             collectionView.isScrollEnabled = false
             collectionView.register(UINib(nibName: String(describing: QuizQuestionCollectionViewCell.self), bundle: nil), forCellWithReuseIdentifier: String(describing: QuizQuestionCollectionViewCell.self))
+            if Cache.language.current == .arabic{
+                collectionView.flipX()
+            }
         }
     }
     @IBOutlet weak var prevButton: UIButton!{
@@ -33,13 +36,27 @@ class QuizViewController: ParentViewController {
     }
     
     @IBAction func prevButtonPresed(_ sender: Any) {
-        if currentIndex != 0{
-            currentIndex = currentIndex - 1
+        if Cache.language.current == .arabic{
+            if currentIndex != quiz.questions!.count - 1{
+                currentIndex = currentIndex + 1
+            }
+        }
+        else{
+            if currentIndex != 0{
+                currentIndex = currentIndex - 1
+            }
         }
     }
     @IBAction func nextButtonPressed(_ sender: Any) {
-        if currentIndex != 4{
-            currentIndex = currentIndex + 1
+        if Cache.language.current == .arabic{
+            if currentIndex != 0{
+                currentIndex = currentIndex - 1
+            }
+        }
+        else{
+            if currentIndex != quiz.questions!.count - 1{
+                currentIndex = currentIndex + 1
+            }
         }
     }
     
@@ -49,20 +66,61 @@ class QuizViewController: ParentViewController {
         }
         set{
             collectionView.setContentOffset(CGPoint(x: CGFloat(newValue) * collectionView.frame.size.width, y: collectionView.contentOffset.y), animated: true)
-            prevButton.isEnabled = newValue != 0
-            nextButton.isEnabled = newValue != 4
-            if newValue == 4{
-                nextButton.setTitle("Get Results", for: .normal)
+            if Cache.language.current == .arabic{
+                prevButton.isEnabled = newValue != quiz.questions!.count - 1
+                nextButton.isEnabled = newValue != 0
+                if newValue == 0{
+                    nextButton.setTitle("Get Results".localized, for: .normal)
+                }
+                else{
+                    nextButton.setTitle("Next".localized, for: .normal)
+                }
             }
             else{
-                nextButton.setTitle("Next", for: .normal)
+                prevButton.isEnabled = newValue != 0
+                nextButton.isEnabled = newValue != quiz.questions!.count - 1
+                if newValue == quiz.questions!.count - 1{
+                    nextButton.setTitle("Get Results".localized, for: .normal)
+                }
+                else{
+                    nextButton.setTitle("Next".localized, for: .normal)
+                }
             }
+        }
+    }
+    var quizID: Int!
+    var quiz: QuizDetails!{
+        didSet{
+            collectionView.reloadData()
         }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "Quiz"
+        requestData()
+    }
+    
+    @objc override func didPressRetry() {
+        removeNoConnection()
+        requestData()
+    }
+    
+    func requestData(){
+        showLoading()
+        Networking.quiz.getQuiz(["quiz_id":quizID]) { (model) in
+            self.removeLoading()
+            if model != nil{
+                if model!.code! == "1"{
+                    self.quiz = model!.data!
+                }
+                else{
+                    
+                }
+            }
+            else{
+                self.showNoConnection()
+            }
+        }
     }
     
     override func viewDidLayoutSubviews() {
@@ -80,12 +138,15 @@ extension QuizViewController: UICollectionViewDelegate, UICollectionViewDataSour
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 5
+        if quiz != nil{
+            return quiz.questions!.count
+        }
+        return 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: QuizQuestionCollectionViewCell.self), for: indexPath) as? QuizQuestionCollectionViewCell{
-            cell.questionLabel.text = "Quiz Question number #\(indexPath.row + 1)\nWould you please select an answer?"
+            cell.question = quiz.questions![indexPath.row]
             return cell
         }
         return UICollectionViewCell()

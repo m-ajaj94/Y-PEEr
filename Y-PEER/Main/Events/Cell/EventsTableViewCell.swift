@@ -39,15 +39,15 @@ class EventsTableViewCell: UITableViewCell {
     }
     @IBOutlet weak var titleLabel: UILabel!
     
-    var event: EventDetailsModel!{
+    var event: EventDataModel!{
         didSet{
             if event.images!.count != 0{
                 cellImageView.kf.setImage(with: Networking.getImageURL(event.images![0].thumbnailPath!))
             }
             if event.location != nil{
                 locationLabel.text = event.location!
-                dateLabel.text = event.startDate!
             }
+            dateLabel.text = event.startDate!
             titleLabel.text = event.title!
             if type == PostType.pastEvent{
                 daysTitleLabel.text = "Likes".localized

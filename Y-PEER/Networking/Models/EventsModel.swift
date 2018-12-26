@@ -8,37 +8,26 @@
 
 import Foundation
 
-class EventsModel: Codable {
-    let message, code: String?
-    let data: EventsDataModel?
+public class EventsModel: Codable {
+    public let message, code: String?
+    public let data: [EventDataModel]?
     
-    init(message: String?, code: String?, data: EventsDataModel?) {
+    public init(message: String?, code: String?, data: [EventDataModel]?) {
         self.message = message
         self.code = code
         self.data = data
     }
-    
 }
 
-struct EventsDataModel: Codable {
-    let upcoming: [EventDetailsModel]?
-    let passed: [EventDetailsModel]?
-    let now: [EventDetailsModel]?
-    
-    init(upcoming: [EventDetailsModel]?, passed: [EventDetailsModel]?, now: [EventDetailsModel]?) {
-        self.upcoming = upcoming
-        self.passed = passed
-        self.now = now
-    }
-}
-
-struct EventDetailsModel: Codable {
-    let id: Int?
-    let title, description, createdAt, updatedAt: String?
-    let location, startTime, startDate, endDate: String?
-    let isLiked, isViewed: String?
-    let totalViews, totalLikes: Int?
-    let images: [ImageModel]?
+public class EventDataModel: Codable {
+    public let id: Int?
+    public let title, description, createdAt, updatedAt: String?
+    public let location, startTime, startDate, endDate: String?
+    public let posted: Int?
+    public let isLiked, isViewed: String?
+    public let totalViews, totalLikes: Int?
+    public let images: [ImageModel]?
+    public let type: String?
     
     enum CodingKeys: String, CodingKey {
         case id, title, description
@@ -48,14 +37,15 @@ struct EventDetailsModel: Codable {
         case startTime = "start_time"
         case startDate = "start_date"
         case endDate = "end_date"
+        case posted
         case isLiked = "is_liked"
         case isViewed = "is_viewed"
         case totalViews = "total_views"
         case totalLikes = "total_likes"
-        case images
+        case images, type
     }
     
-    init(id: Int?, title: String?, description: String?, createdAt: String?, updatedAt: String?, location: String?, startTime: String?, startDate: String?, endDate: String?, isLiked: String?, isViewed: String?, totalViews: Int?, totalLikes: Int?, images: [ImageModel]?) {
+    public init(id: Int?, title: String?, description: String?, createdAt: String?, updatedAt: String?, location: String?, startTime: String?, startDate: String?, endDate: String?, posted: Int?, isLiked: String?, isViewed: String?, totalViews: Int?, totalLikes: Int?, images: [ImageModel]?, type: String?) {
         self.id = id
         self.title = title
         self.description = description
@@ -65,10 +55,12 @@ struct EventDetailsModel: Codable {
         self.startTime = startTime
         self.startDate = startDate
         self.endDate = endDate
+        self.posted = posted
         self.isLiked = isLiked
         self.isViewed = isViewed
         self.totalViews = totalViews
         self.totalLikes = totalLikes
         self.images = images
+        self.type = type
     }
 }

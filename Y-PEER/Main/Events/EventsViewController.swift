@@ -11,6 +11,11 @@ import Toaster
 
 class EventsViewController: ParentViewController {
 
+    @IBAction func sideMenuButtonPressed(_ sender: Any) {
+        if let tabController = tabBarController as? MainTabBarController{
+            tabController.showSideMenu()
+        }
+    }
     @IBOutlet weak var tableView: UITableView!{
         didSet{
             tableView.delegate = self
@@ -83,7 +88,7 @@ class EventsViewController: ParentViewController {
         }
     }
     
-    var data: EventsDataModel!{
+    var data: [EventDataModel]!{
         didSet{
             tableView.reloadData()
         }
@@ -128,7 +133,7 @@ class EventsViewController: ParentViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let controller = segue.destination as! EventDetailsViewController
-        controller.eventDetails = data.passed![selectedIndex.row]
+        controller.eventDetails = data[selectedIndex.row]
     }
 
 }
@@ -143,7 +148,7 @@ extension EventsViewController: UITableViewDelegate, UITableViewDataSource{
         if data == nil{
             return 0
         }
-        return data.passed!.count
+        return data.count
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -153,7 +158,7 @@ extension EventsViewController: UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: EventsTableViewCell.self)) as? EventsTableViewCell{
             cell.type = PostType.pastEvent
-            cell.event = data.passed![indexPath.row]
+            cell.event = data[indexPath.row]
             return cell
         }
         return UITableViewCell()

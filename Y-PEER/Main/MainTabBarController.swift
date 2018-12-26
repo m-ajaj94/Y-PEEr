@@ -117,4 +117,8 @@ extension MainTabBarController: SideMenuViewControllerDelegate{
         }
     }
     
+    func didSelectStories() {
+        
+    }
+    
 }

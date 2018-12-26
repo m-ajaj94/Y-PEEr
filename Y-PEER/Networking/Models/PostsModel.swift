@@ -26,11 +26,11 @@ public class PostsModel: Codable {
 public class PostModel: Codable {
     public let id, eventID, quizID: Int?
     public let title, description, createdAt, updatedAt: String?
-    public let isLiked: String?
-    public let totalLikes: Int?
+    public var isLiked: String?
+    public var totalLikes: Int?
     public let images: [ImageModel]?
     public let event: EventModel?
-//    public let quiz: [String]?
+    public let quiz: QuizModel?
     
     enum CodingKeys: String, CodingKey {
         case id
@@ -41,10 +41,10 @@ public class PostModel: Codable {
         case updatedAt = "updated_at"
         case isLiked = "is_liked"
         case totalLikes = "total_likes"
-        case images, event//, quiz
+        case images, event, quiz
     }
     
-    public init(id: Int?, eventID: Int?, quizID: Int?, title: String?, description: String?, createdAt: String?, updatedAt: String?, isLiked: String?, totalLikes: Int?, images: [ImageModel]?, event: EventModel?){//{}, quiz: [String]?) {
+    public init(id: Int?, eventID: Int?, quizID: Int?, title: String?, description: String?, createdAt: String?, updatedAt: String?, isLiked: String?, totalLikes: Int?, images: [ImageModel]?, event: EventModel?, quiz: QuizModel?) {
         self.id = id
         self.eventID = eventID
         self.quizID = quizID
@@ -56,7 +56,7 @@ public class PostModel: Codable {
         self.totalLikes = totalLikes
         self.images = images
         self.event = event
-//        self.quiz = quiz
+        self.quiz = quiz
     }
 }
 

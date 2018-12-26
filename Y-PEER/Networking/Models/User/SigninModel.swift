@@ -25,20 +25,20 @@ public class SigninModel: Codable {
     public let gender: Int?
     public let email: String?
     public let cityID: Int?
-    public let type, password, createdAt, updatedAt: String?
+    public let type, createdAt, updatedAt: String?
     public let deletedAt, tokenKey: String?
     
     enum CodingKeys: String, CodingKey {
         case id, name, birthdate, gender, email
         case cityID = "city_id"
-        case type, password
+        case type
         case createdAt = "created_at"
         case updatedAt = "updated_at"
         case deletedAt = "deleted_at"
         case tokenKey = "token_key"
     }
     
-    public init(id: Int?, name: String?, birthdate: String?, gender: Int?, email: String?, cityID: Int?, type: String?, password: String?, createdAt: String?, updatedAt: String?, deletedAt: String?, tokenKey: String?) {
+    public init(id: Int?, name: String?, birthdate: String?, gender: Int?, email: String?, cityID: Int?, type: String?, createdAt: String?, updatedAt: String?, deletedAt: String?, tokenKey: String?) {
         self.id = id
         self.name = name
         self.birthdate = birthdate
@@ -46,7 +46,6 @@ public class SigninModel: Codable {
         self.email = email
         self.cityID = cityID
         self.type = type
-        self.password = password
         self.createdAt = createdAt
         self.updatedAt = updatedAt
         self.deletedAt = deletedAt

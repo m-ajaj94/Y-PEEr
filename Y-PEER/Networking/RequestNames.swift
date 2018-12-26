@@ -15,6 +15,8 @@ enum RequestNames: String{
     case forgotPassword = "frogetpassword"
     
     case getPosts = "getposts"
+    case dislikePost = "unlike_post"
+    case likePost = "like_post"
     
     case getIssues = "getissues"
     case getArticles = "getarticles"
@@ -24,4 +26,8 @@ enum RequestNames: String{
     case gallery = "getGallery"
     
     case getEvents = "getevents"
+    
+    case getQuizzes = "getquizzes"
+    
+    case getQuiz = "getquiz"
 }

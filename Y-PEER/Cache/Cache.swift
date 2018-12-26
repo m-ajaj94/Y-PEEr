@@ -48,4 +48,29 @@ struct Cache{
         }
         
     }
+    struct cities{
+        private static var citiesKey = "CitiesKey"
+        static var cities: [CityModel]{
+            get{
+                if let dataArray = UserDefaults.standard.array(forKey: citiesKey) as? [Data]{
+                    var array: [CityModel] = []
+                    let decoder = JSONDecoder()
+                    for data in dataArray{
+                        array.append(try! decoder.decode(CityModel.self, from: data))
+                    }
+                    return array
+                }
+                return []
+            }
+            set{
+                var dataArray: [Data] = []
+                let encoder = JSONEncoder()
+                for city in newValue{
+                    dataArray.append(try! encoder.encode(city))
+                }
+                UserDefaults.standard.set(dataArray, forKey: citiesKey)
+                UserDefaults.standard.synchronize()
+            }
+        }
+    }
 }

@@ -115,7 +115,7 @@ class GalleryViewController: ParentViewController {
             collectionView.reloadData()
         }
     }
-    let pageSize: Int = 20
+    let pageSize: Int = 18
     var refreshControl: UIRefreshControl!
     
     override func viewDidLoad() {

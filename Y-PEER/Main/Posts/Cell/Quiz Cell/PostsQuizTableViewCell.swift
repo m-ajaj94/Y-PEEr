@@ -29,6 +29,12 @@ class PostsQuizTableViewCell: UITableViewCell {
     
     var delegate: PostsQuizTableViewCellDelegate!
     var index: IndexPath!
+    var quiz: QuizModel!{
+        didSet{
+            mainLabel.text = quiz.title!
+            secondaryLabel.text = "\(quiz.questionsCount!) " + "Questions".localized
+        }
+    }
     
     override func awakeFromNib() {
         super.awakeFromNib()

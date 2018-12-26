@@ -378,7 +378,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="6Rg-4h-vTc"/>
                                 </constraints>
-                                <nil key="textColor"/>
+                                <color key="textColor" name="MainOrange"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>

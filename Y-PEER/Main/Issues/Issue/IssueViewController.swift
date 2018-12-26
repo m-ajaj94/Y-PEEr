@@ -33,13 +33,21 @@ class IssueViewController: ParentViewController {
             tableView.estimatedRowHeight = 100
             tableView.register(UINib(nibName: String(describing: IssueTableViewCell.self), bundle: nil), forCellReuseIdentifier: String(describing: IssueTableViewCell.self))
             tableView.backgroundColor = .mainGray
+            refreshControl = UIRefreshControl()
+            refreshControl.addTarget(self, action: #selector(refreshData), for: .valueChanged)
+            tableView.refreshControl = refreshControl
+            tableView.addInfiniteScroll { (tableView) in
+                self.moreData()
+            }
         }
     }
+    var refreshControl: UIRefreshControl!
     var articles: [ArticleModel]!{
         didSet{
             tableView.reloadData()
         }
     }
+    let pageSize = 10
     var issue: IssueModel!
     var selectedIndex: IndexPath!{
         didSet{
@@ -55,9 +63,16 @@ class IssueViewController: ParentViewController {
         requestData()
     }
     
+    override func didPressRetry() {
+        removeNoConnection()
+        requestData()
+    }
+    
     func requestData(){
-        let dict = ["issue_id":issue.id!, "user_id":UserCache.userID, "skip":0, "take":20]
+        let dict = ["issue_id":issue.id!, "user_id":UserCache.userID, "skip":0, "take":pageSize]
+        showLoading()
         Networking.issues.getArticles(dict) { (model) in
+            self.removeLoading()
             if model != nil{
                 if model!.code == "1"{
                     self.articles = model!.data!
@@ -67,7 +82,43 @@ class IssueViewController: ParentViewController {
                 }
             }
             else{
-                Toast(text: "Error Message TODO".localized).show()
+                self.showNoConnection()
+            }
+        }
+    }
+    
+    @objc func refreshData(){
+        let dict = ["issue_id":issue.id!, "user_id":UserCache.userID, "skip":0, "take":pageSize]
+        Networking.issues.getArticles(dict) { (model) in
+            self.refreshControl.endRefreshing()
+            if model != nil{
+                if model!.code == "1"{
+                    self.articles = model!.data!
+                }
+                else{
+                    Toast(text: model!.message).show()
+                }
+            }
+            else{
+                Toast(text: "Error Message".localized).show()
+            }
+        }
+    }
+    
+    func moreData(){
+        let dict = ["issue_id":issue.id!, "user_id":UserCache.userID, "skip":articles.count, "take":pageSize]
+        Networking.issues.getArticles(dict) { (model) in
+            self.tableView.finishInfiniteScroll()
+            if model != nil{
+                if model!.code == "1"{
+                    self.articles.append(contentsOf: model!.data!)
+                }
+                else{
+                    Toast(text: model!.message).show()
+                }
+            }
+            else{
+                Toast(text: "Error Message".localized).show()
             }
         }
     }

@@ -115,13 +115,13 @@ struct Networking{
                 }
             }
         }
-        static func updateProfile(_ params: [String:Any], completionHandler: @escaping (SigninGeneralModel?)->()){
+        static func updateProfile(_ params: [String:Any], completionHandler: @escaping (EditProfileModel?)->()){
             Networking.post(.updateProfile, params) { (data) in
                 if data == nil{
                     completionHandler(nil)
                 }
                 else{
-                    let model = try? JSONDecoder().decode(SigninGeneralModel.self, from: data!)
+                    let model = try? JSONDecoder().decode(EditProfileModel.self, from: data!)
                     completionHandler(model)
                 }
             }
@@ -147,6 +147,28 @@ struct Networking{
                 }
                 else{
                     let model = try? JSONDecoder().decode(PostsModel.self, from: data!)
+                    completionHandler(model)
+                }
+            }
+        }
+        static func likePost(_ params: [String:Any], completionHandler: @escaping (LikeGeneralModel?)->()){
+            Networking.post(.likePost, params) { (data) in
+                if data == nil{
+                    completionHandler(nil)
+                }
+                else{
+                    let model = try? JSONDecoder().decode(LikeGeneralModel.self, from: data!)
+                    completionHandler(model)
+                }
+            }
+        }
+        static func dislikePost(_ params: [String:Any], completionHandler: @escaping (LikeGeneralModel?)->()){
+            Networking.post(.dislikePost, params) { (data) in
+                if data == nil{
+                    completionHandler(nil)
+                }
+                else{
+                    let model = try? JSONDecoder().decode(LikeGeneralModel.self, from: data!)
                     completionHandler(model)
                 }
             }
@@ -186,6 +208,31 @@ struct Networking{
                 }
                 else{
                     let model = try? JSONDecoder().decode(EventsModel.self, from: data!)
+                    completionHandler(model)
+                }
+            }
+        }
+    }
+    
+    struct quiz{
+        static func getQuizzes(_ params: [String:Any], _ completionHandler: @escaping (QuizzesModel?)->()){
+            Networking.post(.getQuizzes, params) { (data) in
+                if data == nil{
+                    completionHandler(nil)
+                }
+                else{
+                    let model = try? JSONDecoder().decode(QuizzesModel.self, from: data!)
+                    completionHandler(model)
+                }
+            }
+        }
+        static func getQuiz(_ params: [String:Any], _ completionHandler: @escaping (QuizDetailsModel?)->()){
+            Networking.post(.getQuiz, params) { (data) in
+                if data == nil{
+                    completionHandler(nil)
+                }
+                else{
+                    let model = try? JSONDecoder().decode(QuizDetailsModel.self, from: data!)
                     completionHandler(model)
                 }
             }

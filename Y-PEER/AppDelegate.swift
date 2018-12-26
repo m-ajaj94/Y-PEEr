@@ -16,6 +16,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        Networking.getCities { (model) in
+            if model != nil{
+                Cache.cities.cities = model!.data!
+            }
+        }
         ToastView.appearance().backgroundColor = .mainOrange
         ToastView.appearance().textColor = .white
         Cache.language.setInitial()

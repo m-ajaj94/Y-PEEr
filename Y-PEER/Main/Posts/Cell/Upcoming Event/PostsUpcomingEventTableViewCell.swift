@@ -45,11 +45,21 @@ class PostsUpcomingEventTableViewCell: UITableViewCell {
             }
             mainLabel.text = post.title!
             secondaryLabel.text = post.description!
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+            timeLabel.text = (dateFormatter.date(from: post.createdAt!)! as NSDate).timeAgo()
+            likeCountLabel.text = "\(post.totalLikes!)"
+            if post.isLiked! == "1"{
+                self.likeButton.setTitle("😍", for: .normal)
+            }
+            else{
+                self.likeButton.setTitle("😀", for: .normal)
+                
+            }
         }
     }
     
     @IBAction func likeButtonPressed(_ sender: Any) {
-        likeButton.setTitle("😍", for: .normal)
         delegate.didPressLike(at: index)
     }
     
@@ -63,6 +73,21 @@ class PostsUpcomingEventTableViewCell: UITableViewCell {
         date = Date(timeIntervalSinceNow: TimeInterval(1000000))
         let timer = Timer(timeInterval: 1, target: self, selector: #selector(shouldUpdateTime), userInfo: nil, repeats: true)
         RunLoop.main.add(timer, forMode: .common)
+        NotificationCenter.default.addObserver(self, selector: #selector(likeStatus(_:)), name: NSNotification.Name("LikeChanged"), object: nil)
+    }
+    
+    @objc func likeStatus(_ notification: Notification){
+        let postID: Int = notification.userInfo!["id"] as! Int
+        if post.id! != postID{
+            return
+        }
+        likeCountLabel.text = "\((notification.userInfo!["count"] as! Int))"
+        if notification.userInfo!["liked"] as! Bool{
+            likeButton.setTitle("😍", for: .normal)
+        }
+        else{
+            likeButton.setTitle("😀", for: .normal)
+        }
     }
     
     @objc func shouldUpdateTime(){
