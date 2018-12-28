@@ -84,9 +84,8 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="FSw-SW-ytx">
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="AboutIcon" translatesAutoresizingMaskIntoConstraints="NO" id="FSw-SW-ytx">
                                         <rect key="frame" x="4" y="4" width="42" height="42"/>
-                                        <color key="backgroundColor" name="ShadeOrange"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="FSw-SW-ytx" secondAttribute="height" multiplier="1:1" id="LTZ-8L-895"/>
                                         </constraints>
@@ -106,15 +105,14 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qBG-RT-ww0">
                                 <rect key="frame" x="16" y="320.5" width="343" height="50"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Search Here..." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6aB-cv-GMb">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Stories" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6aB-cv-GMb">
                                         <rect key="frame" x="62" y="4" width="249" height="42"/>
                                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="search" translatesAutoresizingMaskIntoConstraints="NO" id="4ae-nh-psB">
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="StoryIcon" translatesAutoresizingMaskIntoConstraints="NO" id="4ae-nh-psB">
                                         <rect key="frame" x="4" y="4" width="42" height="42"/>
-                                        <color key="backgroundColor" name="ShadeOrange"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="4ae-nh-psB" secondAttribute="height" multiplier="1:1" id="QFh-Rb-mYt"/>
                                         </constraints>
@@ -204,6 +202,8 @@
         </scene>
     </scenes>
     <resources>
+        <image name="AboutIcon" width="437" height="433"/>
+        <image name="StoryIcon" width="500" height="500"/>
         <image name="search" width="500" height="500"/>
         <image name="settings" width="1000" height="1000"/>
         <image name="user" width="103.29985809326172" height="103.29985809326172"/>

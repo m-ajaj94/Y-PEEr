@@ -174,7 +174,7 @@ class SignupViewController: ParentViewController {
     
     @objc func keyboardWillShow(){
         UIView.animate(withDuration: 0.5) {
-            self.view.frame.origin = CGPoint(x: 0, y: -self.nameTextField.frame.origin.y + 30)
+            self.view.frame.origin = CGPoint(x: 0, y: -self.nameTextField.frame.origin.y + 48)
         }
     }
     

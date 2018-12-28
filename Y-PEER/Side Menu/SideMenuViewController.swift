@@ -28,22 +28,6 @@ class SideMenuViewController: UIViewController {
     }
     @IBOutlet weak var userContainerView: UIView!{
         didSet{
-            layer.frame.size = userContainerView.frame.size
-            layer.frame.origin = CGPoint(x: 0, y: 0)
-            layer.cornerRadius = 0
-            if Cache.language.current == .english{
-                layer.endPoint = CGPoint(x: 1, y: 0)
-                let firstColor = UIColor.white.cgColor
-                let secondColor = UIColor.mainOrange.cgColor
-                layer.colors = [firstColor, secondColor]
-            }
-            else{
-                layer.endPoint = CGPoint(x: 1, y: 0)
-                let secondColor = UIColor.white.cgColor
-                let firstColor = UIColor.mainOrange.cgColor
-                layer.colors = [firstColor, secondColor]
-            }
-            userContainerView.layer.insertSublayer(layer, at: 0)
             userContainerView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(didTapUser)))
         }
     }
@@ -70,7 +54,6 @@ class SideMenuViewController: UIViewController {
     @IBOutlet weak var searchLabel: UILabel!
     
     var delegate: SideMenuViewControllerDelegate!
-    let layer : CAGradientLayer = CAGradientLayer()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -118,9 +101,9 @@ class SideMenuViewController: UIViewController {
         aboutContainerView.layer.cornerRadius = aboutContainerView.frame.size.height / 2
         aboutImageView.layer.cornerRadius = aboutImageView.frame.size.height / 2
         searchContainerView.layer.cornerRadius = searchContainerView.frame.size.height / 2
+        searchImageView.layer.cornerRadius = searchImageView.frame.size.height / 2
         storiesImageView.layer.cornerRadius = storiesImageView.frame.size.height / 2
         storiesContainerView.layer.cornerRadius = storiesContainerView.frame.size.height / 2
-        layer.frame.size = userContainerView.frame.size
     }
 
 }

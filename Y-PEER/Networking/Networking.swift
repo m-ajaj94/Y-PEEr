@@ -239,4 +239,18 @@ struct Networking{
         }
     }
     
+    struct stories{
+        static func getStories(_ params: [String:Any], _ completionHandler: @escaping (StoriesModel?)->()){
+            Networking.post(.getStories, params) { (data) in
+                if data == nil{
+                    completionHandler(nil)
+                }
+                else{
+                    let model = try? JSONDecoder().decode(StoriesModel.self, from: data!)
+                    completionHandler(model)
+                }
+            }
+        }
+    }
+    
 }

@@ -9,6 +9,37 @@
 import UIKit
 import SideMenu
 
+extension UIImage {
+    
+    func resize(maxWidthHeight : CGFloat)-> UIImage? {
+        
+        let actualHeight = size.height
+        let actualWidth = size.width
+        var maxWidth: CGFloat = 0.0
+        var maxHeight: CGFloat = 0.0
+        
+        if actualWidth > actualHeight {
+            maxWidth = maxWidthHeight
+            let per = (100.0 * maxWidthHeight / actualWidth)
+            maxHeight = (actualHeight * per) / 100.0
+        }else{
+            maxHeight = maxWidthHeight
+            let per = (100.0 * maxWidthHeight / actualHeight)
+            maxWidth = (actualWidth * per) / 100.0
+        }
+        
+        let hasAlpha = true
+        let scale: CGFloat = 0.0
+        
+        UIGraphicsBeginImageContextWithOptions(CGSize(width: maxWidth, height: maxHeight), !hasAlpha, scale)
+        self.draw(in: CGRect(origin: .zero, size: CGSize(width: maxWidth, height: maxHeight)))
+        
+        let scaledImage = UIGraphicsGetImageFromCurrentImageContext()
+        return scaledImage
+    }
+    
+}
+
 class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
     
     var selectedTab: Int = 0
@@ -28,7 +59,8 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
                 SideMenuManager.default.menuPresentMode = .viewSlideInOut
                 SideMenuManager.default.menuWidth = UIScreen.main.bounds.width * 0.8
                 SideMenuManager.default.menuAnimationTransformScaleFactor = 0.95
-                SideMenuManager.default.menuAnimationBackgroundColor = .mainOrange
+                let image = UIImage(named: "SideMenu-1")!.resize(maxWidthHeight: UIScreen.main.bounds.height)!
+                SideMenuManager.default.menuAnimationBackgroundColor = UIColor(patternImage: image)
                 SideMenuManager.default.menuFadeStatusBar = false
                 SideMenuManager.default.menuAddScreenEdgePanGesturesToPresent(toView: self.view)
                 sideMenuViewController.delegate = self
@@ -118,7 +150,8 @@ extension MainTabBarController: SideMenuViewControllerDelegate{
     }
     
     func didSelectStories() {
-        
+        let navController = UIStoryboard(name: "Stories", bundle: nil).instantiateInitialViewController() as! UINavigationController
+        present(navController, animated: true, completion: nil)
     }
     
 }

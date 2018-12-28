@@ -30,4 +30,6 @@ enum RequestNames: String{
     case getQuizzes = "getquizzes"
     
     case getQuiz = "getquiz"
+    
+    case getStories = "getexperimentforuser"
 }

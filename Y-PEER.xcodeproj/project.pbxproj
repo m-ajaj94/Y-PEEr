@@ -73,6 +73,13 @@
 		F33B2D4321D4236A007C728D /* Stories.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F33B2D4221D4236A007C728D /* Stories.storyboard */; };
 		F33B2D4521D42456007C728D /* StoriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33B2D4421D42456007C728D /* StoriesViewController.swift */; };
 		F33B2D4721D42467007C728D /* CreateStoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33B2D4621D42467007C728D /* CreateStoryViewController.swift */; };
+		F33B2D4B21D67421007C728D /* StoriesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33B2D4921D67421007C728D /* StoriesTableViewCell.swift */; };
+		F33B2D4C21D67421007C728D /* StoriesTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F33B2D4A21D67421007C728D /* StoriesTableViewCell.xib */; };
+		F33B2D4E21D6748B007C728D /* story.png in Resources */ = {isa = PBXBuildFile; fileRef = F33B2D4D21D6748B007C728D /* story.png */; };
+		F33B2D5021D6772B007C728D /* StoriesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33B2D4F21D6772B007C728D /* StoriesModel.swift */; };
+		F33B2D5221D689D9007C728D /* StoryDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33B2D5121D689D9007C728D /* StoryDetailsViewController.swift */; };
+		F33B2D5421D69278007C728D /* person.png in Resources */ = {isa = PBXBuildFile; fileRef = F33B2D5321D69277007C728D /* person.png */; };
+		F33B2D5621D6C307007C728D /* SideMenu.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F33B2D5521D6C307007C728D /* SideMenu.jpg */; };
 		F33DFA622149FB4F00E3194C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33DFA612149FB4F00E3194C /* AppDelegate.swift */; };
 		F33DFA672149FB4F00E3194C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F33DFA652149FB4F00E3194C /* Main.storyboard */; };
 		F33DFA692149FB5100E3194C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F33DFA682149FB5100E3194C /* Assets.xcassets */; };
@@ -198,6 +205,13 @@
 		F33B2D4221D4236A007C728D /* Stories.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Stories.storyboard; sourceTree = "<group>"; };
 		F33B2D4421D42456007C728D /* StoriesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoriesViewController.swift; sourceTree = "<group>"; };
 		F33B2D4621D42467007C728D /* CreateStoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateStoryViewController.swift; sourceTree = "<group>"; };
+		F33B2D4921D67421007C728D /* StoriesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoriesTableViewCell.swift; sourceTree = "<group>"; };
+		F33B2D4A21D67421007C728D /* StoriesTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StoriesTableViewCell.xib; sourceTree = "<group>"; };
+		F33B2D4D21D6748B007C728D /* story.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = story.png; sourceTree = "<group>"; };
+		F33B2D4F21D6772B007C728D /* StoriesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoriesModel.swift; sourceTree = "<group>"; };
+		F33B2D5121D689D9007C728D /* StoryDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryDetailsViewController.swift; sourceTree = "<group>"; };
+		F33B2D5321D69277007C728D /* person.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = person.png; sourceTree = "<group>"; };
+		F33B2D5521D6C307007C728D /* SideMenu.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = SideMenu.jpg; sourceTree = "<group>"; };
 		F33DFA5E2149FB4F00E3194C /* Y-PEER.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Y-PEER.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F33DFA612149FB4F00E3194C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F33DFA662149FB4F00E3194C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -438,6 +452,7 @@
 				F33B2D3921D3AD3F007C728D /* QuizzesModel.swift */,
 				F33B2D3B21D3B2F2007C728D /* QuizDetailsModel.swift */,
 				F33B2D3F21D3F92F007C728D /* LikeModel.swift */,
+				F33B2D4F21D6772B007C728D /* StoriesModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -581,11 +596,24 @@
 		F33B2D4121D4235B007C728D /* Stories */ = {
 			isa = PBXGroup;
 			children = (
+				F33B2D4821D67408007C728D /* Cell */,
 				F33B2D4421D42456007C728D /* StoriesViewController.swift */,
 				F33B2D4621D42467007C728D /* CreateStoryViewController.swift */,
+				F33B2D5121D689D9007C728D /* StoryDetailsViewController.swift */,
 				F33B2D4221D4236A007C728D /* Stories.storyboard */,
 			);
 			path = Stories;
+			sourceTree = "<group>";
+		};
+		F33B2D4821D67408007C728D /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				F33B2D5321D69277007C728D /* person.png */,
+				F33B2D4D21D6748B007C728D /* story.png */,
+				F33B2D4921D67421007C728D /* StoriesTableViewCell.swift */,
+				F33B2D4A21D67421007C728D /* StoriesTableViewCell.xib */,
+			);
+			path = Cell;
 			sourceTree = "<group>";
 		};
 		F33DFA552149FB4F00E3194C = {
@@ -636,6 +664,7 @@
 		F33DFA75214A057A00E3194C /* Side Menu */ = {
 			isa = PBXGroup;
 			children = (
+				F33B2D5521D6C307007C728D /* SideMenu.jpg */,
 				F33DFA78214A075500E3194C /* SideMenuViewController.swift */,
 				F33DFA76214A074500E3194C /* SideMenu.storyboard */,
 			);
@@ -926,10 +955,12 @@
 				F3A22B8A2175EE1B00F5325F /* background.jpg in Resources */,
 				F3A22B882174ED8B00F5325F /* QuizAnswerTableViewCell.xib in Resources */,
 				F3303EED2156E48100DF4610 /* AboutDetailsTableViewCell.xib in Resources */,
+				F33B2D4C21D67421007C728D /* StoriesTableViewCell.xib in Resources */,
 				F3131EF7216BB70700B1200E /* PostImageTableViewCell.xib in Resources */,
 				F3D0EECB214E0AB7006739B9 /* IssuesHeaderCollectionReusableView.xib in Resources */,
 				F33DFA6C2149FB5100E3194C /* LaunchScreen.storyboard in Resources */,
 				F3131EFC216BB77100B1200E /* PostsQuizTableViewCell.xib in Resources */,
+				F33B2D4E21D6748B007C728D /* story.png in Resources */,
 				F3B0BAFA21739476003BE09D /* PostDetailsImageCollectionViewCell.xib in Resources */,
 				F354AB0D21773D29008B9974 /* image-3.jpg in Resources */,
 				F354AB0F21773D29008B9974 /* image-4.jpg in Resources */,
@@ -958,12 +989,14 @@
 				F36391D4216CA510005F747C /* PostsTextTableViewCell.xib in Resources */,
 				F30E3ED0216E7E7B00F75EC0 /* 1.png in Resources */,
 				F3A22B832174E34D00F5325F /* QuizQuestionCollectionViewCell.xib in Resources */,
+				F33B2D5621D6C307007C728D /* SideMenu.jpg in Resources */,
 				F3303EFD2156FF2C00DF4610 /* AboutPartnershipTableViewCell.xib in Resources */,
 				F354AB0E21773D29008B9974 /* image-2.jpg in Resources */,
 				F33DFA672149FB4F00E3194C /* Main.storyboard in Resources */,
 				F323F9F621D2A90C002BF331 /* ErrorView.xib in Resources */,
 				F3303EE02156D6E300DF4610 /* Settings.storyboard in Resources */,
 				F30E3EE5216FC13400F75EC0 /* SettingsLanguageTableViewCell.xib in Resources */,
+				F33B2D5421D69278007C728D /* person.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1048,6 +1081,7 @@
 				F33B2D4721D42467007C728D /* CreateStoryViewController.swift in Sources */,
 				F36391CE216BE3C4005F747C /* PostsUpcomingEventTableViewCell.swift in Sources */,
 				F3303ED12156796200DF4610 /* IssueViewController.swift in Sources */,
+				F33B2D5221D689D9007C728D /* StoryDetailsViewController.swift in Sources */,
 				F3A22B822174E34D00F5325F /* QuizQuestionCollectionViewCell.swift in Sources */,
 				F3D0EECA214E0AB7006739B9 /* IssuesHeaderCollectionReusableView.swift in Sources */,
 				F323F9F821D2A922002BF331 /* ErrorView.swift in Sources */,
@@ -1096,6 +1130,7 @@
 				F30E3ED5216EC17000F75EC0 /* UserCache.swift in Sources */,
 				F36391D6216CAB43005F747C /* UIViewController Extensions.swift in Sources */,
 				F323F9BF21CAB0E5002BF331 /* IssuesModel.swift in Sources */,
+				F33B2D5021D6772B007C728D /* StoriesModel.swift in Sources */,
 				F3B1E4E8214DAE1700832FE7 /* MainTabBarController.swift in Sources */,
 				F3A22B7E2174E29200F5325F /* QuizViewController.swift in Sources */,
 				F30E3EE8216FCE1C00F75EC0 /* RequestNames.swift in Sources */,
@@ -1108,6 +1143,7 @@
 				F3B0BAF421725CC0003BE09D /* PostDetailsViewController.swift in Sources */,
 				F36391D3216CA510005F747C /* PostsTextTableViewCell.swift in Sources */,
 				F3303ED521567ADC00DF4610 /* IssueTableViewCell.swift in Sources */,
+				F33B2D4B21D67421007C728D /* StoriesTableViewCell.swift in Sources */,
 				F30E3ED2216EB5BD00F75EC0 /* ProfileViewController.swift in Sources */,
 				F3303F022157089600DF4610 /* CoreTeamViewController.swift in Sources */,
 				F3303EDE2156D6D900DF4610 /* SettingsViewController.swift in Sources */,
