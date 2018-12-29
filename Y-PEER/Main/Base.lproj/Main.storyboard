@@ -803,11 +803,43 @@ Etiam neque. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihi
                         <outlet property="thirdTitleLabel" destination="375-y5-i1j" id="RUl-rX-lYj"/>
                         <outlet property="titleContainerView" destination="bYf-vy-Y3P" id="ia4-hB-rHR"/>
                         <outlet property="titleLabel" destination="STE-qk-vuj" id="rpQ-ye-WjR"/>
+                        <segue destination="Fyl-zY-tak" kind="presentation" identifier="ShowForm" id="gTs-4Q-pD6"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YYt-8y-GjZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2128.8000000000002" y="422.33883058470769"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="lrr-NZ-EjE">
+            <objects>
+                <viewController id="Dl1-Ia-CHj" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="soB-uI-RBm">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="REy-xc-wzW">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="REy-xc-wzW" firstAttribute="top" secondItem="n7Z-in-ef3" secondAttribute="top" id="2IP-Ud-Nv5"/>
+                            <constraint firstItem="n7Z-in-ef3" firstAttribute="trailing" secondItem="REy-xc-wzW" secondAttribute="trailing" id="66g-qa-CUE"/>
+                            <constraint firstAttribute="bottom" secondItem="REy-xc-wzW" secondAttribute="bottom" id="nZd-Nz-3U0"/>
+                            <constraint firstItem="REy-xc-wzW" firstAttribute="leading" secondItem="n7Z-in-ef3" secondAttribute="leading" id="tSO-Wz-9m3"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="n7Z-in-ef3"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="ZCz-cA-td5">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="1Ev-Kf-ad2"/>
+                        <barButtonItem key="rightBarButtonItem" title="Item" id="rIB-Fz-NM6"/>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="zEk-lk-LYG" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3774" y="436"/>
         </scene>
         <!--Issues View Controller-->
         <scene sceneID="3PF-9o-nZD">
@@ -1236,6 +1268,32 @@ Etiam neque. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihi
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZCb-Sa-zPr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3773.5999999999999" y="2066.7166416791606"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="2e4-bX-K3f">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Fyl-zY-tak" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="9vd-3t-RTd">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="barTintColor" name="MainOrange"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </textAttributes>
+                        <textAttributes key="largeTitleTextAttributes">
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </textAttributes>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="Dl1-Ia-CHj" kind="relationship" relationship="rootViewController" id="QRO-J8-nKR"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="I2i-f1-Eb8" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2941.5999999999999" y="427.73613193403304"/>
         </scene>
     </scenes>
     <resources>

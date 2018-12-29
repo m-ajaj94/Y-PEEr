@@ -68,6 +68,17 @@ struct Networking{
         }
     }
     
+    static func getAboutUs(_ completionHandler: @escaping (AboutModel?)->()){
+        Networking.get(.getAbout, [:]) { (data) in
+            if data == nil{
+                completionHandler(nil)
+            }
+            else{
+                let model = try? JSONDecoder().decode(AboutModel.self, from: data!)
+                completionHandler(model)
+            }
+        }
+    }
     static func getCities(_ completionHandler: @escaping (CitiesModel?)->()){
         Networking.get(.getCities, [:]) { (data) in
             if data == nil{

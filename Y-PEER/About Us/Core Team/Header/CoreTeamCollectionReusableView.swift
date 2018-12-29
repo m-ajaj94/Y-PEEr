@@ -10,7 +10,11 @@ import UIKit
 
 class CoreTeamCollectionReusableView: UICollectionReusableView {
 
-    @IBOutlet weak var label: UILabel!
+    @IBOutlet weak var label: UILabel!{
+        didSet{
+            label.text = "Core Team".localized
+        }
+    }
     @IBOutlet weak var circularView: UIView!
     @IBOutlet weak var backgroundHalfView: UIView!
     

@@ -10,7 +10,11 @@ import UIKit
 
 class AboutTableViewSectionHeader: UITableViewHeaderFooterView {
     
-    @IBOutlet weak var headerLabel: UILabel!
+    @IBOutlet weak var headerLabel: UILabel!{
+        didSet{
+            headerLabel.text = "About Y-PEER".localized
+        }
+    }
     
     override func awakeFromNib() {
         super.awakeFromNib()

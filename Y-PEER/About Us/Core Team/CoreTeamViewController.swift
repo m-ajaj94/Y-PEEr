@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Presentr
 
 class CoreTeamViewController: ParentViewController {
 
@@ -30,18 +31,34 @@ class CoreTeamViewController: ParentViewController {
     var height: CGFloat = 150
     var headerHeight: CGFloat = 150
     var spacing: CGFloat = 16
-    var numberOfColoumns: CGFloat = 3
-    
+    var numberOfColoumns: CGFloat = 2
+    var members: [CoreMemberModel]!
     var imageView: UIImageView!{
         didSet{
             imageView.contentMode = .scaleAspectFill
             imageView.clipsToBounds = true
+            imageView.image = UIImage(named: "coreTeamCover.jpg")!
             view.insertSubview(imageView, belowSubview: collectionView)
         }
     }
+    let presenter: Presentr = {
+        let width = ModalSize.custom(size: Float(UIScreen.main.bounds.width * 0.8))
+        let height = ModalSize.custom(size: Float(UIScreen.main.bounds.height * 0.6))
+        let center = ModalCenterPosition.center//custom(centerPoint: CGPoint(x: view.center.x, y: view.center.y - 44))
+        let customType = PresentationType.custom(width: width, height: height, center: center)
+        let customPresenter = Presentr(presentationType: customType)
+        customPresenter.transitionType = .crossDissolve
+        customPresenter.dismissTransitionType = .crossDissolve
+        customPresenter.roundCorners = true
+        customPresenter.cornerRadius = 10
+        customPresenter.backgroundColor = .black
+        customPresenter.backgroundOpacity = 0.4
+        return customPresenter
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        title = "Core Team".localized
         collectionView.reloadData()
         view.backgroundColor = .mainGray
         imageView = UIImageView()
@@ -64,12 +81,12 @@ extension CoreTeamViewController: UICollectionViewDelegate, UICollectionViewData
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 30
+        return members.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: CoreTeamCollectionViewCell.self), for: indexPath) as? CoreTeamCollectionViewCell{
-            
+            cell.member = members[indexPath.row]
             return cell
         }
         return UICollectionViewCell()
@@ -80,6 +97,13 @@ extension CoreTeamViewController: UICollectionViewDelegate, UICollectionViewData
             return header
         }
         return UICollectionReusableView()
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        collectionView.deselectItem(at: indexPath, animated: true)
+        let controller = UIStoryboard(name: "AboutUs", bundle: nil).instantiateViewController(withIdentifier: String(describing: CoreTeamPopupViewController.self)) as! CoreTeamPopupViewController
+        controller.member = members[indexPath.row]
+        customPresentViewController(presenter, viewController: controller, animated: true)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {

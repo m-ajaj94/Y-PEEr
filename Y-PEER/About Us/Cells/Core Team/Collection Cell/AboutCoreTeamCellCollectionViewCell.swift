@@ -17,7 +17,6 @@ class AboutCoreTeamCellCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var cellImageView: UIImageView!{
         didSet{
             cellImageView.clipsToBounds = true
-            cellImageView.contentMode = .scaleAspectFit
         }
     }
     

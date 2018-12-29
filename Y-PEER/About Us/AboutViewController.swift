@@ -34,9 +34,45 @@ class AboutViewController: ParentViewController {
         dismiss(animated: true, completion: nil)
     }
     
+    var aboutData: AboutDataModel!{
+        didSet{
+            tableView.reloadData()
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "About Us".localized
+        requestData()
+        let footer = AboutUsTableViewFooter.instanciateFromNib()
+        footer.frame = CGRect(origin: .zero, size: CGSize(width: UIScreen.main.bounds.width, height: 48))
+        footer.delegate = self
+        tableView.tableFooterView = footer
+    }
+    
+    func requestData(){
+        showLoading()
+        Networking.getAboutUs { (model) in
+            self.removeLoading()
+            if model != nil{
+                if model!.code! == "1"{
+                    self.aboutData = model!.data!
+                }
+                else{
+                    self.showNoConnection()
+                }
+            }
+            else{
+                self.showNoConnection()
+            }
+        }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == coreTeamSegueIdentifier{
+            let controller = segue.destination as! CoreTeamViewController
+            controller.members = aboutData.members!
+        }
     }
 
 }
@@ -48,28 +84,31 @@ extension AboutViewController: UITableViewDelegate, UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 4
+        if aboutData == nil{
+            return 0
+        }
+        return 3
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch indexPath.row {
         case 0:
             if let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: AboutDetailsTableViewCell.self)) as? AboutDetailsTableViewCell{
+                cell.cellImageView.image = UIImage(named: "1.png")
+                cell.cellLabel.text = aboutData.text!
                 return cell
             }
             break
         case 1:
             if let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: AboutDetailsTableViewCell.self)) as? AboutDetailsTableViewCell{
+                cell.cellImageView.image = UIImage(named: "unfpa.png")
+                cell.cellLabel.text = aboutData.partnership!
                 return cell
             }
             break
         case 2:
             if let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: AboutCoreTeamTableViewCell.self)) as? AboutCoreTeamTableViewCell{
-                return cell
-            }
-            break
-        case 3:
-            if let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: AboutPartnershipTableViewCell.self)) as? AboutPartnershipTableViewCell{
+                cell.members = aboutData.members!
                 return cell
             }
             break
@@ -96,4 +135,10 @@ extension AboutViewController: UITableViewDelegate, UITableViewDataSource{
         }
     }
     
+}
+
+extension AboutViewController: AboutUsTableViewFooterDelegate{
+    func didPressButton() {
+        performSegue(withIdentifier: "ShowDevelopers", sender: self)
+    }
 }

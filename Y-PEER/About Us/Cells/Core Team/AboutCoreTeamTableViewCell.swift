@@ -31,8 +31,18 @@ class AboutCoreTeamTableViewCell: UITableViewCell {
             collectionView.register(UINib(nibName: String(describing: AboutCoreTeamCellCollectionViewCell.self), bundle: nil), forCellWithReuseIdentifier: String(describing: AboutCoreTeamCellCollectionViewCell.self))
         }
     }
-    @IBOutlet weak var cellLabel: UILabel!
+    @IBOutlet weak var cellLabel: UILabel!{
+        didSet{
+            cellLabel.text = "Core Team".localized
+        }
+    }
     @IBOutlet weak var cellImage: UIImageView!
+    
+    var members: [CoreMemberModel]!{
+        didSet{
+            collectionView.reloadData()
+        }
+    }
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -57,11 +67,12 @@ extension AboutCoreTeamTableViewCell: UICollectionViewDelegate, UICollectionView
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return Int((collectionView.frame.size.width - 8) / (collectionView.frame.size.height + 8))
+        return min(Int((collectionView.frame.size.width - 8) / (collectionView.frame.size.height + 8)), members.count)
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: AboutCoreTeamCellCollectionViewCell.self), for: indexPath) as? AboutCoreTeamCellCollectionViewCell{
+            cell.cellImageView.kf.setImage(with: Networking.getImageURL(members[indexPath.row].imageURL!))
             return cell
         }
         return UICollectionViewCell()
