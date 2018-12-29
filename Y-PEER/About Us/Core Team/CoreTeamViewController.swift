@@ -35,7 +35,6 @@ class CoreTeamViewController: ParentViewController {
     var imageView: UIImageView!{
         didSet{
             imageView.contentMode = .scaleAspectFill
-            imageView.image = UIImage(named: "a.jpg")
             imageView.clipsToBounds = true
             view.insertSubview(imageView, belowSubview: collectionView)
         }

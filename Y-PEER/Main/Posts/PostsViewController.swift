@@ -48,7 +48,7 @@ class PostsViewController: ParentViewController {
             switch types[selectedIndex.row] {
             case .event:
                 let controller = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: String(describing: EventDetailsViewController.self)) as! EventDetailsViewController
-                controller.event = posts[selectedIndex.row].event!
+//                controller.event = posts[selectedIndex.row].event!
                 controller.images = posts[selectedIndex.row].images!
                 navigationController!.pushViewController(controller, animated: true)
             case .post:
@@ -61,7 +61,7 @@ class PostsViewController: ParentViewController {
                 break
             case .pastEvent:
                 let controller = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: String(describing: EventDetailsViewController.self)) as! EventDetailsViewController
-                controller.event = posts[selectedIndex.row].event!
+//                controller.event = posts[selectedIndex.row].event!
                 controller.images = posts[selectedIndex.row].images!
                 navigationController!.pushViewController(controller, animated: true)
             }
@@ -131,7 +131,7 @@ class PostsViewController: ParentViewController {
     }
     
     @objc func refreshRequest(){
-        Networking.posts.homePosts(["skip":0, "take":10, "user_id":UserCache.userID]) { (model) in
+        Networking.posts.homePosts(["skip":0, "take":pageSize, "user_id":UserCache.userID]) { (model) in
             self.refreshControl.endRefreshing()
             if model != nil{
                 if model!.code == "1"{
@@ -142,7 +142,7 @@ class PostsViewController: ParentViewController {
                 }
             }
             else{
-                Toast(text: "ERROR MESSAGE".localized).show()
+                Toast(text: "ERROR CONNECT MESSAGE".localized).show()
             }
         }
     }
@@ -165,7 +165,7 @@ class PostsViewController: ParentViewController {
                 }
             }
             else{
-                Toast(text: "Error Message TODO".localized).show()
+                Toast(text: "ERROR CONNECT MESSAGE".localized).show()
             }
         }
     }
@@ -272,7 +272,7 @@ extension PostsViewController: SkeletonTableViewDataSource, SkeletonTableViewDel
                     }
                     else{
                         if model == nil{
-                            Toast(text: "Error Message").show()
+                            Toast(text: "ERROR CONNECT MESSAGE".localized).show()
                         }
                         else{
                             Toast(text: model!.message!).show()
@@ -289,7 +289,7 @@ extension PostsViewController: SkeletonTableViewDataSource, SkeletonTableViewDel
                     }
                     else{
                         if model == nil{
-                            Toast(text: "Error Message").show()
+                            Toast(text: "ERROR CONNECT MESSAGE".localized).show()
                         }
                         else{
                             Toast(text: model!.message!).show()

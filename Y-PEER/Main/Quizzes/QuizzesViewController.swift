@@ -60,7 +60,7 @@ class QuizzesViewController: ParentViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "Quizzes"
+        title = "Quizzes".localized
         requestData()
         tableView.addInfiniteScroll { (tableView) in
             self.moreData()
@@ -79,7 +79,7 @@ class QuizzesViewController: ParentViewController {
                 }
             }
             else{
-                Toast(text: "Error Message".localized).show()
+                Toast(text: "ERROR CONNECT MESSAGE".localized).show()
             }
         }
     }
@@ -104,7 +104,6 @@ class QuizzesViewController: ParentViewController {
     
     func moreData(){
         Networking.quiz.getQuizzes(["skip":quizzes.count, "take":pageSize]) { (model) in
-            self.removeLoading()
             if model != nil{
                 if model!.code == "1"{
                     self.quizzes.append(contentsOf: model!.data!)
@@ -116,7 +115,7 @@ class QuizzesViewController: ParentViewController {
                 }
             }
             else{
-                Toast(text: "Error Message".localized).show()
+                Toast(text: "ERROR CONNECT MESSAGE".localized).show()
             }
         }
     }

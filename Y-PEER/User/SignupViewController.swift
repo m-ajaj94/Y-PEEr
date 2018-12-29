@@ -8,6 +8,7 @@
 
 import UIKit
 import Toaster
+import Presentr
 
 class SignupViewController: ParentViewController {
 
@@ -104,7 +105,7 @@ class SignupViewController: ParentViewController {
     }
     
     var delegate: ProfileViewControllerDelegate!
-    var genders = ["Male", "Female"]
+    var genders = ["Male".localized, "Female".localized]
     var cities: [CityModel]!
     var datePicker: UIDatePicker!{
         didSet{
@@ -185,6 +186,7 @@ class SignupViewController: ParentViewController {
     }
     
     func updateProfile(){
+        showLoading()
         var dict: [String:Any] = [:]
         dict["name"] = nameTextField.text!
         dict["gender"] = selectedGender
@@ -194,6 +196,7 @@ class SignupViewController: ParentViewController {
         dict["city_id"] = selectedCity + 1
         dict["user_id"] = UserCache.userID
         Networking.user.updateProfile(dict) { (model) in
+            self.removeLoading()
             if model != nil{
                 if model!.code == "1"{
                     UserCache.signin(model!.data![0])
@@ -206,12 +209,13 @@ class SignupViewController: ParentViewController {
                 }
             }
             else{
-                Toast(text: "Error Message TODO".localized).show()
+                Toast(text: "ERROR CONNECT MESSAGE".localized).show()
             }
         }
     }
     
     func signup(){
+        showLoading()
         var dict: [String:Any] = [:]
         dict["username"] = nameTextField.text!
         dict["gender"] = selectedGender
@@ -221,20 +225,20 @@ class SignupViewController: ParentViewController {
         dict["birthdate"] = dateFormatter.string(from: selectedBirthday)
         dict["cityId"] = selectedCity + 1
         Networking.user.signup(dict) { (model) in
+            self.removeLoading()
             if model != nil{
                 Toast(text: model!.message).show()
                 if model!.code == "1"{
-                    self.navigationController!.popViewController(animated: true)
+                   self.showPopup()
                 }
                 else{
                     Toast(text: model!.message).show()
                 }
             }
             else{
-                Toast(text: "Error Message TODO".localized).show()
+                Toast(text: "ERROR CONNECT MESSAGE".localized).show()
             }
         }
-//
     }
     
     
@@ -259,6 +263,28 @@ class SignupViewController: ParentViewController {
                 self.showNoConnection(below: self.backButton)
             }
         }
+    }
+    
+    let presenter: Presentr = {
+        let width = ModalSize.custom(size: Float(UIScreen.main.bounds.width * 0.8))
+        let height = ModalSize.custom(size: Float(UIScreen.main.bounds.height * 0.5))
+        let center = ModalCenterPosition.center//custom(centerPoint: CGPoint(x: view.center.x, y: view.center.y - 44))
+        let customType = PresentationType.custom(width: width, height: height, center: center)
+        let customPresenter = Presentr(presentationType: customType)
+        customPresenter.transitionType = .crossDissolve
+        customPresenter.dismissTransitionType = .crossDissolve
+        customPresenter.roundCorners = true
+        customPresenter.cornerRadius = 10
+        customPresenter.backgroundColor = .black
+        customPresenter.backgroundOpacity = 0.4
+        return customPresenter
+    }()
+    
+    func showPopup(){
+        let controller = UIStoryboard(name: "User", bundle: nil).instantiateViewController(withIdentifier: String(describing: UserPopupViewController.self)) as! UserPopupViewController
+        controller.username = nameTextField.text!
+        controller.delegate = self
+        customPresentViewController(presenter, viewController: controller, animated: true)
     }
 
 }
@@ -321,3 +347,8 @@ extension SignupViewController: UIPickerViewDelegate, UIPickerViewDataSource{
     
 }
 
+extension SignupViewController: UserPopupViewControllerDelegate{
+    func didDismiss() {
+        self.navigationController!.popViewController(animated: true)
+    }
+}

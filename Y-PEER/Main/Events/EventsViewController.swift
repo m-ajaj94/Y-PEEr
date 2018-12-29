@@ -24,6 +24,9 @@ class EventsViewController: ParentViewController {
             tableView.backgroundColor = .mainGray
             tableView.rowHeight = UITableView.automaticDimension
             tableView.estimatedRowHeight = 200
+            refreshControl = UIRefreshControl()
+            refreshControl.addTarget(self, action: #selector(refreshRequest), for: .valueChanged)
+            tableView.refreshControl = refreshControl
             tableView.register(UINib(nibName: String(describing: EventsTableViewCell.self), bundle: nil), forCellReuseIdentifier: String(describing: EventsTableViewCell.self))
         }
     }
@@ -60,6 +63,7 @@ class EventsViewController: ParentViewController {
             self.passedButton.backgroundColor = .white
             self.passedButton.setTitleColor(.mainOrange, for: .normal)
         }
+        filterMode = 1
     }
     @IBAction func upcomingButtonPressed(_ sender: UIButton) {
         UIView.animate(withDuration: 0.2) {
@@ -70,6 +74,7 @@ class EventsViewController: ParentViewController {
             self.passedButton.backgroundColor = .white
             self.passedButton.setTitleColor(.mainOrange, for: .normal)
         }
+        filterMode = 3
     }
     @IBAction func passedButtonPressed(_ sender: UIButton) {
         UIView.animate(withDuration: 0.2) {
@@ -80,6 +85,7 @@ class EventsViewController: ParentViewController {
             self.allButton.backgroundColor = .white
             self.allButton.setTitleColor(.mainOrange, for: .normal)
         }
+        filterMode = 2
     }
     
     var selectedIndex: IndexPath!{
@@ -87,18 +93,55 @@ class EventsViewController: ParentViewController {
             performSegue(withIdentifier: "ShowPostDetails", sender: self)
         }
     }
-    
+    var events: [EventDataModel]!
     var data: [EventDataModel]!{
         didSet{
-            tableView.reloadData()
+            setData()
         }
     }
     let pageSize = 10
+    var refreshControl: UIRefreshControl!
+    var filterMode: Int!{
+        didSet{
+            setData()
+        }
+    }
+    
+    func setData(){
+        switch filterMode {
+        case 1:
+            events = data
+            break
+        case 2:
+            events = []
+            for event in data{
+                if event.type! == "passed"{
+                    events.append(event)
+                }
+            }
+            break
+        case 3:
+            events = []
+            for event in data{
+                if event.type! != "passed"{
+                    events.append(event)
+                }
+            }
+            break
+        default:
+            break
+        }
+        tableView.reloadData()
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        filterMode = 1
         title = "Events".localized
         requestData()
+        tableView.addInfiniteScroll { (tableView) in
+            self.moreRequest()
+        }
     }
     
     override func didPressRetry() {
@@ -124,6 +167,42 @@ class EventsViewController: ParentViewController {
         }
     }
     
+    @objc func refreshRequest(){
+        Networking.events.getEvents(["skip":0, "take":pageSize, "user_id":UserCache.userID]) { (model) in
+            self.refreshControl.endRefreshing()
+            if model != nil{
+                if model!.code == "1"{
+                    self.data = model!.data!
+                }
+                else{
+                    Toast(text: model!.message).show()
+                }
+            }
+            else{
+                Toast(text: "ERROR CONNECT MESSAGE".localized).show()
+            }
+        }
+    }
+    
+    func moreRequest(){
+        Networking.events.getEvents(["skip":data.count, "take":pageSize, "user_id":UserCache.userID]) { (model) in
+            if model != nil{
+                if model!.code == "1"{
+                    self.data.append(contentsOf: model!.data!)
+                    self.tableView.finishInfiniteScroll()
+                    self.tableView.reloadData()
+                    self.setData()
+                }
+                else{
+                    Toast(text: model!.message).show()
+                }
+            }
+            else{
+                Toast(text: "ERROR CONNECT MESSAGE".localized).show()
+            }
+        }
+    }
+    
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         allButton.layer.cornerRadius = allButton.frame.size.height / 2
@@ -133,7 +212,13 @@ class EventsViewController: ParentViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let controller = segue.destination as! EventDetailsViewController
-        controller.eventDetails = data[selectedIndex.row]
+        controller.event = data[selectedIndex.row]
+        if events[selectedIndex.row].type! == "passed"{
+            controller.type = PostType.pastEvent
+        }
+        else{
+            controller.type = PostType.event
+        }
     }
 
 }
@@ -145,10 +230,10 @@ extension EventsViewController: UITableViewDelegate, UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if data == nil{
+        if events == nil{
             return 0
         }
-        return data.count
+        return events.count
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -157,8 +242,13 @@ extension EventsViewController: UITableViewDelegate, UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: EventsTableViewCell.self)) as? EventsTableViewCell{
-            cell.type = PostType.pastEvent
-            cell.event = data[indexPath.row]
+            if events[indexPath.row].type! == "passed"{
+                cell.type = PostType.pastEvent
+            }
+            else{
+                cell.type = PostType.event
+            }
+            cell.event = events[indexPath.row]
             return cell
         }
         return UITableViewCell()

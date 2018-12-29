@@ -29,11 +29,15 @@ class IssuesViewController: ParentViewController {
                 collectionView.dataSource = self
                 collectionView.register(UINib(nibName: String(describing: IssuesHeaderCollectionReusableView.self), bundle: nil), forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: String(describing: IssuesHeaderCollectionReusableView.self))
                 collectionView.register(UINib(nibName: String(describing: IssuesCollectionViewCell.self), bundle: nil), forCellWithReuseIdentifier: String(describing: IssuesCollectionViewCell.self))
+                refreshControl = UIRefreshControl()
+                refreshControl.addTarget(self, action: #selector(refreshRequest), for: .valueChanged)
+                collectionView.refreshControl = refreshControl
             }
         }
     }
     
     private let numberOfColoumns: CGFloat = 2
+    var refreshControl: UIRefreshControl!
     var issues: [IssueModel]!{
         didSet{
             collectionView.reloadData()
@@ -47,7 +51,7 @@ class IssuesViewController: ParentViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "Issues"
+        title = "Issues".localized
         requestData()
     }
     
@@ -65,6 +69,23 @@ class IssuesViewController: ParentViewController {
             }
             else{
                 self.showNoConnection()
+            }
+        }
+    }
+    
+    @objc func refreshRequest(){
+        Networking.issues.getIssues { (model) in
+            self.refreshControl.endRefreshing()
+            if model != nil{
+                if model!.code == "1"{
+                    self.issues = model!.data!
+                }
+                else{
+                    Toast(text: model!.message).show()
+                }
+            }
+            else{
+                Toast(text: "ERROR CONNECT MESSAGE".localized).show()
             }
         }
     }
@@ -104,10 +125,6 @@ extension IssuesViewController: UICollectionViewDelegate, UICollectionViewDataSo
         return UICollectionViewCell()
     }
     
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-//        return CGSize(width: collectionView.frame.size.width, height: 60)
-//    }
-    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let width = (collectionView.frame.size.width - 32 - ((numberOfColoumns - 1) * 8)) / numberOfColoumns
         return CGSize(width: width, height: width + 44)
@@ -120,16 +137,6 @@ extension IssuesViewController: UICollectionViewDelegate, UICollectionViewDataSo
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         return 8
     }
-    
-//    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-//        if kind == UICollectionView.elementKindSectionHeader{
-//            if let header = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: String(describing: IssuesHeaderCollectionReusableView.self), for: indexPath) as? IssuesHeaderCollectionReusableView{
-//                header.headerLabel.text = "Header #\(indexPath.row + 1)"
-//                return header
-//            }
-//        }
-//        return UICollectionReusableView()
-//    }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         selectedIndex = indexPath

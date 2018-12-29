@@ -8,15 +8,37 @@
 
 import UIKit
 import Toaster
+import Presentr
 
 class StoriesViewController: ParentViewController {
 
+    @IBOutlet weak var shareLabel: UILabel!{
+        didSet{
+            shareLabel.text = "Share your story".localized
+        }
+    }
+    @IBOutlet weak var bubbleImageView: UIImageView!{
+        didSet{
+            if Cache.language.current == .arabic{
+                bubbleImageView.flipX()
+            }
+            bubbleImageView.isUserInteractionEnabled = true
+            bubbleImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(didTapBubble)))
+        }
+    }
     @IBOutlet weak var addButton: UIButton!{
         didSet{
             addButton.imageView?.contentMode = .scaleAspectFit
         }
     }
-    @IBOutlet weak var buttonContainerView: UIView!
+    @IBOutlet weak var buttonContainerView: UIView!{
+        didSet{
+            buttonContainerView.layer.shadowOffset = CGSize(width: 0, height: 4)
+            buttonContainerView.layer.shadowColor = UIColor.gray.cgColor
+            buttonContainerView.layer.shadowRadius = 5
+            buttonContainerView.layer.shadowOpacity = 0.3
+        }
+    }
     @IBOutlet weak var tableView: UITableView!{
         didSet{
             tableView.delegate = self
@@ -32,7 +54,15 @@ class StoriesViewController: ParentViewController {
         }
     }
     @IBAction func addButtonPressed(_ sender: Any) {
-        performSegue(withIdentifier: "showCreateStory", sender: self)
+        if UserCache.isLoggedIn{
+            performSegue(withIdentifier: "showCreateStory", sender: self)
+        }
+        else{
+            let navController = UIStoryboard(name: "User", bundle: nil).instantiateInitialViewController() as! UINavigationController
+            let controller = navController.viewControllers[0] as! SigninViewController
+            controller.isModal = true
+            present(navController, animated: true, completion: nil)
+        }
     }
     @IBAction func doneButtonPressed(_ sender: Any) {
         dismiss(animated: true, completion: nil)
@@ -55,6 +85,30 @@ class StoriesViewController: ParentViewController {
         super.viewDidLoad()
         title = "Stories".localized
         requestData()
+    }
+    
+    @objc func didTapBubble(){
+        showPopup()
+    }
+    
+    let presenter: Presentr = {
+        let width = ModalSize.custom(size: Float(UIScreen.main.bounds.width * 0.8))
+        let height = ModalSize.custom(size: Float(UIScreen.main.bounds.height * 0.5))
+        let center = ModalCenterPosition.center//custom(centerPoint: CGPoint(x: view.center.x, y: view.center.y - 44))
+        let customType = PresentationType.custom(width: width, height: height, center: center)
+        let customPresenter = Presentr(presentationType: customType)
+        customPresenter.transitionType = .crossDissolve
+        customPresenter.dismissTransitionType = .crossDissolve
+        customPresenter.roundCorners = true
+        customPresenter.cornerRadius = 10
+        customPresenter.backgroundColor = .black
+        customPresenter.backgroundOpacity = 0.4
+        return customPresenter
+    }()
+    
+    func showPopup(){
+        let controller = UIStoryboard(name: "Stories", bundle: nil).instantiateViewController(withIdentifier: String(describing: StoriesPopupViewController.self)) as! StoriesPopupViewController
+        customPresentViewController(presenter, viewController: controller, animated: true)
     }
     
     override func viewDidLayoutSubviews() {
@@ -115,7 +169,7 @@ class StoriesViewController: ParentViewController {
                 }
             }
             else{
-                Toast(text: "Error Message TODO".localized).show()
+                Toast(text: "ERROR CONNECT MESSAGE".localized).show()
             }
         }
     }

@@ -9,6 +9,20 @@
 import Foundation
 
 struct Cache{
+    
+    struct stories {
+        
+        static let firstTimeKey = "FirstTimeStories"
+        
+        static var isFirstTime: Bool{
+            if let value = UserDefaults.standard.value(forKey: firstTimeKey) as? Bool{
+                return value
+            }
+            UserDefaults.standard.set(true, forKey: firstTimeKey)
+            return false
+        }
+    }
+    
     struct language {
         
         private static let currentLanguageKey = "CurrentLanguage"

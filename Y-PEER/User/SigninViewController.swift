@@ -100,7 +100,7 @@ class SigninViewController: UIViewController {
                 showErrorAlert("Please enter a valid e-mail!".localized)
             }
             else{
-                let alert = UIAlertController(title: "New Password".localized, message: "We are about to send a new password to \(emailTextField.text!)\nAre you sure?".localized, preferredStyle: .alert)
+                let alert = UIAlertController(title: "New Password".localized, message: "We are about to send a new password to"+" \(emailTextField.text!)\n"+"Are you sure?".localized, preferredStyle: .alert)
                 let yesAction = UIAlertAction(title: "Yes".localized, style: .default) { (action) in
                     self.forgotRequest()
                 }
@@ -154,7 +154,7 @@ class SigninViewController: UIViewController {
                 }
             }
             else{
-                Toast(text: "Error Message TODO".localized).show()
+                Toast(text: "ERROR CONNECT MESSAGE".localized).show()
             }
         }
     }
@@ -170,7 +170,7 @@ class SigninViewController: UIViewController {
                 }
             }
             else{
-                Toast(text: "Error Message TODO".localized).show()
+                Toast(text: "ERROR CONNECT MESSAGE".localized).show()
             }
         }
     }
@@ -202,3 +202,4 @@ extension UITextField {
         return !((self.text != nil) && (self.text!.count != 0))
     }
 }
+

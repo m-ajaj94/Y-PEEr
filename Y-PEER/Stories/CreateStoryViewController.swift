@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Toaster
 
 class CreateStoryViewController: ParentViewController {
 
@@ -43,6 +44,12 @@ class CreateStoryViewController: ParentViewController {
         }
     }
     @IBAction func shareButtonPressed(_ sender: Any) {
+        if storyTextView.text == "" || issueTextField.empty{
+            showAlert("Error".localized, "Please fill all fields".localized)
+        }
+        else{
+            createRequest()
+        }
     }
     
     var placeholderText: String! = "Enter your story".localized
@@ -94,6 +101,30 @@ class CreateStoryViewController: ParentViewController {
             }
             else{
                 self.showNoConnection()
+            }
+        }
+    }
+    
+    func createRequest(){
+        showLoading()
+        var dict: [String:Any] = [:]
+        dict["story"] = storyTextView.text
+        dict["issue_id"] = issues[issuePicker.selectedRow(inComponent: 0)].id!
+        dict["user_id"] = UserCache.userID
+        dict["name_visibility"] = visibilitySwitch.isOn ? "1" : "0"
+        Networking.stories.createStory(dict) { (model) in
+            self.removeLoading()
+            if model != nil{
+                if model!.code == "1"{
+                    Toast(text: "Your story was submitted for reviewing".localized).show()
+                    self.navigationController!.popViewController(animated: true)
+                }
+                else{
+                    Toast(text: model!.message).show()
+                }
+            }
+            else{
+                Toast(text: "ERROR CONNECT MESSAGE".localized).show()
             }
         }
     }

@@ -10,13 +10,19 @@ import UIKit
 
 class SideMenuViewController: UIViewController {
 
+    @IBOutlet weak var storiesLabel: UILabel!{
+        didSet{
+            storiesLabel.text = "Stories".localized
+        }
+    }
+    @IBOutlet weak var borderView: UIView!
     @IBOutlet weak var userLabel: UILabel!{
         didSet{
             if UserCache.isLoggedIn{
-                userLabel.text = "Majd Ajaj"
+                userLabel.text = UserCache.userData.name!
             }
             else{
-                userLabel.text = "Sign in/Register"
+                userLabel.text = "Sign in/Register".localized
             }
         }
     }
@@ -37,21 +43,34 @@ class SideMenuViewController: UIViewController {
         }
     }
     @IBOutlet weak var settingsImageView: UIImageView!
-    @IBOutlet weak var settingsLabel: UILabel!
+    @IBOutlet weak var settingsLabel: UILabel!{
+        didSet{
+            settingsLabel.text = "Settings".localized
+        }
+    }
     @IBOutlet weak var aboutContainerView: UIView!{
         didSet{
             aboutContainerView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(didTapAboutUs)))
         }
     }
     @IBOutlet weak var aboutImageView: UIImageView!
-    @IBOutlet weak var aboutLabel: UILabel!
+    @IBOutlet weak var aboutLabel: UILabel!{
+        didSet{
+            aboutLabel.text = "About Y-PEER".localized
+        }
+    }
     @IBOutlet weak var searchContainerView: UIView!{
         didSet{
             searchContainerView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(didTapSearch)))
         }
     }
     @IBOutlet weak var searchImageView: UIImageView!
-    @IBOutlet weak var searchLabel: UILabel!
+    @IBOutlet weak var searchLabel: UILabel!{
+        didSet{
+            searchLabel.text = "Search".localized
+        }
+    }
+    @IBOutlet weak var userImageView: UIImageView!
     
     var delegate: SideMenuViewControllerDelegate!
     
@@ -62,10 +81,24 @@ class SideMenuViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         if UserCache.isLoggedIn{
-            userLabel.text = "Majd Ajaj"
+            userLabel.text = UserCache.userData.name!
         }
         else{
-            userLabel.text = "Sign in/Register"
+            userLabel.text = "Sign in/Register".localized
+        }
+        if UserCache.isLoggedIn{
+            borderView.layer.borderWidth = 2
+            borderView.layer.borderColor = UIColor.mainGray.cgColor
+            if UserCache.userData.gender! == 0{
+                userImageView.image = UIImage(named: "person")
+            }
+            else{
+                userImageView.image = UIImage(named: "girl")
+            }
+        }
+        else{
+            borderView.layer.borderWidth = 0
+            userImageView.image = UIImage(named: "user")
         }
     }
     
@@ -96,6 +129,7 @@ class SideMenuViewController: UIViewController {
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
+        borderView.layer.cornerRadius = borderView.frame.width / 2
         settingsContainerView.layer.cornerRadius = settingsContainerView.frame.size.height / 2
         settingsImageView.layer.cornerRadius = settingsImageView.frame.size.height / 2
         aboutContainerView.layer.cornerRadius = aboutContainerView.frame.size.height / 2

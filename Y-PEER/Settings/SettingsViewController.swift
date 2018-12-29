@@ -35,6 +35,7 @@ class SettingsViewController: ParentViewController {
     var languages = ["English", "العربية"]
     var messages = ["You need to restart the application for the changes to appear", "يجب اعادة تشغبل التطبيق لتظهر التغييرات"]
     var titles = ["Restart required", "اعادة التشغيل"]
+    var notificationSettingsTitles = ["Notification-1".localized, "Notification-2".localized, "Notification-3".localized, ]
     var selectedLanguage: Int = Cache.language.current.rawValue
     
     override func viewDidLoad() {
@@ -66,6 +67,7 @@ extension SettingsViewController: UITableViewDelegate, UITableViewDataSource, Se
         case 0:
             if let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: SettingsNotificationTableViewCell.self)) as? SettingsNotificationTableViewCell{
                 cell.index = indexPath
+                cell.cellLabel.text = notificationSettingsTitles[indexPath.row]
                 cell.delegate = self
                 return cell
             }
@@ -96,9 +98,11 @@ extension SettingsViewController: UITableViewDelegate, UITableViewDataSource, Se
         if let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: String(describing: SettingsTableViewHeader.self)) as? SettingsTableViewHeader{
             if section == 0{
                 header.headerLabel.text = "Notifications Settings".localized
+                header.headerImageView.image = UIImage(named: "alarm")
             }
             else{
                 header.headerLabel.text = "Language Settings".localized
+                header.headerImageView.image = UIImage(named: "GlobeOrange")
             }
             return header
         }

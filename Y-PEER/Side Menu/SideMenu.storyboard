@@ -22,32 +22,39 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Nj6-aZ-Pvf">
                                 <rect key="frame" x="0.0" y="587" width="375" height="80"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Majd Ajaj" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mO6-sv-nUD">
-                                        <rect key="frame" x="80" y="16" width="279" height="48"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Majd Ajaj" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="mO6-sv-nUD">
+                                        <rect key="frame" x="96" y="16" width="263" height="48"/>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
                                         <color key="textColor" name="MainOrange"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="user" translatesAutoresizingMaskIntoConstraints="NO" id="gzh-Ps-PFN">
-                                        <rect key="frame" x="16" y="16" width="48" height="48"/>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cVK-qH-CYB">
+                                        <rect key="frame" x="24" y="8" width="64" height="64"/>
+                                    </view>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="user" translatesAutoresizingMaskIntoConstraints="NO" id="gzh-Ps-PFN">
+                                        <rect key="frame" x="32" y="16" width="48" height="48"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="gzh-Ps-PFN" secondAttribute="height" multiplier="1:1" id="NkL-AT-iuW"/>
                                         </constraints>
                                     </imageView>
                                 </subviews>
                                 <constraints>
+                                    <constraint firstItem="cVK-qH-CYB" firstAttribute="bottom" secondItem="gzh-Ps-PFN" secondAttribute="bottom" constant="8" id="0Ob-Rz-0Rk"/>
                                     <constraint firstItem="mO6-sv-nUD" firstAttribute="leading" secondItem="gzh-Ps-PFN" secondAttribute="trailing" constant="16" id="Ehu-fi-hIi"/>
+                                    <constraint firstItem="cVK-qH-CYB" firstAttribute="top" secondItem="gzh-Ps-PFN" secondAttribute="top" constant="-8" id="MhW-Pp-Xq9"/>
                                     <constraint firstItem="gzh-Ps-PFN" firstAttribute="top" secondItem="Nj6-aZ-Pvf" secondAttribute="top" constant="16" id="OaE-VU-Uuz"/>
                                     <constraint firstAttribute="bottom" secondItem="mO6-sv-nUD" secondAttribute="bottom" constant="16" id="R8v-XY-ZhH"/>
                                     <constraint firstItem="mO6-sv-nUD" firstAttribute="top" secondItem="Nj6-aZ-Pvf" secondAttribute="top" constant="16" id="ZSR-JM-Xxf"/>
                                     <constraint firstAttribute="trailing" secondItem="mO6-sv-nUD" secondAttribute="trailing" constant="16" id="gwM-zL-Ths"/>
-                                    <constraint firstItem="gzh-Ps-PFN" firstAttribute="leading" secondItem="Nj6-aZ-Pvf" secondAttribute="leading" constant="16" id="lX3-Sl-6bu"/>
+                                    <constraint firstItem="cVK-qH-CYB" firstAttribute="leading" secondItem="gzh-Ps-PFN" secondAttribute="leading" constant="-8" id="iB6-Kq-9Sc"/>
+                                    <constraint firstItem="cVK-qH-CYB" firstAttribute="trailing" secondItem="gzh-Ps-PFN" secondAttribute="trailing" constant="8" id="iJH-ba-d6g"/>
+                                    <constraint firstItem="gzh-Ps-PFN" firstAttribute="leading" secondItem="Nj6-aZ-Pvf" secondAttribute="leading" constant="32" id="lX3-Sl-6bu"/>
                                     <constraint firstAttribute="height" constant="80" id="sHM-J6-zTH"/>
                                     <constraint firstAttribute="bottom" secondItem="gzh-Ps-PFN" secondAttribute="bottom" constant="16" id="xtk-JZ-7tJ"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UXY-K0-1m1">
-                                <rect key="frame" x="16" y="156.5" width="343" height="50"/>
+                                <rect key="frame" x="16" y="196.5" width="343" height="50"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Settings" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5re-Nn-W7M">
                                         <rect key="frame" x="62" y="4" width="249" height="42"/>
@@ -76,7 +83,7 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zoq-DB-JBi">
-                                <rect key="frame" x="16" y="238.5" width="343" height="50"/>
+                                <rect key="frame" x="16" y="278.5" width="343" height="50"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="About Y-PEER" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GCP-1F-cKc">
                                         <rect key="frame" x="62" y="4" width="249" height="42"/>
@@ -103,7 +110,7 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qBG-RT-ww0">
-                                <rect key="frame" x="16" y="320.5" width="343" height="50"/>
+                                <rect key="frame" x="16" y="360.5" width="343" height="50"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Stories" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6aB-cv-GMb">
                                         <rect key="frame" x="62" y="4" width="249" height="42"/>
@@ -129,8 +136,8 @@
                                     <constraint firstAttribute="trailing" secondItem="6aB-cv-GMb" secondAttribute="trailing" constant="32" id="uxz-PG-lN3"/>
                                 </constraints>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="N7l-PJ-pK3">
-                                <rect key="frame" x="16" y="402.5" width="343" height="50"/>
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="N7l-PJ-pK3">
+                                <rect key="frame" x="16" y="442.5" width="343" height="50"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Search Here..." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iu2-YJ-t6T">
                                         <rect key="frame" x="62" y="4" width="249" height="42"/>
@@ -167,7 +174,7 @@
                             <constraint firstItem="N7l-PJ-pK3" firstAttribute="leading" secondItem="zoq-DB-JBi" secondAttribute="leading" id="DeU-qA-pf1"/>
                             <constraint firstItem="N7l-PJ-pK3" firstAttribute="trailing" secondItem="zoq-DB-JBi" secondAttribute="trailing" id="GH4-7T-U6D"/>
                             <constraint firstItem="zoq-DB-JBi" firstAttribute="height" secondItem="UXY-K0-1m1" secondAttribute="height" id="Lkf-gv-MKv"/>
-                            <constraint firstItem="zoq-DB-JBi" firstAttribute="centerY" secondItem="j0h-QK-eLJ" secondAttribute="centerY" constant="-80" id="RW4-YU-egg"/>
+                            <constraint firstItem="zoq-DB-JBi" firstAttribute="centerY" secondItem="j0h-QK-eLJ" secondAttribute="centerY" constant="-40" id="RW4-YU-egg"/>
                             <constraint firstItem="j0h-QK-eLJ" firstAttribute="trailing" secondItem="Nj6-aZ-Pvf" secondAttribute="trailing" id="WVV-fq-uxo"/>
                             <constraint firstItem="j0h-QK-eLJ" firstAttribute="bottom" secondItem="Nj6-aZ-Pvf" secondAttribute="bottom" id="cEK-fW-C6c"/>
                             <constraint firstItem="UXY-K0-1m1" firstAttribute="trailing" secondItem="zoq-DB-JBi" secondAttribute="trailing" id="pGF-mn-sPN"/>
@@ -184,6 +191,7 @@
                         <outlet property="aboutContainerView" destination="zoq-DB-JBi" id="olP-C2-gl5"/>
                         <outlet property="aboutImageView" destination="FSw-SW-ytx" id="Pb9-pT-iDI"/>
                         <outlet property="aboutLabel" destination="GCP-1F-cKc" id="GxK-pK-6Ud"/>
+                        <outlet property="borderView" destination="cVK-qH-CYB" id="kq2-lE-ON1"/>
                         <outlet property="searchContainerView" destination="N7l-PJ-pK3" id="0Te-ph-VtQ"/>
                         <outlet property="searchImageView" destination="3pz-ZL-RX0" id="U6L-WI-IUK"/>
                         <outlet property="searchLabel" destination="iu2-YJ-t6T" id="ish-Dv-rRA"/>
@@ -192,7 +200,9 @@
                         <outlet property="settingsLabel" destination="5re-Nn-W7M" id="jWT-5y-HQo"/>
                         <outlet property="storiesContainerView" destination="qBG-RT-ww0" id="RqV-Be-EEw"/>
                         <outlet property="storiesImageView" destination="4ae-nh-psB" id="Hph-t1-Hba"/>
+                        <outlet property="storiesLabel" destination="6aB-cv-GMb" id="UcM-0o-QTJ"/>
                         <outlet property="userContainerView" destination="Nj6-aZ-Pvf" id="WDc-KX-Iw2"/>
+                        <outlet property="userImageView" destination="gzh-Ps-PFN" id="kKS-6c-ZjE"/>
                         <outlet property="userLabel" destination="mO6-sv-nUD" id="pmk-8A-zfG"/>
                     </connections>
                 </viewController>

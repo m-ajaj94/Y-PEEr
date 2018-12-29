@@ -46,16 +46,13 @@ class EventDetailsViewController: ParentViewController {
         
     }
     
+    var type: PostType!
     var noImages = false
     var images: [ImageModel]!{
         didSet{
         }
     }
-    var event: EventModel!{
-        didSet{
-        }
-    }
-    var eventDetails: EventDataModel!{
+    var event: EventDataModel!{
         didSet{
             
         }
@@ -73,19 +70,15 @@ class EventDetailsViewController: ParentViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        if event != nil{
-            titleLabel.text = event.title!
-            descriptionLabel.text = event.description!
-            title = event.title!
-            
-        }
-        else{
-            titleLabel.text = eventDetails.title!
-            descriptionLabel.text = eventDetails.description!
-            images = eventDetails.images!
-            title = eventDetails.title!
-        }
         pageControl = FlexiblePageControl()
+        setData()
+    }
+    
+    var date: Date!
+    
+    func setData(){
+        title = event.title!
+        images = event.images!
         if images == nil || images.count == 0{
             noImages = true
         }
@@ -95,6 +88,45 @@ class EventDetailsViewController: ParentViewController {
             pageControl.numberOfPages = images.count
         }
         heightConstraint.constant = height
+        if event.location != nil{
+            locationLabel.text = event.location!
+        }
+        titleLabel.text = event.title!
+        descriptionLabel.text = event.description!
+        if type == PostType.pastEvent{
+            firstTitleLabel.text = "Likes".localized
+            secondTitleLabel.text = "Views".localized
+            thirdTitleLabel.text = "Media".localized
+            fourthTitleLabel.isHidden = true
+            fourthLabel.isHidden = true
+            thirdLabel.text = "\(event.images!.count)"
+            secondLabel.text = "\(event.totalViews!)"
+            firstLabel.text = "\(event.totalLikes!)"
+        }
+        else{
+            firstTitleLabel.text = "Days".localized
+            secondTitleLabel.text = "Hours".localized
+            thirdTitleLabel.text = "Minutes".localized
+            fourthTitleLabel.text = "Seconds".localized
+            fourthTitleLabel.isHidden = false
+            fourthLabel.isHidden = false
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+            date = dateFormatter.date(from: event.startDate! + " " + event.startTime!)
+            dateFormatter.dateFormat = "yyyy-MM-dd"
+            let timer = Timer(timeInterval: 1, target: self, selector: #selector(shouldUpdateTime), userInfo: nil, repeats: true)
+            RunLoop.main.add(timer, forMode: .common)
+            shouldUpdateTime()
+        }
+    }
+    
+    @objc func shouldUpdateTime(){
+        let now = Date()
+        let dif = Calendar.current.dateComponents([.day, .hour, .minute, .second], from: now, to: date)
+        firstLabel.text = "\(dif.day!)"
+        secondLabel.text = "\(dif.hour!)"
+        thirdLabel.text = "\(dif.minute!)"
+        fourthLabel.text = "\(dif.second!)"
     }
     
     override func viewDidLayoutSubviews() {

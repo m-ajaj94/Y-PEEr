@@ -251,6 +251,17 @@ struct Networking{
                 }
             }
         }
+        static func createStory(_ params: [String:Any], _ completionHandler: @escaping (GenericModel?)->()){
+            Networking.post(.createStory, params) { (data) in
+                if data == nil{
+                    completionHandler(nil)
+                }
+                else{
+                    let model = try? JSONDecoder().decode(GenericModel.self, from: data!)
+                    completionHandler(model)
+                }
+            }
+        }
     }
     
 }

@@ -1,0 +1,96 @@
+/*
+ Localizable.strings
+ Y-PEER
+ 
+ Created by Majd Ajaj on 12/29/18.
+ Copyright © 2018 Majd Ajaj. All rights reserved.
+ */
+
+"ERROR CONNECT MESSAGE" = "ERROR CONNECT MESSAGE";
+"Error" = "Error";
+"Please fill all fields" = "Please fill all fields";
+"Loading..." = "Loading...";
+"Ok" = "Ok";
+"No Connection" = "No Connection";
+"Please check your internet connection and press retry" = "Please check your internet connection and press retry";
+"Cancel" = "Cancel";
+//**********Stories**********
+"Anonymous" = "Anonymous";
+"Stories" = "Stories";
+"Select related issue" = "Select related issue";
+"Enter your story" = "Enter your story";
+"Share Story" = "Share Story";
+"Your story was submitted for reviewing" = "Your story was submitted for reviewing";
+"Share your story" = "Share your story";
+"What are stories?" = "What are stories?";
+"stories explanation" = "stories explanation";
+
+//**********User**********
+"E-mail" = "E-mail";
+"Password" = "Password";
+"Please enter your e-mail first!" = "Please enter your e-mail first!";
+"Please enter a valid e-mail!" = "Please enter a valid e-mail!";
+"Please enter your password!\nA password must be at least 6 characters long" = "Please enter your password!\nA password must be at least 6 characters long";
+"New Password" = "New Password";
+"We are about to send a new password to" = "We are about to send a new password to";
+"Are you sure?" = "Are you sure?";
+"Full Name" = "Full Name";
+"Gender" = "Gender";
+"City" = "City";
+"Birthday" = "Birthday";
+"Please select your gender!" = "Please select your gender!";
+"Please select your city!" = "Please select your city!";
+"Please enter your birthday!" = "Please enter your birthday!";
+"Male" = "Male";
+"Female" = "Female";
+"Update Profile" = "Update Profile";
+"Sign in/Register" = "Sign in/Register";
+"Sign in/Register" = "Sign in/Register";
+"Welcome" = "Welcome";
+"sign up description" = "sign up description";
+
+//**********Side menu**********
+"About Y-PEER" = "About Y-PEER";
+"Search" = "Search";
+
+//**********Events**********
+"Likes" = "Likes";
+"Views" = "Views";
+"Media" = "Media";
+"Days" = "Days";
+"Hours" = "Hours";
+"Minutes" = "Minutes";
+"Seconds" = "Seconds";
+"Events" = "Events";
+
+//**********Posts**********
+"Post" = "Post";
+"Newsfeed" = "Newsfeed";
+
+//**********Gallery**********
+"Gallery" = "Gallery";
+
+//**********Issues**********
+"Issues" = "Issues";
+
+//**********Quizzes**********
+"Quizzes" = "Quizzes";
+"Get Results" = "Get Results";
+"Next" = "Next";
+"Question" = "Question";
+"Previous" = "Previous";
+"Your Answer" = "Your Answer";
+"Correct Answer" = "Correct Answer";
+"Explanation" = "Explanation";
+"Results" = "Results";
+"Quiz results" = "Quiz results";
+
+//**********Settings**********
+"Settings" = "Settings";
+"Notifications Settings" = "Notifications Settings";
+"Language Settings" = "Language Settings";
+"Notification-1" = "Notification-1";
+"Notification-2" = "Notification-2";
+"Notification-3" = "Notification-3";
+
+//**********About Us**********

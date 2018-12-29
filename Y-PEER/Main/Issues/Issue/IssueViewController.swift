@@ -100,7 +100,7 @@ class IssueViewController: ParentViewController {
                 }
             }
             else{
-                Toast(text: "Error Message".localized).show()
+                Toast(text: "ERROR CONNECT MESSAGE".localized).show()
             }
         }
     }
@@ -118,7 +118,7 @@ class IssueViewController: ParentViewController {
                 }
             }
             else{
-                Toast(text: "Error Message".localized).show()
+                Toast(text: "ERROR CONNECT MESSAGE".localized).show()
             }
         }
     }

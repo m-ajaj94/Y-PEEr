@@ -71,6 +71,7 @@ class EventsTableViewCell: UITableViewCell {
                 date = dateFormatter.date(from: event.startDate! + " " + event.startTime!)
                 dateFormatter.dateFormat = "yyyy-MM-dd"
                 let timer = Timer(timeInterval: 1, target: self, selector: #selector(shouldUpdateTime), userInfo: nil, repeats: true)
+                shouldUpdateTime()
                 RunLoop.main.add(timer, forMode: .common)
             }
         }
@@ -80,12 +81,14 @@ class EventsTableViewCell: UITableViewCell {
     
     
     @objc func shouldUpdateTime(){
-        let now = Date()
-        let dif = Calendar.current.dateComponents([.day, .hour, .minute, .second], from: now, to: date)
-        daysLabel.text = "\(dif.day!)"
-        hoursLabel.text = "\(dif.hour!)"
-        minutesLabel.text = "\(dif.minute!)"
-        secondsLabel.text = "\(dif.second!)"
+        if type != .pastEvent{
+            let now = Date()
+            let dif = Calendar.current.dateComponents([.day, .hour, .minute, .second], from: now, to: date)
+            daysLabel.text = "\(dif.day!)"
+            hoursLabel.text = "\(dif.hour!)"
+            minutesLabel.text = "\(dif.minute!)"
+            secondsLabel.text = "\(dif.second!)"
+        }
     }
     
     var type: PostType!

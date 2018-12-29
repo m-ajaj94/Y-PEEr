@@ -11,6 +11,8 @@ import Toaster
 
 class ProfileViewController: ParentViewController {
 
+    @IBOutlet weak var userImageView: UIImageView!
+    @IBOutlet weak var borderView: UIView!
     @IBOutlet weak var closeButton: UIButton!
     @IBOutlet weak var editButton: UIButton!
     @IBOutlet weak var doneButton: UIBarButtonItem!
@@ -80,6 +82,15 @@ class ProfileViewController: ParentViewController {
         else{
             cities = Cache.cities.cities
         }
+        borderView.layer.cornerRadius = borderView.frame.width / 2
+        borderView.layer.borderWidth = 2
+        borderView.layer.borderColor = UIColor.mainGray.cgColor
+        if UserCache.userData.gender! == 0{
+            userImageView.image = UIImage(named: "person")
+        }
+        else{
+            userImageView.image = UIImage(named: "girl")
+        }
     }
     
     override func didPressRetry() {
@@ -109,6 +120,7 @@ class ProfileViewController: ParentViewController {
 
 extension ProfileViewController: ProfileViewControllerDelegate{
     func didChangeProfile() {
+        user = UserCache.userData
         emailLabel.text = user.email!
         nameLabel.text = user.name!
         birthdayLabel.text = user.birthdate!
@@ -118,6 +130,12 @@ extension ProfileViewController: ProfileViewControllerDelegate{
         }
         else{
             cities = Cache.cities.cities
+        }
+        if UserCache.userData.gender! == 0{
+            userImageView.image = UIImage(named: "person")
+        }
+        else{
+            userImageView.image = UIImage(named: "girl")
         }
     }
 }

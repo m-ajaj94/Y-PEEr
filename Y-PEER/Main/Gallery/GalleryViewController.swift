@@ -120,7 +120,7 @@ class GalleryViewController: ParentViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "Gallery"
+        title = "Gallery".localized
         requestData()
         collectionView.addInfiniteScroll { (collectionView) in
             self.moreRequest()
@@ -161,7 +161,7 @@ class GalleryViewController: ParentViewController {
                 }
             }
             else{
-                Toast(text: "Error Message TODO".localized).show()
+                Toast(text: "ERROR CONNECT MESSAGE".localized).show()
             }
         }
     }
@@ -179,7 +179,7 @@ class GalleryViewController: ParentViewController {
                 }
             }
             else{
-                Toast(text: "Error Message TODO".localized).show()
+                Toast(text: "ERROR CONNECT MESSAGE".localized).show()
             }
         }
     }

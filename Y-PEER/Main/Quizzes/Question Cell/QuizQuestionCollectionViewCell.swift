@@ -47,6 +47,7 @@ class QuizQuestionCollectionViewCell: UICollectionViewCell {
             }
         }
     }
+    var delegate: QuizDelegate!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -70,6 +71,7 @@ extension QuizQuestionCollectionViewCell: UITableViewDelegate, UITableViewDataSo
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        delegate.didAnswer(question, question.options![indexPath.row])
         selectedIndex = indexPath
     }
     
@@ -87,4 +89,8 @@ extension QuizQuestionCollectionViewCell: UITableViewDelegate, UITableViewDataSo
         return UITableViewCell()
     }
     
+}
+
+protocol QuizDelegate{
+    func didAnswer(_ question: QuizQuestionModel, _ answer: QuizQuestionOptionModelModel)
 }

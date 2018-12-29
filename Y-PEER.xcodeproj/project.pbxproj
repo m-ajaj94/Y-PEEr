@@ -40,6 +40,17 @@
 		F323F9F621D2A90C002BF331 /* ErrorView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F323F9F521D2A90C002BF331 /* ErrorView.xib */; };
 		F323F9F821D2A922002BF331 /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F323F9F721D2A922002BF331 /* ErrorView.swift */; };
 		F323F9FA21D2A95B002BF331 /* ErrorBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = F323F9F921D2A95B002BF331 /* ErrorBackground.png */; };
+		F329F2EC21D7A8AA00460A6B /* girl.png in Resources */ = {isa = PBXBuildFile; fileRef = F329F2EB21D7A8AA00460A6B /* girl.png */; };
+		F329F2F021D7B06100460A6B /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = F329F2F221D7B06100460A6B /* Localizable.strings */; };
+		F329F2F521D7C60400460A6B /* storyNoCircle.png in Resources */ = {isa = PBXBuildFile; fileRef = F329F2F421D7C60400460A6B /* storyNoCircle.png */; };
+		F329F2F721D7C6C000460A6B /* StoriesPopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F329F2F621D7C6C000460A6B /* StoriesPopupViewController.swift */; };
+		F329F2F921D7CEF300460A6B /* UserPopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F329F2F821D7CEF300460A6B /* UserPopupViewController.swift */; };
+		F329F2FB21D7CF6A00460A6B /* check.png in Resources */ = {isa = PBXBuildFile; fileRef = F329F2FA21D7CF6A00460A6B /* check.png */; };
+		F329F2FF21D7D97800460A6B /* QuizResultTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F329F2FD21D7D97800460A6B /* QuizResultTableViewCell.swift */; };
+		F329F30021D7D97800460A6B /* QuizResultTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F329F2FE21D7D97800460A6B /* QuizResultTableViewCell.xib */; };
+		F329F30321D7DA2800460A6B /* wrong.png in Resources */ = {isa = PBXBuildFile; fileRef = F329F30121D7DA2800460A6B /* wrong.png */; };
+		F329F30421D7DA2800460A6B /* correct.png in Resources */ = {isa = PBXBuildFile; fileRef = F329F30221D7DA2800460A6B /* correct.png */; };
+		F329F30621D7E7A600460A6B /* QuizPopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F329F30521D7E7A600460A6B /* QuizPopupViewController.swift */; };
 		F32EB3FD21C956D90005FA15 /* Networking.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32EB3FC21C956D90005FA15 /* Networking.swift */; };
 		F32EB40021C959000005FA15 /* GenericModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32EB3FF21C959000005FA15 /* GenericModel.swift */; };
 		F3303ECF215677B200DF4610 /* Issue.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F3303ECE215677B200DF4610 /* Issue.storyboard */; };
@@ -47,7 +58,6 @@
 		F3303ED521567ADC00DF4610 /* IssueTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3303ED321567ADC00DF4610 /* IssueTableViewCell.swift */; };
 		F3303ED621567ADC00DF4610 /* IssueTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F3303ED421567ADC00DF4610 /* IssueTableViewCell.xib */; };
 		F3303ED82156C7C000DF4610 /* IssueArticleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3303ED72156C7C000DF4610 /* IssueArticleViewController.swift */; };
-		F3303EDA2156CBE500DF4610 /* a.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F3303ED92156CBE500DF4610 /* a.jpg */; };
 		F3303EDE2156D6D900DF4610 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3303EDD2156D6D900DF4610 /* SettingsViewController.swift */; };
 		F3303EE02156D6E300DF4610 /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F3303EDF2156D6E300DF4610 /* Settings.storyboard */; };
 		F3303EE32156D7D600DF4610 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3303EE22156D7D600DF4610 /* AboutViewController.swift */; };
@@ -172,6 +182,18 @@
 		F323F9F521D2A90C002BF331 /* ErrorView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ErrorView.xib; sourceTree = "<group>"; };
 		F323F9F721D2A922002BF331 /* ErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorView.swift; sourceTree = "<group>"; };
 		F323F9F921D2A95B002BF331 /* ErrorBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ErrorBackground.png; sourceTree = "<group>"; };
+		F329F2EB21D7A8AA00460A6B /* girl.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = girl.png; sourceTree = "<group>"; };
+		F329F2F121D7B06100460A6B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		F329F2F321D7B06400460A6B /* ar-SY */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "ar-SY"; path = "ar-SY.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		F329F2F421D7C60400460A6B /* storyNoCircle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = storyNoCircle.png; sourceTree = "<group>"; };
+		F329F2F621D7C6C000460A6B /* StoriesPopupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoriesPopupViewController.swift; sourceTree = "<group>"; };
+		F329F2F821D7CEF300460A6B /* UserPopupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPopupViewController.swift; sourceTree = "<group>"; };
+		F329F2FA21D7CF6A00460A6B /* check.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = check.png; sourceTree = "<group>"; };
+		F329F2FD21D7D97800460A6B /* QuizResultTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizResultTableViewCell.swift; sourceTree = "<group>"; };
+		F329F2FE21D7D97800460A6B /* QuizResultTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = QuizResultTableViewCell.xib; sourceTree = "<group>"; };
+		F329F30121D7DA2800460A6B /* wrong.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wrong.png; sourceTree = "<group>"; };
+		F329F30221D7DA2800460A6B /* correct.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = correct.png; sourceTree = "<group>"; };
+		F329F30521D7E7A600460A6B /* QuizPopupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizPopupViewController.swift; sourceTree = "<group>"; };
 		F32EB3FC21C956D90005FA15 /* Networking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Networking.swift; sourceTree = "<group>"; };
 		F32EB3FF21C959000005FA15 /* GenericModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericModel.swift; sourceTree = "<group>"; };
 		F3303ECE215677B200DF4610 /* Issue.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Issue.storyboard; sourceTree = "<group>"; };
@@ -179,7 +201,6 @@
 		F3303ED321567ADC00DF4610 /* IssueTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueTableViewCell.swift; sourceTree = "<group>"; };
 		F3303ED421567ADC00DF4610 /* IssueTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = IssueTableViewCell.xib; sourceTree = "<group>"; };
 		F3303ED72156C7C000DF4610 /* IssueArticleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueArticleViewController.swift; sourceTree = "<group>"; };
-		F3303ED92156CBE500DF4610 /* a.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = a.jpg; sourceTree = "<group>"; };
 		F3303EDD2156D6D900DF4610 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		F3303EDF2156D6E300DF4610 /* Settings.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Settings.storyboard; sourceTree = "<group>"; };
 		F3303EE22156D7D600DF4610 /* AboutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
@@ -320,9 +341,11 @@
 		F30E3EC6216E5D5500F75EC0 /* User */ = {
 			isa = PBXGroup;
 			children = (
+				F329F2FA21D7CF6A00460A6B /* check.png */,
 				F30E3ECB216E63F400F75EC0 /* SigninViewController.swift */,
 				F30E3ECD216E79BD00F75EC0 /* SignupViewController.swift */,
 				F30E3ED1216EB5BD00F75EC0 /* ProfileViewController.swift */,
+				F329F2F821D7CEF300460A6B /* UserPopupViewController.swift */,
 				F30E3EC7216E5D8600F75EC0 /* User.storyboard */,
 			);
 			path = User;
@@ -437,6 +460,25 @@
 				F323F9F521D2A90C002BF331 /* ErrorView.xib */,
 			);
 			path = ErrorView;
+			sourceTree = "<group>";
+		};
+		F329F2ED21D7B04600460A6B /* Strings */ = {
+			isa = PBXGroup;
+			children = (
+				F329F2F221D7B06100460A6B /* Localizable.strings */,
+			);
+			path = Strings;
+			sourceTree = "<group>";
+		};
+		F329F2FC21D7D96100460A6B /* Quiz Answer Cell */ = {
+			isa = PBXGroup;
+			children = (
+				F329F30221D7DA2800460A6B /* correct.png */,
+				F329F30121D7DA2800460A6B /* wrong.png */,
+				F329F2FD21D7D97800460A6B /* QuizResultTableViewCell.swift */,
+				F329F2FE21D7D97800460A6B /* QuizResultTableViewCell.xib */,
+			);
+			path = "Quiz Answer Cell";
 			sourceTree = "<group>";
 		};
 		F32EB3FE21C958AF0005FA15 /* Models */ = {
@@ -600,6 +642,7 @@
 				F33B2D4421D42456007C728D /* StoriesViewController.swift */,
 				F33B2D4621D42467007C728D /* CreateStoryViewController.swift */,
 				F33B2D5121D689D9007C728D /* StoryDetailsViewController.swift */,
+				F329F2F621D7C6C000460A6B /* StoriesPopupViewController.swift */,
 				F33B2D4221D4236A007C728D /* Stories.storyboard */,
 			);
 			path = Stories;
@@ -608,8 +651,10 @@
 		F33B2D4821D67408007C728D /* Cell */ = {
 			isa = PBXGroup;
 			children = (
+				F329F2EB21D7A8AA00460A6B /* girl.png */,
 				F33B2D5321D69277007C728D /* person.png */,
 				F33B2D4D21D6748B007C728D /* story.png */,
+				F329F2F421D7C60400460A6B /* storyNoCircle.png */,
 				F33B2D4921D67421007C728D /* StoriesTableViewCell.swift */,
 				F33B2D4A21D67421007C728D /* StoriesTableViewCell.xib */,
 			);
@@ -637,6 +682,7 @@
 		F33DFA602149FB4F00E3194C /* Y-PEER */ = {
 			isa = PBXGroup;
 			children = (
+				F329F2ED21D7B04600460A6B /* Strings */,
 				F33B2D4121D4235B007C728D /* Stories */,
 				F33B2D3121D2C370007C728D /* Views */,
 				F3A22B892175EE1B00F5325F /* background.jpg */,
@@ -655,7 +701,6 @@
 				F33DFA6A2149FB5100E3194C /* LaunchScreen.storyboard */,
 				F33DFA6D2149FB5100E3194C /* Info.plist */,
 				F30E3ECF216E7E7B00F75EC0 /* 1.png */,
-				F3303ED92156CBE500DF4610 /* a.jpg */,
 				F323F9EE21D25E82002BF331 /* Y-PEER-Bridging-Header.h */,
 			);
 			path = "Y-PEER";
@@ -766,10 +811,12 @@
 		F3B0BAFE2173C0C4003BE09D /* Quizzes */ = {
 			isa = PBXGroup;
 			children = (
+				F329F2FC21D7D96100460A6B /* Quiz Answer Cell */,
 				F3A22B7F2174E31800F5325F /* Question Cell */,
 				F3B0BAFF2173C1A2003BE09D /* QuizzesViewController.swift */,
 				F3A22B7D2174E29200F5325F /* QuizViewController.swift */,
 				F3A22B8B2176529000F5325F /* QuizResultsViewController.swift */,
+				F329F30521D7E7A600460A6B /* QuizPopupViewController.swift */,
 			);
 			path = Quizzes;
 			sourceTree = "<group>";
@@ -931,6 +978,7 @@
 			knownRegions = (
 				en,
 				Base,
+				"ar-SY",
 			);
 			mainGroup = F33DFA552149FB4F00E3194C;
 			productRefGroup = F33DFA5F2149FB4F00E3194C /* Products */;
@@ -951,13 +999,16 @@
 				F36391CF216BE3C4005F747C /* PostsUpcomingEventTableViewCell.xib in Resources */,
 				F354AB0B21773D29008B9974 /* image-0.jpg in Resources */,
 				F3D0EED0214E3807006739B9 /* IssuesCollectionViewCell.xib in Resources */,
+				F329F30021D7D97800460A6B /* QuizResultTableViewCell.xib in Resources */,
 				F33DFA77214A074500E3194C /* SideMenu.storyboard in Resources */,
 				F3A22B8A2175EE1B00F5325F /* background.jpg in Resources */,
 				F3A22B882174ED8B00F5325F /* QuizAnswerTableViewCell.xib in Resources */,
 				F3303EED2156E48100DF4610 /* AboutDetailsTableViewCell.xib in Resources */,
 				F33B2D4C21D67421007C728D /* StoriesTableViewCell.xib in Resources */,
+				F329F2F021D7B06100460A6B /* Localizable.strings in Resources */,
 				F3131EF7216BB70700B1200E /* PostImageTableViewCell.xib in Resources */,
 				F3D0EECB214E0AB7006739B9 /* IssuesHeaderCollectionReusableView.xib in Resources */,
+				F329F30321D7DA2800460A6B /* wrong.png in Resources */,
 				F33DFA6C2149FB5100E3194C /* LaunchScreen.storyboard in Resources */,
 				F3131EFC216BB77100B1200E /* PostsQuizTableViewCell.xib in Resources */,
 				F33B2D4E21D6748B007C728D /* story.png in Resources */,
@@ -967,12 +1018,12 @@
 				F30E3EE0216FBE7E00F75EC0 /* SettingsTableViewHeader.xib in Resources */,
 				F3303EE82156D89600DF4610 /* AboutTableViewSectionHeader.xib in Resources */,
 				F323F9FA21D2A95B002BF331 /* ErrorBackground.png in Resources */,
+				F329F2FB21D7CF6A00460A6B /* check.png in Resources */,
 				F3303ECF215677B200DF4610 /* Issue.storyboard in Resources */,
 				F3D0EEB8214DD7F7006739B9 /* GallerySkeletonCollectionViewCell.xib in Resources */,
 				F33B2D4321D4236A007C728D /* Stories.storyboard in Resources */,
 				F33DFA692149FB5100E3194C /* Assets.xcassets in Resources */,
 				F3303ED621567ADC00DF4610 /* IssueTableViewCell.xib in Resources */,
-				F3303EDA2156CBE500DF4610 /* a.jpg in Resources */,
 				F30E3EC8216E5D8600F75EC0 /* User.storyboard in Resources */,
 				F33B2D3621D2C39C007C728D /* LoadingView.xib in Resources */,
 				F36391DE216CE0AD005F747C /* EventsTableViewCell.xib in Resources */,
@@ -988,6 +1039,7 @@
 				F305B91C2159371F005A4818 /* CoreTeamCollectionViewCell.xib in Resources */,
 				F36391D4216CA510005F747C /* PostsTextTableViewCell.xib in Resources */,
 				F30E3ED0216E7E7B00F75EC0 /* 1.png in Resources */,
+				F329F2EC21D7A8AA00460A6B /* girl.png in Resources */,
 				F3A22B832174E34D00F5325F /* QuizQuestionCollectionViewCell.xib in Resources */,
 				F33B2D5621D6C307007C728D /* SideMenu.jpg in Resources */,
 				F3303EFD2156FF2C00DF4610 /* AboutPartnershipTableViewCell.xib in Resources */,
@@ -995,8 +1047,10 @@
 				F33DFA672149FB4F00E3194C /* Main.storyboard in Resources */,
 				F323F9F621D2A90C002BF331 /* ErrorView.xib in Resources */,
 				F3303EE02156D6E300DF4610 /* Settings.storyboard in Resources */,
+				F329F30421D7DA2800460A6B /* correct.png in Resources */,
 				F30E3EE5216FC13400F75EC0 /* SettingsLanguageTableViewCell.xib in Resources */,
 				F33B2D5421D69278007C728D /* person.png in Resources */,
+				F329F2F521D7C60400460A6B /* storyNoCircle.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1089,11 +1143,13 @@
 				F323F9C221CABA13002BF331 /* SigninModel.swift in Sources */,
 				F36391D9216CDECD005F747C /* EventsViewController.swift in Sources */,
 				F3303EF72156F46F00DF4610 /* AboutCoreTeamCellCollectionViewCell.swift in Sources */,
+				F329F30621D7E7A600460A6B /* QuizPopupViewController.swift in Sources */,
 				F3303EFC2156FF2C00DF4610 /* AboutPartnershipTableViewCell.swift in Sources */,
 				F3303EFF215700AB00DF4610 /* String Extensions.swift in Sources */,
 				F30E3ECE216E79BD00F75EC0 /* SignupViewController.swift in Sources */,
 				F3B1E4ED214DAFEA00832FE7 /* PostsViewController.swift in Sources */,
 				F30E3ECC216E63F400F75EC0 /* SigninViewController.swift in Sources */,
+				F329F2F721D7C6C000460A6B /* StoriesPopupViewController.swift in Sources */,
 				F3B0BAFD2173A5EA003BE09D /* EventDetailsViewController.swift in Sources */,
 				F33B2D3821D315AC007C728D /* EventsModel.swift in Sources */,
 				F3A22B872174ED8B00F5325F /* QuizAnswerTableViewCell.swift in Sources */,
@@ -1135,6 +1191,7 @@
 				F3A22B7E2174E29200F5325F /* QuizViewController.swift in Sources */,
 				F30E3EE8216FCE1C00F75EC0 /* RequestNames.swift in Sources */,
 				F33DFA622149FB4F00E3194C /* AppDelegate.swift in Sources */,
+				F329F2F921D7CEF300460A6B /* UserPopupViewController.swift in Sources */,
 				F30E3EE4216FC13400F75EC0 /* SettingsLanguageTableViewCell.swift in Sources */,
 				F3131F00216BCF1000B1200E /* PostsImageCollectionViewCell.swift in Sources */,
 				F3303ED82156C7C000DF4610 /* IssueArticleViewController.swift in Sources */,
@@ -1144,6 +1201,7 @@
 				F36391D3216CA510005F747C /* PostsTextTableViewCell.swift in Sources */,
 				F3303ED521567ADC00DF4610 /* IssueTableViewCell.swift in Sources */,
 				F33B2D4B21D67421007C728D /* StoriesTableViewCell.swift in Sources */,
+				F329F2FF21D7D97800460A6B /* QuizResultTableViewCell.swift in Sources */,
 				F30E3ED2216EB5BD00F75EC0 /* ProfileViewController.swift in Sources */,
 				F3303F022157089600DF4610 /* CoreTeamViewController.swift in Sources */,
 				F3303EDE2156D6D900DF4610 /* SettingsViewController.swift in Sources */,
@@ -1153,6 +1211,15 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
+		F329F2F221D7B06100460A6B /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F329F2F121D7B06100460A6B /* en */,
+				F329F2F321D7B06400460A6B /* ar-SY */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
 		F33DFA652149FB4F00E3194C /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (

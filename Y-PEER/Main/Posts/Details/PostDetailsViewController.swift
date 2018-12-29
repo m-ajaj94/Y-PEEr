@@ -47,7 +47,7 @@ class PostDetailsViewController: ParentViewController {
                     }
                     else{
                         if model == nil{
-                            Toast(text: "Error Message").show()
+                            Toast(text: "ERROR CONNECT MESSAGE".localized).show()
                         }
                         else{
                             Toast(text: model!.message!).show()
