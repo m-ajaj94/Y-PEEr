@@ -47,6 +47,7 @@ class PostsUpcomingEventTableViewCell: UITableViewCell {
             secondaryLabel.text = post.description!
             let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+            dateFormatter.timeZone = TimeZone(abbreviation: "UTC")
             timeLabel.text = (dateFormatter.date(from: post.createdAt!)! as NSDate).timeAgo()
             likeCountLabel.text = "\(post.totalLikes!)"
             if post.isLiked! == "1"{

@@ -27,7 +27,13 @@ class ProfileViewController: ParentViewController {
     @IBOutlet weak var genderLabel: UILabel!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var emailLabel: UILabel!
-    @IBOutlet weak var signoutButton: UIButton!
+    @IBOutlet weak var signoutButton: UIButton!{
+        didSet{
+            signoutButton.layer.shadowOffset = CGSize(width: 0, height: 0)
+            signoutButton.layer.shadowRadius = 5
+            signoutButton.layer.shadowOpacity = 0.2
+        }
+    }
     @IBOutlet var containerViews: [UIView]!
     
     @IBAction func didPressSignout(_ sender: Any) {
@@ -63,8 +69,8 @@ class ProfileViewController: ParentViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         for containerView in containerViews{
-            containerView.layer.shadowOffset = CGSize(width: 0, height: 3)
-            containerView.layer.shadowRadius = 3
+            containerView.layer.shadowOffset = CGSize(width: 0, height: 0)
+            containerView.layer.shadowRadius = 6
             containerView.layer.shadowOpacity = 0.2
         }
         let backgroundImage = UIImageView(frame: UIScreen.main.bounds)
@@ -92,6 +98,7 @@ class ProfileViewController: ParentViewController {
             userImageView.image = UIImage(named: "girl")
         }
     }
+    
     
     override func didPressRetry() {
         removeNoConnection()

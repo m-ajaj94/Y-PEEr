@@ -390,6 +390,7 @@
 		F30E3ED3216EC15400F75EC0 /* Cache */ = {
 			isa = PBXGroup;
 			children = (
+				F30E3EC1216E5A6D00F75EC0 /* Images */,
 				F30E3ED4216EC17000F75EC0 /* UserCache.swift */,
 				F323F9E821D2508D002BF331 /* Cache.swift */,
 			);
@@ -790,7 +791,6 @@
 				F30E3EE6216FCDF900F75EC0 /* Networking */,
 				F33DFA7B214A144000E3194C /* Extensions */,
 				F30E3ED3216EC15400F75EC0 /* Cache */,
-				F30E3EC1216E5A6D00F75EC0 /* Images */,
 				F3B1E4EA214DAFD200832FE7 /* ParentViewController.swift */,
 				F30E3EC6216E5D5500F75EC0 /* User */,
 				F33DFA75214A057A00E3194C /* Side Menu */,

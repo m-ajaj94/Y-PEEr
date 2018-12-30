@@ -123,6 +123,7 @@ class PostDetailsViewController: ParentViewController {
         images = post.images!
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        dateFormatter.timeZone = TimeZone(abbreviation: "UTC")
         timeLabel.text = (dateFormatter.date(from: post.createdAt!)! as NSDate).timeAgo()
         if post.isLiked! == "1"{
             self.likeButton.setTitle("😍", for: .normal)

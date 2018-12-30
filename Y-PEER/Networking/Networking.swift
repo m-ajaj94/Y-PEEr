@@ -24,7 +24,10 @@ struct Networking{
     }
     
     static func getImageURL(_ string: String) -> URL{
-        return URL(string: serverImageURL + string)!
+        if let url = URL(string: serverImageURL + string.addingPercentEncoding( withAllowedCharacters: .urlQueryAllowed)!){
+            return url
+        }
+        return URL(string: serverImageURL)!
     }
     
     private static var headers: HTTPHeaders{
