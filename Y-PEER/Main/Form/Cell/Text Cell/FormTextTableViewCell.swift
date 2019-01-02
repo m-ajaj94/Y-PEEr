@@ -8,10 +8,6 @@
 
 import UIKit
 
-class QuestionMM{
-    
-}
-
 class FormTextTableViewCell: UITableViewCell {
 
     @IBOutlet weak var questionTitleLabel: UILabel!
@@ -29,22 +25,31 @@ class FormTextTableViewCell: UITableViewCell {
     }
     var placeholderText: String! = "Answer".localized + "..."
     
-    var question: QuestionMM!
-    
+    var question: FormQuestionModel!{
+        didSet{
+            questionTitleLabel.text = question.text!
+        }
+    }
+    var delegate: FormTextCellDelegate!
     var answerString: String!{
         didSet{
-            if answerString == ""{
-                answerTextView.text = placeholderText
-                answerTextView.textColor = .lightGray
-            }
-            else{
-                answerTextView.textColor = .mainOrange
+            if !answerTextView.isFirstResponder{
+                if answerString == ""{
+                    answerTextView.text = placeholderText
+                    answerTextView.textColor = .lightGray
+                }
+                else{
+                    answerTextView.textColor = .mainOrange
+                    answerTextView.text = answerString
+                }
             }
         }
     }
+    var index: IndexPath!
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        selectionStyle = .none
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -62,6 +67,11 @@ extension FormTextTableViewCell: UITextViewDelegate{
         textView.becomeFirstResponder()
     }
     
+    func textViewDidChange(_ textView: UITextView) {
+        answerString = textView.text
+        delegate.didChangeText(textView.text, question, index)
+    }
+    
     func textViewDidEndEditing(_ textView: UITextView){
         if (textView.text == ""){
             textView.text = placeholderText
@@ -72,5 +82,5 @@ extension FormTextTableViewCell: UITextViewDelegate{
 }
 
 protocol FormTextCellDelegate{
-    func didChangeText(_ text: String, _ question: QuestionMM)
+    func didChangeText(_ text: String, _ question: FormQuestionModel, _ index: IndexPath)
 }

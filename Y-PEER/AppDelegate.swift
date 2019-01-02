@@ -23,6 +23,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         ToastView.appearance().backgroundColor = .mainOrange
         ToastView.appearance().textColor = .white
+        ToastView.appearance().textInsets = UIEdgeInsets(top: 8, left: 16, bottom: 8, right: 16)
+        ToastView.appearance().cornerRadius = 4
+        ToastView.appearance().bottomOffsetPortrait = 128
         Cache.language.setInitial()
         return true
     }

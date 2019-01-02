@@ -810,10 +810,10 @@ Etiam neque. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihi
             </objects>
             <point key="canvasLocation" x="2128.8000000000002" y="422.33883058470769"/>
         </scene>
-        <!--View Controller-->
+        <!--Event Apply Form View Controller-->
         <scene sceneID="lrr-NZ-EjE">
             <objects>
-                <viewController id="Dl1-Ia-CHj" sceneMemberID="viewController">
+                <viewController id="Dl1-Ia-CHj" customClass="EventApplyFormViewController" customModule="Y_PEER" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="soB-uI-RBm">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -833,9 +833,22 @@ Etiam neque. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihi
                         <viewLayoutGuide key="safeArea" id="n7Z-in-ef3"/>
                     </view>
                     <navigationItem key="navigationItem" id="ZCz-cA-td5">
-                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="1Ev-Kf-ad2"/>
-                        <barButtonItem key="rightBarButtonItem" title="Item" id="rIB-Fz-NM6"/>
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="1Ev-Kf-ad2">
+                            <connections>
+                                <action selector="cancelButtonPressed:" destination="Dl1-Ia-CHj" id="Dde-pF-9JR"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Item" id="rIB-Fz-NM6">
+                            <connections>
+                                <action selector="doneButtonPressed:" destination="Dl1-Ia-CHj" id="Pcu-A8-q3H"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="cancelButton" destination="1Ev-Kf-ad2" id="yh7-xb-Qj9"/>
+                        <outlet property="doneButton" destination="rIB-Fz-NM6" id="cYx-AL-fpg"/>
+                        <outlet property="tableView" destination="REy-xc-wzW" id="MGh-jl-qu0"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zEk-lk-LYG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1272,7 +1285,7 @@ Etiam neque. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihi
         <!--Navigation Controller-->
         <scene sceneID="2e4-bX-K3f">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Fyl-zY-tak" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="EventNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="Fyl-zY-tak" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="9vd-3t-RTd">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>

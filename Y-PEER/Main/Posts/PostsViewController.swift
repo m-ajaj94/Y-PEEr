@@ -99,7 +99,12 @@ class PostsViewController: ParentViewController {
         tableView.addInfiniteScroll { (tableView) in
             self.moreRequest()
         }
-        NotificationCenter.default.addObserver(self, selector: #selector(likeStatus(_:)), name: NSNotification.Name("LikeChanged"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(likeStatus(_:)), name: NSNotification.Name("EventLikeChanged"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(userDidSignout), name: NSNotification.Name("Signout"), object: nil)
+    }
+    
+    @objc func userDidSignout(){
+        requestData()
     }
     
     @objc func likeStatus(_ notification: Notification){

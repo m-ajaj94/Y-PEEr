@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -186,7 +187,7 @@
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bu9-9m-bAC">
-                                <rect key="frame" x="8" y="8" width="333" height="169.5"/>
+                                <rect key="frame" x="16" y="8" width="301" height="169.5"/>
                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -209,13 +210,37 @@
                             <constraint firstItem="adE-Gj-ayL" firstAttribute="top" secondItem="Dpn-Yi-Dse" secondAttribute="top" id="uSD-5K-fvT"/>
                         </constraints>
                     </view>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vok-Ry-n9Y">
+                        <rect key="frame" x="281" y="187.5" width="60" height="60"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="94q-c9-vaN">
+                                <rect key="frame" x="12" y="12" width="36" height="36"/>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="35"/>
+                                <state key="normal" title="+">
+                                    <color key="titleColor" name="MainOrange"/>
+                                </state>
+                                <connections>
+                                    <action selector="addButtonPressed:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="8Il-Gs-2cm"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="94q-c9-vaN" secondAttribute="bottom" constant="12" id="7pN-dD-KFJ"/>
+                            <constraint firstAttribute="width" secondItem="vok-Ry-n9Y" secondAttribute="height" multiplier="1:1" id="NCE-kh-yDp"/>
+                            <constraint firstItem="94q-c9-vaN" firstAttribute="leading" secondItem="vok-Ry-n9Y" secondAttribute="leading" constant="12" id="X7R-dp-qkG"/>
+                            <constraint firstAttribute="trailing" secondItem="94q-c9-vaN" secondAttribute="trailing" constant="12" id="cdc-cg-MYu"/>
+                            <constraint firstItem="94q-c9-vaN" firstAttribute="top" secondItem="vok-Ry-n9Y" secondAttribute="top" constant="12" id="esY-ry-yuQ"/>
+                            <constraint firstAttribute="width" constant="60" id="hq0-Jd-M4g"/>
+                        </constraints>
+                    </view>
                 </subviews>
                 <constraints>
                     <constraint firstItem="bu9-9m-bAC" firstAttribute="top" secondItem="pKm-K4-hsP" secondAttribute="bottom" constant="8" id="0iz-wa-wH6"/>
                     <constraint firstItem="pKm-K4-hsP" firstAttribute="top" secondItem="9m8-dS-mTD" secondAttribute="bottom" constant="16" id="45o-7r-4H8"/>
-                    <constraint firstItem="bu9-9m-bAC" firstAttribute="trailing" secondItem="pKm-K4-hsP" secondAttribute="trailing" constant="8" id="6lb-Ce-tAq"/>
+                    <constraint firstItem="bu9-9m-bAC" firstAttribute="trailing" secondItem="pKm-K4-hsP" secondAttribute="trailing" constant="-16" id="6lb-Ce-tAq"/>
                     <constraint firstItem="dSD-0g-yXU" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="16" id="B7R-O1-sHj"/>
-                    <constraint firstItem="bu9-9m-bAC" firstAttribute="leading" secondItem="pKm-K4-hsP" secondAttribute="leading" constant="8" id="D4M-6h-ccv"/>
+                    <constraint firstItem="bu9-9m-bAC" firstAttribute="leading" secondItem="pKm-K4-hsP" secondAttribute="leading" constant="16" id="D4M-6h-ccv"/>
                     <constraint firstItem="pKm-K4-hsP" firstAttribute="leading" secondItem="XxI-W4-MS4" secondAttribute="leading" id="E7E-EA-3LV"/>
                     <constraint firstItem="Cf3-ba-Np7" firstAttribute="height" secondItem="dSD-0g-yXU" secondAttribute="height" id="G6Z-8m-JjG"/>
                     <constraint firstItem="6uC-1i-aou" firstAttribute="centerX" secondItem="dSD-0g-yXU" secondAttribute="centerX" id="GDo-3K-ddW"/>
@@ -224,12 +249,14 @@
                     <constraint firstItem="9m8-dS-mTD" firstAttribute="centerY" secondItem="XxI-W4-MS4" secondAttribute="centerY" id="QIJ-pO-kEZ"/>
                     <constraint firstItem="lFv-T6-KXM" firstAttribute="top" secondItem="pKm-K4-hsP" secondAttribute="bottom" id="R0e-AD-SGV"/>
                     <constraint firstItem="XxI-W4-MS4" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="RHU-yc-gDZ"/>
+                    <constraint firstItem="vok-Ry-n9Y" firstAttribute="bottom" secondItem="pKm-K4-hsP" secondAttribute="bottom" constant="-8" id="Rcj-pb-Ucm"/>
                     <constraint firstAttribute="trailing" secondItem="dSD-0g-yXU" secondAttribute="trailing" constant="16" id="SvG-QV-5a3"/>
                     <constraint firstItem="6uC-1i-aou" firstAttribute="top" secondItem="dSD-0g-yXU" secondAttribute="bottom" id="Vnu-5Q-sI0"/>
                     <constraint firstItem="XxI-W4-MS4" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="16" id="Xzz-8S-Vdb"/>
                     <constraint firstItem="pKm-K4-hsP" firstAttribute="trailing" secondItem="Cf3-ba-Np7" secondAttribute="trailing" id="Z0T-lk-0a2"/>
                     <constraint firstItem="Cf3-ba-Np7" firstAttribute="centerY" secondItem="dSD-0g-yXU" secondAttribute="centerY" id="cRr-D7-M0B"/>
                     <constraint firstAttribute="bottom" secondItem="lFv-T6-KXM" secondAttribute="bottom" constant="16" id="eg9-xl-Rvu"/>
+                    <constraint firstItem="vok-Ry-n9Y" firstAttribute="trailing" secondItem="pKm-K4-hsP" secondAttribute="trailing" constant="-8" id="hBF-6E-3De"/>
                     <constraint firstItem="lFv-T6-KXM" firstAttribute="leading" secondItem="pKm-K4-hsP" secondAttribute="leading" id="iA2-rJ-bxg"/>
                     <constraint firstItem="9m8-dS-mTD" firstAttribute="leading" secondItem="XxI-W4-MS4" secondAttribute="trailing" constant="15" id="jYc-kr-FZ1"/>
                     <constraint firstItem="lFv-T6-KXM" firstAttribute="trailing" secondItem="pKm-K4-hsP" secondAttribute="trailing" id="l9w-h1-jgj"/>
@@ -238,6 +265,8 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
+                <outlet property="addButton" destination="94q-c9-vaN" id="bF5-3Q-o8A"/>
+                <outlet property="buttonContainerView" destination="vok-Ry-n9Y" id="COv-YB-fHY"/>
                 <outlet property="cellImageView" destination="pKm-K4-hsP" id="NrE-jx-dOe"/>
                 <outlet property="circularIndicatorView" destination="dSD-0g-yXU" id="IjX-4B-9Z2"/>
                 <outlet property="counterContainerView" destination="lFv-T6-KXM" id="fZr-N3-Lom"/>
@@ -261,5 +290,8 @@
     </objects>
     <resources>
         <image name="Pin" width="37.5" height="37.5"/>
+        <namedColor name="MainOrange">
+            <color red="1" green="0.53725490196078429" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
     </resources>
 </document>

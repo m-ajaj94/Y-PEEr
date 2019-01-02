@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FaveButton
 
 class EventsTableViewCell: UITableViewCell {
 
@@ -38,9 +39,24 @@ class EventsTableViewCell: UITableViewCell {
         }
     }
     @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var buttonContainerView: UIView!{
+        didSet{
+            buttonContainerView.layer.shadowOffset = CGSize(width: 0, height: 4)
+            buttonContainerView.layer.shadowColor = UIColor.gray.cgColor
+            buttonContainerView.layer.shadowRadius = 5
+            buttonContainerView.layer.shadowOpacity = 0.3
+        }
+    }
+    @IBOutlet weak var addButton: UIButton!
+    @IBAction func addButtonPressed(_ sender: Any) {
+        delegate.didPressButton(at: index)
+    }
     
+    var index: IndexPath!
+    var delegate: EventsTableViewCellDelegate!
     var event: EventDataModel!{
         didSet{
+            setButton()
             if event.images!.count != 0{
                 cellImageView.kf.setImage(with: Networking.getImageURL(event.images![0].thumbnailPath!))
             }
@@ -77,8 +93,51 @@ class EventsTableViewCell: UITableViewCell {
         }
     }
     
-    var date: Date!
+    var likeButton: FaveButton!{
+        didSet{
+            likeButton.delegate = self
+            likeButton.selectedColor = .mainOrange
+            buttonContainerView.addSubview(likeButton)
+            likeButton.isUserInteractionEnabled = false
+            likeButton.setSelected(selected: event.isLiked! == "1", animated: false)
+            addButton.isHidden = true
+            likeView = UIView()
+        }
+    }
+    var likeView: UIView!{
+        didSet{
+            likeView.isUserInteractionEnabled = true
+            likeView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(didPressLike)))
+            buttonContainerView.addSubview(likeView)
+        }
+    }
     
+    func setButton(){
+        if event.type! == "passed"{
+            if likeButton == nil{
+                likeButton = FaveButton(frame: addButton.frame, faveIconNormal: UIImage(named: "heart"))
+            }
+            else{
+                likeButton.isHidden = false
+                likeView.isHidden = false
+                addButton.isHidden = true
+                likeButton.setSelected(selected: event.isLiked! == "1", animated: false)
+            }
+        }
+        else{
+            if likeButton != nil{
+                likeButton.isHidden = true
+                likeView.isHidden = true
+                addButton.isHidden = false
+            }
+        }
+    }
+    
+    @objc func didPressLike(){
+        delegate.didPressButton(at: index)
+    }
+    
+    var date: Date!
     
     @objc func shouldUpdateTime(){
         if type != .pastEvent{
@@ -97,12 +156,32 @@ class EventsTableViewCell: UITableViewCell {
         super.awakeFromNib()
         backgroundColor = .clear
         selectionStyle = .none
+        NotificationCenter.default.addObserver(self, selector: #selector(likeStatus(_:)), name: NSNotification.Name("EventLikeChanged"), object: nil)
+    }
+    
+    @objc func likeStatus(_ notification: Notification){
+        let eventID: Int = notification.userInfo!["id"] as! Int
+        if let value = notification.userInfo!["here"] as? Bool{
+            if value{
+                if eventID == event.id!{
+                    event.totalLikes = (notification.userInfo!["count"] as! Int)
+                    event.isLiked = (notification.userInfo!["liked"] as! Bool) ? "1" : "0"
+                    daysLabel.text = "\(event.totalLikes!)"
+                    likeButton.setSelected(selected: event.isLiked! == "1", animated: true)
+                }
+            }
+        }
     }
     
     override func layoutSubviews() {
         super.layoutSubviews()
         circularIndicatorView.layer.cornerRadius = circularIndicatorView.frame.size.width / 2
         dateContainerView.layer.cornerRadius = dateContainerView.frame.size.height / 2
+        buttonContainerView.layer.cornerRadius = buttonContainerView.frame.width / 2
+        if likeButton != nil{
+            likeView.frame = addButton.frame
+            likeButton.frame = addButton.frame
+        }
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -111,4 +190,8 @@ class EventsTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
+}
+
+protocol EventsTableViewCellDelegate {
+    func didPressButton(at index: IndexPath)
 }

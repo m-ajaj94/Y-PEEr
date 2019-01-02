@@ -38,6 +38,7 @@ class ProfileViewController: ParentViewController {
     
     @IBAction func didPressSignout(_ sender: Any) {
         UserCache.signout()
+        NotificationCenter.default.post(name: NSNotification.Name("Signout"), object: nil, userInfo: nil)
         dismiss(animated: true, completion: nil)
     }
     @IBAction func didPressDone(_ sender: Any) {

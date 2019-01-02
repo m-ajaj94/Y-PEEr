@@ -24,8 +24,8 @@ public class EventDataModel: Codable {
     public let title, description, createdAt, updatedAt: String?
     public let location, startTime, startDate, endDate: String?
     public let posted: Int?
-    public let isLiked, isViewed: String?
-    public let totalViews, totalLikes: Int?
+    public var isLiked, isViewed: String?
+    public var totalViews, totalLikes: Int?
     public let images: [ImageModel]?
     public let type: String?
     

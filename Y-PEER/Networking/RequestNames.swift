@@ -26,6 +26,10 @@ enum RequestNames: String{
     case gallery = "getGallery"
     
     case getEvents = "getevents"
+    case formEvent = "getformforuser"
+    case likeEvent = "like_event"
+    case dislikeEvent = "unlike_event"
+    case submitForm = "addanswer"
     
     case getQuizzes = "getquizzes"
     

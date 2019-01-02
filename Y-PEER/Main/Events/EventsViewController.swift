@@ -142,6 +142,28 @@ class EventsViewController: ParentViewController {
         tableView.addInfiniteScroll { (tableView) in
             self.moreRequest()
         }
+        NotificationCenter.default.addObserver(self, selector: #selector(likeStatus(_:)), name: NSNotification.Name("EventLikeChanged"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(userDidSignout), name: NSNotification.Name("Signout"), object: nil)
+    }
+    
+    @objc func userDidSignout(){
+        requestData()
+    }
+    
+    @objc func likeStatus(_ notification: Notification){
+        let eventID: Int = notification.userInfo!["id"] as! Int
+        for event in events{
+            if eventID == event.id!{
+                event.totalLikes = (notification.userInfo!["count"] as! Int)
+                event.isLiked = (notification.userInfo!["liked"] as! Bool) ? "1" : "0"
+            }
+        }
+        if let value = notification.userInfo!["here"] as? Bool{
+            if value{
+                return
+            }
+        }
+        tableView.reloadData()
     }
     
     override func didPressRetry() {
@@ -212,7 +234,7 @@ class EventsViewController: ParentViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let controller = segue.destination as! EventDetailsViewController
-        controller.event = data[selectedIndex.row]
+        controller.event = events[selectedIndex.row]
         if events[selectedIndex.row].type! == "passed"{
             controller.type = PostType.pastEvent
         }
@@ -249,9 +271,63 @@ extension EventsViewController: UITableViewDelegate, UITableViewDataSource{
                 cell.type = PostType.event
             }
             cell.event = events[indexPath.row]
+            cell.index = indexPath
+            cell.delegate = self
             return cell
         }
         return UITableViewCell()
     }
     
+}
+
+extension EventsViewController: EventsTableViewCellDelegate{
+    func didPressButton(at index: IndexPath) {
+        if UserCache.isLoggedIn{
+            let event = events[index.row]
+            if event.type! == "passed"{
+                if event.isLiked! == "1"{
+                    Networking.events.dislikeEvent(["event_id":event.id!,"user_id":UserCache.userID]) { (model) in
+                        if model != nil{
+                            if model!.code! == "1"{
+                                NotificationCenter.default.post(name: NSNotification.Name("EventLikeChanged"), object: nil, userInfo: ["id":event.id!,"count":model!.data!.likesCount!, "liked":false, "here":true])
+                            }
+                            else{
+                                Toast(text: model!.message!).show()
+                            }
+                        }
+                        else{
+                            Toast(text: "ERROR CONNECT MESSAGE".localized).show()
+                        }
+                    }
+                }
+                else{
+                    Networking.events.likeEvent(["event_id":event.id!,"user_id":UserCache.userID]) { (model) in
+                        if model != nil{
+                            if model!.code! == "1"{
+                                NotificationCenter.default.post(name: NSNotification.Name("EventLikeChanged"), object: nil, userInfo: ["id":event.id!,"count":model!.data!.likesCount!, "liked":true, "here":true])
+                            }
+                            else{
+                                Toast(text: model!.message!).show()
+                            }
+                        }
+                        else{
+                            Toast(text: "ERROR CONNECT MESSAGE".localized).show()
+                        }
+                    }
+                }
+            }
+            else{
+                let navController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "EventNavigationController") as! UINavigationController
+                let controller = navController.viewControllers[0] as! EventApplyFormViewController
+                controller.eventID = events[index.row].id!
+                present(navController, animated: true, completion: nil)
+            }
+        }
+        else{
+            let navController = UIStoryboard(name: "User", bundle: nil).instantiateInitialViewController() as! UINavigationController
+            let controller = navController.viewControllers[0] as! SigninViewController
+            controller.isModal = true
+            present(navController, animated: true, completion: nil)
+        }
+    }
 }

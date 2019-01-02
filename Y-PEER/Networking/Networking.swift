@@ -226,6 +226,50 @@ struct Networking{
                 }
             }
         }
+        static func getForm(_ params: [String:Any], _ completionHandler: @escaping (FormGeneralModel?)->()){
+            Networking.post(.formEvent, params) { (data) in
+                if data == nil{
+                    completionHandler(nil)
+                }
+                else{
+                    let model = try? JSONDecoder().decode(FormGeneralModel.self, from: data!)
+                    completionHandler(model)
+                }
+            }
+        }
+        static func likeEvent(_ params: [String:Any], _ completionHandler: @escaping (LikeGeneralModel?)->()){
+            Networking.post(.likeEvent, params) { (data) in
+                if data == nil{
+                    completionHandler(nil)
+                }
+                else{
+                    let model = try? JSONDecoder().decode(LikeGeneralModel.self, from: data!)
+                    completionHandler(model)
+                }
+            }
+        }
+        static func dislikeEvent(_ params: [String:Any], _ completionHandler: @escaping (LikeGeneralModel?)->()){
+            Networking.post(.dislikeEvent, params) { (data) in
+                if data == nil{
+                    completionHandler(nil)
+                }
+                else{
+                    let model = try? JSONDecoder().decode(LikeGeneralModel.self, from: data!)
+                    completionHandler(model)
+                }
+            }
+        }
+        static func submitForm(_ params: [String:Any], _ completionHandler: @escaping (GenericModel?)->()){
+            Networking.post(.submitForm, params) { (data) in
+                if data == nil{
+                    completionHandler(nil)
+                }
+                else{
+                    let model = try? JSONDecoder().decode(GenericModel.self, from: data!)
+                    completionHandler(model)
+                }
+            }
+        }
     }
     
     struct quiz{

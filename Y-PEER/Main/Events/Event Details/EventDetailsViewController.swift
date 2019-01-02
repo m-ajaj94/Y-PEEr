@@ -8,8 +8,15 @@
 
 import UIKit
 import FlexiblePageControl
+import FaveButton
+import Toaster
 
-class EventDetailsViewController: ParentViewController {
+class EventDetailsViewController: ParentViewController, FaveButtonDelegate {
+    
+    func faveButton(_ faveButton: FaveButton, didSelected selected: Bool) {
+        
+    }
+    
 
     @IBOutlet weak var scrollView: UIScrollView!{
         didSet{
@@ -43,7 +50,7 @@ class EventDetailsViewController: ParentViewController {
     
     
     @IBAction func eventButtonPressed(_ sender: Any) {
-        
+        performSegue(withIdentifier: "ShowForm", sender: self)
     }
     
     var type: PostType!
@@ -72,6 +79,21 @@ class EventDetailsViewController: ParentViewController {
         super.viewDidLoad()
         pageControl = FlexiblePageControl()
         setData()
+        setButton()
+        NotificationCenter.default.addObserver(self, selector: #selector(userDidSignout), name: NSNotification.Name("Signout"), object: nil)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "ShowForm"{
+            let navController = segue.destination as! UINavigationController
+            let controller = navController.viewControllers[0] as! EventApplyFormViewController
+            controller.eventID = event.id!
+        }
+    }
+    
+    @objc func userDidSignout(){
+        event.isLiked = "0"
+        likeButton.setSelected(selected: false, animated: false)
     }
     
     var date: Date!
@@ -120,6 +142,83 @@ class EventDetailsViewController: ParentViewController {
         }
     }
     
+    var likeButton: FaveButton!{
+        didSet{
+            likeButton.delegate = self
+            likeButton.selectedColor = .mainOrange
+            titleContainerView.addSubview(likeButton)
+            likeButton.isUserInteractionEnabled = false
+            likeButton.setSelected(selected: event.isLiked! == "1", animated: false)
+            eventButton.isHidden = true
+            likeView = UIView()
+        }
+    }
+    var likeView: UIView!{
+        didSet{
+            likeView.isUserInteractionEnabled = true
+            likeView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(didPressLike)))
+            titleContainerView.addSubview(likeView)
+        }
+    }
+    
+    func setButton(){
+        if event.type! == "passed"{
+            likeButton = FaveButton(frame: eventButton.frame, faveIconNormal: UIImage(named: "heart"))
+        }
+        else{
+            
+        }
+    }
+    
+    @objc func didPressLike(){
+        if !UserCache.isLoggedIn{
+            let navController = UIStoryboard(name: "User", bundle: nil).instantiateInitialViewController() as! UINavigationController
+            let controller = navController.viewControllers[0] as! SigninViewController
+            controller.isModal = true
+            present(navController, animated: true, completion: nil)
+        }
+        else{
+            if event.isLiked! == "1"{
+                Networking.events.dislikeEvent(["event_id":event.id!,"user_id":UserCache.userID]) { (model) in
+                    if model != nil{
+                        if model!.code! == "1"{
+                            self.likeButton.setSelected(selected: false, animated: true)
+                            self.firstLabel.text = "\(model!.data!.likesCount!)"
+                            self.event.isLiked! = "0"
+                            self.event.totalLikes = model!.data!.likesCount!
+                            NotificationCenter.default.post(name: NSNotification.Name("EventLikeChanged"), object: nil, userInfo: ["id":self.event.id!,"count":model!.data!.likesCount!, "liked":false])
+                        }
+                        else{
+                            Toast(text: model!.message!).show()
+                        }
+                    }
+                    else{
+                        Toast(text: "ERROR CONNECT MESSAGE".localized).show()
+                    }
+                }
+            }
+            else{
+                Networking.events.likeEvent(["event_id":event.id!,"user_id":UserCache.userID]) { (model) in
+                    if model != nil{
+                        if model!.code! == "1"{
+                            self.likeButton.setSelected(selected: true, animated: true)
+                            self.firstLabel.text = "\(model!.data!.likesCount!)"
+                            self.event.isLiked! = "1"
+                            self.event.totalLikes = model!.data!.likesCount!
+                            NotificationCenter.default.post(name: NSNotification.Name("EventLikeChanged"), object: nil, userInfo: ["id":self.event.id!,"count":model!.data!.likesCount!, "liked":true])
+                        }
+                        else{
+                            Toast(text: model!.message!).show()
+                        }
+                    }
+                    else{
+                        Toast(text: "ERROR CONNECT MESSAGE".localized).show()
+                    }
+                }
+            }
+        }
+    }
+    
     @objc func shouldUpdateTime(){
         let now = Date()
         let dif = Calendar.current.dateComponents([.day, .hour, .minute, .second], from: now, to: date)
@@ -131,6 +230,10 @@ class EventDetailsViewController: ParentViewController {
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
+        if likeButton != nil{
+            likeButton.frame = eventButton.frame
+            likeView.frame = eventButton.frame
+        }
         pageControl.frame.origin = CGPoint(x: view.frame.midX - pageControl.frame.size.width / 2, y: collectionView.frame.origin.y + height - pageControl.frame.size.height)
         collectionView.reloadData()
     }

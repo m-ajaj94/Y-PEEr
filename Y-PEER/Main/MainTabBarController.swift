@@ -89,27 +89,37 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
             switch selectedTab{
             case 0:
                 if let navigationController = viewControllers![selectedTab] as? UINavigationController, let controller = navigationController.viewControllers.last! as? PostsViewController{
-                    controller.tableView.setContentOffset(CGPoint(x: controller.tableView.contentOffset.x, y: 0), animated: true)
+                    if controller.tableView != nil{
+                        controller.tableView.setContentOffset(CGPoint(x: controller.tableView.contentOffset.x, y: 0), animated: true)
+                    }
                 }
                 break
             case 1:
                 if let navigationController = viewControllers![selectedTab] as? UINavigationController, let controller = navigationController.viewControllers.last! as? GalleryViewController{
-                    controller.collectionView.setContentOffset(CGPoint(x: controller.collectionView.contentOffset.x, y: 0), animated: true)
+                    if controller.collectionView != nil{
+                        controller.collectionView.setContentOffset(CGPoint(x: controller.collectionView.contentOffset.x, y: 0), animated: true)
+                    }
                 }
                 break
             case 2:
                 if let navigationController = viewControllers![selectedTab] as? UINavigationController, let controller = navigationController.viewControllers.last! as? EventsViewController{
-                    controller.tableView.setContentOffset(CGPoint(x: controller.tableView.contentOffset.x, y: 0), animated: true)
+                    if controller.tableView != nil{
+                        controller.tableView.setContentOffset(CGPoint(x: controller.tableView.contentOffset.x, y: 0), animated: true)
+                    }
                 }
                 break
             case 3:
                 if let navigationController = viewControllers![selectedTab] as? UINavigationController, let controller = navigationController.viewControllers.last! as? IssuesViewController{
-                    controller.collectionView.setContentOffset(CGPoint(x: controller.collectionView.contentOffset.x, y: 0), animated: true)
+                    if controller.collectionView != nil{
+                        controller.collectionView.setContentOffset(CGPoint(x: controller.collectionView.contentOffset.x, y: 0), animated: true)
+                    }
                 }
                 break
             case 4:
                 if let navigationController = viewControllers![selectedTab] as? UINavigationController, let controller = navigationController.viewControllers.last! as? QuizzesViewController{
-                    controller.tableView.setContentOffset(CGPoint(x: controller.tableView.contentOffset.x, y: 0), animated: true)
+                    if controller.tableView != nil{
+                        controller.tableView.setContentOffset(CGPoint(x: controller.tableView.contentOffset.x, y: 0), animated: true)
+                    }
                 }
                 break
             default:

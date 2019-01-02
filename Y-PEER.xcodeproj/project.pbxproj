@@ -115,6 +115,9 @@
 		F33DFA77214A074500E3194C /* SideMenu.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F33DFA76214A074500E3194C /* SideMenu.storyboard */; };
 		F33DFA79214A075500E3194C /* SideMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33DFA78214A075500E3194C /* SideMenuViewController.swift */; };
 		F33DFA7D214A145600E3194C /* UIColor Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33DFA7C214A145600E3194C /* UIColor Extension.swift */; };
+		F340CA6021DBC00F00313E69 /* FormModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F340CA5F21DBC00F00313E69 /* FormModel.swift */; };
+		F34140FA21DCE1D20075BA85 /* FormRadioTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F34140F821DCE1D20075BA85 /* FormRadioTableViewCell.swift */; };
+		F34140FB21DCE1D20075BA85 /* FormRadioTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F34140F921DCE1D20075BA85 /* FormRadioTableViewCell.xib */; };
 		F354AB0B21773D29008B9974 /* image-0.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F354AB0621773D29008B9974 /* image-0.jpg */; };
 		F354AB0C21773D29008B9974 /* image-1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F354AB0721773D29008B9974 /* image-1.jpg */; };
 		F354AB0D21773D29008B9974 /* image-3.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F354AB0821773D29008B9974 /* image-3.jpg */; };
@@ -278,6 +281,9 @@
 		F33DFA76214A074500E3194C /* SideMenu.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SideMenu.storyboard; sourceTree = "<group>"; };
 		F33DFA78214A075500E3194C /* SideMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuViewController.swift; sourceTree = "<group>"; };
 		F33DFA7C214A145600E3194C /* UIColor Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor Extension.swift"; sourceTree = "<group>"; };
+		F340CA5F21DBC00F00313E69 /* FormModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormModel.swift; sourceTree = "<group>"; };
+		F34140F821DCE1D20075BA85 /* FormRadioTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormRadioTableViewCell.swift; sourceTree = "<group>"; };
+		F34140F921DCE1D20075BA85 /* FormRadioTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FormRadioTableViewCell.xib; sourceTree = "<group>"; };
 		F354AB0621773D29008B9974 /* image-0.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "image-0.jpg"; sourceTree = "<group>"; };
 		F354AB0721773D29008B9974 /* image-1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "image-1.jpg"; sourceTree = "<group>"; };
 		F354AB0821773D29008B9974 /* image-3.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "image-3.jpg"; sourceTree = "<group>"; };
@@ -530,6 +536,7 @@
 		F329F30A21D7F59D00460A6B /* Cell */ = {
 			isa = PBXGroup;
 			children = (
+				F34140F721DCE1A90075BA85 /* Radio Cell */,
 				F329F30B21D7F73200460A6B /* Text Cell */,
 			);
 			path = Cell;
@@ -592,6 +599,7 @@
 				F33B2D3F21D3F92F007C728D /* LikeModel.swift */,
 				F33B2D4F21D6772B007C728D /* StoriesModel.swift */,
 				F329F32621D80B6B00460A6B /* AboutModel.swift */,
+				F340CA5F21DBC00F00313E69 /* FormModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -825,6 +833,15 @@
 				F36391D5216CAB43005F747C /* UIViewController Extensions.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		F34140F721DCE1A90075BA85 /* Radio Cell */ = {
+			isa = PBXGroup;
+			children = (
+				F34140F821DCE1D20075BA85 /* FormRadioTableViewCell.swift */,
+				F34140F921DCE1D20075BA85 /* FormRadioTableViewCell.xib */,
+			);
+			path = "Radio Cell";
 			sourceTree = "<group>";
 		};
 		F36391CB216BE3B0005F747C /* Upcoming Event */ = {
@@ -1114,6 +1131,7 @@
 				F3131EF7216BB70700B1200E /* PostImageTableViewCell.xib in Resources */,
 				F3D0EECB214E0AB7006739B9 /* IssuesHeaderCollectionReusableView.xib in Resources */,
 				F329F32221D8036400460A6B /* kinan.jpg in Resources */,
+				F34140FB21DCE1D20075BA85 /* FormRadioTableViewCell.xib in Resources */,
 				F329F30321D7DA2800460A6B /* wrong.png in Resources */,
 				F33DFA6C2149FB5100E3194C /* LaunchScreen.storyboard in Resources */,
 				F3131EFC216BB77100B1200E /* PostsQuizTableViewCell.xib in Resources */,
@@ -1198,6 +1216,7 @@
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/Cache/Cache.framework",
 				"${BUILT_PRODUCTS_DIR}/FMMosaicLayout/FMMosaicLayout.framework",
+				"${BUILT_PRODUCTS_DIR}/FaveButton/FaveButton.framework",
 				"${BUILT_PRODUCTS_DIR}/FlexiblePageControl/FlexiblePageControl.framework",
 				"${BUILT_PRODUCTS_DIR}/Imaginary/Imaginary.framework",
 				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
@@ -1216,6 +1235,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Cache.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FMMosaicLayout.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FaveButton.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FlexiblePageControl.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Imaginary.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
@@ -1266,6 +1286,7 @@
 				F30E3ECC216E63F400F75EC0 /* SigninViewController.swift in Sources */,
 				F329F2F721D7C6C000460A6B /* StoriesPopupViewController.swift in Sources */,
 				F329F30921D7F58D00460A6B /* EventApplyFormViewController.swift in Sources */,
+				F34140FA21DCE1D20075BA85 /* FormRadioTableViewCell.swift in Sources */,
 				F3B0BAFD2173A5EA003BE09D /* EventDetailsViewController.swift in Sources */,
 				F33B2D3821D315AC007C728D /* EventsModel.swift in Sources */,
 				F3A22B872174ED8B00F5325F /* QuizAnswerTableViewCell.swift in Sources */,
@@ -1304,6 +1325,7 @@
 				F329F32721D80B6B00460A6B /* AboutModel.swift in Sources */,
 				F30E3ED5216EC17000F75EC0 /* UserCache.swift in Sources */,
 				F36391D6216CAB43005F747C /* UIViewController Extensions.swift in Sources */,
+				F340CA6021DBC00F00313E69 /* FormModel.swift in Sources */,
 				F323F9BF21CAB0E5002BF331 /* IssuesModel.swift in Sources */,
 				F33B2D5021D6772B007C728D /* StoriesModel.swift in Sources */,
 				F3B1E4E8214DAE1700832FE7 /* MainTabBarController.swift in Sources */,
