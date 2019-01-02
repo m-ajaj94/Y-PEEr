@@ -67,16 +67,10 @@ class PostImageTableViewCell: UITableViewCell {
         didSet{
             images = post.images!
             layoutIfNeeded()
-            if post.totalLikes != nil{
-                likeCountLabel.text = "\(post.totalLikes!)"
-            }
-            if post.isLiked != nil{
-                if post.isLiked! != "0"{
-                    //TODO: Like Status
-                }
-            }
+            likeCountLabel.text = "\(post.totalLikes!)" + " " + "Likes".localized
             mainLabel.text = post.title!
             secondaryLabel.text = post.description!
+            likeButtonHeart.setSelected(selected: post.isLiked! == "1", animated: false)
             let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
             timeLabel.text = (dateFormatter.date(from: post.createdAt!)! as NSDate).timeAgo()
@@ -123,7 +117,7 @@ class PostImageTableViewCell: UITableViewCell {
             return
         }
         post.isLiked = notification.userInfo!["liked"] as! Bool ? "1" : "0"
-        likeCountLabel.text = "\((notification.userInfo!["count"] as! Int))"
+        likeCountLabel.text = "\((notification.userInfo!["count"] as! Int))" + " " + "Likes".localized
         let isHere: Bool = notification.userInfo!["here"] != nil
         if notification.userInfo!["liked"] as! Bool{
             likeButtonHeart.setSelected(selected: true, animated: isHere)

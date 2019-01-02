@@ -91,7 +91,7 @@ class PostDetailsViewController: ParentViewController {
                     if model != nil && model!.code! == "1"{
                         self.post.isLiked = "1"
                         self.post.totalLikes = model!.data!.likesCount!
-                        self.likesCountLabel.text = "\(model!.data!.likesCount!)"
+                        self.likesCountLabel.text = "\(model!.data!.likesCount!)" + " " + "Likes".localized
                         self.likeButtonHeart.setSelected(selected: true, animated: true)
                         NotificationCenter.default.post(name: NSNotification.Name("LikeChanged"), object: nil, userInfo: ["id":self.post.id!,"count":model!.data!.likesCount!, "liked":true])
                     }
@@ -110,7 +110,7 @@ class PostDetailsViewController: ParentViewController {
                     if model != nil && model!.code! == "1"{
                         self.post.isLiked = "1"
                         self.post.totalLikes = model!.data!.likesCount!
-                        self.likesCountLabel.text = "\(model!.data!.likesCount!)"
+                        self.likesCountLabel.text = "\(model!.data!.likesCount!)" + " " + "Likes".localized
                         self.likeButtonHeart.setSelected(selected: false, animated: true)
                         NotificationCenter.default.post(name: NSNotification.Name("LikeChanged"), object: nil, userInfo: ["id":self.post.id!,"count":model!.data!.likesCount!, "liked":false])
                     }
@@ -141,7 +141,7 @@ class PostDetailsViewController: ParentViewController {
         pageControl = FlexiblePageControl()
         titleLabel.text = post.title!
         descriptionLabel.text = post.description!
-        likesCountLabel.text = "\(post.totalLikes!)"
+        likesCountLabel.text = "\(post.totalLikes!)" + " " + "Likes".localized
         images = post.images!
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"

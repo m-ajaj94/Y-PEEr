@@ -57,7 +57,7 @@ struct Networking{
         }
     }
     
-    private static func get(_ request: RequestNames, _ params: [String:Any],_ completionHandler: @escaping (Data?)->()){
+    private static func get(_ request: RequestNames, _ params: [String:Any]?,_ completionHandler: @escaping (Data?)->()){
         let url = getURL(request)
         Alamofire.request(url, method: .get, parameters: params, encoding: JSONEncoding.default, headers: headers).responseJSON { (response) in
             DispatchQueue.main.async {
@@ -72,7 +72,7 @@ struct Networking{
     }
     
     static func getAboutUs(_ completionHandler: @escaping (AboutModel?)->()){
-        Networking.get(.getAbout, [:]) { (data) in
+        Networking.get(.getAbout, nil) { (data) in
             if data == nil{
                 completionHandler(nil)
             }
@@ -83,7 +83,7 @@ struct Networking{
         }
     }
     static func getCities(_ completionHandler: @escaping (CitiesModel?)->()){
-        Networking.get(.getCities, [:]) { (data) in
+        Networking.get(.getCities, nil) { (data) in
             if data == nil{
                 completionHandler(nil)
             }
@@ -191,7 +191,7 @@ struct Networking{
     
     struct issues{
         static func getIssues(_ completionHandler: @escaping (IssuesModel?)->()){
-            Networking.get(.getIssues, [:]) { (data) in
+            Networking.get(.getIssues, nil) { (data) in
                 if data == nil{
                     completionHandler(nil)
                 }
