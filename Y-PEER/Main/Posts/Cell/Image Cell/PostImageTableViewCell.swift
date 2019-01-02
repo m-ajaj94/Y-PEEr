@@ -9,6 +9,7 @@
 import UIKit
 import Kingfisher
 import NSDate_TimeAgo
+import FaveButton
 
 class PostImageTableViewCell: UITableViewCell {
 
@@ -57,6 +58,8 @@ class PostImageTableViewCell: UITableViewCell {
                 collectionViewHeightConstraint.constant = UIScreen.main.bounds.size.width
             }
             layoutIfNeeded()
+            likeButtonHeart.frame = likeButton.frame
+            likeView.frame = likeButton.frame
         }
     }
     private let spacing: CGFloat = 4
@@ -77,21 +80,41 @@ class PostImageTableViewCell: UITableViewCell {
             let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
             timeLabel.text = (dateFormatter.date(from: post.createdAt!)! as NSDate).timeAgo()
-            if post.isLiked! == "1"{
-                self.likeButton.setTitle("😍", for: .normal)
-            }
-            else{
-                self.likeButton.setTitle("😀", for: .normal)
-                
-            }
+            likeButtonHeart.setSelected(selected: post.isLiked! == "1", animated: false)
         }
+    }
+    
+    var likeButtonHeart: FaveButton!{
+        didSet{
+            likeButtonHeart.selectedColor = .mainOrange
+            shadowView.addSubview(likeButtonHeart)
+            likeButton.isUserInteractionEnabled = false
+            likeButton.isHidden = true
+            likeView = UIView()
+        }
+    }
+    var likeView: UIView!{
+        didSet{
+            likeView.isUserInteractionEnabled = true
+            likeView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(didPressLike)))
+            shadowView.addSubview(likeView)
+        }
+    }
+    
+    @objc func didPressLike(){
+        delegate.didPressLike(at: index)
     }
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        if likeButtonHeart == nil{
+            likeButtonHeart = FaveButton(frame: likeButton.frame, faveIconNormal: UIImage(named: "heart"))
+        }
         selectionStyle = .none
         backgroundColor = .clear
         NotificationCenter.default.addObserver(self, selector: #selector(likeStatus(_:)), name: NSNotification.Name("LikeChanged"), object: nil)
+        likeButtonHeart.frame = likeButton.frame
+        likeView.frame = likeButton.frame
     }
     
     @objc func likeStatus(_ notification: Notification){
@@ -99,18 +122,28 @@ class PostImageTableViewCell: UITableViewCell {
         if post.id! != postID{
             return
         }
+        post.isLiked = notification.userInfo!["liked"] as! Bool ? "1" : "0"
         likeCountLabel.text = "\((notification.userInfo!["count"] as! Int))"
+        let isHere: Bool = notification.userInfo!["here"] != nil
         if notification.userInfo!["liked"] as! Bool{
-            likeButton.setTitle("😍", for: .normal)
+            likeButtonHeart.setSelected(selected: true, animated: isHere)
         }
         else{
-            likeButton.setTitle("😀", for: .normal)
+            likeButtonHeart.setSelected(selected: false, animated: isHere)
         }
     }
     
     override func layoutSubviews() {
         super.layoutSubviews()
         collectionView.reloadData()
+        likeButtonHeart.frame = likeButton.frame
+        likeView.frame = likeButton.frame
+    }
+    
+    override func layoutIfNeeded() {
+        super.layoutIfNeeded()
+        likeButtonHeart.frame = likeButton.frame
+        likeView.frame = likeButton.frame
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

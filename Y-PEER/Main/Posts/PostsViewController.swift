@@ -273,7 +273,7 @@ extension PostsViewController: SkeletonTableViewDataSource, SkeletonTableViewDel
                     if model != nil && model!.code! == "1"{
                         self.posts[index.row].isLiked = "1"
                         self.posts[index.row].totalLikes = model!.data!.likesCount!
-                        NotificationCenter.default.post(name: NSNotification.Name("LikeChanged"), object: nil, userInfo: ["id":self.posts[index.row].id!,"count":model!.data!.likesCount!, "liked":true])
+                        NotificationCenter.default.post(name: NSNotification.Name("LikeChanged"), object: nil, userInfo: ["id":self.posts[index.row].id!,"count":model!.data!.likesCount!, "liked":true, "here":true])
                     }
                     else{
                         if model == nil{
@@ -290,7 +290,7 @@ extension PostsViewController: SkeletonTableViewDataSource, SkeletonTableViewDel
                     if model != nil && model!.code! == "1"{
                         self.posts[index.row].isLiked = "1"
                         self.posts[index.row].totalLikes = model!.data!.likesCount!
-                        NotificationCenter.default.post(name: NSNotification.Name("LikeChanged"), object: nil, userInfo: ["id":self.posts[index.row].id!,"count":model!.data!.likesCount!, "liked":false])
+                        NotificationCenter.default.post(name: NSNotification.Name("LikeChanged"), object: nil, userInfo: ["id":self.posts[index.row].id!,"count":model!.data!.likesCount!, "liked":false, "here":true])
                     }
                     else{
                         if model == nil{
