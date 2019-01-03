@@ -139,6 +139,8 @@ extension MainTabBarController: SideMenuViewControllerDelegate{
     }
     
     func didSelectSearch() {
+        let controller = UIStoryboard(name: "Search", bundle: nil).instantiateInitialViewController()!
+        present(controller, animated: true, completion: nil)
     }
     
     func didSelectAboutUs() {

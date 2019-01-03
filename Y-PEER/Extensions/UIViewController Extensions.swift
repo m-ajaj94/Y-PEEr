@@ -86,6 +86,16 @@ extension UIViewController{
         view.addSubview(loadingView)
     }
     
+    
+    func showLoading(below tempView: UIView){
+        let loadingView = LoadingView.instanciateFromNib()
+        loadingView.indicator.startAnimating()
+        loadingView.label.text = "Loading...".localized
+        loadingView.tag = 2
+        loadingView.frame = CGRect(origin: .zero, size: view.frame.size)
+        view.insertSubview(loadingView, belowSubview: tempView)
+    }
+    
     func removeLoading(){
         view.viewWithTag(2)!.removeFromSuperview()
     }

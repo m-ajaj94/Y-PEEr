@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		7068CC308390E98D046B8106 /* Pods_Y_PEER.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0362A44C5C8DFFCD2E134C3E /* Pods_Y_PEER.framework */; };
+		F3054A1C21DEB334005C8515 /* cake.png in Resources */ = {isa = PBXBuildFile; fileRef = F3054A1921DEB333005C8515 /* cake.png */; };
+		F3054A1D21DEB334005C8515 /* gender.png in Resources */ = {isa = PBXBuildFile; fileRef = F3054A1A21DEB333005C8515 /* gender.png */; };
+		F3054A1E21DEB334005C8515 /* locationIconProfile.png in Resources */ = {isa = PBXBuildFile; fileRef = F3054A1B21DEB333005C8515 /* locationIconProfile.png */; };
 		F305B91B2159371F005A4818 /* CoreTeamCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F305B9192159371F005A4818 /* CoreTeamCollectionViewCell.swift */; };
 		F305B91C2159371F005A4818 /* CoreTeamCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F305B91A2159371F005A4818 /* CoreTeamCollectionViewCell.xib */; };
 		F30E3EBE216E0FDF00F75EC0 /* AboutUs.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F30E3EBD216E0FDF00F75EC0 /* AboutUs.storyboard */; };
@@ -118,6 +121,13 @@
 		F340CA6021DBC00F00313E69 /* FormModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F340CA5F21DBC00F00313E69 /* FormModel.swift */; };
 		F34140FA21DCE1D20075BA85 /* FormRadioTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F34140F821DCE1D20075BA85 /* FormRadioTableViewCell.swift */; };
 		F34140FB21DCE1D20075BA85 /* FormRadioTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F34140F921DCE1D20075BA85 /* FormRadioTableViewCell.xib */; };
+		F34140FD21DE27460075BA85 /* key.png in Resources */ = {isa = PBXBuildFile; fileRef = F34140FC21DE27460075BA85 /* key.png */; };
+		F341410021DE71DA0075BA85 /* Search.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F34140FF21DE71DA0075BA85 /* Search.storyboard */; };
+		F341410221DE71F00075BA85 /* SerachViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F341410121DE71F00075BA85 /* SerachViewController.swift */; };
+		F341410421DE73D50075BA85 /* seachIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = F341410321DE73D50075BA85 /* seachIcon.png */; };
+		F341410621DE78420075BA85 /* SearchResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F341410521DE78420075BA85 /* SearchResultsViewController.swift */; };
+		F341410A21DE93D80075BA85 /* SearchResultsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F341410821DE93D80075BA85 /* SearchResultsTableViewCell.swift */; };
+		F341410B21DE93D80075BA85 /* SearchResultsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F341410921DE93D80075BA85 /* SearchResultsTableViewCell.xib */; };
 		F354AB0B21773D29008B9974 /* image-0.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F354AB0621773D29008B9974 /* image-0.jpg */; };
 		F354AB0C21773D29008B9974 /* image-1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F354AB0721773D29008B9974 /* image-1.jpg */; };
 		F354AB0D21773D29008B9974 /* image-3.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F354AB0821773D29008B9974 /* image-3.jpg */; };
@@ -168,6 +178,9 @@
 		02D45C8E86A24096A55086ED /* Pods-Y-PEER.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Y-PEER.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Y-PEER/Pods-Y-PEER.debug.xcconfig"; sourceTree = "<group>"; };
 		0362A44C5C8DFFCD2E134C3E /* Pods_Y_PEER.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Y_PEER.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		304A170E4E59E3209A117E64 /* Pods-Y-PEER.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Y-PEER.release.xcconfig"; path = "Pods/Target Support Files/Pods-Y-PEER/Pods-Y-PEER.release.xcconfig"; sourceTree = "<group>"; };
+		F3054A1921DEB333005C8515 /* cake.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cake.png; sourceTree = "<group>"; };
+		F3054A1A21DEB333005C8515 /* gender.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gender.png; sourceTree = "<group>"; };
+		F3054A1B21DEB333005C8515 /* locationIconProfile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = locationIconProfile.png; sourceTree = "<group>"; };
 		F305B9192159371F005A4818 /* CoreTeamCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreTeamCollectionViewCell.swift; sourceTree = "<group>"; };
 		F305B91A2159371F005A4818 /* CoreTeamCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CoreTeamCollectionViewCell.xib; sourceTree = "<group>"; };
 		F30E3EBD216E0FDF00F75EC0 /* AboutUs.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AboutUs.storyboard; sourceTree = "<group>"; };
@@ -284,6 +297,13 @@
 		F340CA5F21DBC00F00313E69 /* FormModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormModel.swift; sourceTree = "<group>"; };
 		F34140F821DCE1D20075BA85 /* FormRadioTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormRadioTableViewCell.swift; sourceTree = "<group>"; };
 		F34140F921DCE1D20075BA85 /* FormRadioTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FormRadioTableViewCell.xib; sourceTree = "<group>"; };
+		F34140FC21DE27460075BA85 /* key.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = key.png; sourceTree = "<group>"; };
+		F34140FF21DE71DA0075BA85 /* Search.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Search.storyboard; sourceTree = "<group>"; };
+		F341410121DE71F00075BA85 /* SerachViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SerachViewController.swift; sourceTree = "<group>"; };
+		F341410321DE73D50075BA85 /* seachIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = seachIcon.png; sourceTree = "<group>"; };
+		F341410521DE78420075BA85 /* SearchResultsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultsViewController.swift; sourceTree = "<group>"; };
+		F341410821DE93D80075BA85 /* SearchResultsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultsTableViewCell.swift; sourceTree = "<group>"; };
+		F341410921DE93D80075BA85 /* SearchResultsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchResultsTableViewCell.xib; sourceTree = "<group>"; };
 		F354AB0621773D29008B9974 /* image-0.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "image-0.jpg"; sourceTree = "<group>"; };
 		F354AB0721773D29008B9974 /* image-1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "image-1.jpg"; sourceTree = "<group>"; };
 		F354AB0821773D29008B9974 /* image-3.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "image-3.jpg"; sourceTree = "<group>"; };
@@ -383,6 +403,10 @@
 		F30E3EC6216E5D5500F75EC0 /* User */ = {
 			isa = PBXGroup;
 			children = (
+				F3054A1921DEB333005C8515 /* cake.png */,
+				F3054A1A21DEB333005C8515 /* gender.png */,
+				F3054A1B21DEB333005C8515 /* locationIconProfile.png */,
+				F34140FC21DE27460075BA85 /* key.png */,
 				F329F2FA21D7CF6A00460A6B /* check.png */,
 				F30E3ECB216E63F400F75EC0 /* SigninViewController.swift */,
 				F30E3ECD216E79BD00F75EC0 /* SignupViewController.swift */,
@@ -793,6 +817,7 @@
 			isa = PBXGroup;
 			children = (
 				F329F2ED21D7B04600460A6B /* Strings */,
+				F34140FE21DE71CD0075BA85 /* Search */,
 				F33B2D4121D4235B007C728D /* Stories */,
 				F33B2D3121D2C370007C728D /* Views */,
 				F3A22B892175EE1B00F5325F /* background.jpg */,
@@ -842,6 +867,27 @@
 				F34140F921DCE1D20075BA85 /* FormRadioTableViewCell.xib */,
 			);
 			path = "Radio Cell";
+			sourceTree = "<group>";
+		};
+		F34140FE21DE71CD0075BA85 /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				F341410721DE93BB0075BA85 /* Cell */,
+				F341410321DE73D50075BA85 /* seachIcon.png */,
+				F341410121DE71F00075BA85 /* SerachViewController.swift */,
+				F341410521DE78420075BA85 /* SearchResultsViewController.swift */,
+				F34140FF21DE71DA0075BA85 /* Search.storyboard */,
+			);
+			path = Search;
+			sourceTree = "<group>";
+		};
+		F341410721DE93BB0075BA85 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				F341410821DE93D80075BA85 /* SearchResultsTableViewCell.swift */,
+				F341410921DE93D80075BA85 /* SearchResultsTableViewCell.xib */,
+			);
+			path = Cell;
 			sourceTree = "<group>";
 		};
 		F36391CB216BE3B0005F747C /* Upcoming Event */ = {
@@ -1115,12 +1161,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				F329F32521D8036400460A6B /* wannous.jpg in Resources */,
+				F3054A1D21DEB334005C8515 /* gender.png in Resources */,
 				F30E3EBE216E0FDF00F75EC0 /* AboutUs.storyboard in Resources */,
 				F36391CF216BE3C4005F747C /* PostsUpcomingEventTableViewCell.xib in Resources */,
 				F354AB0B21773D29008B9974 /* image-0.jpg in Resources */,
+				F341410021DE71DA0075BA85 /* Search.storyboard in Resources */,
 				F3D0EED0214E3807006739B9 /* IssuesCollectionViewCell.xib in Resources */,
 				F329F30021D7D97800460A6B /* QuizResultTableViewCell.xib in Resources */,
 				F329F32421D8036400460A6B /* coreTeamCover.jpg in Resources */,
+				F3054A1C21DEB334005C8515 /* cake.png in Resources */,
 				F33DFA77214A074500E3194C /* SideMenu.storyboard in Resources */,
 				F3A22B8A2175EE1B00F5325F /* background.jpg in Resources */,
 				F3A22B882174ED8B00F5325F /* QuizAnswerTableViewCell.xib in Resources */,
@@ -1139,6 +1188,7 @@
 				F33B2D4E21D6748B007C728D /* story.png in Resources */,
 				F3B0BAFA21739476003BE09D /* PostDetailsImageCollectionViewCell.xib in Resources */,
 				F329F32321D8036400460A6B /* majd.jpg in Resources */,
+				F341410B21DE93D80075BA85 /* SearchResultsTableViewCell.xib in Resources */,
 				F329F31721D7FDA000460A6B /* DevelopersTableViewCell.xib in Resources */,
 				F354AB0D21773D29008B9974 /* image-3.jpg in Resources */,
 				F354AB0F21773D29008B9974 /* image-4.jpg in Resources */,
@@ -1154,6 +1204,7 @@
 				F3303ED621567ADC00DF4610 /* IssueTableViewCell.xib in Resources */,
 				F30E3EC8216E5D8600F75EC0 /* User.storyboard in Resources */,
 				F33B2D3621D2C39C007C728D /* LoadingView.xib in Resources */,
+				F341410421DE73D50075BA85 /* seachIcon.png in Resources */,
 				F36391DE216CE0AD005F747C /* EventsTableViewCell.xib in Resources */,
 				F329F30F21D7F79D00460A6B /* FormTextTableViewCell.xib in Resources */,
 				F30E3ED9216FBB1000F75EC0 /* SettingsNotificationTableViewCell.xib in Resources */,
@@ -1166,6 +1217,8 @@
 				F354AB0C21773D29008B9974 /* image-1.jpg in Resources */,
 				F3D0EEBE214DEEEC006739B9 /* PostsSkeletonTableViewCell.xib in Resources */,
 				F305B91C2159371F005A4818 /* CoreTeamCollectionViewCell.xib in Resources */,
+				F34140FD21DE27460075BA85 /* key.png in Resources */,
+				F3054A1E21DEB334005C8515 /* locationIconProfile.png in Resources */,
 				F36391D4216CA510005F747C /* PostsTextTableViewCell.xib in Resources */,
 				F30E3ED0216E7E7B00F75EC0 /* 1.png in Resources */,
 				F329F2EC21D7A8AA00460A6B /* girl.png in Resources */,
@@ -1214,6 +1267,7 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-Y-PEER/Pods-Y-PEER-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/AutoInsetter/AutoInsetter.framework",
 				"${BUILT_PRODUCTS_DIR}/Cache/Cache.framework",
 				"${BUILT_PRODUCTS_DIR}/FMMosaicLayout/FMMosaicLayout.framework",
 				"${BUILT_PRODUCTS_DIR}/FaveButton/FaveButton.framework",
@@ -1223,16 +1277,19 @@
 				"${BUILT_PRODUCTS_DIR}/Lightbox/Lightbox.framework",
 				"${BUILT_PRODUCTS_DIR}/NSDate+TimeAgo/NSDate_TimeAgo.framework",
 				"${BUILT_PRODUCTS_DIR}/NVActivityIndicatorView/NVActivityIndicatorView.framework",
+				"${BUILT_PRODUCTS_DIR}/Pageboy/Pageboy.framework",
 				"${BUILT_PRODUCTS_DIR}/Presentr/Presentr.framework",
 				"${BUILT_PRODUCTS_DIR}/SideMenu/SideMenu.framework",
 				"${BUILT_PRODUCTS_DIR}/SkeletonView/SkeletonView.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
+				"${BUILT_PRODUCTS_DIR}/Tabman/Tabman.framework",
 				"${BUILT_PRODUCTS_DIR}/Toaster/Toaster.framework",
 				"${BUILT_PRODUCTS_DIR}/UIScrollView-InfiniteScroll/UIScrollView_InfiniteScroll.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AutoInsetter.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Cache.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FMMosaicLayout.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FaveButton.framework",
@@ -1242,10 +1299,12 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Lightbox.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/NSDate_TimeAgo.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/NVActivityIndicatorView.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Pageboy.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Presentr.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SideMenu.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SkeletonView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Tabman.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Toaster.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/UIScrollView_InfiniteScroll.framework",
 			);
@@ -1286,6 +1345,7 @@
 				F30E3ECC216E63F400F75EC0 /* SigninViewController.swift in Sources */,
 				F329F2F721D7C6C000460A6B /* StoriesPopupViewController.swift in Sources */,
 				F329F30921D7F58D00460A6B /* EventApplyFormViewController.swift in Sources */,
+				F341410621DE78420075BA85 /* SearchResultsViewController.swift in Sources */,
 				F34140FA21DCE1D20075BA85 /* FormRadioTableViewCell.swift in Sources */,
 				F3B0BAFD2173A5EA003BE09D /* EventDetailsViewController.swift in Sources */,
 				F33B2D3821D315AC007C728D /* EventsModel.swift in Sources */,
@@ -1312,6 +1372,7 @@
 				F323F9ED21D25911002BF331 /* CitiesModel.swift in Sources */,
 				F3B1E4EB214DAFD200832FE7 /* ParentViewController.swift in Sources */,
 				F329F32B21D8141900460A6B /* CoreTeamPopupViewController.swift in Sources */,
+				F341410221DE71F00075BA85 /* SerachViewController.swift in Sources */,
 				F3D0EEBD214DEEEC006739B9 /* PostsSkeletonTableViewCell.swift in Sources */,
 				F329F31221D7FD8500460A6B /* DevelopersViewController.swift in Sources */,
 				F33B2D3C21D3B2F2007C728D /* QuizDetailsModel.swift in Sources */,
@@ -1335,6 +1396,7 @@
 				F329F2F921D7CEF300460A6B /* UserPopupViewController.swift in Sources */,
 				F30E3EE4216FC13400F75EC0 /* SettingsLanguageTableViewCell.swift in Sources */,
 				F3131F00216BCF1000B1200E /* PostsImageCollectionViewCell.swift in Sources */,
+				F341410A21DE93D80075BA85 /* SearchResultsTableViewCell.swift in Sources */,
 				F329F32E21D8188D00460A6B /* AboutUsTableViewFooter.swift in Sources */,
 				F3303ED82156C7C000DF4610 /* IssueArticleViewController.swift in Sources */,
 				F3B0BAF921739476003BE09D /* PostDetailsImageCollectionViewCell.swift in Sources */,

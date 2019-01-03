@@ -46,7 +46,9 @@
 "Update Profile" = "Update Profile";
 "Sign in/Register" = "Sign in/Register";
 "Sign in/Register" = "Sign in/Register";
-
+"new password description" = "new password description";
+"sign up description" = "sign up description";
+"New Password" = "New Password";
 //**********Side menu**********
 "About Y-PEER" = "About Y-PEER";
 "Search" = "Search";
@@ -63,6 +65,7 @@
 "Please answer all questions" = "Please answer all questions";
 "Your request was successfully submitted" = "Your request was successfully submitted";
 "The form is not ready yet\nTry again later" = "The form is not ready yet\nTry again later";
+"Submit Request" = "Submit Request";
 
 //**********Posts**********
 "Post" = "Post";
@@ -91,3 +94,6 @@
 //**********About Us**********
 "Core Team" = "Executive Comittee";
 "About Y-PEER" = "About Y-PEER";
+
+
+"No Data Found" = "No Data Found";

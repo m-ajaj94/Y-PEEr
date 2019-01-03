@@ -174,7 +174,7 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="search" translatesAutoresizingMaskIntoConstraints="NO" id="GTV-bl-Zvo">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cake.png" translatesAutoresizingMaskIntoConstraints="NO" id="GTV-bl-Zvo">
                                         <rect key="frame" x="16" y="27" width="25" height="25"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="25" id="bcs-Ya-010"/>
@@ -209,7 +209,7 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="search" translatesAutoresizingMaskIntoConstraints="NO" id="gBz-wP-9kV">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="locationIconProfile.png" translatesAutoresizingMaskIntoConstraints="NO" id="gBz-wP-9kV">
                                         <rect key="frame" x="16" y="27" width="25" height="25"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="gBz-wP-9kV" secondAttribute="height" multiplier="1:1" id="Qzc-Jf-iSK"/>
@@ -244,7 +244,7 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="search" translatesAutoresizingMaskIntoConstraints="NO" id="Zj3-jM-wXb">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="gender.png" translatesAutoresizingMaskIntoConstraints="NO" id="Zj3-jM-wXb">
                                         <rect key="frame" x="16" y="27" width="25" height="25"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="Zj3-jM-wXb" secondAttribute="height" multiplier="1:1" id="Vgq-LW-7Wp"/>
@@ -597,6 +597,7 @@
                     <connections>
                         <outlet property="descriptionLabel" destination="04X-hs-Ung" id="ruG-vM-fjl"/>
                         <outlet property="imageContainerView" destination="1sU-IM-ItQ" id="Mx4-6W-BMG"/>
+                        <outlet property="imageView" destination="wVv-Q4-36f" id="IsJ-H3-oFb"/>
                         <outlet property="titleLabel" destination="uVy-xt-RAZ" id="pw0-dw-r5w"/>
                     </connections>
                 </viewController>
@@ -608,10 +609,12 @@
     <resources>
         <image name="back" width="75" height="75"/>
         <image name="background.jpg" width="1136" height="2000"/>
+        <image name="cake.png" width="520" height="500"/>
         <image name="check.png" width="500" height="500"/>
         <image name="close" width="75" height="75"/>
+        <image name="gender.png" width="500" height="532"/>
+        <image name="locationIconProfile.png" width="500" height="530"/>
         <image name="logo" width="390.75" height="174.75"/>
-        <image name="search" width="500" height="500"/>
         <image name="settingsNoBorder" width="25.683710098266602" height="25.683710098266602"/>
         <image name="textfield" width="1000" height="164"/>
         <image name="user" width="103.29985809326172" height="103.29985809326172"/>

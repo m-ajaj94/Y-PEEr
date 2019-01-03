@@ -47,6 +47,7 @@ class EventApplyFormViewController: ParentViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        title = "Submit Request".localized
         requestData()
         hidesKeyboardOnTap()
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(notification:)), name: UIResponder.keyboardWillShowNotification, object: nil)

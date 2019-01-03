@@ -13,10 +13,10 @@ import SwiftyJSON
 struct Networking{
     
     private static var serverURL: String{
-        return "https://ypeer-syria.org/api/"
+        return "https://www.ypeer-syria.org/api/"
     }
     private static var serverImageURL: String{
-        return "https://ypeer-syria.org/"
+        return "https://www.ypeer-syria.org/"
     }
     
     private static func getURL(_ request: RequestNames) -> URL{

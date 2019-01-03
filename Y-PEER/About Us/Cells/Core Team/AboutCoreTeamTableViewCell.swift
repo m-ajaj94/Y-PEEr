@@ -23,6 +23,7 @@ class AboutCoreTeamTableViewCell: UITableViewCell {
             collectionView.backgroundColor = .clear
             let layout = UICollectionViewFlowLayout()
             layout.scrollDirection = .horizontal
+            collectionView.allowsSelection = false
             layout.minimumLineSpacing = 8
             layout.minimumInteritemSpacing = 8
             collectionView.collectionViewLayout = layout

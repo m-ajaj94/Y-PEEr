@@ -136,7 +136,7 @@
                                     <constraint firstAttribute="trailing" secondItem="6aB-cv-GMb" secondAttribute="trailing" constant="32" id="uxz-PG-lN3"/>
                                 </constraints>
                             </view>
-                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="N7l-PJ-pK3">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="N7l-PJ-pK3">
                                 <rect key="frame" x="16" y="442.5" width="343" height="50"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Search Here..." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iu2-YJ-t6T">

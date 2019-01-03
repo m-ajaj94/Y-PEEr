@@ -31,7 +31,7 @@ class IssuesViewController: ParentViewController {
                 collectionView.register(UINib(nibName: String(describing: IssuesCollectionViewCell.self), bundle: nil), forCellWithReuseIdentifier: String(describing: IssuesCollectionViewCell.self))
                 refreshControl = UIRefreshControl()
                 refreshControl.addTarget(self, action: #selector(refreshRequest), for: .valueChanged)
-                collectionView.refreshControl = refreshControl
+//                collectionView.refreshControl = refreshControl
             }
         }
     }
