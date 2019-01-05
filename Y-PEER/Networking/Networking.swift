@@ -118,6 +118,50 @@ struct Networking{
                 }
             }
         }
+        static func pageArticles(_ params: [String:Any], completionHandler: @escaping (SearchPagingArticlesModel?)->()){
+            Networking.post(.searchPaging, params) { (data) in
+                if data == nil{
+                    completionHandler(nil)
+                }
+                else{
+                    let model = try? JSONDecoder().decode(SearchPagingArticlesModel.self, from: data!)
+                    completionHandler(model)
+                }
+            }
+        }
+        static func pagePosts(_ params: [String:Any], completionHandler: @escaping (SearchPagingPostsModel?)->()){
+            Networking.post(.searchPaging, params) { (data) in
+                if data == nil{
+                    completionHandler(nil)
+                }
+                else{
+                    let model = try? JSONDecoder().decode(SearchPagingPostsModel.self, from: data!)
+                    completionHandler(model)
+                }
+            }
+        }
+        static func pageEvents(_ params: [String:Any], completionHandler: @escaping (SearchPagingEventsModel?)->()){
+            Networking.post(.searchPaging, params) { (data) in
+                if data == nil{
+                    completionHandler(nil)
+                }
+                else{
+                    let model = try? JSONDecoder().decode(SearchPagingEventsModel.self, from: data!)
+                    completionHandler(model)
+                }
+            }
+        }
+        static func pageStories(_ params: [String:Any], completionHandler: @escaping (SearchPagingStoriesModel?)->()){
+            Networking.post(.searchPaging, params) { (data) in
+                if data == nil{
+                    completionHandler(nil)
+                }
+                else{
+                    let model = try? JSONDecoder().decode(SearchPagingStoriesModel.self, from: data!)
+                    completionHandler(model)
+                }
+            }
+        }
     }
     
     struct user{

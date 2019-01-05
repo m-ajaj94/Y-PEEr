@@ -62,6 +62,8 @@ class SearchResultsViewController: ParentViewController {
         }
     }
     var delegate: SearchResultsViewControllerDelegate!
+    var word: String!
+    let pageSize = 10
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -110,7 +112,52 @@ class SearchResultsViewController: ParentViewController {
     }
     
     func requestMore(){
-//        Networking.search
+        switch type! {
+        case .articles:
+            let dict: [String:Any] = ["word":word, "skip":data.articles!.count, "take":pageSize, "user_id":UserCache.userID, "factor": type.rawValue]
+            Networking.search.pageArticles(dict) { (model) in
+                self.tableView.finishInfiniteScroll()
+                if model != nil && model!.code! == "1"{
+                    self.data.articles!.append(contentsOf: model!.data!)
+                    self.tableView.reloadData()
+                    self.delegate.didUpdateData(data: model!.data!, type: self.type)
+                }
+            }
+            break
+        case .events:
+            let dict: [String:Any] = ["word":word, "skip":data.events!.count, "take":pageSize, "user_id":UserCache.userID, "factor": type.rawValue]
+            Networking.search.pageEvents(dict) { (model) in
+                self.tableView.finishInfiniteScroll()
+                if model != nil && model!.code! == "1"{
+                    self.data.events!.append(contentsOf: model!.data!)
+                    self.tableView.reloadData()
+                    self.delegate.didUpdateData(data: model!.data!, type: self.type)
+                }
+            }
+            break
+        case .posts:
+            let dict: [String:Any] = ["word":word, "skip":data.posts!.count, "take":pageSize, "user_id":UserCache.userID, "factor": type.rawValue]
+            Networking.search.pagePosts(dict) { (model) in
+                self.tableView.finishInfiniteScroll()
+                if model != nil && model!.code! == "1"{
+                    self.data.posts!.append(contentsOf: model!.data!)
+                    self.tableView.reloadData()
+                    self.delegate.didUpdateData(data: model!.data!, type: self.type)
+                }
+            }
+            break
+        case .stories:
+            let dict: [String:Any] = ["word":word, "skip":data.stories!.count, "take":pageSize, "user_id":UserCache.userID, "factor": type.rawValue]
+            Networking.search.pageStories(dict) { (model) in
+                self.tableView.finishInfiniteScroll()
+                if model != nil && model!.code! == "1"{
+                    self.data.stories!.append(contentsOf: model!.data!)
+                    self.tableView.reloadData()
+                    self.delegate.didUpdateData(data: model!.data!, type: self.type)
+                }
+            }
+            break
+        }
     }
 
 }

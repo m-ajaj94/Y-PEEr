@@ -121,6 +121,7 @@ class SearchViewController: TabmanViewController, PageboyViewControllerDataSourc
         controller.type = SearchResultType.init(rawValue:index + 1)
         controller.data = data
         controller.delegate = self
+        controller.word = searchTextField.text!
         return controller
     }
     
@@ -158,6 +159,7 @@ extension SearchViewController: SearchResultsViewControllerDelegate{
             let event = data.events![index.row]
             let controller = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: String(describing: EventDetailsViewController.self)) as! EventDetailsViewController
             controller.event = event
+            controller.type = event.type! == "passed" ? PostType.pastEvent : PostType.event
             navigationController?.pushViewController(controller, animated: true)
             break
         case .articles:
@@ -175,23 +177,23 @@ extension SearchViewController: SearchResultsViewControllerDelegate{
         }
     }
     func didUpdateData(data: [Any], type: SearchResultType) {
-        switch type {
-        case .posts:
-            let array = data as! [PostModel]
-            self.data.posts!.append(contentsOf: array)
-            break
-        case .events:
-            let array = data as! [EventDataModel]
-            self.data.events!.append(contentsOf: array)
-            break
-        case .articles:
-            let array = data as! [ArticleModel]
-            self.data.articles!.append(contentsOf: array)
-            break
-        case .stories:
-            let array = data as! [StoryModel]
-            self.data.stories!.append(contentsOf: array)
-            break
-        }
+//        switch type {
+//        case .posts:
+//            let array = data as! [PostModel]
+//            self.data.posts!.append(contentsOf: array)
+//            break
+//        case .events:
+//            let array = data as! [EventDataModel]
+//            self.data.events!.append(contentsOf: array)
+//            break
+//        case .articles:
+//            let array = data as! [ArticleModel]
+//            self.data.articles!.append(contentsOf: array)
+//            break
+//        case .stories:
+//            let array = data as! [StoryModel]
+//            self.data.stories!.append(contentsOf: array)
+//            break
+//        }
     }
 }

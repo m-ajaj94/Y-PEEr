@@ -161,6 +161,7 @@
 		F3B1E4F4214DB93800832FE7 /* GalleryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B1E4F2214DB93800832FE7 /* GalleryCollectionViewCell.swift */; };
 		F3B1E4F5214DB93800832FE7 /* GalleryCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F3B1E4F3214DB93800832FE7 /* GalleryCollectionViewCell.xib */; };
 		F3CB50F721E11F5800307819 /* SearchModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3CB50F621E11F5800307819 /* SearchModel.swift */; };
+		F3CB50F921E1320F00307819 /* PagingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3CB50F821E1320F00307819 /* PagingModel.swift */; };
 		F3D0EEB7214DD7F7006739B9 /* GallerySkeletonCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3D0EEB5214DD7F7006739B9 /* GallerySkeletonCollectionViewCell.swift */; };
 		F3D0EEB8214DD7F7006739B9 /* GallerySkeletonCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F3D0EEB6214DD7F7006739B9 /* GallerySkeletonCollectionViewCell.xib */; };
 		F3D0EEBD214DEEEC006739B9 /* PostsSkeletonTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3D0EEBB214DEEEC006739B9 /* PostsSkeletonTableViewCell.swift */; };
@@ -340,6 +341,7 @@
 		F3B1E4F2214DB93800832FE7 /* GalleryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryCollectionViewCell.swift; sourceTree = "<group>"; };
 		F3B1E4F3214DB93800832FE7 /* GalleryCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GalleryCollectionViewCell.xib; sourceTree = "<group>"; };
 		F3CB50F621E11F5800307819 /* SearchModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchModel.swift; sourceTree = "<group>"; };
+		F3CB50F821E1320F00307819 /* PagingModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PagingModel.swift; sourceTree = "<group>"; };
 		F3D0EEB5214DD7F7006739B9 /* GallerySkeletonCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GallerySkeletonCollectionViewCell.swift; sourceTree = "<group>"; };
 		F3D0EEB6214DD7F7006739B9 /* GallerySkeletonCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GallerySkeletonCollectionViewCell.xib; sourceTree = "<group>"; };
 		F3D0EEBB214DEEEC006739B9 /* PostsSkeletonTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsSkeletonTableViewCell.swift; sourceTree = "<group>"; };
@@ -630,6 +632,7 @@
 				F329F32621D80B6B00460A6B /* AboutModel.swift */,
 				F340CA5F21DBC00F00313E69 /* FormModel.swift */,
 				F3CB50F621E11F5800307819 /* SearchModel.swift */,
+				F3CB50F821E1320F00307819 /* PagingModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -1364,6 +1367,7 @@
 				F3B1E4ED214DAFEA00832FE7 /* PostsViewController.swift in Sources */,
 				F329F30E21D7F79D00460A6B /* FormTextTableViewCell.swift in Sources */,
 				F30E3ECC216E63F400F75EC0 /* SigninViewController.swift in Sources */,
+				F3CB50F921E1320F00307819 /* PagingModel.swift in Sources */,
 				F329F2F721D7C6C000460A6B /* StoriesPopupViewController.swift in Sources */,
 				F329F30921D7F58D00460A6B /* EventApplyFormViewController.swift in Sources */,
 				F341410621DE78420075BA85 /* SearchResultsViewController.swift in Sources */,
