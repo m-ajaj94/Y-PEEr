@@ -134,7 +134,7 @@
         <!--Story Details View Controller-->
         <scene sceneID="C0W-vd-mc1">
             <objects>
-                <viewController id="3rZ-nT-2oY" customClass="StoryDetailsViewController" customModule="Y_PEER" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="StoryDetailsViewController" id="3rZ-nT-2oY" customClass="StoryDetailsViewController" customModule="Y_PEER" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="119-Tq-fHf">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

@@ -106,6 +106,20 @@ struct Networking{
         }
     }
     
+    struct search{
+        static func search(_ params: [String:Any], completionHandler: @escaping (SearchGeneralModel?)->()){
+            Networking.post(.search, params) { (data) in
+                if data == nil{
+                    completionHandler(nil)
+                }
+                else{
+                    let model = try? JSONDecoder().decode(SearchGeneralModel.self, from: data!)
+                    completionHandler(model)
+                }
+            }
+        }
+    }
+    
     struct user{
         static func signup(_ params: [String:Any], completionHandler: @escaping (GenericModel?)->()){
             Networking.post(.signup, params) { (data) in

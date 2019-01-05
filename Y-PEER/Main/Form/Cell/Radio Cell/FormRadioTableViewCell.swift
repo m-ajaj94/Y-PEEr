@@ -27,7 +27,7 @@ class FormRadioTableViewCell: UITableViewCell {
         didSet{
             questionLabel.text = question.text
             tableView.reloadData()
-            heightConstraint.constant = tableView.contentSize.height + 8
+            heightConstraint.constant = tableView.contentSize.height + 16
             layoutSubviews()
         }
     }

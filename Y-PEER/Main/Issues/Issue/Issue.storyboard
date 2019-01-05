@@ -78,7 +78,7 @@
         <!--Issue Article View Controller-->
         <scene sceneID="I4w-rp-7rY">
             <objects>
-                <viewController id="RZf-aI-LPO" customClass="IssueArticleViewController" customModule="Y_PEER" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="IssueArticleViewController" id="RZf-aI-LPO" customClass="IssueArticleViewController" customModule="Y_PEER" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="N0a-Rh-JBc">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

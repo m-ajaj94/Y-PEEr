@@ -160,7 +160,7 @@
         <!--Post Details View Controller-->
         <scene sceneID="cXP-yD-SWm">
             <objects>
-                <viewController id="YZC-y2-yj7" customClass="PostDetailsViewController" customModule="Y_PEER" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PostDetailsViewController" id="YZC-y2-yj7" customClass="PostDetailsViewController" customModule="Y_PEER" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="W7C-Cc-LbU">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="554"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

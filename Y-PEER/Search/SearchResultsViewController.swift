@@ -33,13 +33,35 @@ class SearchResultsViewController: ParentViewController {
             emptyContainerView.layer.borderColor = UIColor.mainOrange.cgColor
         }
     }
-    
-    var data: [String]!{
+    var type: SearchResultType!
+    var data: SearchModel!{
         didSet{
-            emptyLabel.isHidden = data != nil && data.count != 0
-            emptyContainerView.isHidden = data != nil && data.count != 0
+            if emptyLabel != nil && emptyContainerView != nil{
+                switch type!{
+                case .posts:
+                    emptyLabel.isHidden = data != nil && data.posts!.count != 0
+                    emptyContainerView.isHidden = data != nil && data.posts!.count != 0
+                    break
+                case .events:
+                    emptyLabel.isHidden = data != nil && data.events!.count != 0
+                    emptyContainerView.isHidden = data != nil && data.events!.count != 0
+                    break
+                case .articles:
+                    emptyLabel.isHidden = data != nil && data.articles!.count != 0
+                    emptyContainerView.isHidden = data != nil && data.articles!.count != 0
+                    break
+                case .stories:
+                    emptyLabel.isHidden = data != nil && data.stories!.count != 0
+                    emptyContainerView.isHidden = data != nil && data.stories!.count != 0
+                    break
+                }
+            }
+            if tableView != nil{
+                tableView.reloadData()
+            }
         }
     }
+    var delegate: SearchResultsViewControllerDelegate!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,6 +73,27 @@ class SearchResultsViewController: ParentViewController {
             tableView.contentInset = UIEdgeInsets(top: topInset, left: 0, bottom: 0, right: 0)
         }
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
+        tableView.addInfiniteScroll { (tableView) in
+            self.requestMore()
+        }
+        switch type!{
+        case .posts:
+            emptyLabel.isHidden = data != nil && data.posts!.count != 0
+            emptyContainerView.isHidden = data != nil && data.posts!.count != 0
+            break
+        case .events:
+            emptyLabel.isHidden = data != nil && data.events!.count != 0
+            emptyContainerView.isHidden = data != nil && data.events!.count != 0
+            break
+        case .articles:
+            emptyLabel.isHidden = data != nil && data.articles!.count != 0
+            emptyContainerView.isHidden = data != nil && data.articles!.count != 0
+            break
+        case .stories:
+            emptyLabel.isHidden = data != nil && data.stories!.count != 0
+            emptyContainerView.isHidden = data != nil && data.stories!.count != 0
+            break
+        }
     }
     
     @objc func keyboardWillShow(notification: NSNotification) {
@@ -65,6 +108,10 @@ class SearchResultsViewController: ParentViewController {
             }
         }
     }
+    
+    func requestMore(){
+//        Networking.search
+    }
 
 }
 
@@ -75,19 +122,72 @@ extension SearchResultsViewController: UITableViewDelegate, UITableViewDataSourc
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if arc4random().quotientAndRemainder(dividingBy: 2).remainder == 1{
-            emptyContainerView.isHidden = true
-            emptyLabel.isHidden = true
-            return 20
+        if data == nil{
+            return 0
         }
-        emptyContainerView.isHidden = false
-        emptyLabel.isHidden = false
-        return 0
+        switch type!{
+        case .posts:
+            return data!.posts!.count
+        case .events:
+            return data!.events!.count
+        case .articles:
+            return data!.articles!.count
+        case .stories:
+            return data!.stories!.count
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: SearchResultsTableViewCell.self)) as! SearchResultsTableViewCell
+        switch type!{
+        case .posts:
+            cell.titleLabel.text = data.posts![indexPath.row].title
+            cell.descriptionLabel.text = data.posts![indexPath.row].description
+            break
+        case .events:
+            cell.titleLabel.text = data.events![indexPath.row].title
+            cell.descriptionLabel.text = data.events![indexPath.row].description
+            break
+        case .articles:
+            let article = data.articles![indexPath.row]
+            if Cache.language.current == .english{
+                cell.titleLabel.text = article.titleEn
+                cell.descriptionLabel.text = article.descriptionEn
+            }
+            else{
+                cell.titleLabel.text = article.titleAr
+                cell.descriptionLabel.text = article.descriptionAr
+            }
+            break
+        case .stories:
+            let story = data.stories![indexPath.row]
+            if story.nameVisibility! == 1{
+                cell.titleLabel.text = data.stories![indexPath.row].username!.name!
+            }
+            else{
+                cell.titleLabel.text = "Anonymous".localized
+            }
+            cell.descriptionLabel.text = story.story!
+            break
+        }
         return cell
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        delegate.didSelect(at: indexPath, with: type)
+    }
+    
+}
+
+enum SearchResultType:Int{
+    case events = 1
+    case posts = 2
+    case articles = 3
+    case stories = 4
+}
+
+protocol SearchResultsViewControllerDelegate {
+    func didSelect(at index: IndexPath, with type: SearchResultType)
+    func didUpdateData(data: [Any], type: SearchResultType)
 }
