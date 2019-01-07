@@ -38,33 +38,32 @@ class QuizViewController: ParentViewController {
     }
     
     @IBAction func prevButtonPresed(_ sender: Any) {
-        if Cache.language.current == .arabic{
-            if currentIndex != quiz.questions!.count - 1{
-                currentIndex = currentIndex + 1
-            }
-        }
-        else{
-            if currentIndex != 0{
-                currentIndex = currentIndex - 1
-            }
+//        if Cache.language.current == .arabic{
+//            if currentIndex != quiz.questions!.count - 1{
+//                currentIndex = currentIndex + 1
+//            }
+//        }
+        if currentIndex != 0{
+            currentIndex = currentIndex - 1
         }
     }
     @IBAction func nextButtonPressed(_ sender: Any) {
-        if Cache.language.current == .arabic{
-            if currentIndex != 0{
-                currentIndex = currentIndex - 1
-            }
-            else{
-                performSegue(withIdentifier: "ShowResults", sender: self)
-            }
+//        if Cache.language.current == .arabic{
+//            if currentIndex != 0{
+//                currentIndex = currentIndex - 1
+//            }
+//            else{
+//                performSegue(withIdentifier: "ShowResults", sender: self)
+//            }
+//        }
+//        else{
+//        }
+        
+        if currentIndex != quiz.questions!.count - 1{
+            currentIndex = currentIndex + 1
         }
         else{
-            if currentIndex != quiz.questions!.count - 1{
-                currentIndex = currentIndex + 1
-            }
-            else{
-                performSegue(withIdentifier: "ShowResults", sender: self)
-            }
+            performSegue(withIdentifier: "ShowResults", sender: self)
         }
     }
     
@@ -75,25 +74,26 @@ class QuizViewController: ParentViewController {
         }
         set{
             collectionView.setContentOffset(CGPoint(x: CGFloat(newValue) * collectionView.frame.size.width, y: collectionView.contentOffset.y), animated: true)
-            if Cache.language.current == .arabic{
-//                prevButton.isEnabled = newValue != quiz.questions!.count - 1
-//                nextButton.isEnabled = newValue != 0
-                if newValue == 0{
-                    nextButton.setTitle("Get Results".localized, for: .normal)
-                }
-                else{
-                    nextButton.setTitle("Next".localized, for: .normal)
-                }
+//            if Cache.language.current == .arabic{
+////                prevButton.isEnabled = newValue != quiz.questions!.count - 1
+////                nextButton.isEnabled = newValue != 0
+//                if newValue == 0{
+//                    nextButton.setTitle("Get Results".localized, for: .normal)
+//                }
+//                else{
+//                    nextButton.setTitle("Next".localized, for: .normal)
+//                }
+//            }
+//            else{
+////                prevButton.isEnabled = newValue != 0
+////                nextButton.isEnabled = newValue != quiz.questions!.count - 1
+//                
+//            }
+            if newValue == quiz.questions!.count - 1{
+                nextButton.setTitle("Get Results".localized, for: .normal)
             }
             else{
-//                prevButton.isEnabled = newValue != 0
-//                nextButton.isEnabled = newValue != quiz.questions!.count - 1
-                if newValue == quiz.questions!.count - 1{
-                    nextButton.setTitle("Get Results".localized, for: .normal)
-                }
-                else{
-                    nextButton.setTitle("Next".localized, for: .normal)
-                }
+                nextButton.setTitle("Next".localized, for: .normal)
             }
         }
     }
@@ -164,7 +164,10 @@ extension QuizViewController: UICollectionViewDelegate, UICollectionViewDataSour
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: QuizQuestionCollectionViewCell.self), for: indexPath) as? QuizQuestionCollectionViewCell{
             cell.question = quiz.questions![indexPath.row]
-            let question = quiz.questions![indexPath.row]
+            var question = quiz.questions![indexPath.row]
+            if Cache.language.current == .arabic{
+                question = quiz.questions![quiz.questions!.count - 1 - indexPath.row]
+            }
             for i in 0..<question.options!.count{
                 let answer = question.options![i]
                 if userChoices[question.id!] == nil{

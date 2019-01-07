@@ -7,9 +7,9 @@
 //
 
 import UIKit
-import FlexiblePageControl
 import Toaster
 import FaveButton
+import ISPageControl
 
 class PostDetailsViewController: ParentViewController {
     
@@ -47,8 +47,6 @@ class PostDetailsViewController: ParentViewController {
             }
             else{
                 heightConstraint.constant = height
-                pageControl.isHidden = images.count <= 1
-                pageControl.numberOfPages = images.count
             }
             view.layoutIfNeeded()
         }
@@ -58,11 +56,16 @@ class PostDetailsViewController: ParentViewController {
         }
     }
     let height = UIScreen.main.bounds.width * 3 / 5
-    var pageControl: FlexiblePageControl!{
+    var pageControl: ISPageControl!{
         didSet{
-            pageControl.center = collectionView.center
-            pageControl.pageIndicatorTintColor = .mainGray
-            pageControl.currentPageIndicatorTintColor = .mainOrange
+            pageControl.currentPageTintColor = .mainOrange
+            pageControl.inactiveTintColor = .white
+            pageControl.radius = 3
+            pageControl.inactiveTransparency = 1
+            if Cache.language.current == .arabic{
+                pageControl.currentPage = images.count - 1
+            }
+            pageControl.isHidden = images.count <= 1
             scrollView.addSubview(pageControl)
         }
     }
@@ -138,11 +141,11 @@ class PostDetailsViewController: ParentViewController {
         likeButtonHeart = FaveButton(frame: likeButton.frame, faveIconNormal: UIImage(named: "heart"))
         heightConstraint.constant = height
         title = "Post".localized
-        pageControl = FlexiblePageControl()
+        images = post.images!
+        pageControl = ISPageControl(frame: CGRect(origin: .zero, size: CGSize(width: 80, height: 20)), numberOfPages: images.count)
         titleLabel.text = post.title!
         descriptionLabel.text = post.description!
         likesCountLabel.text = "\(post.totalLikes!)" + " " + "Likes".localized
-        images = post.images!
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
         timeLabel.text = (dateFormatter.date(from: post.createdAt!)! as NSDate).timeAgo()
@@ -157,7 +160,10 @@ class PostDetailsViewController: ParentViewController {
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        pageControl.frame.origin = CGPoint(x: view.frame.midX - pageControl.frame.size.width / 2, y: collectionView.frame.origin.y + height - pageControl.frame.size.height)
+//        pageControl.frame.origin = CGPoint(x: view.frame.midX - pageControl.frame.size.width / 2, y: collectionView.frame.origin.y + height - pageControl.frame.size.height)
+        if pageControl != nil{
+            pageControl.frame.origin = CGPoint(x: view.frame.midX - pageControl.frame.size.width / 2, y: collectionView.frame.origin.y + height - pageControl.frame.size.height)
+        }
         collectionView.reloadData()
         likeButtonHeart.frame = likeButton.frame
         likeView.frame = likeButton.frame
@@ -213,7 +219,9 @@ extension PostDetailsViewController: UIScrollViewDelegate{
             }
         }
         else{
-            pageControl.setCurrentPage(at: Int(collectionView.contentOffset.x / collectionView.frame.size.width))
+            if pageControl != nil{
+                pageControl.currentPage = Int(collectionView.contentOffset.x / collectionView.frame.size.width)
+            }
         }
     }
     

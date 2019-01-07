@@ -11,6 +11,7 @@ import Toaster
 import Firebase
 import FirebaseMessaging
 import UserNotifications
+import Lightbox
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate, MessagingDelegate {
@@ -38,6 +39,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             completionHandler: {_, _ in })
         application.registerForRemoteNotifications()
         FirebaseApp.configure()
+        LightboxConfig.CloseButton.enabled = false
         return true
     }
 

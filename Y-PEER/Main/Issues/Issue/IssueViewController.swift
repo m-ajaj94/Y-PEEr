@@ -11,6 +11,8 @@ import Toaster
 
 class IssueViewController: ParentViewController {
     
+    var heights: [IndexPath:CGFloat] = [:]
+    
     private let showArticleSegueIdentifier = "ShowArticle"
 
     @IBOutlet weak var containerView: UIView!{
@@ -156,6 +158,17 @@ extension IssueViewController: UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         selectedIndex = indexPath
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        heights[indexPath] = cell.bounds.height
+    }
+    
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        if let height =  self.heights[indexPath] {
+            return height
+        }
+        return UITableView.automaticDimension
     }
     
 }

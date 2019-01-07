@@ -11,6 +11,8 @@ import SkeletonView
 import Toaster
 
 class QuizzesViewController: ParentViewController {
+    
+    var heights: [IndexPath:CGFloat] = [:]
 
     @IBAction func sideMenuButtonPressed(_ sender: Any) {
         if let tabController = tabBarController as? MainTabBarController{
@@ -165,6 +167,17 @@ extension QuizzesViewController: SkeletonTableViewDataSource, SkeletonTableViewD
         
     func didTapStartFromQuiz(at indexPath: IndexPath) {
         selectedIndex = indexPath
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        heights[indexPath] = cell.bounds.height
+    }
+    
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        if let height =  self.heights[indexPath] {
+            return height
+        }
+        return UITableView.automaticDimension
     }
     
     

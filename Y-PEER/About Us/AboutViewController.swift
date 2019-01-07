@@ -10,6 +10,8 @@ import UIKit
 
 class AboutViewController: ParentViewController {
     
+    var heights: [IndexPath:CGFloat] = [:]
+    
     private let coreTeamSegueIdentifier = "ShowCoreTeam"
 
     @IBOutlet weak var tableView: UITableView!{
@@ -42,7 +44,7 @@ class AboutViewController: ParentViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "About Us".localized
+        title = "About Y-PEER".localized
         requestData()
         let footer = AboutUsTableViewFooter.instanciateFromNib()
         footer.frame = CGRect(origin: .zero, size: CGSize(width: UIScreen.main.bounds.width, height: 48))
@@ -133,6 +135,17 @@ extension AboutViewController: UITableViewDelegate, UITableViewDataSource{
         default:
             break
         }
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        heights[indexPath] = cell.bounds.height
+    }
+    
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        if let height =  self.heights[indexPath] {
+            return height
+        }
+        return UITableView.automaticDimension
     }
     
 }

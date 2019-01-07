@@ -8,6 +8,7 @@
 
 import UIKit
 import Toaster
+import Presentr
 
 class SigninViewController: UIViewController {
 
@@ -18,22 +19,29 @@ class SigninViewController: UIViewController {
     }
     @IBOutlet weak var skipButton: UIButton!{
         didSet{
+            skipButton.setTitle("Skip".localized, for: .normal)
             skipButton.layer.borderWidth = 1
             skipButton.layer.borderColor = UIColor.mainOrange.cgColor
         }
     }
     @IBOutlet weak var forgotPasswordButton: UIButton!{
         didSet{
+            forgotPasswordButton.setTitle("Forgot Password".localized, for: .normal)
             forgotPasswordButton.alpha = 0
         }
     }
     @IBOutlet weak var signupButton: UIButton!{
         didSet{
+            signupButton.setTitle("Signup".localized, for: .normal)
             signupButton.layer.borderWidth = 1
             signupButton.layer.borderColor = UIColor.mainOrange.cgColor
         }
     }
-    @IBOutlet weak var continueButton: UIButton!
+    @IBOutlet weak var continueButton: UIButton!{
+        didSet{
+            continueButton.setTitle("Continue".localized, for: .normal)
+        }
+    }
     @IBOutlet weak var logoImageView: UIImageView!
     @IBOutlet weak var emailTextField: UITextField!{
         didSet{
@@ -100,7 +108,7 @@ class SigninViewController: UIViewController {
                 showErrorAlert("Please enter a valid e-mail!".localized)
             }
             else{
-                let alert = UIAlertController(title: "New Password".localized, message: "We are about to send a new password to"+" \(emailTextField.text!)\n"+"Are you sure?".localized, preferredStyle: .alert)
+                let alert = UIAlertController(title: "New Password".localized, message: "We are about to send a new password to".localized+" \(emailTextField.text!)\n"+"Are you sure?".localized, preferredStyle: .alert)
                 let yesAction = UIAlertAction(title: "Yes".localized, style: .default) { (action) in
                     self.forgotRequest()
                 }
@@ -134,6 +142,7 @@ class SigninViewController: UIViewController {
         super.viewDidLoad()
         let backgroundImage = UIImageView(frame: UIScreen.main.bounds)
         backgroundImage.image = UIImage(named: "background.jpg")
+        backgroundImage.clipsToBounds = true
         backgroundImage.contentMode = .scaleAspectFill
         self.view.insertSubview(backgroundImage, at: 0)
         hidesKeyboardOnTap()
@@ -160,10 +169,12 @@ class SigninViewController: UIViewController {
     }
     
     func forgotRequest(){
+        showLoading()
         Networking.user.forgotPassword(["email":emailTextField.text!]) { (model) in
+            self.removeLoading()
             if model != nil{
                 if model!.code == "1"{
-                    Toast(text: model!.message).show()
+                    self.showPopup()
                 }
                 else{
                     Toast(text: model!.message).show()
@@ -173,6 +184,28 @@ class SigninViewController: UIViewController {
                 Toast(text: "ERROR CONNECT MESSAGE".localized).show()
             }
         }
+    }
+    
+    let presenter: Presentr = {
+        let width = ModalSize.custom(size: Float(UIScreen.main.bounds.width * 0.8))
+        let height = ModalSize.custom(size: Float(UIScreen.main.bounds.height * 0.5))
+        let center = ModalCenterPosition.center//custom(centerPoint: CGPoint(x: view.center.x, y: view.center.y - 44))
+        let customType = PresentationType.custom(width: width, height: height, center: center)
+        let customPresenter = Presentr(presentationType: customType)
+        customPresenter.transitionType = .crossDissolve
+        customPresenter.dismissTransitionType = .crossDissolve
+        customPresenter.roundCorners = true
+        customPresenter.cornerRadius = 10
+        customPresenter.backgroundColor = .black
+        customPresenter.backgroundOpacity = 0.4
+        return customPresenter
+    }()
+    
+    func showPopup(){
+        let controller = UIStoryboard(name: "User", bundle: nil).instantiateViewController(withIdentifier: String(describing: UserPopupViewController.self)) as! UserPopupViewController
+        controller.isPassword = true
+        controller.email = emailTextField.text!
+        customPresentViewController(presenter, viewController: controller, animated: true)
     }
     
     override func viewDidLayoutSubviews() {

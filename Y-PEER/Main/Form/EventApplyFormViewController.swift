@@ -9,6 +9,8 @@ import UIKit
 
 class EventApplyFormViewController: ParentViewController {
     
+    var heights: [IndexPath:CGFloat] = [:]
+    
     @IBOutlet weak var tableView: UITableView!{
         didSet{
             tableView.delegate = self
@@ -200,6 +202,17 @@ extension EventApplyFormViewController: UITableViewDelegate, UITableViewDataSour
             tableView.endUpdates()
             return cell
         }
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        heights[indexPath] = cell.bounds.height
+    }
+    
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        if let height =  self.heights[indexPath] {
+            return height
+        }
+        return UITableView.automaticDimension
     }
     
     func didChangeText(_ text: String, _ question: FormQuestionModel, _ index: IndexPath) {

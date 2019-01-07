@@ -7,9 +7,9 @@
 //
 
 import UIKit
-import FlexiblePageControl
 import FaveButton
 import Toaster
+import ISPageControl
 
 class EventDetailsViewController: ParentViewController, FaveButtonDelegate {
     
@@ -50,7 +50,15 @@ class EventDetailsViewController: ParentViewController, FaveButtonDelegate {
     
     
     @IBAction func eventButtonPressed(_ sender: Any) {
-        performSegue(withIdentifier: "ShowForm", sender: self)
+        if !UserCache.isLoggedIn{
+            let navController = UIStoryboard(name: "User", bundle: nil).instantiateInitialViewController() as! UINavigationController
+            let controller = navController.viewControllers[0] as! SigninViewController
+            controller.isModal = true
+            present(navController, animated: true, completion: nil)
+        }
+        else{
+            performSegue(withIdentifier: "ShowForm", sender: self)
+        }
     }
     
     var type: PostType!
@@ -66,19 +74,25 @@ class EventDetailsViewController: ParentViewController, FaveButtonDelegate {
     }
     let height = UIScreen.main.bounds.width * 3 / 5
     var imageName: String!
-    var pageControl: FlexiblePageControl!{
+    var pageControl: ISPageControl!{
         didSet{
-            pageControl.center = collectionView.center
-            pageControl.pageIndicatorTintColor = .mainGray
-            pageControl.currentPageIndicatorTintColor = .mainOrange
+            pageControl.currentPageTintColor = .mainOrange
+            pageControl.inactiveTintColor = .white
+            pageControl.radius = 3
+            pageControl.inactiveTransparency = 1
+            pageControl.numberOfPages = images.count
+            if Cache.language.current == .arabic{
+                pageControl.currentPage = images.count - 1
+            }
+            pageControl.isHidden = images.count <= 1
             scrollView.addSubview(pageControl)
         }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        pageControl = FlexiblePageControl()
         setData()
+        pageControl = ISPageControl(frame: CGRect(origin: .zero, size: CGSize(width: 80, height: 20)), numberOfPages: images.count)
         setButton()
         NotificationCenter.default.addObserver(self, selector: #selector(userDidSignout), name: NSNotification.Name("Signout"), object: nil)
     }
@@ -106,8 +120,6 @@ class EventDetailsViewController: ParentViewController, FaveButtonDelegate {
         }
         else{
             heightConstraint.constant = height
-            pageControl.isHidden = images.count <= 1
-            pageControl.numberOfPages = images.count
         }
         heightConstraint.constant = height
         if event.location != nil{
@@ -234,7 +246,9 @@ class EventDetailsViewController: ParentViewController, FaveButtonDelegate {
             likeButton.frame = eventButton.frame
             likeView.frame = eventButton.frame
         }
-        pageControl.frame.origin = CGPoint(x: view.frame.midX - pageControl.frame.size.width / 2, y: collectionView.frame.origin.y + height - pageControl.frame.size.height)
+        if pageControl != nil{
+            pageControl.frame.origin = CGPoint(x: view.frame.midX - pageControl.frame.size.width / 2, y: collectionView.frame.origin.y + height - pageControl.frame.size.height)
+        }
         collectionView.reloadData()
     }
     
@@ -289,7 +303,7 @@ extension EventDetailsViewController: UIScrollViewDelegate{
             }
         }
         else{
-            pageControl.setCurrentPage(at: Int(collectionView.contentOffset.x / collectionView.frame.size.width))
+            pageControl.currentPage = Int(collectionView.contentOffset.x / collectionView.frame.size.width)
         }
     }
     

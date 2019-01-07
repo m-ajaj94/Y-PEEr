@@ -52,6 +52,7 @@ class SearchViewController: TabmanViewController, PageboyViewControllerDataSourc
         title = "Search".localized
         let backgroundImage = UIImageView(frame: UIScreen.main.bounds)
         backgroundImage.image = UIImage(named: "background.jpg")
+        backgroundImage.clipsToBounds = true
         backgroundImage.contentMode = .scaleAspectFill
         backgroundImage.isUserInteractionEnabled = true
         self.view.insertSubview(backgroundImage, at: 0)
@@ -177,23 +178,6 @@ extension SearchViewController: SearchResultsViewControllerDelegate{
         }
     }
     func didUpdateData(data: [Any], type: SearchResultType) {
-//        switch type {
-//        case .posts:
-//            let array = data as! [PostModel]
-//            self.data.posts!.append(contentsOf: array)
-//            break
-//        case .events:
-//            let array = data as! [EventDataModel]
-//            self.data.events!.append(contentsOf: array)
-//            break
-//        case .articles:
-//            let array = data as! [ArticleModel]
-//            self.data.articles!.append(contentsOf: array)
-//            break
-//        case .stories:
-//            let array = data as! [StoryModel]
-//            self.data.stories!.append(contentsOf: array)
-//            break
-//        }
+        
     }
 }

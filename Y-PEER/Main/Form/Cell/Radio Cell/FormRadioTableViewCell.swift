@@ -9,6 +9,8 @@
 import UIKit
 
 class FormRadioTableViewCell: UITableViewCell {
+    
+    var heights: [IndexPath:CGFloat] = [:]
 
     @IBOutlet weak var heightConstraint: NSLayoutConstraint!
     @IBOutlet weak var tableView: UITableView!{
@@ -61,6 +63,17 @@ extension FormRadioTableViewCell: UITableViewDelegate, UITableViewDataSource{
         selectedOption = question.options![indexPath.row]
         tableView.reloadData()
         delegate.didSelect(question.options![indexPath.row], question)
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        heights[indexPath] = cell.bounds.height
+    }
+    
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        if let height =  self.heights[indexPath] {
+            return height
+        }
+        return UITableView.automaticDimension
     }
     
 }

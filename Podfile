@@ -12,7 +12,7 @@ target 'Y-PEER' do
     pod 'Lightbox'
     pod "FMMosaicLayout"
     pod 'Presentr'
-    pod "FlexiblePageControl"
+    pod 'ISPageControl'
     pod 'Toaster'
     pod 'SwiftyJSON'
     pod 'Kingfisher'

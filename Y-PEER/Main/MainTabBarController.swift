@@ -73,6 +73,11 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
         delegate = self
         sideMenuViewController = UIStoryboard(name: "SideMenu", bundle: nil).instantiateInitialViewController() as? SideMenuViewController
         tabBar.unselectedItemTintColor = .shadeOrange
+        tabBar.items![0].title = "Newsfeed".localized
+        tabBar.items![1].title = "Gallery".localized
+        tabBar.items![2].title = "Events".localized
+        tabBar.items![3].title = "Issues".localized
+        tabBar.items![4].title = "Quizzes".localized
     }
     
     func showSideMenu(){

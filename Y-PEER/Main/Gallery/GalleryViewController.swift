@@ -43,6 +43,7 @@ class GalleryViewController: ParentViewController {
     @IBOutlet weak var videosButton: UIButton!{
         didSet{
             if videosButton != nil{
+                videosButton.setTitle("Videos".localized, for: .normal)
                 videosButton.layer.borderColor = UIColor.mainOrange.cgColor
                 videosButton.layer.borderWidth = 1
             }
@@ -51,6 +52,7 @@ class GalleryViewController: ParentViewController {
     @IBOutlet weak var photosButton: UIButton!{
         didSet{
             if photosButton != nil{
+                photosButton.setTitle("Photos".localized, for: .normal)
                 photosButton.layer.borderColor = UIColor.mainOrange.cgColor
                 photosButton.layer.borderWidth = 1
             }
@@ -59,6 +61,7 @@ class GalleryViewController: ParentViewController {
     @IBOutlet weak var allButton: UIButton!{
         didSet{
             if allButton != nil{
+                allButton.setTitle("All".localized, for: .normal)
                 allButton.layer.borderColor = UIColor.mainOrange.cgColor
                 allButton.layer.borderWidth = 1
             }

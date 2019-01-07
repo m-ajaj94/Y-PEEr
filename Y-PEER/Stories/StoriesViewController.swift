@@ -12,6 +12,8 @@ import Presentr
 
 class StoriesViewController: ParentViewController {
 
+    var heights: [IndexPath:CGFloat] = [:]
+    
     @IBOutlet weak var shareLabel: UILabel!{
         didSet{
             shareLabel.text = "Share your story".localized
@@ -205,6 +207,17 @@ extension StoriesViewController: UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         selectedIndex = indexPath
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        heights[indexPath] = cell.bounds.height
+    }
+    
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        if let height =  self.heights[indexPath] {
+            return height
+        }
+        return UITableView.automaticDimension
     }
     
 }

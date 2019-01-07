@@ -30,8 +30,8 @@ class QuizResultsViewController: ParentViewController {
         didSet{
             scoreContainerView.layer.shadowOffset = .zero
             scoreContainerView.layer.shadowColor = UIColor.black.cgColor
-            scoreContainerView.layer.shadowRadius = 4
-            scoreContainerView.layer.shadowOpacity = 0.3
+            scoreContainerView.layer.shadowRadius = 3
+            scoreContainerView.layer.shadowOpacity = 0.1
         }
     }
     @IBOutlet weak var containerView: UIView!{
@@ -102,7 +102,7 @@ extension QuizResultsViewController: UITableViewDelegate, UITableViewDataSource{
                 break
             }
         }
-        cell.cellLabel.text = "Question".localized + "#\(indexPath.row + 1)"
+        cell.cellLabel.text = "Question".localized + " #\(indexPath.row + 1)"
         return cell
     }
     

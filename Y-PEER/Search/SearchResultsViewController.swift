@@ -10,6 +10,8 @@ import UIKit
 
 class SearchResultsViewController: ParentViewController {
     
+    var heights: [IndexPath:CGFloat] = [:]
+    
     var topInset: CGFloat!
 
     @IBOutlet weak var tableView: UITableView!{
@@ -23,7 +25,7 @@ class SearchResultsViewController: ParentViewController {
     
     @IBOutlet weak var emptyLabel: UILabel!{
         didSet{
-            emptyLabel.text = "No Data Found".localized
+            emptyLabel.text = "Search for something".localized
         }
     }
     @IBOutlet weak var emptyContainerView: UIView!{
@@ -62,11 +64,20 @@ class SearchResultsViewController: ParentViewController {
         }
     }
     var delegate: SearchResultsViewControllerDelegate!
-    var word: String!
+    var word: String!{
+        didSet{
+            if emptyLabel != nil && word != ""{
+                emptyLabel.text = "No Data Found".localized
+            }
+        }
+    }
     let pageSize = 10
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        if word != ""{
+            emptyLabel.text = "No Data Found".localized
+        }
         if #available(iOS 11.0, *) {
             let bottomSafeArea = UIApplication.shared.keyWindow!.safeAreaInsets.bottom
             tableView.contentInset = UIEdgeInsets(top: topInset, left: 0, bottom: bottomSafeArea, right: 0)
@@ -76,7 +87,12 @@ class SearchResultsViewController: ParentViewController {
         }
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
         tableView.addInfiniteScroll { (tableView) in
-            self.requestMore()
+            if self.word != nil && self.word != ""{
+                self.requestMore()
+            }
+            else{
+                tableView.finishInfiniteScroll()
+            }
         }
         switch type!{
         case .posts:
@@ -223,6 +239,17 @@ extension SearchResultsViewController: UITableViewDelegate, UITableViewDataSourc
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         delegate.didSelect(at: indexPath, with: type)
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        heights[indexPath] = cell.bounds.height
+    }
+    
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        if let height =  self.heights[indexPath] {
+            return height
+        }
+        return UITableView.automaticDimension
     }
     
 }

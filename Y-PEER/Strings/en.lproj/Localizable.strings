@@ -5,13 +5,14 @@
   Created by Majd Ajaj on 12/29/18.
   Copyright © 2018 Majd Ajaj. All rights reserved.
 */
-"ERROR CONNECT MESSAGE" = "ERROR CONNECT MESSAGE";
+"ERROR CONNECT MESSAGE" = "Something went worng, try again later";
 "Error" = "Error";
 "Please fill all fields" = "Please fill all fields";
 "Loading..." = "Loading...";
 "Ok" = "Ok";
 "No Connection" = "No Connection";
 "Please check your internet connection and press retry" = "Please check your internet connection and press retry";
+"Retry" = "Retry";
 "Cancel" = "Cancel";
 "Sorry" = "Sorry";
 "Success" = "Success";
@@ -24,7 +25,7 @@
 "Your story was submitted for reviewing" = "Your story was submitted for reviewing";
 "Share your story" = "Share your story";
 "What are stories?" = "What are stories?";
-"stories explanation" = "stories explanation stories explanation stories explanation stories explanation stories explanation stories explanation stories explanation ";
+"stories explanation" = "Have you ever experienced an issue Of a one of ypeer network causes? Would you like to share an issue that you faced before and be someone's savior? Sharing a hard experience might be a contribution to help another community member to pass or save then from such a difficulty that you faced before,  this blog is your platform";
 //**********User**********
 "E-mail" = "E-mail";
 "Password" = "Password";
@@ -46,9 +47,15 @@
 "Update Profile" = "Update Profile";
 "Sign in/Register" = "Sign in/Register";
 "Sign in/Register" = "Sign in/Register";
-"new password description" = "new password description";
+"A new password has been sent to" = "A new password has been sent to";
+"Please check your E-mail, and use your new password to sign in" = "Please check your E-mail, and use your new password to sign in";
 "sign up description" = "sign up description";
 "New Password" = "New Password";
+"Skip" = "Maybe later 😅";
+"Signup" = "Don't have an account?";
+"Continue" = "Continue";
+"Forgot Password" = "Lost my password 😥";
+"We are about to send a new password to" = "We are about to send a new password to";
 //**********Side menu**********
 "About Y-PEER" = "About Y-PEER";
 "Search" = "Search";
@@ -66,6 +73,10 @@
 "Your request was successfully submitted" = "Your request was successfully submitted";
 "The form is not ready yet\nTry again later" = "The form is not ready yet\nTry again later";
 "Submit Request" = "Submit Request";
+"Submit" = "Submit";
+"Upcoming" = "Upcoming";
+"Passed" = "Passed";
+"Answer" = "Answer";
 
 //**********Posts**********
 "Post" = "Post";
@@ -73,6 +84,10 @@
 
 //**********Gallery**********
 "Gallery" = "Gallery";
+"Videos" = "Videos";
+"Photos" = "Photos";
+"All" = "All";
+"Close" = "اغلاق";
 
 //**********Issues**********
 "Issues" = "Issues";
@@ -82,6 +97,14 @@
 "Get Results" = "Get Results";
 "Next" = "Next";
 "Previous" = "Previous";
+"Questions" = "Questions";
+"Start" = "Start";
+"Results" = "Results";
+"Question" = "Question";
+"Quiz results" = "Quiz results";
+"Your Answer" = "Your Answer";
+"Correct Answer" = "Correct Answer";
+"Explanation" = "Explanation";
 
 //**********Settings**********
 "Settings" = "Settings";
@@ -95,6 +118,9 @@
 "Core Team" = "Executive Comittee";
 "About Y-PEER" = "About Y-PEER";
 
-
+//**********Search**********
 "No Data Found" = "No Data Found";
 "Please enter some text first" = "Please enter some text first";
+"Posts" = "Posts";
+"Articles" = "Articles";
+"Search for something" = "Search for something";

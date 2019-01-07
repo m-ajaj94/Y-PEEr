@@ -17,18 +17,31 @@ class ProfileViewController: ParentViewController {
     @IBOutlet weak var editButton: UIButton!
     @IBOutlet weak var doneButton: UIBarButtonItem!
     @IBOutlet weak var birthdayImageView: UIImageView!
-    @IBOutlet weak var birthdayTitleLabel: UILabel!
+    @IBOutlet weak var birthdayTitleLabel: UILabel!{
+        didSet{
+            birthdayTitleLabel.text = "Birthday".localized
+        }
+    }
     @IBOutlet weak var birthdayLabel: UILabel!
     @IBOutlet weak var locationImageView: UIImageView!
-    @IBOutlet weak var locationTitleLabel: UILabel!
+    @IBOutlet weak var locationTitleLabel: UILabel!{
+        didSet{
+            locationTitleLabel.text = "City".localized
+        }
+    }
     @IBOutlet weak var locationLabel: UILabel!
     @IBOutlet weak var genderImageView: UIImageView!
-    @IBOutlet weak var genderTitleLabel: UILabel!
+    @IBOutlet weak var genderTitleLabel: UILabel!{
+        didSet{
+            genderTitleLabel.text = "Gender".localized
+        }
+    }
     @IBOutlet weak var genderLabel: UILabel!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var emailLabel: UILabel!
     @IBOutlet weak var signoutButton: UIButton!{
         didSet{
+            signoutButton.setTitle("Sign out".localized, for: .normal)
             signoutButton.layer.shadowOffset = CGSize(width: 0, height: 0)
             signoutButton.layer.shadowRadius = 5
             signoutButton.layer.shadowOpacity = 0.2
@@ -37,9 +50,16 @@ class ProfileViewController: ParentViewController {
     @IBOutlet var containerViews: [UIView]!
     
     @IBAction func didPressSignout(_ sender: Any) {
-        UserCache.signout()
-        NotificationCenter.default.post(name: NSNotification.Name("Signout"), object: nil, userInfo: nil)
-        dismiss(animated: true, completion: nil)
+        let alert = UIAlertController(title: "Sign out".localized, message: "Are you sure?", preferredStyle: .alert)
+        let cancelAction = UIAlertAction(title: "Cancel".localized, style: .default, handler: nil)
+        let yesAction = UIAlertAction(title: "Yes".localized, style: .destructive) { (action) in
+            UserCache.signout()
+            NotificationCenter.default.post(name: NSNotification.Name("Signout"), object: nil, userInfo: nil)
+            self.dismiss(animated: true, completion: nil)
+        }
+        alert.addAction(yesAction)
+        alert.addAction(cancelAction)
+        present(alert, animated: true, completion: nil)
     }
     @IBAction func didPressDone(_ sender: Any) {
         dismiss(animated: true, completion: nil)
@@ -76,6 +96,7 @@ class ProfileViewController: ParentViewController {
         }
         let backgroundImage = UIImageView(frame: UIScreen.main.bounds)
         backgroundImage.image = UIImage(named: "background.jpg")
+        backgroundImage.clipsToBounds = true
         backgroundImage.contentMode = .scaleAspectFill
         self.view.insertSubview(backgroundImage, at: 0)
         navigationController!.interactivePopGestureRecognizer?.delegate = nil

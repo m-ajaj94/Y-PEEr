@@ -34,7 +34,7 @@
                         <viewLayoutGuide key="safeArea" id="XN2-CR-ohz"/>
                     </view>
                     <navigationItem key="navigationItem" id="cFe-Me-RbI">
-                        <barButtonItem key="leftBarButtonItem" title="Close" id="pWB-D8-WDe">
+                        <barButtonItem key="leftBarButtonItem" systemItem="done" id="pWB-D8-WDe">
                             <connections>
                                 <action selector="closeButtonPressed:" destination="92E-8Y-6ut" id="qfk-y4-Xq1"/>
                             </connections>

@@ -82,7 +82,7 @@
                         <viewLayoutGuide key="safeArea" id="gXF-8L-bKT"/>
                     </view>
                     <navigationItem key="navigationItem" id="UPZ-Aa-egQ">
-                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="tiO-ZJ-NkG">
+                        <barButtonItem key="leftBarButtonItem" systemItem="done" id="tiO-ZJ-NkG">
                             <connections>
                                 <action selector="cancelButtonPressed:" destination="tdJ-GE-Mi6" id="tPC-4C-5Rz"/>
                             </connections>

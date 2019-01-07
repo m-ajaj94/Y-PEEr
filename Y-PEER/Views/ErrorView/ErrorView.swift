@@ -19,7 +19,11 @@ class ErrorView: UIView {
             buttonContainerView.layer.borderWidth = 1
         }
     }
-    @IBOutlet weak var button: UIButton!
+    @IBOutlet weak var button: UIButton!{
+        didSet{
+            button.setTitle("Retry".localized, for: .normal)
+        }
+    }
     
     var delegate: ErrorViewDelegate!
     

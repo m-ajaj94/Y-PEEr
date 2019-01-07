@@ -54,7 +54,7 @@ extension UIViewController{
 extension UIViewController{
     
     func showNoConnection(){
-        let errorView = ErrorView.instanciateFromNib("No Connection".localized, "Please check your internet connection and press retry")
+        let errorView = ErrorView.instanciateFromNib("No Connection".localized, "Please check your internet connection and press retry".localized)
         errorView.tag = 1
         errorView.frame = CGRect(origin: .zero, size: view.frame.size)
         if let controller = self as? ParentViewController{
@@ -64,7 +64,7 @@ extension UIViewController{
     }
     
     func showNoConnection(below tempView: UIView){
-        let errorView = ErrorView.instanciateFromNib("No Connection".localized, "Please check your internet connection and press retry")
+        let errorView = ErrorView.instanciateFromNib("No Connection".localized, "Please check your internet connection and press retry".localized)
         errorView.tag = 1
         errorView.frame = CGRect(origin: .zero, size: view.frame.size)
         if let controller = self as? ParentViewController{

@@ -30,23 +30,26 @@ class UserPopupViewController: ParentViewController {
     
     var delegate: UserPopupViewControllerDelegate!
     var username: String!
+    var email: String!
     var isPassword = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
         if isPassword{
-            titleLabel.text = "New Password".localized + " " + username
-            descriptionLabel.text = "new password description".localized
+            titleLabel.text = "New Password".localized
+            descriptionLabel.text = "A new password has been sent to".localized + " " + email + "\n" + "Please check your E-mail, and use your new password to sign in".localized
             imageView.image = UIImage(named: "key.png")
         }
         else{
             titleLabel.text = "Welcome".localized + " " + username
-            descriptionLabel.text = "sign up description".localized
+            descriptionLabel.text = "sign up description".localized + "\n" + "A new password has been sent to".localized + " " + email + "\n" + "Please check your E-mail, and use your new password to sign in".localized
         }
     }
     
     override func viewDidDisappear(_ animated: Bool) {
-        delegate.didDismiss()
+        if !isPassword{
+            delegate.didDismiss()
+        }
     }
 
 }

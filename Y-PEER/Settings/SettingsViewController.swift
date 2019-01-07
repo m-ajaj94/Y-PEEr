@@ -10,6 +10,8 @@ import UIKit
 
 class SettingsViewController: ParentViewController {
     
+    var heights: [IndexPath:CGFloat] = [:]
+    
     @IBOutlet weak var tableView: UITableView!{
         didSet{
             tableView.backgroundColor = .mainGray
@@ -107,6 +109,17 @@ extension SettingsViewController: UITableViewDelegate, UITableViewDataSource, Se
             return header
         }
         return nil
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        heights[indexPath] = cell.bounds.height
+    }
+    
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        if let height =  self.heights[indexPath] {
+            return height
+        }
+        return UITableView.automaticDimension
     }
     
     func tableView(_ tableView: UITableView, estimatedHeightForFooterInSection section: Int) -> CGFloat {

@@ -65,7 +65,11 @@ class SignupViewController: ParentViewController {
             birthdayTextField.inputView = datePicker
         }
     }
-    @IBOutlet weak var signupButton: UIButton!
+    @IBOutlet weak var signupButton: UIButton!{
+        didSet{
+            signupButton.setTitle("Sign up".localized, for: .normal)
+        }
+    }
     
     @IBAction func signupButtonPressed(_ sender: Any) {
         if emailTextField.empty{
@@ -125,13 +129,12 @@ class SignupViewController: ParentViewController {
         super.viewDidLoad()
         let backgroundImage = UIImageView(frame: UIScreen.main.bounds)
         backgroundImage.image = UIImage(named: "background.jpg")
+        backgroundImage.clipsToBounds = true
         backgroundImage.contentMode = .scaleAspectFill
         self.view.insertSubview(backgroundImage, at: 0)
         if isEditProfile{
             user = UserCache.userData!
-            
             emailTextField.isEnabled = false
-            emailTextField.textColor = .mainGray
             emailTextField.layoutSubviews()
             nameTextField.text = user.name!
             emailTextField.text = user.email!
@@ -149,7 +152,7 @@ class SignupViewController: ParentViewController {
             datePicker.date = birthday
             genderPicker.selectRow(user.gender!, inComponent: 0, animated: false)
             cityPicker.selectRow(user.cityID!-1, inComponent: 0, animated: false)
-            signupButton.setTitle("Update Profile", for: .normal)
+            signupButton.setTitle("Update Profile".localized, for: .normal)
         }
         else{
             if Cache.cities.cities.count == 0{
@@ -283,6 +286,7 @@ class SignupViewController: ParentViewController {
     func showPopup(){
         let controller = UIStoryboard(name: "User", bundle: nil).instantiateViewController(withIdentifier: String(describing: UserPopupViewController.self)) as! UserPopupViewController
         controller.username = nameTextField.text!
+        controller.email = emailTextField.text!
         controller.delegate = self
         customPresentViewController(presenter, viewController: controller, animated: true)
     }

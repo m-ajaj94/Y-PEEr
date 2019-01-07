@@ -30,8 +30,15 @@ class IssueTableViewCell: UITableViewCell {
     
     var article: ArticleModel!{
         didSet{
-            cellTitleLabel.text = article.titleEn!
-            dateLabel.text = article.updatedAt!
+            if Cache.language.current == .arabic{
+                cellTitleLabel.text = article.titleAr!
+            }
+            else{
+                cellTitleLabel.text = article.titleEn!
+            }
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+            dateLabel.text = (dateFormatter.date(from: article.createdAt!)! as NSDate).timeAgo()
             cellImage.kf.setImage(with: Networking.getImageURL(article.images![0].imagePath!))
         }
     }

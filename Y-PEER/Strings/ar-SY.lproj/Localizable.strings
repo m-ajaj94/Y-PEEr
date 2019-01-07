@@ -5,90 +5,126 @@
  Created by Majd Ajaj on 12/29/18.
  Copyright © 2018 Majd Ajaj. All rights reserved.
  */
-"ERROR CONNECT MESSAGE" = "ERROR CONNECT MESSAGE";
-"Error" = "Error";
-"Please fill all fields" = "Please fill all fields";
-"Loading..." = "Loading...";
-"Ok" = "Ok";
-"No Connection" = "No Connection";
-"Please check your internet connection and press retry" = "Please check your internet connection and press retry";
-"Cancel" = "Cancel";
-"Sorry" = "Sorry";
-"Success" = "Success";
+"ERROR CONNECT MESSAGE" = "حدث خطأ ما، حاول لاحقاً";
+"Error" = "خطأ";
+"Please fill all fields" = "الرجاء تعبئة جميع الحقول";
+"Loading..." = "جار التحميل...";
+"Ok" = "موافق";
+"No Connection" = "غير متصل";
+"Please check your internet connection and press retry" = "الرجاء التأكد من الاتصال بالشبكة و اعادة المحاولة";
+"Retry" = "إعادة المحاولة";
+"Cancel" = "إلغاء";
+"Sorry" = "المعذرة";
+"Success" = "تم بنجاح";
 //**********Stories**********
-"Anonymous" = "Anonymous";
-"Stories" = "Stories";
-"Select related issue" = "Select related issue";
-"Enter your story" = "Enter your story";
-"Share Story" = "Share Story";
-"Your story was submitted for reviewing" = "Your story was submitted for reviewing";
-"Share your story" = "Share your story";
-"What are stories?" = "What are stories?";
-"stories explanation" = "stories explanation stories explanation stories explanation stories explanation stories explanation stories explanation stories explanation ";
+"Anonymous" = "مجهول";
+"Stories" = "التجارب الشخصية";
+"Select related issue" = "حدد القضية المعنية";
+"Enter your story" = "أدخل تجربتك الشخصية";
+"Share Story" = "شارك تجربتك الشخصية";
+"Your story was submitted for reviewing" = "تمّ تقديم قصتك للمراجعة";
+"Share your story" = "شارك تجربتك الشخصية";
+"What are stories?" = "ما هي التجارب الشخصية؟";
+"stories explanation" = "هل سبق ومررت بتجربة ما متعلقة باحدى قضايا شبكة الاقران الشباب؟ هل ترغب في مشاركة مشكلة واجهتها من قبل وأن تكون منقذًا لشخص ما؟ مشاركتك قد تحمي وتساند شخصا اخر غيرك في تخطي العقبة المماثلة لقصتك، هذه المدونة هي منصتك";
 //**********User**********
-"E-mail" = "E-mail";
-"Password" = "Password";
-"Please enter your e-mail first!" = "Please enter your e-mail first!";
-"Please enter a valid e-mail!" = "Please enter a valid e-mail!";
-"Please enter your password!\nA password must be at least 6 characters long" = "Please enter your password!\nA password must be at least 6 characters long";
-"New Password" = "New Password";
-"We are about to send a new password to" = "We are about to send a new password to";
-"Are you sure?" = "Are you sure?";
-"Full Name" = "Full Name";
-"Gender" = "Gender";
-"City" = "City";
-"Birthday" = "Birthday";
-"Please select your gender!" = "Please select your gender!";
-"Please select your city!" = "Please select your city!";
-"Please enter your birthday!" = "Please enter your birthday!";
-"Male" = "Male";
-"Female" = "Female";
-"Update Profile" = "Update Profile";
-"Sign in/Register" = "Sign in/Register";
-"Sign in/Register" = "Sign in/Register";
-
+"E-mail" = "البريد الالكتروني";
+"Password" = "كلمة المرور";
+"Please enter your e-mail first!" = "الرجاء ادخال عنوان البريد الالكتروني اولا!";
+"Please enter a valid e-mail!" = "يرجى ادخال بريد الكتروني صالح!";
+"Please enter your password!\nA password must be at least 6 characters long" = "يرجى ادخال كلمة المرور الخاصة بك!\nيجب ان لا تقل كلمة المرور عن 6 أحرف";
+"New Password" = "كلمة مرور جديدة";
+"We are about to send a new password to your E-mail " = " نحن على وشك إرسال كلمة مرور جديدة إلى بريدك الإلكتروني ";
+"Are you sure?" = "هل انت متأكد?";
+"Full Name" = "الاسم بالكامل";
+"Gender" = "الجنس";
+"City" = "المدينة";
+"Birthday" = "تاريخ الميلاد";
+"Please select your gender!" = "الرجاء تحديد جنسك!";
+"Please select your city!" = "الرجاء اختيار مدينتك!";
+"Please enter your birthday!" = "الرجاء ادخال تاريخ الميلاد!";
+"Male" = "ذكر";
+"Female" = "انثى";
+"Update Profile" = "تحديث المعلومات";
+"Sign in/Register" = " تسجيل دخول / انشاء حساب ";
+"Sign in/Register" = "تسجيل دخول/انشاء حساب";
+"sign up description" = "تم إنشاء الحساب الجديد بنجاح";
+"New Password" = "كلمة مرور جديدة";
+"Skip" = "ربما لاحقاً 😅";
+"Signup" = "ليس لديك حساب؟";
+"Continue" = "متابعة";
+"Forgot Password" = "نسيت كلمة المرور 😥";
+"We are about to send a new password to" = "سنقوم بإرسال كلمة مرور جديدة إلى";
+"Yes" = "متأكد";
+"A new password has been sent to" = "تم إرسال كلمة مرور جديدة إلى";
+"Please check your E-mail, and use your new password to sign in" = "الرجاء التحقق من بريدك الالكتروني و استعمال كلمة المرور الجديدة لتسجيل الدخول";
+"Welcome" = "أهلاً";
+"Sign out" = "تسجيل الخروج";
+"Sign up" = "إنشاء الحساب";
+"Update Profile" = "تحديث المعلومات الشخصية";
 //**********Side menu**********
-"About Y-PEER" = "About Y-PEER";
-"Search" = "Search";
+"About Y-PEER" = " Y-PEERعن ";
+"Search" = "البحث";
 
 //**********Events**********
-"Likes" = "Likes";
-"Views" = "Views";
-"Media" = "Media";
-"Days" = "Days";
-"Hours" = "Hours";
-"Minutes" = "Minutes";
-"Seconds" = "Seconds";
-"Events" = "Events";
-"Please answer all questions" = "Please answer all questions";
-"Your request was successfully submitted" = "Your request was successfully submitted";
-"The form is not ready yet\nTry again later" = "The form is not ready yet\nTry again later";
-"Submit Request" = "Submit Request";
+"Likes" = "اعجابات";
+"Views" = "المشاهدات";
+"Media" = "الصور";
+"Days" = "أيام";
+"Hours" = "ساعات";
+"Minutes" = "دقائق";
+"Seconds" = "ثواني";
+"Events" = "أحداث";
+"Please answer all questions" = "الرجاء الاجابة على جميع الأسئلة";
+"Your request was successfully submitted" = "تم ارسال طلبك بنجاح";
+"The form is not ready yet\nTry again later" = "الاستمارة غير جاهزة بعد عاود المحاولة لاحقا";
+"Submit Request" = "إرسال طلب";
+"Submit" = "إرسال";
+"Upcoming" = "القادمة";
+"Passed" = "السابفة";
+"Answer" = "الإجابة";
 
 //**********Posts**********
-"Post" = "Post";
-"Newsfeed" = "Newsfeed";
+"Post" = "منشور";
+"Newsfeed" ="آخر الأخبار";
 
 //**********Gallery**********
-"Gallery" = "Gallery";
+"Gallery" = "الاستديو";
+"Videos" = "فيديو";
+"Photos" = "صور";
+"All" = "الكل";
 
 //**********Issues**********
-"Issues" = "Issues";
+"Issues" = "القضايا";
 
 //**********Quizzes**********
-"Quizzes" = "Quizzes";
-"Get Results" = "Get Results";
-"Next" = "Next";
-"Previous" = "Previous";
+"Quizzes" = "اختبارات";
+"Get Results" = "الحصول على النتائج";
+"Next" = "التالي";
+"Previous" = "السابق";
+"Questions" = "أسئلة";
+"Start" = "بدء";
+"Results" = "النتائج";
+"Question" = "سؤال";
+"Quiz results" = "نتائج الإختبار";
+"Your Answer" = "إجابتك";
+"Correct Answer" = "الإجابة الصحيحة";
+"Explanation" = "الشرح";
 
 //**********Settings**********
-"Settings" = "Settings";
-"Notifications Settings" = "Notifications Settings";
-"Language Settings" = "Language Settings";
-"Notification-1" = "Notification-1";
-"Notification-2" = "Notification-2";
-"Notification-3" = "Notification-3";
+"Settings" = "الاعدادات";
+"Notifications Settings" = "اعدادات الاشعارات";
+"Language Settings" = "اعدادات اللغة";
+"Notification-1" = "الاشعارات-1";
+"Notification-2" = "الاشعارات-2";
+"Notification-3" = "الاشعارات-3";
 
 //**********About Us**********
-"Core Team" = "Executive Comittee";
-"About Y-PEER" = "About Y-PEER";
+"Core Team" = "فريق العمل";
+"About Y-PEER" = " Y-PEER عن ";
+
+//**********Search**********
+"Posts" = "أخبار";
+"Articles" = "مقالات";
+"Search for something" = "إبحث عن شيء ما";
+"No Data Found" = "لا يوجد نتائج";
+"Please enter some text first" = "أدخل نص البحث أولاً";

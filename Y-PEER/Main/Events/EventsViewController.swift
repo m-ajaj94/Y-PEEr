@@ -11,6 +11,8 @@ import Toaster
 
 class EventsViewController: ParentViewController {
 
+    var heights: [IndexPath:CGFloat] = [:]
+    
     @IBAction func sideMenuButtonPressed(_ sender: Any) {
         if let tabController = tabBarController as? MainTabBarController{
             tabController.showSideMenu()
@@ -33,6 +35,7 @@ class EventsViewController: ParentViewController {
     @IBOutlet weak var passedButton: UIButton!{
         didSet{
             if passedButton != nil{
+                passedButton.setTitle("Passed".localized, for: .normal)
                 passedButton.layer.borderColor = UIColor.mainOrange.cgColor
                 passedButton.layer.borderWidth = 1
             }
@@ -41,6 +44,7 @@ class EventsViewController: ParentViewController {
     @IBOutlet weak var upcomingButton: UIButton!{
         didSet{
             if upcomingButton != nil{
+                upcomingButton.setTitle("Upcoming".localized, for: .normal)
                 upcomingButton.layer.borderColor = UIColor.mainOrange.cgColor
                 upcomingButton.layer.borderWidth = 1
             }
@@ -49,6 +53,7 @@ class EventsViewController: ParentViewController {
     @IBOutlet weak var allButton: UIButton!{
         didSet{
             if allButton != nil{
+                allButton.setTitle("All".localized, for: .normal)
                 allButton.layer.borderColor = UIColor.mainOrange.cgColor
                 allButton.layer.borderWidth = 1
             }
@@ -276,6 +281,17 @@ extension EventsViewController: UITableViewDelegate, UITableViewDataSource{
             return cell
         }
         return UITableViewCell()
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        heights[indexPath] = cell.bounds.height
+    }
+    
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        if let height =  self.heights[indexPath] {
+            return height
+        }
+        return UITableView.automaticDimension
     }
     
 }

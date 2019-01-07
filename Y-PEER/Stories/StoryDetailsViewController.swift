@@ -46,6 +46,7 @@ class StoryDetailsViewController: ParentViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        title = story.username!.name!
         if story.nameVisibility == 1{
             nameLabel.text = story.username!.name!
         }

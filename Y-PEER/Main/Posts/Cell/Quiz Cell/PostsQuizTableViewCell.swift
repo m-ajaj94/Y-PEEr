@@ -10,7 +10,11 @@ import UIKit
 
 class PostsQuizTableViewCell: UITableViewCell {
 
-    @IBOutlet weak var startButton: UIButton!
+    @IBOutlet weak var startButton: UIButton!{
+        didSet{
+            startButton.setTitle("Start".localized, for: .normal)
+        }
+    }
     @IBOutlet weak var buttonContainerView: UIView!
     @IBOutlet weak var secondaryLabel: UILabel!
     @IBOutlet weak var mainLabel: UILabel!

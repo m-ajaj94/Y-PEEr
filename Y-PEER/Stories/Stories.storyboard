@@ -48,21 +48,21 @@
                                 <color key="backgroundColor" name="GrayColor"/>
                             </tableView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Bubble" translatesAutoresizingMaskIntoConstraints="NO" id="SIl-it-88M">
-                                <rect key="frame" x="125" y="535" width="180" height="50"/>
+                                <rect key="frame" x="89" y="535" width="216" height="50"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="180" id="gWG-BX-ABh"/>
+                                    <constraint firstAttribute="width" constant="216" id="gWG-BX-ABh"/>
                                     <constraint firstAttribute="height" constant="50" id="zJV-dG-OiP"/>
                                 </constraints>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Exclamation" translatesAutoresizingMaskIntoConstraints="NO" id="ddU-As-Dmg">
-                                <rect key="frame" x="141" y="548" width="20" height="20"/>
+                                <rect key="frame" x="105" y="548" width="20" height="20"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="ddU-As-Dmg" secondAttribute="height" multiplier="1:1" id="FNP-oP-bvs"/>
                                     <constraint firstAttribute="width" constant="20" id="MNk-z1-F8e"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tell your story" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sfl-M3-3SD">
-                                <rect key="frame" x="165" y="548" width="124" height="20"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tell your story" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Sfl-M3-3SD">
+                                <rect key="frame" x="129" y="548" width="160" height="20"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>

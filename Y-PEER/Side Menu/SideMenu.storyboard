@@ -54,7 +54,7 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UXY-K0-1m1">
-                                <rect key="frame" x="16" y="196.5" width="343" height="50"/>
+                                <rect key="frame" x="16" y="156.5" width="343" height="50"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Settings" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5re-Nn-W7M">
                                         <rect key="frame" x="62" y="4" width="249" height="42"/>
@@ -83,7 +83,7 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zoq-DB-JBi">
-                                <rect key="frame" x="16" y="278.5" width="343" height="50"/>
+                                <rect key="frame" x="16" y="238.5" width="343" height="50"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="About Y-PEER" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GCP-1F-cKc">
                                         <rect key="frame" x="62" y="4" width="249" height="42"/>
@@ -110,7 +110,7 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qBG-RT-ww0">
-                                <rect key="frame" x="16" y="360.5" width="343" height="50"/>
+                                <rect key="frame" x="16" y="320.5" width="343" height="50"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Stories" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6aB-cv-GMb">
                                         <rect key="frame" x="62" y="4" width="249" height="42"/>
@@ -137,7 +137,7 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="N7l-PJ-pK3">
-                                <rect key="frame" x="16" y="442.5" width="343" height="50"/>
+                                <rect key="frame" x="16" y="402.5" width="343" height="50"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Search Here..." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iu2-YJ-t6T">
                                         <rect key="frame" x="62" y="4" width="249" height="42"/>
@@ -174,7 +174,7 @@
                             <constraint firstItem="N7l-PJ-pK3" firstAttribute="leading" secondItem="zoq-DB-JBi" secondAttribute="leading" id="DeU-qA-pf1"/>
                             <constraint firstItem="N7l-PJ-pK3" firstAttribute="trailing" secondItem="zoq-DB-JBi" secondAttribute="trailing" id="GH4-7T-U6D"/>
                             <constraint firstItem="zoq-DB-JBi" firstAttribute="height" secondItem="UXY-K0-1m1" secondAttribute="height" id="Lkf-gv-MKv"/>
-                            <constraint firstItem="zoq-DB-JBi" firstAttribute="centerY" secondItem="j0h-QK-eLJ" secondAttribute="centerY" constant="-40" id="RW4-YU-egg"/>
+                            <constraint firstItem="zoq-DB-JBi" firstAttribute="centerY" secondItem="j0h-QK-eLJ" secondAttribute="centerY" constant="-80" id="RW4-YU-egg"/>
                             <constraint firstItem="j0h-QK-eLJ" firstAttribute="trailing" secondItem="Nj6-aZ-Pvf" secondAttribute="trailing" id="WVV-fq-uxo"/>
                             <constraint firstItem="j0h-QK-eLJ" firstAttribute="bottom" secondItem="Nj6-aZ-Pvf" secondAttribute="bottom" id="cEK-fW-C6c"/>
                             <constraint firstItem="UXY-K0-1m1" firstAttribute="trailing" secondItem="zoq-DB-JBi" secondAttribute="trailing" id="pGF-mn-sPN"/>

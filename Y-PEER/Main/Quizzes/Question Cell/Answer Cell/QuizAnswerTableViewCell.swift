@@ -22,6 +22,7 @@ class QuizAnswerTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         selectionStyle = .none
+        backgroundColor = .clear
         if Cache.language.current == .arabic{
             self.flipX()
         }
