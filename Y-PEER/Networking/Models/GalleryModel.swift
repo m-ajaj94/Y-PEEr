@@ -10,21 +10,11 @@ import Foundation
 
 public class GalleryModel: Codable {
     public let message, code: String?
-    public let data: GalleryDataModel?
+    public let data: [ImageModel]?
     
-    public init(message: String?, code: String?, data: GalleryDataModel?) {
+    public init(message: String?, code: String?, data: [ImageModel]?) {
         self.message = message
         self.code = code
         self.data = data
-    }
-}
-
-public class GalleryDataModel: Codable {
-    public let images: [ImageModel]?
-    public let videos: [ImageModel]?
-    
-    public init(images: [ImageModel]?, videos: [ImageModel]?) {
-        self.images = images
-        self.videos = videos
     }
 }

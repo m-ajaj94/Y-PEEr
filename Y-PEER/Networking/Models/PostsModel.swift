@@ -108,7 +108,6 @@ public class ImageModel: Codable {
     public let articleID: Int?
     public let type, name, imagePath, thumbnailPath: String?
     public let createdAt, updatedAt: String?
-    public let deletedAt: String?
     
     enum CodingKeys: String, CodingKey {
         case id
@@ -123,7 +122,6 @@ public class ImageModel: Codable {
         case thumbnailPath = "thumbnail_path"
         case createdAt = "created_at"
         case updatedAt = "updated_at"
-        case deletedAt = "deleted_at"
     }
     
     public init(id: Int?, userID: String?, memberID: Int?, postID: Int?, issueID: Int?, eventID: Int?, articleID: Int?, type: String?, name: String?, imagePath: String?, thumbnailPath: String?, createdAt: String?, updatedAt: String?, deletedAt: String?) {
@@ -140,6 +138,5 @@ public class ImageModel: Codable {
         self.thumbnailPath = thumbnailPath
         self.createdAt = createdAt
         self.updatedAt = updatedAt
-        self.deletedAt = deletedAt
     }
 }

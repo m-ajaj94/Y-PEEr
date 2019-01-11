@@ -114,9 +114,9 @@
 "Settings" = "الاعدادات";
 "Notifications Settings" = "اعدادات الاشعارات";
 "Language Settings" = "اعدادات اللغة";
-"Notification-1" = "الاشعارات-1";
-"Notification-2" = "الاشعارات-2";
-"Notification-3" = "الاشعارات-3";
+"Send notifications when we post something new" = "استقبل إشعارات عندما توجد أخبار جديدة";
+"Send notifications a new event is happening" = "استقبل إشعارات عندما توجد أحداث جديدة";
+"Send notifications a new quiz is available" = "استقبل إشعارات عندما توجد أختبارات جديدة";
 
 //**********About Us**********
 "Core Team" = "فريق العمل";

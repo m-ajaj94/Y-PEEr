@@ -62,6 +62,7 @@ class EventDetailsViewController: ParentViewController, FaveButtonDelegate {
     }
     
     var type: PostType!
+    var eventID: String!
     var noImages = false
     var images: [ImageModel]!{
         didSet{
@@ -91,9 +92,14 @@ class EventDetailsViewController: ParentViewController, FaveButtonDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setData()
-        pageControl = ISPageControl(frame: CGRect(origin: .zero, size: CGSize(width: 80, height: 20)), numberOfPages: images.count)
-        setButton()
+        if eventID == nil{
+            setData()
+            pageControl = ISPageControl(frame: CGRect(origin: .zero, size: CGSize(width: 80, height: 20)), numberOfPages: images.count)
+            setButton()
+        }
+        else{
+            requestData()
+        }
         NotificationCenter.default.addObserver(self, selector: #selector(userDidSignout), name: NSNotification.Name("Signout"), object: nil)
     }
     
@@ -105,12 +111,38 @@ class EventDetailsViewController: ParentViewController, FaveButtonDelegate {
         }
     }
     
+    override func didPressRetry() {
+        removeNoConnection()
+        requestData()
+    }
+    
     @objc func userDidSignout(){
         event.isLiked = "0"
         likeButton.setSelected(selected: false, animated: false)
     }
     
     var date: Date!
+    
+    func requestData(){
+        showLoading()
+        Networking.events.getEventByID(["id":eventID, "user_id":UserCache.userID]) { (model) in
+            self.removeLoading()
+            if model != nil{
+                if model!.code! == "1"{
+                    self.event = model!.data!
+                    self.setData()
+                    self.pageControl = ISPageControl(frame: CGRect(origin: .zero, size: CGSize(width: 80, height: 20)), numberOfPages: self.images.count)
+                    self.setButton()
+                }
+                else{
+                    self.showNoConnection()
+                }
+            }
+            else{
+                self.showNoConnection()
+            }
+        }
+    }
     
     func setData(){
         title = event.title!
@@ -261,13 +293,15 @@ extension EventDetailsViewController: UICollectionViewDelegate, UICollectionView
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        if images == nil{
+            return 0
+        }
         return images.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: PostDetailsImageCollectionViewCell.self), for: indexPath) as? PostDetailsImageCollectionViewCell{
-            cell.cellImage.kf.setImage(with: Networking.getImageURL(images[indexPath.row].thumbnailPath!))
-            cell.blurredImageView.kf.setImage(with: Networking.getImageURL(images[indexPath.row].thumbnailPath!))
+            cell.imageModel = images[indexPath.row]
             return cell
         }
         return UICollectionViewCell()

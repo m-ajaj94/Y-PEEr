@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import FirebaseMessaging
+import Toaster
 
 class SettingsViewController: ParentViewController {
     
@@ -37,7 +39,7 @@ class SettingsViewController: ParentViewController {
     var languages = ["English", "العربية"]
     var messages = ["You need to restart the application for the changes to appear", "يجب اعادة تشغبل التطبيق لتظهر التغييرات"]
     var titles = ["Restart required", "اعادة التشغيل"]
-    var notificationSettingsTitles = ["Notification-1".localized, "Notification-2".localized, "Notification-3".localized, ]
+    var notificationSettingsTitles = ["Send notifications when we post something new".localized, "Send notifications a new event is happening".localized, "Send notifications a new quiz is available".localized]
     var selectedLanguage: Int = Cache.language.current.rawValue
     
     override func viewDidLoad() {
@@ -71,6 +73,20 @@ extension SettingsViewController: UITableViewDelegate, UITableViewDataSource, Se
                 cell.index = indexPath
                 cell.cellLabel.text = notificationSettingsTitles[indexPath.row]
                 cell.delegate = self
+                let settings = Cache.settings.current
+                switch indexPath.row{
+                case 0:
+                    cell.toggle.isOn = settings[0] == 1
+                    break
+                case 1:
+                    cell.toggle.isOn = settings[1] == 1
+                    break
+                case 2:
+                    cell.toggle.isOn = settings[2] == 1
+                    break
+                default:
+                    break
+                }
                 return cell
             }
         case 1:
@@ -90,9 +106,41 @@ extension SettingsViewController: UITableViewDelegate, UITableViewDataSource, Se
         if indexPath.section == 0{
             return
         }
+        if selectedLanguage == indexPath.row{
+            return
+        }
         Cache.language.changeLanguage(language: Cache.language.Language(rawValue: indexPath.row)!)
         showAlert(titles[indexPath.row], messages[indexPath.row])
         selectedLanguage = indexPath.row
+        if let token = Messaging.messaging().fcmToken{
+            Networking.sendSettings(token) { (model) in
+                if model != nil{
+                    if model!.code == "1"{
+                        //Something
+                    }
+                    else{
+                        if self.selectedLanguage == 0{
+                            self.selectedLanguage = 1
+                        }
+                        else{
+                            self.selectedLanguage = 0
+                        }
+                        self.tableView.reloadRows(at: [IndexPath(row: 0, section: 1), IndexPath(row: 1, section: 1)], with: .none)
+                        Toast(text: model!.message).show()
+                    }
+                }
+                else{
+                    if self.selectedLanguage == 0{
+                        self.selectedLanguage = 1
+                    }
+                    else{
+                        self.selectedLanguage = 0
+                    }
+                    self.tableView.reloadRows(at: [IndexPath(row: 0, section: 1), IndexPath(row: 1, section: 1)], with: .none)
+                    Toast(text: "ERROR CONNECT MESSAGE".localized).show()
+                }
+            }
+        }
         tableView.reloadRows(at: [IndexPath(row: 0, section: 1), IndexPath(row: 1, section: 1)], with: .none)
     }
     
@@ -131,7 +179,78 @@ extension SettingsViewController: UITableViewDelegate, UITableViewDataSource, Se
     }
     
     func didToggle(at indexPath: IndexPath, with state: Bool) {
-        
+        if let token = Messaging.messaging().fcmToken{
+            switch indexPath.row {
+            case 0:
+                Cache.settings.setPosts(state ? 1 : 0)
+                Networking.sendSettings(token) { (model) in
+                    if model != nil{
+                        if model!.code == "1"{
+                            //Something
+                        }
+                        else{
+                            Cache.settings.setPosts(state ? 0 : 1)
+                            let cell = self.tableView.cellForRow(at: indexPath) as! SettingsNotificationTableViewCell
+                            cell.toggle.setOn(!state, animated: true)
+                            Toast(text: model!.message).show()
+                        }
+                    }
+                    else{
+                        Cache.settings.setPosts(state ? 0 : 1)
+                        let cell = self.tableView.cellForRow(at: indexPath) as! SettingsNotificationTableViewCell
+                        cell.toggle.setOn(!state, animated: true)
+                        Toast(text: "ERROR CONNECT MESSAGE".localized).show()
+                    }
+                }
+                break
+            case 1:
+                Cache.settings.setEvents(state ? 1 : 0)
+                Networking.sendSettings(token) { (model) in
+                    if model != nil{
+                        if model!.code == "1"{
+                            //Something
+                        }
+                        else{
+                            Cache.settings.setEvents(state ? 0 : 1)
+                            let cell = self.tableView.cellForRow(at: indexPath) as! SettingsNotificationTableViewCell
+                            cell.toggle.setOn(!state, animated: true)
+                            Toast(text: model!.message).show()
+                        }
+                    }
+                    else{
+                        Cache.settings.setEvents(state ? 0 : 1)
+                        let cell = self.tableView.cellForRow(at: indexPath) as! SettingsNotificationTableViewCell
+                        cell.toggle.setOn(!state, animated: true)
+                        Toast(text: "ERROR CONNECT MESSAGE".localized).show()
+                    }
+                }
+                break
+            case 2:
+                Cache.settings.setQuiz(state ? 1 : 0)
+                Networking.sendSettings(token) { (model) in
+                    if model != nil{
+                        if model!.code == "1"{
+                            //Something
+                        }
+                        else{
+                            Cache.settings.setQuiz(state ? 0 : 1)
+                            let cell = self.tableView.cellForRow(at: indexPath) as! SettingsNotificationTableViewCell
+                            cell.toggle.setOn(!state, animated: true)
+                            Toast(text: model!.message).show()
+                        }
+                    }
+                    else{
+                        Cache.settings.setQuiz(state ? 0 : 1)
+                        let cell = self.tableView.cellForRow(at: indexPath) as! SettingsNotificationTableViewCell
+                        cell.toggle.setOn(!state, animated: true)
+                        Toast(text: "ERROR CONNECT MESSAGE".localized).show()
+                    }
+                }
+                break
+            default:
+                break
+            }
+        }
     }
     
 }

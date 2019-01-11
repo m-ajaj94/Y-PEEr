@@ -12,6 +12,7 @@ import Firebase
 import FirebaseMessaging
 import UserNotifications
 import Lightbox
+import SwiftyJSON
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate, MessagingDelegate {
@@ -33,15 +34,61 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         Cache.language.setInitial()
         
         UNUserNotificationCenter.current().delegate = self
-        let authOptions: UNAuthorizationOptions = [.alert, .badge, .sound]
+        let authOptions: UNAuthorizationOptions = [.alert, .sound]
         UNUserNotificationCenter.current().requestAuthorization(
             options: authOptions,
             completionHandler: {_, _ in })
         application.registerForRemoteNotifications()
         FirebaseApp.configure()
         LightboxConfig.CloseButton.enabled = false
+        Messaging.messaging().delegate = self
+        if let token = Messaging.messaging().fcmToken{
+            Networking.sendSettings(token) { (model) in
+                //Something
+            }
+        }
         return true
     }
-
+    
+    func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String) {
+        Networking.sendSettings(fcmToken) { (model) in
+            //Something
+        }
+    }
+    
+    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+        let data = userInfo["gcm.notification.data"]! as! String
+        let json = JSON.init(parseJSON: data)
+        let type = json["type"].stringValue
+        let id = json["id"].stringValue
+        if let topController = application.topMostViewController{
+            if let navController = topController.navigationController{
+                switch type {
+                case "post":
+                    let controller = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: String(describing: PostDetailsViewController.self)) as! PostDetailsViewController
+                    controller.postID = id
+                    navController.pushViewController(controller, animated: true)
+                    break
+                case "event":
+                    let controller = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: String(describing: EventDetailsViewController.self)) as! EventDetailsViewController
+                    controller.eventID = id
+                    navController.pushViewController(controller, animated: true)
+                    break
+                case "quiz":
+                    let controller = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: String(describing: QuizViewController.self)) as! QuizViewController
+                    controller.quizID = Int(id)
+                    navController.pushViewController(controller, animated: true)
+                    break
+                default:
+                    break
+                }
+            }
+        }
+    }
+    
+    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void){
+        completionHandler([.alert, .sound])
+    }
+    
 }
 

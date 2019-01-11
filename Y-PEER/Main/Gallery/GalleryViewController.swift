@@ -85,6 +85,7 @@ class GalleryViewController: ParentViewController {
             self.collectionView.isHidden = false
             self.videoCollectionView.isHidden = true
         }
+        self.currentMode = .all
     }
     @IBAction func photosButtonPressed(_ sender: UIButton) {
         UIView.animate(withDuration: 0.2) {
@@ -97,7 +98,7 @@ class GalleryViewController: ParentViewController {
             self.collectionView.isHidden = false
             self.videoCollectionView.isHidden = true
         }
-        collectionView.hideSkeleton(reloadDataAfter: true)
+        self.currentMode = .images
     }
     @IBAction func videosButtonPressed(_ sender: UIButton) {
         UIView.animate(withDuration: 0.2) {
@@ -110,19 +111,57 @@ class GalleryViewController: ParentViewController {
             self.collectionView.isHidden = false
             self.videoCollectionView.isHidden = true
         }
+        currentMode = .videos
     }
     
     private let numberOfColoumns: CGFloat = 2
     var media: [ImageModel]!{
+        didSet{
+            let temp = currentMode
+            currentMode = temp
+        }
+    }
+    var selectedMedia: [ImageModel]!{
         didSet{
             collectionView.reloadData()
         }
     }
     let pageSize: Int = 18
     var refreshControl: UIRefreshControl!
+    var currentMode: GalleryMode!{
+        didSet{
+            if media == nil{
+                return
+            }
+            switch currentMode! {
+            case .all:
+                selectedMedia = media
+                break
+            case .images:
+                var array: [ImageModel] = []
+                for image in media{
+                    if image.type! != "video"{
+                        array.append(image)
+                    }
+                }
+                selectedMedia = array
+                break
+            case .videos:
+                var array: [ImageModel] = []
+                for image in media{
+                    if image.type! == "video"{
+                        array.append(image)
+                    }
+                }
+                selectedMedia = array
+                break
+            }
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        currentMode = .all
         title = "Gallery".localized
         requestData()
         collectionView.addInfiniteScroll { (collectionView) in
@@ -140,7 +179,7 @@ class GalleryViewController: ParentViewController {
             self.removeLoading()
             if model != nil{
                 if model!.code == "1"{
-                    self.media = model!.data!.images!
+                    self.media = model!.data!
                 }
                 else{
                     
@@ -157,7 +196,7 @@ class GalleryViewController: ParentViewController {
             self.refreshControl.endRefreshing()
             if model != nil{
                 if model!.code == "1"{
-                    self.media = model!.data!.images!
+                    self.media = model!.data!
                 }
                 else{
                     Toast(text: model!.message).show()
@@ -173,7 +212,9 @@ class GalleryViewController: ParentViewController {
         Networking.gallery(["skip":media.count, "take":pageSize]) { (model) in
             if model != nil{
                 if model!.code == "1"{
-                    self.media.append(contentsOf: model!.data!.images!)
+                    self.media.append(contentsOf: model!.data!)
+                    let temp = self.currentMode
+                    self.currentMode = temp
                     self.collectionView.finishInfiniteScroll()
                     self.collectionView.reloadData()
                 }
@@ -195,7 +236,6 @@ class GalleryViewController: ParentViewController {
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-//        view.hideSkeleton(reloadDataAfter: true)
     }
     
     override func viewDidLayoutSubviews() {
@@ -214,17 +254,17 @@ extension GalleryViewController: UICollectionViewDelegate, SkeletonCollectionVie
     }
     
     func collectionView(_ collectionView: UICollectionView!, layout collectionViewLayout: FMMosaicLayout!, mosaicCellSizeForItemAt indexPath: IndexPath!) -> FMMosaicCellSize {
-        if indexPath.row % 3 == 1{
+        if indexPath.row % 3 == 0{
             return .big
         }
         return .small
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if media == nil{
+        if selectedMedia == nil{
             return 0
         }
-        return media.count
+        return selectedMedia.count
     }
     
     
@@ -256,7 +296,8 @@ extension GalleryViewController: UICollectionViewDelegate, SkeletonCollectionVie
         }
         else{
             if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: GalleryCollectionViewCell.self), for: indexPath) as? GalleryCollectionViewCell{
-                cell.cellImage.kf.setImage(with: Networking.getImageURL(media[indexPath.row].thumbnailPath!))
+                let image = selectedMedia[indexPath.row]
+                cell.imageModel = image
                 return cell
             }
         }
@@ -264,7 +305,7 @@ extension GalleryViewController: UICollectionViewDelegate, SkeletonCollectionVie
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        showImages(media, indexPath.row)
+        showImages(selectedMedia, indexPath.row)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -272,4 +313,10 @@ extension GalleryViewController: UICollectionViewDelegate, SkeletonCollectionVie
         return CGSize(width: width, height: width)
     }
     
+}
+
+enum GalleryMode{
+    case all
+    case images
+    case videos
 }

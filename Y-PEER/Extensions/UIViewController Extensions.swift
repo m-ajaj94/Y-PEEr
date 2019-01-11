@@ -25,7 +25,12 @@ extension UIViewController{
     func showImages(_ images: [ImageModel], _ index: Int){
         var array: [LightboxImage] = []
         for image in images{
-            array.append(LightboxImage(imageURL: Networking.getImageURL(image.imagePath!)))
+            if image.type! == "video"{
+                array.append(LightboxImage(image: VideoThumbnailCache.getThumbnailImage(forUrl: Networking.getImageURL(image.imagePath!)), text: "", videoURL: Networking.getImageURL(image.imagePath!)))
+            }
+            else{
+                array.append(LightboxImage(imageURL: Networking.getImageURL(image.imagePath!)))
+            }
         }
         let controller = LightboxController(images: array)
         controller.dynamicBackground = true
@@ -112,5 +117,30 @@ extension UIView {
     /// Flip view vertically.
     func flipY() {
         transform = CGAffineTransform(scaleX: transform.a, y: -transform.d)
+    }
+}
+
+extension UIViewController {
+    var topMostViewController : UIViewController {
+        
+        if let presented = self.presentedViewController {
+            return presented.topMostViewController
+        }
+        
+        if let navigation = self as? UINavigationController {
+            return navigation.visibleViewController?.topMostViewController ?? navigation
+        }
+        
+        if let tab = self as? UITabBarController {
+            return tab.selectedViewController?.topMostViewController ?? tab
+        }
+        
+        return self
+    }
+}
+
+extension UIApplication {
+    var topMostViewController : UIViewController? {
+        return self.keyWindow?.rootViewController?.topMostViewController
     }
 }

@@ -17,6 +17,7 @@ enum RequestNames: String{
     case getPosts = "getposts"
     case dislikePost = "unlike_post"
     case likePost = "like_post"
+    case getPostByID = "getpostbyid"
     
     case getIssues = "getissues"
     case getArticles = "getarticles"
@@ -30,6 +31,7 @@ enum RequestNames: String{
     case likeEvent = "like_event"
     case dislikeEvent = "unlike_event"
     case submitForm = "addanswer"
+    case getEventByID = "geteventbyid"
     
     case getQuizzes = "getquizzes"
     
@@ -42,5 +44,7 @@ enum RequestNames: String{
     
     case search = "searchword"
     case searchPaging = "searchwordFactor"
+    
+    case settings = "settings"
     
 }

@@ -41,9 +41,11 @@ struct Cache{
         static func changeLanguage(language: Language){
             if language == .english{
                 UserDefaults.standard.set(["En"], forKey: "AppleLanguages")
+                UserDefaults.standard.synchronize()
             }
             else{
                 UserDefaults.standard.set(["Ar"], forKey: "AppleLanguages")
+                UserDefaults.standard.synchronize()
             }
         }
         
@@ -54,6 +56,14 @@ struct Cache{
                 return
             }
             setLanguage(language: .arabic)
+        }
+        
+        static var currentForNotifications: Language{
+            let array = UserDefaults.standard.array(forKey: "AppleLanguages") as! [String]
+            if array[0].contains("E") || array[0].contains("e"){
+                return .english
+            }
+            return .arabic
         }
         
         enum Language: Int{
@@ -85,6 +95,48 @@ struct Cache{
                 UserDefaults.standard.set(dataArray, forKey: citiesKey)
                 UserDefaults.standard.synchronize()
             }
+        }
+    }
+    struct settings{
+        private static let postsKey = "NotificationsPost"
+        private static let eventsKey = "NotificationsEvent"
+        private static let quizKey = "NotificationsQuiz"
+        static var current: [Int]{
+            var array: [Int] = []
+            if let value = UserDefaults.standard.value(forKey: postsKey) as? Int{
+                array.append(value)
+            }
+            else{
+                array.append(1)
+                setPosts(1)
+            }
+            if let value = UserDefaults.standard.value(forKey: eventsKey) as? Int{
+                array.append(value)
+            }
+            else{
+                array.append(1)
+                setEvents(1)
+            }
+            if let value = UserDefaults.standard.value(forKey: quizKey) as? Int{
+                array.append(value)
+            }
+            else{
+                array.append(1)
+                setQuiz(1)
+            }
+            return array
+        }
+        static func setPosts(_ status: Int){
+            UserDefaults.standard.set(status, forKey: postsKey)
+            UserDefaults.standard.synchronize()
+        }
+        static func setEvents(_ status: Int){
+            UserDefaults.standard.set(status, forKey: eventsKey)
+            UserDefaults.standard.synchronize()
+        }
+        static func setQuiz(_ status: Int){
+            UserDefaults.standard.set(status, forKey: quizKey)
+            UserDefaults.standard.synchronize()
         }
     }
 }

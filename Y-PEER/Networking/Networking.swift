@@ -70,7 +70,24 @@ struct Networking{
             }
         }
     }
-    
+    static func sendSettings(_ token: String, _ completionHandler: @escaping (GenericModel?)->()){
+        var params: [String:Any] = [:]
+        params["token_key"] = token
+        let settings = Cache.settings.current
+        params["post_noti"] = "\(settings[0])"
+        params["event_noti"] = "\(settings[1])"
+        params["quiz_noti"] = "\(settings[2])"
+        params["lang"] = Cache.language.currentForNotifications == .arabic ? "ar" : "en"
+        Networking.post(.settings, params) { (data) in
+            if data == nil{
+                completionHandler(nil)
+            }
+            else{
+                let model = try? JSONDecoder().decode(GenericModel.self, from: data!)
+                completionHandler(model)
+            }
+        }
+    }
     static func getAboutUs(_ completionHandler: @escaping (AboutModel?)->()){
         Networking.get(.getAbout, nil) { (data) in
             if data == nil{
@@ -223,6 +240,17 @@ struct Networking{
                 }
             }
         }
+        static func getPostByID(_ params: [String:Any], completionHandler: @escaping (PostDetailsModel?)->()){
+            Networking.post(.getPostByID, params) { (data) in
+                if data == nil{
+                    completionHandler(nil)
+                }
+                else{
+                    let model = try? JSONDecoder().decode(PostDetailsModel.self, from: data!)
+                    completionHandler(model)
+                }
+            }
+        }
         static func likePost(_ params: [String:Any], completionHandler: @escaping (LikeGeneralModel?)->()){
             Networking.post(.likePost, params) { (data) in
                 if data == nil{
@@ -280,6 +308,17 @@ struct Networking{
                 }
                 else{
                     let model = try? JSONDecoder().decode(EventsModel.self, from: data!)
+                    completionHandler(model)
+                }
+            }
+        }
+        static func getEventByID(_ params: [String:Any], _ completionHandler: @escaping (EventDetailsModel?)->()){
+            Networking.post(.getEventByID, params) { (data) in
+                if data == nil{
+                    completionHandler(nil)
+                }
+                else{
+                    let model = try? JSONDecoder().decode(EventDetailsModel.self, from: data!)
                     completionHandler(model)
                 }
             }

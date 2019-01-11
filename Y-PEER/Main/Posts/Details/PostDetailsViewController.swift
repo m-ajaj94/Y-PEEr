@@ -55,6 +55,7 @@ class PostDetailsViewController: ParentViewController {
         didSet{
         }
     }
+    var postID: String!
     let height = UIScreen.main.bounds.width * 3 / 5
     var pageControl: ISPageControl!{
         didSet{
@@ -141,15 +142,20 @@ class PostDetailsViewController: ParentViewController {
         likeButtonHeart = FaveButton(frame: likeButton.frame, faveIconNormal: UIImage(named: "heart"))
         heightConstraint.constant = height
         title = "Post".localized
-        images = post.images!
-        pageControl = ISPageControl(frame: CGRect(origin: .zero, size: CGSize(width: 80, height: 20)), numberOfPages: images.count)
-        titleLabel.text = post.title!
-        descriptionLabel.text = post.description!
-        likesCountLabel.text = "\(post.totalLikes!)" + " " + "Likes".localized
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
-        timeLabel.text = (dateFormatter.date(from: post.createdAt!)! as NSDate).timeAgo()
-        self.likeButtonHeart.setSelected(selected: post.isLiked! == "1", animated: false)
+        if postID != nil{
+            requestData()
+        }
+        else{
+            images = post.images!
+            pageControl = ISPageControl(frame: CGRect(origin: .zero, size: CGSize(width: 80, height: 20)), numberOfPages: images.count)
+            titleLabel.text = post.title!
+            descriptionLabel.text = post.description!
+            likesCountLabel.text = "\(post.totalLikes!)" + " " + "Likes".localized
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+            timeLabel.text = (dateFormatter.date(from: post.createdAt!)! as NSDate).timeAgo()
+            self.likeButtonHeart.setSelected(selected: post.isLiked! == "1", animated: false)
+        }
         NotificationCenter.default.addObserver(self, selector: #selector(userDidSignout), name: NSNotification.Name("Signout"), object: nil)
     }
     
@@ -158,9 +164,40 @@ class PostDetailsViewController: ParentViewController {
         self.likeButtonHeart.setSelected(selected: false, animated: false)
     }
     
+    override func didPressRetry() {
+        removeNoConnection()
+        requestData()
+    }
+    
+    func requestData(){
+        showLoading()
+        Networking.posts.getPostByID(["id":postID, "user_id":UserCache.userID]) { (model) in
+            self.removeLoading()
+            if model != nil{
+                if model!.code! == "1"{
+                    self.post = model!.data!
+                    self.images = model!.data!.images!
+                    self.pageControl = ISPageControl(frame: CGRect(origin: .zero, size: CGSize(width: 80, height: 20)), numberOfPages: self.images.count)
+                    self.titleLabel.text = self.post.title!
+                    self.descriptionLabel.text = self.post.description!
+                    self.likesCountLabel.text = "\(self.post.totalLikes!)" + " " + "Likes".localized
+                    let dateFormatter = DateFormatter()
+                    dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+                    self.timeLabel.text = (dateFormatter.date(from: self.post.createdAt!)! as NSDate).timeAgo()
+                    self.likeButtonHeart.setSelected(selected: self.post.isLiked! == "1", animated: false)
+                }
+                else{
+                    self.showNoConnection()
+                }
+            }
+            else{
+                self.showNoConnection()
+            }
+        }
+    }
+    
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-//        pageControl.frame.origin = CGPoint(x: view.frame.midX - pageControl.frame.size.width / 2, y: collectionView.frame.origin.y + height - pageControl.frame.size.height)
         if pageControl != nil{
             pageControl.frame.origin = CGPoint(x: view.frame.midX - pageControl.frame.size.width / 2, y: collectionView.frame.origin.y + height - pageControl.frame.size.height)
         }
@@ -177,13 +214,15 @@ extension PostDetailsViewController: UICollectionViewDelegate, UICollectionViewD
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        if images == nil{
+            return 0
+        }
         return images.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: PostDetailsImageCollectionViewCell.self), for: indexPath) as? PostDetailsImageCollectionViewCell{
-            cell.cellImage.kf.setImage(with: Networking.getImageURL(images[indexPath.row].thumbnailPath!))
-            cell.blurredImageView.kf.setImage(with: Networking.getImageURL(images[indexPath.row].thumbnailPath!))
+            cell.imageModel = images[indexPath.row]
             return cell
         }
         return UICollectionViewCell()

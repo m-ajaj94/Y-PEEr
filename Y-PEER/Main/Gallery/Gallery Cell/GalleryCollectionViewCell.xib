@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -22,22 +22,22 @@
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="LNk-y4-t0l">
                         <rect key="frame" x="0.0" y="0.0" width="192" height="172"/>
                     </imageView>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="GFD-wJ-kEl">
-                        <rect key="frame" x="154" y="8" width="30" height="30"/>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="playIcon.png" translatesAutoresizingMaskIntoConstraints="NO" id="GFD-wJ-kEl">
+                        <rect key="frame" x="71" y="61" width="50" height="50"/>
                         <constraints>
                             <constraint firstAttribute="width" secondItem="GFD-wJ-kEl" secondAttribute="height" multiplier="1:1" id="Hly-Bl-VwO"/>
-                            <constraint firstAttribute="width" constant="30" id="REa-yg-mKZ"/>
+                            <constraint firstAttribute="height" constant="50" id="ToR-sC-m9y"/>
                         </constraints>
                     </imageView>
                 </subviews>
             </view>
             <constraints>
                 <constraint firstItem="LNk-y4-t0l" firstAttribute="top" secondItem="ZTg-uK-7eu" secondAttribute="top" id="AxQ-4H-aPa"/>
+                <constraint firstItem="GFD-wJ-kEl" firstAttribute="centerX" secondItem="ZTg-uK-7eu" secondAttribute="centerX" id="OZi-dE-BaT"/>
                 <constraint firstItem="ZTg-uK-7eu" firstAttribute="trailing" secondItem="LNk-y4-t0l" secondAttribute="trailing" id="XUF-PM-UUq"/>
-                <constraint firstItem="ZTg-uK-7eu" firstAttribute="trailing" secondItem="GFD-wJ-kEl" secondAttribute="trailing" constant="8" id="Xlh-v6-97i"/>
-                <constraint firstItem="GFD-wJ-kEl" firstAttribute="top" secondItem="ZTg-uK-7eu" secondAttribute="top" constant="8" id="dx8-n9-wbh"/>
                 <constraint firstItem="LNk-y4-t0l" firstAttribute="leading" secondItem="ZTg-uK-7eu" secondAttribute="leading" id="lLt-Z4-ure"/>
                 <constraint firstItem="ZTg-uK-7eu" firstAttribute="bottom" secondItem="LNk-y4-t0l" secondAttribute="bottom" id="ppR-C8-XgC"/>
+                <constraint firstItem="GFD-wJ-kEl" firstAttribute="centerY" secondItem="ZTg-uK-7eu" secondAttribute="centerY" id="qES-8N-Lvh"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <size key="customSize" width="192" height="172"/>
@@ -48,4 +48,7 @@
             <point key="canvasLocation" x="100.8" y="208.69565217391306"/>
         </collectionViewCell>
     </objects>
+    <resources>
+        <image name="playIcon.png" width="120" height="118"/>
+    </resources>
 </document>
